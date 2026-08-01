@@ -249,6 +249,34 @@ class TestBuildDataAlignedPeriods:
         assert row["AlignedQuarter"] == "Q1"
         assert row["AlignedPeriod"] == "2026Q1"
 
+    def test_add_derived_applies_known_nue_2022_q3_alignment_override(self):
+        df = add_derived(
+            pd.DataFrame(
+                [
+                    {
+                        "Steelmaker": "NUE",
+                        "Year": 2022,
+                        "Quarter": "Q3",
+                        "Reported End": "2023-07-01",
+                        "Net Sales": 1000.0,
+                        "Cost of Goods Sold": 700.0,
+                        "Net Income Attributable to Stockholders": 100.0,
+                        "Current Maturities": 10.0,
+                        "Long-Term Debt": 90.0,
+                        "Cash & Cash Equivalents": 25.0,
+                        "Short-Term Investments": 5.0,
+                        "Operating Cash Flow": 40.0,
+                        "Capital Expenditures": -15.0,
+                    }
+                ]
+            )
+        )
+
+        row = df.iloc[0]
+        assert row["AlignedYear"] == 2022
+        assert row["AlignedQuarter"] == "Q3"
+        assert row["AlignedPeriod"] == "2022Q3"
+
 
 class TestXbrlSafeCoverageFallbacks:
     def test_long_term_debt_supports_noncurrent_tag(self):

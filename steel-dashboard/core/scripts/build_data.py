@@ -54,6 +54,11 @@ REMOVED_OUTPUT_COLUMNS = {
     "Net Margin",
 }
 
+# One-off corrections for known SEC companyfacts mislabels.
+_ALIGNED_PERIOD_OVERRIDES: dict[tuple[str, int, str], tuple[int, str]] = {
+    ("NUE", 2022, "Q3"): (2022, "Q3"),
+}
+
 FINANCIALS_PATH = config.GENERATED_DIR / "financials.json"
 BUYBACKS_PATH = config.GENERATED_DIR / "buybacks.json"
 DIAGNOSTICS_DIR = config.GENERATED_DIR / "diagnostics"
@@ -249,6 +254,19 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
     )
     aligned.columns = ["AlignedYear", "AlignedQuarter", "AlignedPeriod"]
     df[["AlignedYear", "AlignedQuarter", "AlignedPeriod"]] = aligned
+
+    if {"Steelmaker", "Year", "Quarter"}.issubset(df.columns):
+        for (steelmaker, fiscal_year, fiscal_quarter), (aligned_year, aligned_quarter) in _ALIGNED_PERIOD_OVERRIDES.items():
+            mask = (
+                (df["Steelmaker"] == steelmaker)
+                & (pd.to_numeric(df["Year"], errors="coerce") == fiscal_year)
+                & (df["Quarter"] == fiscal_quarter)
+            )
+            if not mask.any():
+                continue
+            df.loc[mask, "AlignedYear"] = aligned_year
+            df.loc[mask, "AlignedQuarter"] = aligned_quarter
+            df.loc[mask, "AlignedPeriod"] = f"{aligned_year}{aligned_quarter}"
 
     preferred_column_order = list(
         dict.fromkeys(

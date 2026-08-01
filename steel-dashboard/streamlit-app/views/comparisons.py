@@ -101,28 +101,25 @@ with st.expander("Set filters", expanded=True):
                 [
                     "All",
                     *[group for group in STEELMAKER_GROUPS if group != "Defunct Steelmakers"],
-                    "Choose from active and defunct steelmakers",
                 ],
                 horizontal=False,
                 index=0,
             )
         if steelmaker_group == "All":
-            steelmaker_options = [s for s in steelmakers if s not in STEELMAKER_GROUPS["Defunct Steelmakers"]]
-            default_steelmakers = steelmaker_options
+            steelmaker_options = steelmakers
+            default_steelmakers = [s for s in steelmaker_options if s not in STEELMAKER_GROUPS["Defunct Steelmakers"]]
         elif steelmaker_group in STEELMAKER_GROUPS:
             steelmaker_options = [
                 s
                 for s in STEELMAKER_GROUPS[steelmaker_group]
-                if s in steelmakers and s not in STEELMAKER_GROUPS["Defunct Steelmakers"]
             ]
-            default_steelmakers = steelmaker_options
+            default_steelmakers = [s for s in steelmaker_options if s not in STEELMAKER_GROUPS["Defunct Steelmakers"]]
         else:
             steelmaker_options = steelmakers
-            default_steelmakers = steelmakers
-
+            default_steelmakers = steelmaker_options
         with col5:
             selected_steelmakers = st.multiselect("Add or remove Steelmakers to compare:", steelmaker_options, default=default_steelmakers)
-            selected_steelmakers = selected_steelmakers or steelmaker_options[:1]
+            selected_steelmakers = selected_steelmakers or ["NUE"]
             st.markdown(
                 " | ".join(
                     [
@@ -158,7 +155,7 @@ with st.expander("Set filters", expanded=True):
         for column in data.columns
         if column not in ("Year", "Quarter", "Steelmaker", "Period", "Reported End", "AlignedYear", "AlignedQuarter", "AlignedPeriod") and column not in DISPLAY_EXCLUDED_METRICS
     ]
-    default_metric_group_index = 0 if steelmaker_group in STEELMAKER_GROUPS else 1
+    default_metric_group_index = 0
     with st.container(border=True):
         col7, col8, col9 = st.columns([1, 3, 1])
         with col7:
