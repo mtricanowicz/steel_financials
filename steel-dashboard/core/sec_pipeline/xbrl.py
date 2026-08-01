@@ -258,9 +258,10 @@ def _pick_duration_window(
     preferred_val = _latest_value(preferred)
     if preferred_val is not None:
         return preferred_val
-    fallback_val = _latest_value(fallback)
-    if fallback_val is not None:
-        return fallback_val
+    if enable_fp_fallback:
+        fallback_val = _latest_value(fallback)
+        if fallback_val is not None:
+            return fallback_val
 
     if not enable_fp_fallback or not period:
         return None
@@ -334,9 +335,10 @@ def _pick_instant(
     preferred_val = _latest_value(preferred)
     if preferred_val is not None:
         return preferred_val
-    fallback_val = _latest_value(fallback)
-    if fallback_val is not None:
-        return fallback_val
+    if enable_fp_fallback:
+        fallback_val = _latest_value(fallback)
+        if fallback_val is not None:
+            return fallback_val
 
     if not enable_fp_fallback:
         return None
@@ -691,8 +693,52 @@ def _extract_restricted_cash_metric(
             break
 
     if current_val is None and noncurrent_val is None:
+        # Some filers only report a combined restricted-cash fact.
+        for tag in INSTANT_METRICS["Restricted Cash"]:
+            value = _pick_instant(
+                _facts_for_tag(facts, tag),
+                year,
+                period,
+                enable_fp_fallback=enable_fp_fallback,
+            )
+            if value is not None:
+                return value
         return None
     return (current_val or 0.0) + (noncurrent_val or 0.0)
+
+
+def _extract_eps_period_fallback(
+    facts: dict[str, Any],
+    year: int,
+    period: str,
+    *,
+    enable_fp_fallback: bool,
+) -> float | None:
+    """Derive period EPS from attributable net income and diluted shares."""
+    net_income = extract_metric(
+        facts,
+        ATTRIBUTABLE_NET_INCOME_METRIC,
+        year,
+        period,
+        enable_fp_fallback=enable_fp_fallback,
+    )
+    if net_income is None:
+        return None
+
+    shares: float | None = None
+    for tag in EPS_SHARE_TAGS:
+        shares = _pick_duration(
+            _facts_for_tag(facts, tag, EPS_SHARE_UNIT_CANDIDATES),
+            year,
+            period,
+            enable_fp_fallback=enable_fp_fallback,
+        )
+        if shares is not None:
+            break
+
+    if shares in (None, 0.0):
+        return None
+    return net_income / shares
 
 
 def _extract_eps_q4_fallback(
@@ -788,6 +834,35 @@ def extract_metric(
                 period,
                 enable_fp_fallback=enable_fp_fallback,
             )
+        if metric == "Cash & Cash Equivalents":
+            for tag in INSTANT_METRICS[metric]:
+                value = _pick_instant(
+                    _facts_for_tag(facts, tag),
+                    year,
+                    period,
+                    enable_fp_fallback=enable_fp_fallback,
+                )
+                if value is not None:
+                    return value
+
+            unrestricted = extract_metric(
+                facts,
+                "Unrestricted Cash",
+                year,
+                period,
+                enable_fp_fallback=enable_fp_fallback,
+            )
+            restricted = extract_metric(
+                facts,
+                "Restricted Cash",
+                year,
+                period,
+                enable_fp_fallback=enable_fp_fallback,
+            )
+            if unrestricted is None and restricted is None:
+                return None
+            return (unrestricted or 0.0) + (restricted or 0.0)
+
         for tag in INSTANT_METRICS[metric]:
             value = _pick_instant(
                 _facts_for_tag(facts, tag),
@@ -840,6 +915,16 @@ def extract_metric(
             )
             if ytd_value is not None:
                 return ytd_value
+
+        if metric == "Earnings Per Share":
+            eps_fallback = _extract_eps_period_fallback(
+                facts,
+                year,
+                period,
+                enable_fp_fallback=enable_fp_fallback,
+            )
+            if eps_fallback is not None:
+                return eps_fallback
 
         return _extract_metric_fallback(
             facts,
