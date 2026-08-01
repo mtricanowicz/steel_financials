@@ -1,0 +1,39 @@
+# Builds the Streamlit image from the steel-dashboard root context (so the
+# generated data is included) and deploys it to Cloud Run.
+substitutions:
+  _QUOTES_API_URL: ""
+
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: bash
+    args:
+      - -ceu
+      - test -n "${_QUOTES_API_URL}"
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - streamlit-app/Dockerfile
+      - -t
+      - us-central1-docker.pkg.dev/$PROJECT_ID/steel-dashboard/streamlit:$SHORT_SHA
+      - .
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - us-central1-docker.pkg.dev/$PROJECT_ID/steel-dashboard/streamlit:$SHORT_SHA
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - steel-streamlit
+      - --image
+      - us-central1-docker.pkg.dev/$PROJECT_ID/steel-dashboard/streamlit:$SHORT_SHA
+      - --region
+      - us-central1
+      - --set-env-vars
+      - QUOTES_API_URL=${_QUOTES_API_URL}
+      - --allow-unauthenticated
+
+images:
+  - us-central1-docker.pkg.dev/$PROJECT_ID/steel-dashboard/streamlit:$SHORT_SHA

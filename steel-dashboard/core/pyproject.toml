@@ -1,0 +1,38 @@
+[project]
+name = "sec-pipeline"
+version = "0.1.0"
+description = "SEC EDGAR retrieval, RAG, and LLM summarization pipeline for the steel dashboard"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "requests-cache>=1.2",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.2",
+    "pandas>=2.2",
+    "openpyxl>=3.1",
+    "python-dateutil>=2.9",
+    "python-dotenv>=1.0",
+    "pypdf>=4.2",
+    "chromadb>=0.5",
+    "openai>=1.30",
+    "tenacity>=8.3",
+]
+
+[project.optional-dependencies]
+local-embeddings = ["sentence-transformers>=3.0"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+sec-pipeline = "sec_pipeline.pipeline:main"
+build-data = "scripts.build_data:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["sec_pipeline", "scripts"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

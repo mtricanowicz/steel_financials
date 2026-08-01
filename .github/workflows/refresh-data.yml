@@ -1,0 +1,164 @@
+name: Refresh data
+
+# Quarterly refresh of the generated datasets and insights, followed by a
+# redeploy. Runs after typical filing windows; adjust the cron as needed.
+# Requires the same GCP/Firebase secrets as Deploy plus:
+#   SEC_USER_AGENT  - contact string for SEC EDGAR requests
+#   OPENAI_API_KEY  - key for insight summarization and embeddings
+#   QUOTES_API_URL  - public URL of the deployed quotes-api (for web + Streamlit)
+on:
+  workflow_dispatch:
+    inputs:
+      steelmakers:
+        description: "Space-separated steelmakers, e.g. NUE STLD CLF CMC X ATI CRS"
+        required: false
+      years:
+        description: "Space-separated years, e.g. 2026 (defaults to latest completed period year)"
+        required: false
+      periods:
+        description: "Space-separated periods, e.g. Q2 (defaults to latest completed period)"
+        required: false
+  schedule:
+    # 06:00 UTC on the last day of Jan, Apr, Jul, Oct.
+    - cron: "0 6 31 1,7,10 *"
+    - cron: "0 6 30 4 *"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-data:
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: steel-dashboard/core
+    env:
+      SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      EMBEDDING_BACKEND: openai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e .
+      - name: Determine run parameters
+        id: params
+        run: |
+          month="$(date -u +%m)"
+          year="$(date -u +%Y)"
+
+          case "$month" in
+            01|02|03)
+              default_year="$((year - 1))"
+              default_period="Q4 FY"
+              ;;
+            04|05|06)
+              default_year="$year"
+              default_period="Q1"
+              ;;
+            07|08|09)
+              default_year="$year"
+              default_period="Q2"
+              ;;
+            10|11|12)
+              default_year="$year"
+              default_period="Q3"
+              ;;
+          esac
+
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            steelmakers="NUE STLD CLF CMC X ATI CRS"
+            years="$default_year"
+            periods="$default_period"
+          else
+            steelmakers="${{ github.event.inputs.steelmakers }}"
+            years="${{ github.event.inputs.years }}"
+            periods="${{ github.event.inputs.periods }}"
+
+            if [ -z "$steelmakers" ]; then
+              steelmakers="NUE STLD CLF CMC X ATI CRS"
+            fi
+            if [ -z "$years" ]; then
+              years="$default_year"
+            fi
+            if [ -z "$periods" ]; then
+              periods="$default_period"
+            fi
+          fi
+
+          echo "steelmakers=$steelmakers" >> "$GITHUB_OUTPUT"
+          echo "years=$years" >> "$GITHUB_OUTPUT"
+          echo "periods=$periods" >> "$GITHUB_OUTPUT"
+
+          echo "Using steelmakers: $steelmakers"
+          echo "Using years: $years"
+          echo "Using periods: $periods"
+      - name: Build financials and buybacks
+        run: python -m scripts.build_data --steelmakers ${{ steps.params.outputs.steelmakers }} --years ${{ steps.params.outputs.years }} --periods ${{ steps.params.outputs.periods }}
+      - name: Generate insights
+        run: python -m sec_pipeline.pipeline --steelmakers ${{ steps.params.outputs.steelmakers }} --years ${{ steps.params.outputs.years }} --periods ${{ steps.params.outputs.periods }}
+      - name: Upload generated data
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-data
+          path: steel-dashboard/data/generated/*.json
+
+  redeploy:
+    needs: build-data
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download generated data
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-data
+          path: steel-dashboard/data/generated
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDP }}
+          service_account: ${{ secrets.GCP_DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Rebuild and deploy Streamlit
+        run: |
+          gcloud builds submit steel-dashboard \
+            --config steel-dashboard/deploy/cloudbuild.streamlit.yaml \
+            --substitutions=SHORT_SHA="${{ github.sha }}",_QUOTES_API_URL="${{ secrets.QUOTES_API_URL }}" \
+            --project "${{ secrets.GCP_PROJECT_ID }}"
+      - name: Detect web lockfile
+        id: webfiles
+        run: |
+          if [ -f "steel-dashboard/web/package-lock.json" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping web deploy: steel-dashboard/web/package-lock.json not found"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.webfiles.outputs.found == 'true'
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: steel-dashboard/web/package-lock.json
+      - name: Build static site
+        if: steps.webfiles.outputs.found == 'true'
+        working-directory: steel-dashboard/web
+        env:
+          NEXT_PUBLIC_QUOTES_API_URL: ${{ secrets.QUOTES_API_URL }}
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy to Firebase Hosting
+        if: steps.webfiles.outputs.found == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ secrets.GCP_PROJECT_ID }}
+          channelId: live
+          entryPoint: steel-dashboard

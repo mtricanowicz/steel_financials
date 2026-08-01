@@ -1,0 +1,99 @@
+name: Deploy
+
+# Manual and post-CI deployment. Requires these repository secrets:
+#   GCP_PROJECT_ID           - target Google Cloud / Firebase project id
+#   GCP_WORKLOAD_IDP         - Workload Identity Federation provider resource
+#   GCP_DEPLOY_SA            - deploy service account email
+#   FIREBASE_SERVICE_ACCOUNT - JSON key for Firebase Hosting deploy
+#   QUOTES_API_URL           - public URL of the deployed quotes-api (for web + Streamlit)
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  quotes-api:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDP }}
+          service_account: ${{ secrets.GCP_DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Deploy quotes-api to Cloud Run
+        run: |
+          gcloud run deploy quotes-api \
+            --source steel-dashboard/quotes-api \
+            --project "${{ secrets.GCP_PROJECT_ID }}" \
+            --region us-central1 \
+            --allow-unauthenticated
+
+  streamlit:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDP }}
+          service_account: ${{ secrets.GCP_DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Build and deploy Streamlit to Cloud Run
+        run: |
+          gcloud builds submit steel-dashboard \
+            --config steel-dashboard/deploy/cloudbuild.streamlit.yaml \
+            --substitutions=SHORT_SHA="${{ github.sha }}",_QUOTES_API_URL="${{ secrets.QUOTES_API_URL }}" \
+            --project "${{ secrets.GCP_PROJECT_ID }}"
+
+  web:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect web lockfile
+        id: webfiles
+        run: |
+          if [ -f "steel-dashboard/web/package-lock.json" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping web deploy: steel-dashboard/web/package-lock.json not found"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.webfiles.outputs.found == 'true'
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: steel-dashboard/web/package-lock.json
+      - name: Install
+        if: steps.webfiles.outputs.found == 'true'
+        working-directory: steel-dashboard/web
+        run: npm ci
+      - name: Build static site
+        if: steps.webfiles.outputs.found == 'true'
+        working-directory: steel-dashboard/web
+        env:
+          NEXT_PUBLIC_QUOTES_API_URL: ${{ secrets.QUOTES_API_URL }}
+        run: npm run build
+      - name: Deploy to Firebase Hosting
+        if: steps.webfiles.outputs.found == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ secrets.GCP_PROJECT_ID }}
+          channelId: live
+          entryPoint: steel-dashboard

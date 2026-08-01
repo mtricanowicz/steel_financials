@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths: ["steel-dashboard/**"]
+  pull_request:
+    paths: ["steel-dashboard/**"]
+
+jobs:
+  core:
+    name: Core pipeline tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: steel-dashboard/core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Test
+        run: pytest -q
+
+  web:
+    name: Web type-check and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: steel-dashboard/web
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect web lockfile
+        id: webfiles
+        working-directory: .
+        run: |
+          if [ -f "steel-dashboard/web/package-lock.json" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping web CI: steel-dashboard/web/package-lock.json not found"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.webfiles.outputs.found == 'true'
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: steel-dashboard/web/package-lock.json
+      - name: Install
+        if: steps.webfiles.outputs.found == 'true'
+        run: npm ci
+      - name: Type-check
+        if: steps.webfiles.outputs.found == 'true'
+        run: npm run typecheck
+      - name: Build
+        if: steps.webfiles.outputs.found == 'true'
+        run: npm run build
