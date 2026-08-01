@@ -34,6 +34,55 @@ The repository-level workflows under `.github/workflows/` assume the repo root c
 | `OPENAI_API_KEY` | refresh | Insight summarization and OpenAI embedding key. |
 | `FIREBASE_SERVICE_ACCOUNT` | optional | Only needed if the guarded `web` deployment path is reactivated. |
 
+For `deploy.yml`, set these as **GitHub environment secrets** under the `production` environment (the jobs are environment-scoped).
+
+## GitHub deploy baseline (verified)
+
+This repository has a working GitHub Actions deploy path to Cloud Run using Workload Identity Federation.
+
+### 1) Workload Identity provider inputs
+
+- Workload identity pool: `github-pool`
+- Provider: `github-provider`
+- Provider resource (for `GCP_WORKLOAD_IDP`):
+	`projects/404689453702/locations/global/workloadIdentityPools/github-pool/providers/github-provider`
+- Attribute condition should allow this repo:
+	`assertion.repository=='mtricanowicz/steel_financials'`
+
+### 2) Deploy service account
+
+- Service account: `steel-deploy-sa@steel-financial-dashboard.iam.gserviceaccount.com`
+- Secret value for `GCP_DEPLOY_SA` should match exactly.
+
+### 3) Required IAM roles for deploy SA
+
+Grant these project-level roles to `steel-deploy-sa@steel-financial-dashboard.iam.gserviceaccount.com`:
+
+- `roles/run.admin`
+- `roles/cloudbuild.builds.editor`
+- `roles/iam.serviceAccountUser`
+- `roles/artifactregistry.reader`
+- `roles/artifactregistry.writer`
+- `roles/serviceusage.serviceUsageConsumer`
+- `roles/storage.admin`
+- `roles/viewer`
+
+These roles were required for:
+
+- `gcloud run deploy --source ...` in `quotes-api`
+- `gcloud builds submit ...` and build log streaming in `streamlit`
+
+### 4) Build context size control
+
+`gcloud builds submit steel-dashboard` uses ignore rules from `steel-dashboard/.gcloudignore`.
+Keep local caches and virtual environments excluded (especially `core/.cache` and `core/.venv`) to avoid multi-GB upload contexts.
+
+### 5) Re-run flow
+
+1. Trigger `Deploy` from GitHub Actions (`workflow_dispatch`, branch `main`).
+2. Confirm `quotes-api` and `streamlit` jobs pass.
+3. If a build log streaming error appears, verify `roles/viewer` remains present on the deploy SA.
+
 ## Manual deploy
 
 From `steel-dashboard/`:
