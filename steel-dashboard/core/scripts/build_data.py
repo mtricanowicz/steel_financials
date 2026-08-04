@@ -284,6 +284,8 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
                 "Cost of Goods Sold",
                 "Gross Income",
                 "Net Income Attributable to Stockholders",
+                "Gross Margin",
+                "Net Margin Attributable to Stockholders",
                 "Earnings Per Share",
                 "Long-Term Debt",
                 "Current Maturities",

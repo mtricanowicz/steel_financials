@@ -12,6 +12,8 @@
     "Cost of Goods Sold": 1274400000.0,
     "Gross Income": 280100000.0,
     "Net Income Attributable to Stockholders": 174100000.0,
+    "Gross Margin": 18.02,
+    "Net Margin Attributable to Stockholders": 11.2,
     "Earnings Per Share": 0.88,
     "Long-Term Debt": 2192600000.0,
     "Current Maturities": 17500000.0,
@@ -22,9 +24,7 @@
     "Net Debt": 1897300000.0,
     "Operating Cash Flow": 303000000.0,
     "Capital Expenditures": 7400000.0,
-    "Free Cash Flow": 295600000.0,
-    "Gross Margin": 18.02,
-    "Net Margin Attributable to Stockholders": 11.2
+    "Free Cash Flow": 295600000.0
   },
   {
     "Steelmaker": "CLF",
@@ -39,6 +39,8 @@
     "Cost of Goods Sold": 274600000.0,
     "Gross Income": 30900000.0,
     "Net Income Attributable to Stockholders": 108000000.0,
+    "Gross Margin": 10.11,
+    "Net Margin Attributable to Stockholders": 35.35,
     "Earnings Per Share": 0.62,
     "Long-Term Debt": 2499100000.0,
     "Current Maturities": 17500000.0,
@@ -49,9 +51,7 @@
     "Net Debt": 2456700000.0,
     "Operating Cash Flow": -126500000.0,
     "Capital Expenditures": 10400000.0,
-    "Free Cash Flow": -136900000.0,
-    "Gross Margin": 10.11,
-    "Net Margin Attributable to Stockholders": 35.35
+    "Free Cash Flow": -136900000.0
   },
   {
     "Steelmaker": "CLF",
@@ -66,6 +66,8 @@
     "Cost of Goods Sold": 404700000.0,
     "Gross Income": 91500000.0,
     "Net Income Attributable to Stockholders": 12800000.0,
+    "Gross Margin": 18.44,
+    "Net Margin Attributable to Stockholders": 2.58,
     "Earnings Per Share": 0.07,
     "Long-Term Debt": 2489700000.0,
     "Current Maturities": 17500000.0,
@@ -76,9 +78,7 @@
     "Net Debt": 2399000000.0,
     "Operating Cash Flow": 107200000.0,
     "Capital Expenditures": 9800000.0,
-    "Free Cash Flow": 97400000.0,
-    "Gross Margin": 18.44,
-    "Net Margin Attributable to Stockholders": 2.58
+    "Free Cash Flow": 97400000.0
   },
   {
     "Steelmaker": "CLF",
@@ -93,6 +93,8 @@
     "Cost of Goods Sold": 467900000.0,
     "Gross Income": 85400000.0,
     "Net Income Attributable to Stockholders": -25800000.0,
+    "Gross Margin": 15.43,
+    "Net Margin Attributable to Stockholders": -4.66,
     "Earnings Per Share": -0.12,
     "Long-Term Debt": 2195900000.0,
     "Current Maturities": 17500000.0,
@@ -103,9 +105,7 @@
     "Net Debt": 2081200000.0,
     "Operating Cash Flow": 91400000.0,
     "Capital Expenditures": 25600000.0,
-    "Free Cash Flow": 65800000.0,
-    "Gross Margin": 15.43,
-    "Net Margin Attributable to Stockholders": -4.66
+    "Free Cash Flow": 65800000.0
   },
   {
     "Steelmaker": "CLF",
@@ -120,6 +120,8 @@
     "Cost of Goods Sold": 127200000.0,
     "Gross Income": 72300000.0,
     "Net Income Attributable to Stockholders": 79100000.0,
+    "Gross Margin": 36.24,
+    "Net Margin Attributable to Stockholders": 39.65,
     "Earnings Per Share": 0.35,
     "Long-Term Debt": 2192600000.0,
     "Current Maturities": 17500000.0,
@@ -130,9 +132,7 @@
     "Net Debt": 1897300000.0,
     "Operating Cash Flow": 230900000.0,
     "Capital Expenditures": -38400000.0,
-    "Free Cash Flow": 192500000.0,
-    "Gross Margin": 36.24,
-    "Net Margin Attributable to Stockholders": 39.65
+    "Free Cash Flow": 192500000.0
   },
   {
     "Steelmaker": "CLF",
@@ -147,6 +147,8 @@
     "Cost of Goods Sold": 1398400000.0,
     "Gross Income": 467600000.0,
     "Net Income Attributable to Stockholders": 367000000.0,
+    "Gross Margin": 25.06,
+    "Net Margin Attributable to Stockholders": 19.67,
     "Earnings Per Share": 1.28,
     "Long-Term Debt": 2304200000.0,
     "Current Maturities": 17500000.0,
@@ -157,9 +159,7 @@
     "Net Debt": 1343700000.0,
     "Operating Cash Flow": 338100000.0,
     "Capital Expenditures": 134900000.0,
-    "Free Cash Flow": 203200000.0,
-    "Gross Margin": 25.06,
-    "Net Margin Attributable to Stockholders": 19.67
+    "Free Cash Flow": 203200000.0
   },
   {
     "Steelmaker": "CLF",
@@ -174,6 +174,8 @@
     "Cost of Goods Sold": 365300000.0,
     "Gross Income": 96300000.0,
     "Net Income Attributable to Stockholders": -28100000.0,
+    "Gross Margin": 20.86,
+    "Net Margin Attributable to Stockholders": -6.09,
     "Earnings Per Share": -0.11,
     "Long-Term Debt": 2192600000.0,
     "Current Maturities": 17500000.0,
@@ -184,9 +186,7 @@
     "Net Debt": 1914800000.0,
     "Operating Cash Flow": -25100000.0,
     "Capital Expenditures": 2000000.0,
-    "Free Cash Flow": -27100000.0,
-    "Gross Margin": 20.86,
-    "Net Margin Attributable to Stockholders": -6.09
+    "Free Cash Flow": -27100000.0
   },
   {
     "Steelmaker": "CLF",
@@ -201,6 +201,8 @@
     "Cost of Goods Sold": 326600000.0,
     "Gross Income": 144700000.0,
     "Net Income Attributable to Stockholders": 31800000.0,
+    "Gross Margin": 30.7,
+    "Net Margin Attributable to Stockholders": 6.75,
     "Earnings Per Share": 0.1,
     "Long-Term Debt": 2192600000.0,
     "Current Maturities": 17500000.0,
@@ -211,9 +213,7 @@
     "Net Debt": 1939700000.0,
     "Operating Cash Flow": 92900000.0,
     "Capital Expenditures": 3100000.0,
-    "Free Cash Flow": 89800000.0,
-    "Gross Margin": 30.7,
-    "Net Margin Attributable to Stockholders": 6.75
+    "Free Cash Flow": 89800000.0
   },
   {
     "Steelmaker": "CLF",
@@ -228,6 +228,8 @@
     "Cost of Goods Sold": 438900000.0,
     "Gross Income": 157800000.0,
     "Net Income Attributable to Stockholders": 53400000.0,
+    "Gross Margin": 26.45,
+    "Net Margin Attributable to Stockholders": 8.95,
     "Earnings Per Share": 0.18,
     "Long-Term Debt": 2192600000.0,
     "Current Maturities": 17500000.0,
@@ -238,9 +240,7 @@
     "Net Debt": 1983000000.0,
     "Operating Cash Flow": 138900000.0,
     "Capital Expenditures": 11100000.0,
-    "Free Cash Flow": 127800000.0,
-    "Gross Margin": 26.45,
-    "Net Margin Attributable to Stockholders": 8.95
+    "Free Cash Flow": 127800000.0
   },
   {
     "Steelmaker": "CLF",
@@ -255,6 +255,8 @@
     "Cost of Goods Sold": 267600000.0,
     "Gross Income": 68800000.0,
     "Net Income Attributable to Stockholders": 309900000.0,
+    "Gross Margin": 20.45,
+    "Net Margin Attributable to Stockholders": 92.12,
     "Earnings Per Share": 1.04,
     "Long-Term Debt": 2304200000.0,
     "Current Maturities": 17500000.0,
@@ -265,9 +267,7 @@
     "Net Debt": 1343700000.0,
     "Operating Cash Flow": 131400000.0,
     "Capital Expenditures": 118700000.0,
-    "Free Cash Flow": 12700000.0,
-    "Gross Margin": 20.45,
-    "Net Margin Attributable to Stockholders": 92.12
+    "Free Cash Flow": 12700000.0
   },
   {
     "Steelmaker": "CLF",
@@ -282,6 +282,8 @@
     "Cost of Goods Sold": 1523000000.0,
     "Gross Income": 809000000.0,
     "Net Income Attributable to Stockholders": 1128000000.0,
+    "Gross Margin": 34.69,
+    "Net Margin Attributable to Stockholders": 48.37,
     "Earnings Per Share": 3.8,
     "Long-Term Debt": 2304200000.0,
     "Current Maturities": 0.0,
@@ -292,9 +294,7 @@
     "Net Debt": 1481200000.0,
     "Operating Cash Flow": 479000000.0,
     "Capital Expenditures": 296000000.0,
-    "Free Cash Flow": 183000000.0,
-    "Gross Margin": 34.69,
-    "Net Margin Attributable to Stockholders": 48.37
+    "Free Cash Flow": 183000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -309,6 +309,8 @@
     "Cost of Goods Sold": 118500000.0,
     "Gross Income": 61500000.0,
     "Net Income Attributable to Stockholders": -84300000.0,
+    "Gross Margin": 34.17,
+    "Net Margin Attributable to Stockholders": -46.83,
     "Earnings Per Share": -0.29,
     "Long-Term Debt": 2308200000.0,
     "Current Maturities": 0.0,
@@ -319,9 +321,7 @@
     "Net Debt": 1551000000.0,
     "Operating Cash Flow": -142900000.0,
     "Capital Expenditures": 59000000.0,
-    "Free Cash Flow": -201900000.0,
-    "Gross Margin": 34.17,
-    "Net Margin Attributable to Stockholders": -46.83
+    "Free Cash Flow": -201900000.0
   },
   {
     "Steelmaker": "CLF",
@@ -336,6 +336,8 @@
     "Cost of Goods Sold": 429800000.0,
     "Gross Income": 284500000.0,
     "Net Income Attributable to Stockholders": 165100000.0,
+    "Gross Margin": 39.83,
+    "Net Margin Attributable to Stockholders": 23.11,
     "Earnings Per Share": 0.55,
     "Long-Term Debt": 2304200000.0,
     "Current Maturities": 0.0,
@@ -346,9 +348,7 @@
     "Net Debt": 1501700000.0,
     "Operating Cash Flow": 93600000.0,
     "Capital Expenditures": -16900000.0,
-    "Free Cash Flow": 76700000.0,
-    "Gross Margin": 39.83,
-    "Net Margin Attributable to Stockholders": 23.11
+    "Free Cash Flow": 76700000.0
   },
   {
     "Steelmaker": "CLF",
@@ -363,6 +363,8 @@
     "Cost of Goods Sold": 480200000.0,
     "Gross Income": 261600000.0,
     "Net Income Attributable to Stockholders": 437800000.0,
+    "Gross Margin": 35.27,
+    "Net Margin Attributable to Stockholders": 59.02,
     "Earnings Per Share": 1.47,
     "Long-Term Debt": 2304200000.0,
     "Current Maturities": 0.0,
@@ -373,9 +375,7 @@
     "Net Debt": 1407100000.0,
     "Operating Cash Flow": 238000000.0,
     "Capital Expenditures": 69300000.0,
-    "Free Cash Flow": 168700000.0,
-    "Gross Margin": 35.27,
-    "Net Margin Attributable to Stockholders": 59.02
+    "Free Cash Flow": 168700000.0
   },
   {
     "Steelmaker": "CLF",
@@ -390,6 +390,8 @@
     "Cost of Goods Sold": 494500000.0,
     "Gross Income": 201400000.0,
     "Net Income Attributable to Stockholders": 609400000.0,
+    "Gross Margin": 28.94,
+    "Net Margin Attributable to Stockholders": 87.57,
     "Earnings Per Share": 2.06,
     "Long-Term Debt": 2304200000.0,
     "Current Maturities": 0.0,
@@ -400,9 +402,7 @@
     "Net Debt": 1481200000.0,
     "Operating Cash Flow": 290300000.0,
     "Capital Expenditures": 184600000.0,
-    "Free Cash Flow": 105700000.0,
-    "Gross Margin": 28.94,
-    "Net Margin Attributable to Stockholders": 87.57
+    "Free Cash Flow": 105700000.0
   },
   {
     "Steelmaker": "CLF",
@@ -417,6 +417,8 @@
     "Cost of Goods Sold": 1414000000.0,
     "Gross Income": 576000000.0,
     "Net Income Attributable to Stockholders": 293000000.0,
+    "Gross Margin": 28.94,
+    "Net Margin Attributable to Stockholders": 14.72,
     "Earnings Per Share": 1.06,
     "Long-Term Debt": 2114000000.0,
     "Current Maturities": 0.0,
@@ -427,9 +429,7 @@
     "Net Debt": 1761000000.0,
     "Operating Cash Flow": 568000000.0,
     "Capital Expenditures": 656000000.0,
-    "Free Cash Flow": -88000000.0,
-    "Gross Margin": 28.94,
-    "Net Margin Attributable to Stockholders": 14.72
+    "Free Cash Flow": -88000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -444,6 +444,8 @@
     "Cost of Goods Sold": 126100000.0,
     "Gross Income": 30900000.0,
     "Net Income Attributable to Stockholders": -22100000.0,
+    "Gross Margin": 19.68,
+    "Net Margin Attributable to Stockholders": -14.08,
     "Earnings Per Share": -0.08,
     "Long-Term Debt": 2087000000.0,
     "Current Maturities": 0.0,
@@ -454,9 +456,7 @@
     "Net Debt": 1656800000.0,
     "Operating Cash Flow": -111200000.0,
     "Capital Expenditures": 134100000.0,
-    "Free Cash Flow": -245300000.0,
-    "Gross Margin": 19.68,
-    "Net Margin Attributable to Stockholders": -14.08
+    "Free Cash Flow": -245300000.0
   },
   {
     "Steelmaker": "CLF",
@@ -471,6 +471,8 @@
     "Cost of Goods Sold": 480200000.0,
     "Gross Income": 263000000.0,
     "Net Income Attributable to Stockholders": 160800000.0,
+    "Gross Margin": 35.39,
+    "Net Margin Attributable to Stockholders": 21.64,
     "Earnings Per Share": 0.59,
     "Long-Term Debt": 2104500000.0,
     "Current Maturities": 0.0,
@@ -481,9 +483,7 @@
     "Net Debt": 1727300000.0,
     "Operating Cash Flow": 262300000.0,
     "Capital Expenditures": 166800000.0,
-    "Free Cash Flow": 95500000.0,
-    "Gross Margin": 35.39,
-    "Net Margin Attributable to Stockholders": 21.64
+    "Free Cash Flow": 95500000.0
   },
   {
     "Steelmaker": "CLF",
@@ -498,6 +498,8 @@
     "Cost of Goods Sold": 400700000.0,
     "Gross Income": 154900000.0,
     "Net Income Attributable to Stockholders": 90900000.0,
+    "Gross Margin": 27.88,
+    "Net Margin Attributable to Stockholders": 16.36,
     "Earnings Per Share": 0.34,
     "Long-Term Debt": 2109100000.0,
     "Current Maturities": 0.0,
@@ -508,9 +510,7 @@
     "Net Debt": 1709800000.0,
     "Operating Cash Flow": 237000000.0,
     "Capital Expenditures": 159800000.0,
-    "Free Cash Flow": 77200000.0,
-    "Gross Margin": 27.88,
-    "Net Margin Attributable to Stockholders": 16.36
+    "Free Cash Flow": 77200000.0
   },
   {
     "Steelmaker": "CLF",
@@ -525,6 +525,8 @@
     "Cost of Goods Sold": 407000000.0,
     "Gross Income": 127200000.0,
     "Net Income Attributable to Stockholders": 63400000.0,
+    "Gross Margin": 23.81,
+    "Net Margin Attributable to Stockholders": 11.87,
     "Earnings Per Share": 0.23,
     "Long-Term Debt": 2114000000.0,
     "Current Maturities": 0.0,
@@ -535,9 +537,7 @@
     "Net Debt": 1761000000.0,
     "Operating Cash Flow": 179900000.0,
     "Capital Expenditures": 195300000.0,
-    "Free Cash Flow": -15400000.0,
-    "Gross Margin": 23.81,
-    "Net Margin Attributable to Stockholders": 11.87
+    "Free Cash Flow": -15400000.0
   },
   {
     "Steelmaker": "CLF",
@@ -552,6 +552,8 @@
     "Cost of Goods Sold": 5102000000.0,
     "Gross Income": 252000000.0,
     "Net Income Attributable to Stockholders": -122000000.0,
+    "Gross Margin": 4.71,
+    "Net Margin Attributable to Stockholders": -2.28,
     "Earnings Per Share": -0.32,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 34000000.0,
@@ -562,9 +564,7 @@
     "Net Debt": 5346000000.0,
     "Operating Cash Flow": -258000000.0,
     "Capital Expenditures": 525000000.0,
-    "Free Cash Flow": -783000000.0,
-    "Gross Margin": 4.71,
-    "Net Margin Attributable to Stockholders": -2.28
+    "Free Cash Flow": -783000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -579,6 +579,8 @@
     "Cost of Goods Sold": 356000000.0,
     "Gross Income": 3000000.0,
     "Net Income Attributable to Stockholders": -52000000.0,
+    "Gross Margin": 0.84,
+    "Net Margin Attributable to Stockholders": -14.48,
     "Earnings Per Share": -0.18,
     "Long-Term Debt": 4357100000.0,
     "Current Maturities": 7300000.0,
@@ -589,9 +591,7 @@
     "Net Debt": 4177400000.0,
     "Operating Cash Flow": -164000000.0,
     "Capital Expenditures": 138000000.0,
-    "Free Cash Flow": -302000000.0,
-    "Gross Margin": 0.84,
-    "Net Margin Attributable to Stockholders": -14.48
+    "Free Cash Flow": -302000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -606,6 +606,8 @@
     "Cost of Goods Sold": 1208000000.0,
     "Gross Income": -115000000.0,
     "Net Income Attributable to Stockholders": -124000000.0,
+    "Gross Margin": -10.52,
+    "Net Margin Attributable to Stockholders": -11.34,
     "Earnings Per Share": -0.31,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 34000000.0,
@@ -616,9 +618,7 @@
     "Net Debt": 5384000000.0,
     "Operating Cash Flow": -134000000.0,
     "Capital Expenditures": 145000000.0,
-    "Free Cash Flow": -279000000.0,
-    "Gross Margin": -10.52,
-    "Net Margin Attributable to Stockholders": -11.34
+    "Free Cash Flow": -279000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -633,6 +633,8 @@
     "Cost of Goods Sold": 1525000000.0,
     "Gross Income": 121000000.0,
     "Net Income Attributable to Stockholders": -10000000.0,
+    "Gross Margin": 7.35,
+    "Net Margin Attributable to Stockholders": -0.61,
     "Earnings Per Share": -0.02,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 34000000.0,
@@ -643,9 +645,7 @@
     "Net Debt": 5402000000.0,
     "Operating Cash Flow": 247000000.0,
     "Capital Expenditures": 96000000.0,
-    "Free Cash Flow": 151000000.0,
-    "Gross Margin": 7.35,
-    "Net Margin Attributable to Stockholders": -0.61
+    "Free Cash Flow": 151000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -660,6 +660,8 @@
     "Cost of Goods Sold": 2013000000.0,
     "Gross Income": 243000000.0,
     "Net Income Attributable to Stockholders": 64000000.0,
+    "Gross Margin": 10.77,
+    "Net Margin Attributable to Stockholders": 2.84,
     "Earnings Per Share": 0.15,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 34000000.0,
@@ -670,9 +672,7 @@
     "Net Debt": 5346000000.0,
     "Operating Cash Flow": -207000000.0,
     "Capital Expenditures": 146000000.0,
-    "Free Cash Flow": -353000000.0,
-    "Gross Margin": 10.77,
-    "Net Margin Attributable to Stockholders": 2.84
+    "Free Cash Flow": -353000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -687,6 +687,8 @@
     "Cost of Goods Sold": 15910000000.0,
     "Gross Income": 4534000000.0,
     "Net Income Attributable to Stockholders": 2988000000.0,
+    "Gross Margin": 22.18,
+    "Net Margin Attributable to Stockholders": 14.62,
     "Earnings Per Share": 5.63,
     "Long-Term Debt": 5238000000.0,
     "Current Maturities": 34000000.0,
@@ -697,9 +699,7 @@
     "Net Debt": 5224000000.0,
     "Operating Cash Flow": 2785000000.0,
     "Capital Expenditures": 705000000.0,
-    "Free Cash Flow": 2080000000.0,
-    "Gross Margin": 22.18,
-    "Net Margin Attributable to Stockholders": 14.62
+    "Free Cash Flow": 2080000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -714,6 +714,8 @@
     "Cost of Goods Sold": 3761000000.0,
     "Gross Income": 288000000.0,
     "Net Income Attributable to Stockholders": 41000000.0,
+    "Gross Margin": 7.11,
+    "Net Margin Attributable to Stockholders": 1.01,
     "Earnings Per Share": 0.08,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 34000000.0,
@@ -724,9 +726,7 @@
     "Net Debt": 5348000000.0,
     "Operating Cash Flow": -379000000.0,
     "Capital Expenditures": 136000000.0,
-    "Free Cash Flow": -515000000.0,
-    "Gross Margin": 7.11,
-    "Net Margin Attributable to Stockholders": 1.01
+    "Free Cash Flow": -515000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -741,6 +741,8 @@
     "Cost of Goods Sold": 3848000000.0,
     "Gross Income": 1197000000.0,
     "Net Income Attributable to Stockholders": 780000000.0,
+    "Gross Margin": 23.73,
+    "Net Margin Attributable to Stockholders": 15.46,
     "Earnings Per Share": 1.4,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 34000000.0,
@@ -751,9 +753,7 @@
     "Net Debt": 5385000000.0,
     "Operating Cash Flow": 511000000.0,
     "Capital Expenditures": 162000000.0,
-    "Free Cash Flow": 349000000.0,
-    "Gross Margin": 23.73,
-    "Net Margin Attributable to Stockholders": 15.46
+    "Free Cash Flow": 349000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -768,6 +768,8 @@
     "Cost of Goods Sold": 4229000000.0,
     "Gross Income": 1775000000.0,
     "Net Income Attributable to Stockholders": 1274000000.0,
+    "Gross Margin": 29.56,
+    "Net Margin Attributable to Stockholders": 21.22,
     "Earnings Per Share": 2.46,
     "Long-Term Debt": 5424000000.0,
     "Current Maturities": 26000000.0,
@@ -778,9 +780,7 @@
     "Net Debt": 5408000000.0,
     "Operating Cash Flow": 1516000000.0,
     "Capital Expenditures": 175000000.0,
-    "Free Cash Flow": 1341000000.0,
-    "Gross Margin": 29.56,
-    "Net Margin Attributable to Stockholders": 21.22
+    "Free Cash Flow": 1341000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -795,6 +795,8 @@
     "Cost of Goods Sold": 4072000000.0,
     "Gross Income": 1274000000.0,
     "Net Income Attributable to Stockholders": 893000000.0,
+    "Gross Margin": 23.83,
+    "Net Margin Attributable to Stockholders": 16.7,
     "Earnings Per Share": 1.76,
     "Long-Term Debt": 5238000000.0,
     "Current Maturities": 34000000.0,
@@ -805,9 +807,7 @@
     "Net Debt": 5224000000.0,
     "Operating Cash Flow": 1137000000.0,
     "Capital Expenditures": 232000000.0,
-    "Free Cash Flow": 905000000.0,
-    "Gross Margin": 23.83,
-    "Net Margin Attributable to Stockholders": 16.7
+    "Free Cash Flow": 905000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -822,6 +822,8 @@
     "Cost of Goods Sold": 20471000000.0,
     "Gross Income": 2518000000.0,
     "Net Income Attributable to Stockholders": 1335000000.0,
+    "Gross Margin": 10.95,
+    "Net Margin Attributable to Stockholders": 5.81,
     "Earnings Per Share": 2.57,
     "Long-Term Debt": 4249000000.0,
     "Current Maturities": 0.0,
@@ -832,9 +834,7 @@
     "Net Debt": 4223000000.0,
     "Operating Cash Flow": 2423000000.0,
     "Capital Expenditures": 943000000.0,
-    "Free Cash Flow": 1480000000.0,
-    "Gross Margin": 10.95,
-    "Net Margin Attributable to Stockholders": 5.81
+    "Free Cash Flow": 1480000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -849,6 +849,8 @@
     "Cost of Goods Sold": 4706000000.0,
     "Gross Income": 1249000000.0,
     "Net Income Attributable to Stockholders": 801000000.0,
+    "Gross Margin": 20.97,
+    "Net Margin Attributable to Stockholders": 13.45,
     "Earnings Per Share": 1.54,
     "Long-Term Debt": 5028000000.0,
     "Current Maturities": 0.0,
@@ -859,9 +861,7 @@
     "Net Debt": 4993000000.0,
     "Operating Cash Flow": 533000000.0,
     "Capital Expenditures": 236000000.0,
-    "Free Cash Flow": 297000000.0,
-    "Gross Margin": 20.97,
-    "Net Margin Attributable to Stockholders": 13.45
+    "Free Cash Flow": 297000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -876,6 +876,8 @@
     "Cost of Goods Sold": 5356000000.0,
     "Gross Income": 981000000.0,
     "Net Income Attributable to Stockholders": 596000000.0,
+    "Gross Margin": 15.48,
+    "Net Margin Attributable to Stockholders": 9.41,
     "Earnings Per Share": 1.14,
     "Long-Term Debt": 4668000000.0,
     "Current Maturities": 0.0,
@@ -886,9 +888,7 @@
     "Net Debt": 4621000000.0,
     "Operating Cash Flow": 865000000.0,
     "Capital Expenditures": 232000000.0,
-    "Free Cash Flow": 633000000.0,
-    "Gross Margin": 15.48,
-    "Net Margin Attributable to Stockholders": 9.41
+    "Free Cash Flow": 633000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -903,6 +903,8 @@
     "Cost of Goods Sold": 5305000000.0,
     "Gross Income": 348000000.0,
     "Net Income Attributable to Stockholders": 152000000.0,
+    "Gross Margin": 6.16,
+    "Net Margin Attributable to Stockholders": 2.69,
     "Earnings Per Share": 0.3,
     "Long-Term Debt": 4475000000.0,
     "Current Maturities": 0.0,
@@ -913,9 +915,7 @@
     "Net Debt": 4419000000.0,
     "Operating Cash Flow": 536000000.0,
     "Capital Expenditures": 248000000.0,
-    "Free Cash Flow": 288000000.0,
-    "Gross Margin": 6.16,
-    "Net Margin Attributable to Stockholders": 2.69
+    "Free Cash Flow": 288000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -930,6 +930,8 @@
     "Cost of Goods Sold": 5104000000.0,
     "Gross Income": -60000000.0,
     "Net Income Attributable to Stockholders": -214000000.0,
+    "Gross Margin": -1.19,
+    "Net Margin Attributable to Stockholders": -4.24,
     "Earnings Per Share": -0.44,
     "Long-Term Debt": 4249000000.0,
     "Current Maturities": 0.0,
@@ -940,9 +942,7 @@
     "Net Debt": 4223000000.0,
     "Operating Cash Flow": 489000000.0,
     "Capital Expenditures": 227000000.0,
-    "Free Cash Flow": 262000000.0,
-    "Gross Margin": -1.19,
-    "Net Margin Attributable to Stockholders": -4.24
+    "Free Cash Flow": 262000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -957,6 +957,8 @@
     "Cost of Goods Sold": 20623000000.0,
     "Gross Income": 1373000000.0,
     "Net Income Attributable to Stockholders": 385000000.0,
+    "Gross Margin": 6.24,
+    "Net Margin Attributable to Stockholders": 1.75,
     "Earnings Per Share": 0.75,
     "Long-Term Debt": 3137000000.0,
     "Current Maturities": 0.0,
@@ -967,9 +969,7 @@
     "Net Debt": 2939000000.0,
     "Operating Cash Flow": 2267000000.0,
     "Capital Expenditures": 646000000.0,
-    "Free Cash Flow": 1621000000.0,
-    "Gross Margin": 6.24,
-    "Net Margin Attributable to Stockholders": 1.75
+    "Free Cash Flow": 1621000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -984,6 +984,8 @@
     "Cost of Goods Sold": 5196000000.0,
     "Gross Income": 99000000.0,
     "Net Income Attributable to Stockholders": -57000000.0,
+    "Gross Margin": 1.87,
+    "Net Margin Attributable to Stockholders": -1.08,
     "Earnings Per Share": -0.11,
     "Long-Term Debt": 4559000000.0,
     "Current Maturities": 0.0,
@@ -994,9 +996,7 @@
     "Net Debt": 4500000000.0,
     "Operating Cash Flow": -39000000.0,
     "Capital Expenditures": 188000000.0,
-    "Free Cash Flow": -227000000.0,
-    "Gross Margin": 1.87,
-    "Net Margin Attributable to Stockholders": -1.08
+    "Free Cash Flow": -227000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1011,6 +1011,8 @@
     "Cost of Goods Sold": 5340000000.0,
     "Gross Income": 644000000.0,
     "Net Income Attributable to Stockholders": 347000000.0,
+    "Gross Margin": 10.76,
+    "Net Margin Attributable to Stockholders": 5.8,
     "Earnings Per Share": 0.68,
     "Long-Term Debt": 3963000000.0,
     "Current Maturities": 0.0,
@@ -1021,9 +1023,7 @@
     "Net Debt": 3929000000.0,
     "Operating Cash Flow": 887000000.0,
     "Capital Expenditures": 131000000.0,
-    "Free Cash Flow": 756000000.0,
-    "Gross Margin": 10.76,
-    "Net Margin Attributable to Stockholders": 5.8
+    "Free Cash Flow": 756000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1038,6 +1038,8 @@
     "Cost of Goods Sold": 5125000000.0,
     "Gross Income": 480000000.0,
     "Net Income Attributable to Stockholders": 264000000.0,
+    "Gross Margin": 8.56,
+    "Net Margin Attributable to Stockholders": 4.71,
     "Earnings Per Share": 0.52,
     "Long-Term Debt": 3458000000.0,
     "Current Maturities": 0.0,
@@ -1048,9 +1050,7 @@
     "Net Debt": 3427000000.0,
     "Operating Cash Flow": 767000000.0,
     "Capital Expenditures": 162000000.0,
-    "Free Cash Flow": 605000000.0,
-    "Gross Margin": 8.56,
-    "Net Margin Attributable to Stockholders": 4.71
+    "Free Cash Flow": 605000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1065,6 +1065,8 @@
     "Cost of Goods Sold": 4962000000.0,
     "Gross Income": 150000000.0,
     "Net Income Attributable to Stockholders": -169000000.0,
+    "Gross Margin": 2.93,
+    "Net Margin Attributable to Stockholders": -3.31,
     "Earnings Per Share": -0.34,
     "Long-Term Debt": 3137000000.0,
     "Current Maturities": 0.0,
@@ -1075,9 +1077,7 @@
     "Net Debt": 2939000000.0,
     "Operating Cash Flow": 652000000.0,
     "Capital Expenditures": 165000000.0,
-    "Free Cash Flow": 487000000.0,
-    "Gross Margin": 2.93,
-    "Net Margin Attributable to Stockholders": -3.31
+    "Free Cash Flow": 487000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1092,6 +1092,8 @@
     "Cost of Goods Sold": 19122000000.0,
     "Gross Income": 63000000.0,
     "Net Income Attributable to Stockholders": -760000000.0,
+    "Gross Margin": 0.33,
+    "Net Margin Attributable to Stockholders": -3.96,
     "Earnings Per Share": -1.58,
     "Long-Term Debt": 7065000000.0,
     "Current Maturities": 0.0,
@@ -1102,9 +1104,7 @@
     "Net Debt": 7005000000.0,
     "Operating Cash Flow": 105000000.0,
     "Capital Expenditures": 695000000.0,
-    "Free Cash Flow": -590000000.0,
-    "Gross Margin": 0.33,
-    "Net Margin Attributable to Stockholders": -3.96
+    "Free Cash Flow": -590000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1119,6 +1119,8 @@
     "Cost of Goods Sold": 4914000000.0,
     "Gross Income": 285000000.0,
     "Net Income Attributable to Stockholders": -67000000.0,
+    "Gross Margin": 5.48,
+    "Net Margin Attributable to Stockholders": -1.29,
     "Earnings Per Share": -0.14,
     "Long-Term Debt": 3664000000.0,
     "Current Maturities": 0.0,
@@ -1129,9 +1131,7 @@
     "Net Debt": 3634000000.0,
     "Operating Cash Flow": 142000000.0,
     "Capital Expenditures": 182000000.0,
-    "Free Cash Flow": -40000000.0,
-    "Gross Margin": 5.48,
-    "Net Margin Attributable to Stockholders": -1.29
+    "Free Cash Flow": -40000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1146,6 +1146,8 @@
     "Cost of Goods Sold": 4930000000.0,
     "Gross Income": 162000000.0,
     "Net Income Attributable to Stockholders": 2000000.0,
+    "Gross Margin": 3.18,
+    "Net Margin Attributable to Stockholders": 0.04,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 3507000000.0,
     "Current Maturities": 0.0,
@@ -1156,9 +1158,7 @@
     "Net Debt": 3397000000.0,
     "Operating Cash Flow": 519000000.0,
     "Capital Expenditures": 157000000.0,
-    "Free Cash Flow": 362000000.0,
-    "Gross Margin": 3.18,
-    "Net Margin Attributable to Stockholders": 0.04
+    "Free Cash Flow": 362000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1173,6 +1173,8 @@
     "Cost of Goods Sold": 4675000000.0,
     "Gross Income": -106000000.0,
     "Net Income Attributable to Stockholders": -244000000.0,
+    "Gross Margin": -2.32,
+    "Net Margin Attributable to Stockholders": -5.34,
     "Earnings Per Share": -0.52,
     "Long-Term Debt": 3774000000.0,
     "Current Maturities": 0.0,
@@ -1183,9 +1185,7 @@
     "Net Debt": 3735000000.0,
     "Operating Cash Flow": -84000000.0,
     "Capital Expenditures": 151000000.0,
-    "Free Cash Flow": -235000000.0,
-    "Gross Margin": -2.32,
-    "Net Margin Attributable to Stockholders": -5.34
+    "Free Cash Flow": -235000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1200,6 +1200,8 @@
     "Cost of Goods Sold": 4603000000.0,
     "Gross Income": -278000000.0,
     "Net Income Attributable to Stockholders": -451000000.0,
+    "Gross Margin": -6.43,
+    "Net Margin Attributable to Stockholders": -10.43,
     "Earnings Per Share": -0.92,
     "Long-Term Debt": 7065000000.0,
     "Current Maturities": 0.0,
@@ -1210,9 +1212,7 @@
     "Net Debt": 7005000000.0,
     "Operating Cash Flow": -472000000.0,
     "Capital Expenditures": 205000000.0,
-    "Free Cash Flow": -677000000.0,
-    "Gross Margin": -6.43,
-    "Net Margin Attributable to Stockholders": -10.43
+    "Free Cash Flow": -677000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1227,6 +1227,8 @@
     "Cost of Goods Sold": 19470000000.0,
     "Gross Income": -860000000.0,
     "Net Income Attributable to Stockholders": -1478000000.0,
+    "Gross Margin": -4.62,
+    "Net Margin Attributable to Stockholders": -7.94,
     "Earnings Per Share": -2.91,
     "Long-Term Debt": 7253000000.0,
     "Current Maturities": 0.0,
@@ -1237,9 +1239,7 @@
     "Net Debt": 7190000000.0,
     "Operating Cash Flow": -462000000.0,
     "Capital Expenditures": 561000000.0,
-    "Free Cash Flow": -1023000000.0,
-    "Gross Margin": -4.62,
-    "Net Margin Attributable to Stockholders": -7.94
+    "Free Cash Flow": -1023000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1254,6 +1254,8 @@
     "Cost of Goods Sold": 5025000000.0,
     "Gross Income": -396000000.0,
     "Net Income Attributable to Stockholders": -498000000.0,
+    "Gross Margin": -8.55,
+    "Net Margin Attributable to Stockholders": -10.76,
     "Earnings Per Share": -1.01,
     "Long-Term Debt": 7601000000.0,
     "Current Maturities": 0.0,
@@ -1264,9 +1266,7 @@
     "Net Debt": 7538000000.0,
     "Operating Cash Flow": -351000000.0,
     "Capital Expenditures": 152000000.0,
-    "Free Cash Flow": -503000000.0,
-    "Gross Margin": -8.55,
-    "Net Margin Attributable to Stockholders": -10.76
+    "Free Cash Flow": -503000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1281,6 +1281,8 @@
     "Cost of Goods Sold": 5146000000.0,
     "Gross Income": -212000000.0,
     "Net Income Attributable to Stockholders": -486000000.0,
+    "Gross Margin": -4.3,
+    "Net Margin Attributable to Stockholders": -9.85,
     "Earnings Per Share": -0.98,
     "Long-Term Debt": 7727000000.0,
     "Current Maturities": 0.0,
@@ -1291,9 +1293,7 @@
     "Net Debt": 7659000000.0,
     "Operating Cash Flow": 45000000.0,
     "Capital Expenditures": 112000000.0,
-    "Free Cash Flow": -67000000.0,
-    "Gross Margin": -4.3,
-    "Net Margin Attributable to Stockholders": -9.85
+    "Free Cash Flow": -67000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1308,6 +1308,8 @@
     "Cost of Goods Sold": 4780000000.0,
     "Gross Income": -46000000.0,
     "Net Income Attributable to Stockholders": -251000000.0,
+    "Gross Margin": -0.97,
+    "Net Margin Attributable to Stockholders": -5.3,
     "Earnings Per Share": -0.51,
     "Long-Term Debt": 8039000000.0,
     "Current Maturities": 0.0,
@@ -1318,9 +1320,7 @@
     "Net Debt": 7966000000.0,
     "Operating Cash Flow": -143000000.0,
     "Capital Expenditures": 157000000.0,
-    "Free Cash Flow": -300000000.0,
-    "Gross Margin": -0.97,
-    "Net Margin Attributable to Stockholders": -5.3
+    "Free Cash Flow": -300000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1335,6 +1335,8 @@
     "Cost of Goods Sold": 4519000000.0,
     "Gross Income": -206000000.0,
     "Net Income Attributable to Stockholders": -243000000.0,
+    "Gross Margin": -4.78,
+    "Net Margin Attributable to Stockholders": -5.63,
     "Earnings Per Share": -0.44,
     "Long-Term Debt": 7253000000.0,
     "Current Maturities": 0.0,
@@ -1345,9 +1347,7 @@
     "Net Debt": 7190000000.0,
     "Operating Cash Flow": -13000000.0,
     "Capital Expenditures": 140000000.0,
-    "Free Cash Flow": -153000000.0,
-    "Gross Margin": -4.78,
-    "Net Margin Attributable to Stockholders": -5.63
+    "Free Cash Flow": -153000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1362,6 +1362,8 @@
     "Cost of Goods Sold": 5004000000.0,
     "Gross Income": -82000000.0,
     "Net Income Attributable to Stockholders": -237000000.0,
+    "Gross Margin": -1.67,
+    "Net Margin Attributable to Stockholders": -4.82,
     "Earnings Per Share": -0.42,
     "Long-Term Debt": 7763000000.0,
     "Current Maturities": 0.0,
@@ -1372,9 +1374,7 @@
     "Net Debt": 7711000000.0,
     "Operating Cash Flow": -325000000.0,
     "Capital Expenditures": 152000000.0,
-    "Free Cash Flow": -477000000.0,
-    "Gross Margin": -1.67,
-    "Net Margin Attributable to Stockholders": -4.82
+    "Free Cash Flow": -477000000.0
   },
   {
     "Steelmaker": "CLF",
@@ -1389,6 +1389,8 @@
     "Cost of Goods Sold": 5094000000.0,
     "Gross Income": 132000000.0,
     "Net Income Attributable to Stockholders": -145000000.0,
+    "Gross Margin": 2.53,
+    "Net Margin Attributable to Stockholders": -2.77,
     "Earnings Per Share": -0.25,
     "Long-Term Debt": 7703000000.0,
     "Current Maturities": 0.0,
@@ -1399,9 +1401,7 @@
     "Net Debt": 7627000000.0,
     "Operating Cash Flow": 230000000.0,
     "Capital Expenditures": 157000000.0,
-    "Free Cash Flow": 73000000.0,
-    "Gross Margin": 2.53,
-    "Net Margin Attributable to Stockholders": -2.77
+    "Free Cash Flow": 73000000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1416,6 +1416,8 @@
     "Cost of Goods Sold": 3974513000.0,
     "Gross Income": 636013000.0,
     "Net Income Attributable to Stockholders": 54762000.0,
+    "Gross Margin": 13.79,
+    "Net Margin Attributable to Stockholders": 1.19,
     "Earnings Per Share": 0.48,
     "Long-Term Debt": 757948000.0,
     "Current Maturities": 313469000.0,
@@ -1426,9 +1428,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 586865000.0,
     "Capital Expenditures": 163332000.0,
-    "Free Cash Flow": 423533000.0,
-    "Gross Margin": 13.79,
-    "Net Margin Attributable to Stockholders": 1.19
+    "Free Cash Flow": 423533000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1443,6 +1443,8 @@
     "Cost of Goods Sold": 997242000.0,
     "Gross Income": 157617000.0,
     "Net Income Attributable to Stockholders": 32184000.0,
+    "Gross Margin": 13.65,
+    "Net Margin Attributable to Stockholders": 2.79,
     "Earnings Per Share": 0.22,
     "Long-Term Debt": 1275410000.0,
     "Current Maturities": 10451000.0,
@@ -1453,9 +1455,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 219573000.0,
     "Capital Expenditures": 11169000.0,
-    "Free Cash Flow": 208404000.0,
-    "Gross Margin": 13.65,
-    "Net Margin Attributable to Stockholders": 2.79
+    "Free Cash Flow": 208404000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1470,6 +1470,8 @@
     "Cost of Goods Sold": 884876000.0,
     "Gross Income": 323704000.0,
     "Net Income Attributable to Stockholders": -131000.0,
+    "Gross Margin": 26.78,
+    "Net Margin Attributable to Stockholders": -0.01,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 757948000.0,
     "Current Maturities": 313469000.0,
@@ -1480,9 +1482,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 113237000.0,
     "Capital Expenditures": 51268000.0,
-    "Free Cash Flow": 61969000.0,
-    "Gross Margin": 26.78,
-    "Net Margin Attributable to Stockholders": -0.01
+    "Free Cash Flow": 61969000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1497,6 +1497,8 @@
     "Cost of Goods Sold": 1051910000.0,
     "Gross Income": 156670000.0,
     "Net Income Attributable to Stockholders": -131000.0,
+    "Gross Margin": 12.96,
+    "Net Margin Attributable to Stockholders": -0.01,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 757948000.0,
     "Current Maturities": 313469000.0,
@@ -1507,9 +1509,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 174058000.0,
     "Capital Expenditures": 42044000.0,
-    "Free Cash Flow": 132014000.0,
-    "Gross Margin": 12.96,
-    "Net Margin Attributable to Stockholders": -0.01
+    "Free Cash Flow": 132014000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1524,6 +1524,8 @@
     "Cost of Goods Sold": 1040485000.0,
     "Gross Income": -1978000.0,
     "Net Income Attributable to Stockholders": 22840000.0,
+    "Gross Margin": -0.19,
+    "Net Margin Attributable to Stockholders": 2.2,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 757948000.0,
     "Current Maturities": 313469000.0,
@@ -1534,9 +1536,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 79997000.0,
     "Capital Expenditures": 58851000.0,
-    "Free Cash Flow": 21146000.0,
-    "Gross Margin": -0.19,
-    "Net Margin Attributable to Stockholders": 2.2
+    "Free Cash Flow": 21146000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1551,6 +1551,8 @@
     "Cost of Goods Sold": 4023265000.0,
     "Gross Income": 546410000.0,
     "Net Income Attributable to Stockholders": 46332000.0,
+    "Gross Margin": 11.96,
+    "Net Margin Attributable to Stockholders": 1.01,
     "Earnings Per Share": 0.4,
     "Long-Term Debt": 805580000.0,
     "Current Maturities": 19182000.0,
@@ -1561,9 +1563,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 174472000.0,
     "Capital Expenditures": 213120000.0,
-    "Free Cash Flow": -38648000.0,
-    "Gross Margin": 11.96,
-    "Net Margin Attributable to Stockholders": 1.01
+    "Free Cash Flow": -38648000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1578,6 +1578,8 @@
     "Cost of Goods Sold": 943071000.0,
     "Gross Income": 131992000.0,
     "Net Income Attributable to Stockholders": 6275000.0,
+    "Gross Margin": 12.28,
+    "Net Margin Attributable to Stockholders": 0.58,
     "Earnings Per Share": 0.05,
     "Long-Term Debt": 755161000.0,
     "Current Maturities": 312892000.0,
@@ -1588,9 +1590,7 @@
     "Net Debt": null,
     "Operating Cash Flow": -954000.0,
     "Capital Expenditures": 42965000.0,
-    "Free Cash Flow": -43919000.0,
-    "Gross Margin": 12.28,
-    "Net Margin Attributable to Stockholders": 0.58
+    "Free Cash Flow": -43919000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1605,6 +1605,8 @@
     "Cost of Goods Sold": 990431000.0,
     "Gross Income": 270550000.0,
     "Net Income Attributable to Stockholders": -29540000.0,
+    "Gross Margin": 21.46,
+    "Net Margin Attributable to Stockholders": -2.34,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 805580000.0,
     "Current Maturities": 19182000.0,
@@ -1615,9 +1617,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 12937000.0,
     "Capital Expenditures": 47843000.0,
-    "Free Cash Flow": -34906000.0,
-    "Gross Margin": 21.46,
-    "Net Margin Attributable to Stockholders": -2.34
+    "Free Cash Flow": -34906000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1632,6 +1632,8 @@
     "Cost of Goods Sold": 1209195000.0,
     "Gross Income": 51786000.0,
     "Net Income Attributable to Stockholders": -29540000.0,
+    "Gross Margin": 4.11,
+    "Net Margin Attributable to Stockholders": -2.34,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 805580000.0,
     "Current Maturities": 19182000.0,
@@ -1642,9 +1644,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 6931000.0,
     "Capital Expenditures": 71274000.0,
-    "Free Cash Flow": -64343000.0,
-    "Gross Margin": 4.11,
-    "Net Margin Attributable to Stockholders": -2.34
+    "Free Cash Flow": -64343000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1659,6 +1659,8 @@
     "Cost of Goods Sold": 880568000.0,
     "Gross Income": 92082000.0,
     "Net Income Attributable to Stockholders": 99137000.0,
+    "Gross Margin": 9.47,
+    "Net Margin Attributable to Stockholders": 10.19,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 805580000.0,
     "Current Maturities": 19182000.0,
@@ -1669,9 +1671,7 @@
     "Net Debt": null,
     "Operating Cash Flow": 155558000.0,
     "Capital Expenditures": 51038000.0,
-    "Free Cash Flow": 104520000.0,
-    "Gross Margin": 9.47,
-    "Net Margin Attributable to Stockholders": 10.19
+    "Free Cash Flow": 104520000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1686,6 +1686,8 @@
     "Cost of Goods Sold": 4021558000.0,
     "Gross Income": 622165000.0,
     "Net Income Attributable to Stockholders": 138506000.0,
+    "Gross Margin": 13.4,
+    "Net Margin Attributable to Stockholders": 2.98,
     "Earnings Per Share": 1.19,
     "Long-Term Debt": 1138619000.0,
     "Current Maturities": 19746000.0,
@@ -1696,9 +1698,7 @@
     "Net Debt": 525750000.0,
     "Operating Cash Flow": 158680000.0,
     "Capital Expenditures": 174655000.0,
-    "Free Cash Flow": -15975000.0,
-    "Gross Margin": 13.4,
-    "Net Margin Attributable to Stockholders": 2.98
+    "Free Cash Flow": -15975000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1713,6 +1713,8 @@
     "Cost of Goods Sold": 1074938000.0,
     "Gross Income": 163581000.0,
     "Net Income Attributable to Stockholders": 36810000.0,
+    "Gross Margin": 13.21,
+    "Net Margin Attributable to Stockholders": 2.97,
     "Earnings Per Share": 0.32,
     "Long-Term Debt": 803785000.0,
     "Current Maturities": 21246000.0,
@@ -1723,9 +1725,7 @@
     "Net Debt": null,
     "Operating Cash Flow": -34202000.0,
     "Capital Expenditures": 59681000.0,
-    "Free Cash Flow": -93883000.0,
-    "Gross Margin": 13.21,
-    "Net Margin Attributable to Stockholders": 2.97
+    "Free Cash Flow": -93883000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1740,6 +1740,8 @@
     "Cost of Goods Sold": 927101000.0,
     "Gross Income": 127167000.0,
     "Net Income Attributable to Stockholders": 51560000.0,
+    "Gross Margin": 12.06,
+    "Net Margin Attributable to Stockholders": 4.89,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 1138619000.0,
     "Current Maturities": 19746000.0,
@@ -1750,9 +1752,7 @@
     "Net Debt": 525750000.0,
     "Operating Cash Flow": 82989000.0,
     "Capital Expenditures": 41347000.0,
-    "Free Cash Flow": 41642000.0,
-    "Gross Margin": 12.06,
-    "Net Margin Attributable to Stockholders": 4.89
+    "Free Cash Flow": 41642000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1767,6 +1767,8 @@
     "Cost of Goods Sold": 1035914000.0,
     "Gross Income": 272524000.0,
     "Net Income Attributable to Stockholders": 51560000.0,
+    "Gross Margin": 20.83,
+    "Net Margin Attributable to Stockholders": 3.94,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 1138619000.0,
     "Current Maturities": 19746000.0,
@@ -1777,9 +1779,7 @@
     "Net Debt": 525750000.0,
     "Operating Cash Flow": 42858000.0,
     "Capital Expenditures": 43240000.0,
-    "Free Cash Flow": -382000.0,
-    "Gross Margin": 20.83,
-    "Net Margin Attributable to Stockholders": 3.94
+    "Free Cash Flow": -382000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1794,6 +1794,8 @@
     "Cost of Goods Sold": 983605000.0,
     "Gross Income": 58893000.0,
     "Net Income Attributable to Stockholders": -1424000.0,
+    "Gross Margin": 5.65,
+    "Net Margin Attributable to Stockholders": -0.14,
     "Earnings Per Share": 0.0,
     "Long-Term Debt": 1138619000.0,
     "Current Maturities": 19746000.0,
@@ -1804,9 +1806,7 @@
     "Net Debt": 525750000.0,
     "Operating Cash Flow": 67035000.0,
     "Capital Expenditures": 30387000.0,
-    "Free Cash Flow": 36648000.0,
-    "Gross Margin": 5.65,
-    "Net Margin Attributable to Stockholders": -0.14
+    "Free Cash Flow": 36648000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1821,6 +1821,8 @@
     "Cost of Goods Sold": 5025514000.0,
     "Gross Income": 803488000.0,
     "Net Income Attributable to Stockholders": 198093000.0,
+    "Gross Margin": 13.78,
+    "Net Margin Attributable to Stockholders": 3.4,
     "Earnings Per Share": 1.68,
     "Long-Term Debt": 1227214000.0,
     "Current Maturities": 13510000.0,
@@ -1831,9 +1833,7 @@
     "Net Debt": 1046995000.0,
     "Operating Cash Flow": 37004000.0,
     "Capital Expenditures": 138836000.0,
-    "Free Cash Flow": -101832000.0,
-    "Gross Margin": 13.78,
-    "Net Margin Attributable to Stockholders": 3.4
+    "Free Cash Flow": -101832000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1848,6 +1848,8 @@
     "Cost of Goods Sold": 1118433000.0,
     "Gross Income": 158909000.0,
     "Net Income Attributable to Stockholders": 19742000.0,
+    "Gross Margin": 12.44,
+    "Net Margin Attributable to Stockholders": 1.55,
     "Earnings Per Share": 0.17,
     "Long-Term Debt": 1307824000.0,
     "Current Maturities": 29083000.0,
@@ -1858,9 +1860,7 @@
     "Net Debt": 1279370000.0,
     "Operating Cash Flow": -357623000.0,
     "Capital Expenditures": 37914000.0,
-    "Free Cash Flow": -395537000.0,
-    "Gross Margin": 12.44,
-    "Net Margin Attributable to Stockholders": 1.55
+    "Free Cash Flow": -395537000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1875,6 +1875,8 @@
     "Cost of Goods Sold": 1252493000.0,
     "Gross Income": 290512000.0,
     "Net Income Attributable to Stockholders": 86111000.0,
+    "Gross Margin": 18.83,
+    "Net Margin Attributable to Stockholders": 5.58,
     "Earnings Per Share": 0.73,
     "Long-Term Debt": 1227214000.0,
     "Current Maturities": 13510000.0,
@@ -1885,9 +1887,7 @@
     "Net Debt": 1046995000.0,
     "Operating Cash Flow": 4736000.0,
     "Capital Expenditures": 29583000.0,
-    "Free Cash Flow": -24847000.0,
-    "Gross Margin": 18.83,
-    "Net Margin Attributable to Stockholders": 5.58
+    "Free Cash Flow": -24847000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1902,6 +1902,8 @@
     "Cost of Goods Sold": 1364242000.0,
     "Gross Income": 178763000.0,
     "Net Income Attributable to Stockholders": 86111000.0,
+    "Gross Margin": 11.59,
+    "Net Margin Attributable to Stockholders": 5.58,
     "Earnings Per Share": 0.73,
     "Long-Term Debt": 1227214000.0,
     "Current Maturities": 13510000.0,
@@ -1912,9 +1914,7 @@
     "Net Debt": 1046995000.0,
     "Operating Cash Flow": 134390000.0,
     "Capital Expenditures": 24256000.0,
-    "Free Cash Flow": 110134000.0,
-    "Gross Margin": 11.59,
-    "Net Margin Attributable to Stockholders": 5.58
+    "Free Cash Flow": 110134000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1929,6 +1929,8 @@
     "Cost of Goods Sold": 1290346000.0,
     "Gross Income": 175304000.0,
     "Net Income Attributable to Stockholders": 6129000.0,
+    "Gross Margin": 11.96,
+    "Net Margin Attributable to Stockholders": 0.42,
     "Earnings Per Share": 0.73,
     "Long-Term Debt": 1227214000.0,
     "Current Maturities": 13510000.0,
@@ -1939,9 +1941,7 @@
     "Net Debt": 1046995000.0,
     "Operating Cash Flow": 255501000.0,
     "Capital Expenditures": 47083000.0,
-    "Free Cash Flow": 208418000.0,
-    "Gross Margin": 11.96,
-    "Net Margin Attributable to Stockholders": 0.42
+    "Free Cash Flow": 208418000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1956,6 +1956,8 @@
     "Cost of Goods Sold": 4531688000.0,
     "Gross Income": 944798000.0,
     "Net Income Attributable to Stockholders": 279503000.0,
+    "Gross Margin": 17.25,
+    "Net Margin Attributable to Stockholders": 5.1,
     "Earnings Per Share": 2.35,
     "Long-Term Debt": 1065536000.0,
     "Current Maturities": 18149000.0,
@@ -1966,9 +1968,7 @@
     "Net Debt": 538721000.0,
     "Operating Cash Flow": 791204000.0,
     "Capital Expenditures": 187618000.0,
-    "Free Cash Flow": 603586000.0,
-    "Gross Margin": 17.25,
-    "Net Margin Attributable to Stockholders": 5.1
+    "Free Cash Flow": 603586000.0
   },
   {
     "Steelmaker": "CMC",
@@ -1983,6 +1983,8 @@
     "Cost of Goods Sold": 1146514000.0,
     "Gross Income": 238194000.0,
     "Net Income Attributable to Stockholders": 83348000.0,
+    "Gross Margin": 17.2,
+    "Net Margin Attributable to Stockholders": 6.02,
     "Earnings Per Share": 0.7,
     "Long-Term Debt": 1179443000.0,
     "Current Maturities": 13717000.0,
@@ -1993,9 +1995,7 @@
     "Net Debt": 967301000.0,
     "Operating Cash Flow": 146418000.0,
     "Capital Expenditures": 45559000.0,
-    "Free Cash Flow": 100859000.0,
-    "Gross Margin": 17.2,
-    "Net Margin Attributable to Stockholders": 6.02
+    "Free Cash Flow": 100859000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2010,6 +2010,8 @@
     "Cost of Goods Sold": 1123096000.0,
     "Gross Income": 286036000.0,
     "Net Income Attributable to Stockholders": 67623000.0,
+    "Gross Margin": 20.3,
+    "Net Margin Attributable to Stockholders": 4.8,
     "Earnings Per Share": 0.57,
     "Long-Term Debt": 1065536000.0,
     "Current Maturities": 18149000.0,
@@ -2020,9 +2022,7 @@
     "Net Debt": 538721000.0,
     "Operating Cash Flow": 106998000.0,
     "Capital Expenditures": 51033000.0,
-    "Free Cash Flow": 55965000.0,
-    "Gross Margin": 20.3,
-    "Net Margin Attributable to Stockholders": 4.8
+    "Free Cash Flow": 55965000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2037,6 +2037,8 @@
     "Cost of Goods Sold": 1116353000.0,
     "Gross Income": 292779000.0,
     "Net Income Attributable to Stockholders": 67623000.0,
+    "Gross Margin": 20.78,
+    "Net Margin Attributable to Stockholders": 4.8,
     "Earnings Per Share": 0.57,
     "Long-Term Debt": 1065536000.0,
     "Current Maturities": 18149000.0,
@@ -2047,9 +2049,7 @@
     "Net Debt": 538721000.0,
     "Operating Cash Flow": 278417000.0,
     "Capital Expenditures": 37500000.0,
-    "Free Cash Flow": 240917000.0,
-    "Gross Margin": 20.78,
-    "Net Margin Attributable to Stockholders": 4.8
+    "Free Cash Flow": 240917000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2064,6 +2064,8 @@
     "Cost of Goods Sold": 1145725000.0,
     "Gross Income": 127789000.0,
     "Net Income Attributable to Stockholders": 60909000.0,
+    "Gross Margin": 10.03,
+    "Net Margin Attributable to Stockholders": 4.78,
     "Earnings Per Share": 0.57,
     "Long-Term Debt": 1065536000.0,
     "Current Maturities": 18149000.0,
@@ -2074,9 +2076,7 @@
     "Net Debt": 538721000.0,
     "Operating Cash Flow": 259371000.0,
     "Capital Expenditures": 53526000.0,
-    "Free Cash Flow": 205845000.0,
-    "Gross Margin": 10.03,
-    "Net Margin Attributable to Stockholders": 4.78
+    "Free Cash Flow": 205845000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2091,6 +2091,8 @@
     "Cost of Goods Sold": 5623903000.0,
     "Gross Income": 1105857000.0,
     "Net Income Attributable to Stockholders": 412865000.0,
+    "Gross Margin": 16.43,
+    "Net Margin Attributable to Stockholders": 6.13,
     "Earnings Per Share": 3.43,
     "Long-Term Debt": 1015415000.0,
     "Current Maturities": 54366000.0,
@@ -2101,9 +2103,7 @@
     "Net Debt": 568652000.0,
     "Operating Cash Flow": 228474000.0,
     "Capital Expenditures": 184165000.0,
-    "Free Cash Flow": 44309000.0,
-    "Gross Margin": 16.43,
-    "Net Margin Attributable to Stockholders": 6.13
+    "Free Cash Flow": 44309000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2118,6 +2118,8 @@
     "Cost of Goods Sold": 1174819000.0,
     "Gross Income": 216984000.0,
     "Net Income Attributable to Stockholders": 64093000.0,
+    "Gross Margin": 15.59,
+    "Net Margin Attributable to Stockholders": 4.61,
     "Earnings Per Share": 0.54,
     "Long-Term Debt": 1064893000.0,
     "Current Maturities": 20701000.0,
@@ -2128,9 +2130,7 @@
     "Net Debt": 618111000.0,
     "Operating Cash Flow": -12088000.0,
     "Capital Expenditures": 37201000.0,
-    "Free Cash Flow": -49289000.0,
-    "Gross Margin": 15.59,
-    "Net Margin Attributable to Stockholders": 4.61
+    "Free Cash Flow": -49289000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2145,6 +2145,8 @@
     "Cost of Goods Sold": 1533768000.0,
     "Gross Income": 311273000.0,
     "Net Income Attributable to Stockholders": 130408000.0,
+    "Gross Margin": 16.87,
+    "Net Margin Attributable to Stockholders": 7.07,
     "Earnings Per Share": 1.08,
     "Long-Term Debt": 1015415000.0,
     "Current Maturities": 54366000.0,
@@ -2155,9 +2157,7 @@
     "Net Debt": 568652000.0,
     "Operating Cash Flow": 13291000.0,
     "Capital Expenditures": 50487000.0,
-    "Free Cash Flow": -37196000.0,
-    "Gross Margin": 16.87,
-    "Net Margin Attributable to Stockholders": 7.07
+    "Free Cash Flow": -37196000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2172,6 +2172,8 @@
     "Cost of Goods Sold": 1533768000.0,
     "Gross Income": 311273000.0,
     "Net Income Attributable to Stockholders": 130408000.0,
+    "Gross Margin": 16.87,
+    "Net Margin Attributable to Stockholders": 7.07,
     "Earnings Per Share": 1.08,
     "Long-Term Debt": 1015415000.0,
     "Current Maturities": 54366000.0,
@@ -2182,9 +2184,7 @@
     "Net Debt": 568652000.0,
     "Operating Cash Flow": 93029000.0,
     "Capital Expenditures": 39707000.0,
-    "Free Cash Flow": 53322000.0,
-    "Gross Margin": 16.87,
-    "Net Margin Attributable to Stockholders": 7.07
+    "Free Cash Flow": 53322000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2199,6 +2199,8 @@
     "Cost of Goods Sold": 1381548000.0,
     "Gross Income": 266327000.0,
     "Net Income Attributable to Stockholders": 87956000.0,
+    "Gross Margin": 16.16,
+    "Net Margin Attributable to Stockholders": 5.34,
     "Earnings Per Share": 1.08,
     "Long-Term Debt": 1015415000.0,
     "Current Maturities": 54366000.0,
@@ -2209,9 +2211,7 @@
     "Net Debt": 568652000.0,
     "Operating Cash Flow": 134242000.0,
     "Capital Expenditures": 56770000.0,
-    "Free Cash Flow": 77472000.0,
-    "Gross Margin": 16.16,
-    "Net Margin Attributable to Stockholders": 5.34
+    "Free Cash Flow": 77472000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2226,6 +2226,8 @@
     "Cost of Goods Sold": 7057085000.0,
     "Gross Income": 1856396000.0,
     "Net Income Attributable to Stockholders": 1217262000.0,
+    "Gross Margin": 20.83,
+    "Net Margin Attributable to Stockholders": 13.66,
     "Earnings Per Share": 10.09,
     "Long-Term Debt": 1113249000.0,
     "Current Maturities": 388796000.0,
@@ -2236,9 +2238,7 @@
     "Net Debt": 822802000.0,
     "Operating Cash Flow": 700309000.0,
     "Capital Expenditures": 449988000.0,
-    "Free Cash Flow": 250321000.0,
-    "Gross Margin": 20.83,
-    "Net Margin Attributable to Stockholders": 13.66
+    "Free Cash Flow": 250321000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2253,6 +2253,8 @@
     "Cost of Goods Sold": 1586410000.0,
     "Gross Income": 395391000.0,
     "Net Income Attributable to Stockholders": 232889000.0,
+    "Gross Margin": 19.95,
+    "Net Margin Attributable to Stockholders": 11.75,
     "Earnings Per Share": 1.92,
     "Long-Term Debt": 1007801000.0,
     "Current Maturities": 56896000.0,
@@ -2263,9 +2265,7 @@
     "Net Debt": 646376000.0,
     "Operating Cash Flow": 25779000.0,
     "Capital Expenditures": 70150000.0,
-    "Free Cash Flow": -44371000.0,
-    "Gross Margin": 19.95,
-    "Net Margin Attributable to Stockholders": 11.75
+    "Free Cash Flow": -44371000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2280,6 +2280,8 @@
     "Cost of Goods Sold": 1614965000.0,
     "Gross Income": 393923000.0,
     "Net Income Attributable to Stockholders": 383314000.0,
+    "Gross Margin": 19.61,
+    "Net Margin Attributable to Stockholders": 19.08,
     "Earnings Per Share": 3.16,
     "Long-Term Debt": 1113249000.0,
     "Current Maturities": 388796000.0,
@@ -2290,9 +2292,7 @@
     "Net Debt": 822802000.0,
     "Operating Cash Flow": 28589000.0,
     "Capital Expenditures": 121412000.0,
-    "Free Cash Flow": -92823000.0,
-    "Gross Margin": 19.61,
-    "Net Margin Attributable to Stockholders": 19.08
+    "Free Cash Flow": -92823000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2307,6 +2307,8 @@
     "Cost of Goods Sold": 1956459000.0,
     "Gross Income": 559268000.0,
     "Net Income Attributable to Stockholders": 312429000.0,
+    "Gross Margin": 22.23,
+    "Net Margin Attributable to Stockholders": 12.42,
     "Earnings Per Share": 2.58,
     "Long-Term Debt": 1113249000.0,
     "Current Maturities": 388796000.0,
@@ -2317,9 +2319,7 @@
     "Net Debt": 822802000.0,
     "Operating Cash Flow": 187379000.0,
     "Capital Expenditures": 102784000.0,
-    "Free Cash Flow": 84595000.0,
-    "Gross Margin": 22.23,
-    "Net Margin Attributable to Stockholders": 12.42
+    "Free Cash Flow": 84595000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2334,6 +2334,8 @@
     "Cost of Goods Sold": 1899251000.0,
     "Gross Income": 507814000.0,
     "Net Income Attributable to Stockholders": 288630000.0,
+    "Gross Margin": 21.1,
+    "Net Margin Attributable to Stockholders": 11.99,
     "Earnings Per Share": 2.43,
     "Long-Term Debt": 1113249000.0,
     "Current Maturities": 388796000.0,
@@ -2344,9 +2346,7 @@
     "Net Debt": 822802000.0,
     "Operating Cash Flow": 458562000.0,
     "Capital Expenditures": 155642000.0,
-    "Free Cash Flow": 302920000.0,
-    "Gross Margin": 21.1,
-    "Net Margin Attributable to Stockholders": 11.99
+    "Free Cash Flow": 302920000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2361,6 +2361,8 @@
     "Cost of Goods Sold": 6987618000.0,
     "Gross Income": 1811915000.0,
     "Net Income Attributable to Stockholders": 859760000.0,
+    "Gross Margin": 20.59,
+    "Net Margin Attributable to Stockholders": 9.77,
     "Earnings Per Share": 7.34,
     "Long-Term Debt": 1114284000.0,
     "Current Maturities": 40513000.0,
@@ -2371,9 +2373,7 @@
     "Net Debt": 559080000.0,
     "Operating Cash Flow": 1344103000.0,
     "Capital Expenditures": 606665000.0,
-    "Free Cash Flow": 737438000.0,
-    "Gross Margin": 20.59,
-    "Net Margin Attributable to Stockholders": 9.77
+    "Free Cash Flow": 737438000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2388,6 +2388,8 @@
     "Cost of Goods Sold": 1719414000.0,
     "Gross Income": 507899000.0,
     "Net Income Attributable to Stockholders": 261774000.0,
+    "Gross Margin": 22.8,
+    "Net Margin Attributable to Stockholders": 11.75,
     "Earnings Per Share": 2.23,
     "Long-Term Debt": 1093146000.0,
     "Current Maturities": 239406000.0,
@@ -2398,9 +2400,7 @@
     "Net Debt": 745164000.0,
     "Operating Cash Flow": 372370000.0,
     "Capital Expenditures": 133052000.0,
-    "Free Cash Flow": 239318000.0,
-    "Gross Margin": 22.8,
-    "Net Margin Attributable to Stockholders": 11.75
+    "Free Cash Flow": 239318000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2415,6 +2415,8 @@
     "Cost of Goods Sold": 1621763000.0,
     "Gross Income": 396240000.0,
     "Net Income Attributable to Stockholders": 179849000.0,
+    "Gross Margin": 19.64,
+    "Net Margin Attributable to Stockholders": 8.91,
     "Earnings Per Share": 1.53,
     "Long-Term Debt": 1114284000.0,
     "Current Maturities": 40513000.0,
@@ -2425,9 +2427,7 @@
     "Net Debt": 559080000.0,
     "Operating Cash Flow": 186537000.0,
     "Capital Expenditures": 156199000.0,
-    "Free Cash Flow": 30338000.0,
-    "Gross Margin": 19.64,
-    "Net Margin Attributable to Stockholders": 8.91
+    "Free Cash Flow": 30338000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2442,6 +2442,8 @@
     "Cost of Goods Sold": 1862299000.0,
     "Gross Income": 482690000.0,
     "Net Income Attributable to Stockholders": 233971000.0,
+    "Gross Margin": 20.58,
+    "Net Margin Attributable to Stockholders": 9.98,
     "Earnings Per Share": 2.0,
     "Long-Term Debt": 1114284000.0,
     "Current Maturities": 40513000.0,
@@ -2452,9 +2454,7 @@
     "Net Debt": 559080000.0,
     "Operating Cash Flow": 375772000.0,
     "Capital Expenditures": 150491000.0,
-    "Free Cash Flow": 225281000.0,
-    "Gross Margin": 20.58,
-    "Net Margin Attributable to Stockholders": 9.98
+    "Free Cash Flow": 225281000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2469,6 +2469,8 @@
     "Cost of Goods Sold": 1784142000.0,
     "Gross Income": 425086000.0,
     "Net Income Attributable to Stockholders": 184166000.0,
+    "Gross Margin": 19.24,
+    "Net Margin Attributable to Stockholders": 8.34,
     "Earnings Per Share": 1.58,
     "Long-Term Debt": 1114284000.0,
     "Current Maturities": 40513000.0,
@@ -2479,9 +2481,7 @@
     "Net Debt": 559080000.0,
     "Operating Cash Flow": 409424000.0,
     "Capital Expenditures": 166923000.0,
-    "Free Cash Flow": 242501000.0,
-    "Gross Margin": 19.24,
-    "Net Margin Attributable to Stockholders": 8.34
+    "Free Cash Flow": 242501000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2496,6 +2496,8 @@
     "Cost of Goods Sold": 6567287000.0,
     "Gross Income": 1358685000.0,
     "Net Income Attributable to Stockholders": 485491000.0,
+    "Gross Margin": 17.14,
+    "Net Margin Attributable to Stockholders": 6.13,
     "Earnings Per Share": 4.19,
     "Long-Term Debt": 1150835000.0,
     "Current Maturities": 38786000.0,
@@ -2506,9 +2508,7 @@
     "Net Debt": 330066000.0,
     "Operating Cash Flow": 899708000.0,
     "Capital Expenditures": 324271000.0,
-    "Free Cash Flow": 575437000.0,
-    "Gross Margin": 17.14,
-    "Net Margin Attributable to Stockholders": 6.13
+    "Free Cash Flow": 575437000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2523,6 +2523,8 @@
     "Cost of Goods Sold": 1604068000.0,
     "Gross Income": 398983000.0,
     "Net Income Attributable to Stockholders": 176273000.0,
+    "Gross Margin": 19.92,
+    "Net Margin Attributable to Stockholders": 8.8,
     "Earnings Per Share": 1.51,
     "Long-Term Debt": 1120472000.0,
     "Current Maturities": 33998000.0,
@@ -2533,9 +2535,7 @@
     "Net Debt": 447364000.0,
     "Operating Cash Flow": 261060000.0,
     "Capital Expenditures": 66991000.0,
-    "Free Cash Flow": 194069000.0,
-    "Gross Margin": 19.92,
-    "Net Margin Attributable to Stockholders": 8.8
+    "Free Cash Flow": 194069000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2550,6 +2550,8 @@
     "Cost of Goods Sold": 1552046000.0,
     "Gross Income": 296241000.0,
     "Net Income Attributable to Stockholders": 85847000.0,
+    "Gross Margin": 16.03,
+    "Net Margin Attributable to Stockholders": 4.64,
     "Earnings Per Share": 0.74,
     "Long-Term Debt": 1150835000.0,
     "Current Maturities": 38786000.0,
@@ -2560,9 +2562,7 @@
     "Net Debt": 330066000.0,
     "Operating Cash Flow": 88961000.0,
     "Capital Expenditures": 93781000.0,
-    "Free Cash Flow": -4820000.0,
-    "Gross Margin": 16.03,
-    "Net Margin Attributable to Stockholders": 4.64
+    "Free Cash Flow": -4820000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2577,6 +2577,8 @@
     "Cost of Goods Sold": 1738086000.0,
     "Gross Income": 340399000.0,
     "Net Income Attributable to Stockholders": 119440000.0,
+    "Gross Margin": 16.38,
+    "Net Margin Attributable to Stockholders": 5.75,
     "Earnings Per Share": 1.03,
     "Long-Term Debt": 1150835000.0,
     "Current Maturities": 38786000.0,
@@ -2587,9 +2589,7 @@
     "Net Debt": 330066000.0,
     "Operating Cash Flow": 197870000.0,
     "Capital Expenditures": 82031000.0,
-    "Free Cash Flow": 115839000.0,
-    "Gross Margin": 16.38,
-    "Net Margin Attributable to Stockholders": 5.75
+    "Free Cash Flow": 115839000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2604,6 +2604,8 @@
     "Cost of Goods Sold": 1673087000.0,
     "Gross Income": 323062000.0,
     "Net Income Attributable to Stockholders": 103931000.0,
+    "Gross Margin": 16.18,
+    "Net Margin Attributable to Stockholders": 5.21,
     "Earnings Per Share": 0.9,
     "Long-Term Debt": 1150835000.0,
     "Current Maturities": 38786000.0,
@@ -2614,9 +2616,7 @@
     "Net Debt": 330066000.0,
     "Operating Cash Flow": 351817000.0,
     "Capital Expenditures": 81468000.0,
-    "Free Cash Flow": 270349000.0,
-    "Gross Margin": 16.18,
-    "Net Margin Attributable to Stockholders": 5.21
+    "Free Cash Flow": 270349000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2631,6 +2631,8 @@
     "Cost of Goods Sold": 6578324000.0,
     "Gross Income": 1220156000.0,
     "Net Income Attributable to Stockholders": 84662000.0,
+    "Gross Margin": 15.65,
+    "Net Margin Attributable to Stockholders": 1.09,
     "Earnings Per Share": 0.75,
     "Long-Term Debt": 1310006000.0,
     "Current Maturities": 44289000.0,
@@ -2641,9 +2643,7 @@
     "Net Debt": 308391000.0,
     "Operating Cash Flow": 715070000.0,
     "Capital Expenditures": 402821000.0,
-    "Free Cash Flow": 312249000.0,
-    "Gross Margin": 15.65,
-    "Net Margin Attributable to Stockholders": 1.09
+    "Free Cash Flow": 312249000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2658,6 +2658,8 @@
     "Cost of Goods Sold": 1601722000.0,
     "Gross Income": 307880000.0,
     "Net Income Attributable to Stockholders": -175718000.0,
+    "Gross Margin": 16.12,
+    "Net Margin Attributable to Stockholders": -9.2,
     "Earnings Per Share": -1.54,
     "Long-Term Debt": 1148536000.0,
     "Current Maturities": 38561000.0,
@@ -2668,9 +2670,7 @@
     "Net Debt": 330209000.0,
     "Operating Cash Flow": 213024000.0,
     "Capital Expenditures": 118187000.0,
-    "Free Cash Flow": 94837000.0,
-    "Gross Margin": 16.12,
-    "Net Margin Attributable to Stockholders": -9.2
+    "Free Cash Flow": 94837000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2685,6 +2685,8 @@
     "Cost of Goods Sold": 1534829000.0,
     "Gross Income": 219547000.0,
     "Net Income Attributable to Stockholders": 25473000.0,
+    "Gross Margin": 12.51,
+    "Net Margin Attributable to Stockholders": 1.45,
     "Earnings Per Share": 0.22,
     "Long-Term Debt": 1310006000.0,
     "Current Maturities": 44289000.0,
@@ -2695,9 +2697,7 @@
     "Net Debt": 308391000.0,
     "Operating Cash Flow": 32441000.0,
     "Capital Expenditures": 86267000.0,
-    "Free Cash Flow": -53826000.0,
-    "Gross Margin": 12.51,
-    "Net Margin Attributable to Stockholders": 1.45
+    "Free Cash Flow": -53826000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2712,6 +2712,8 @@
     "Cost of Goods Sold": 1720063000.0,
     "Gross Income": 299921000.0,
     "Net Income Attributable to Stockholders": 83126000.0,
+    "Gross Margin": 14.85,
+    "Net Margin Attributable to Stockholders": 4.12,
     "Earnings Per Share": 0.74,
     "Long-Term Debt": 1310006000.0,
     "Current Maturities": 44289000.0,
@@ -2722,9 +2724,7 @@
     "Net Debt": 308391000.0,
     "Operating Cash Flow": 154400000.0,
     "Capital Expenditures": 89450000.0,
-    "Free Cash Flow": 64950000.0,
-    "Gross Margin": 14.85,
-    "Net Margin Attributable to Stockholders": 4.12
+    "Free Cash Flow": 64950000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2739,6 +2739,8 @@
     "Cost of Goods Sold": 1721710000.0,
     "Gross Income": 392808000.0,
     "Net Income Attributable to Stockholders": 151781000.0,
+    "Gross Margin": 18.58,
+    "Net Margin Attributable to Stockholders": 7.18,
     "Earnings Per Share": 1.33,
     "Long-Term Debt": 1310006000.0,
     "Current Maturities": 44289000.0,
@@ -2749,9 +2751,7 @@
     "Net Debt": 308391000.0,
     "Operating Cash Flow": 315205000.0,
     "Capital Expenditures": 108917000.0,
-    "Free Cash Flow": 206288000.0,
-    "Gross Margin": 18.58,
-    "Net Margin Attributable to Stockholders": 7.18
+    "Free Cash Flow": 206288000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2766,6 +2766,8 @@
     "Cost of Goods Sold": 1713169000.0,
     "Gross Income": 407138000.0,
     "Net Income Attributable to Stockholders": 177282000.0,
+    "Gross Margin": 19.2,
+    "Net Margin Attributable to Stockholders": 8.36,
     "Earnings Per Share": 1.6,
     "Long-Term Debt": 3305262000.0,
     "Current Maturities": 46295000.0,
@@ -2776,9 +2778,7 @@
     "Net Debt": 319460000.0,
     "Operating Cash Flow": 204187000.0,
     "Capital Expenditures": 125437000.0,
-    "Free Cash Flow": 78750000.0,
-    "Gross Margin": 19.2,
-    "Net Margin Attributable to Stockholders": 8.36
+    "Free Cash Flow": 78750000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2793,6 +2793,8 @@
     "Cost of Goods Sold": 1744113000.0,
     "Gross Income": 387905000.0,
     "Net Income Attributable to Stockholders": 93032000.0,
+    "Gross Margin": 18.19,
+    "Net Margin Attributable to Stockholders": 4.36,
     "Earnings Per Share": 0.84,
     "Long-Term Debt": 3309895000.0,
     "Current Maturities": 52621000.0,
@@ -2803,9 +2805,7 @@
     "Net Debt": 2858886000.0,
     "Operating Cash Flow": 166269000.0,
     "Capital Expenditures": 122695000.0,
-    "Free Cash Flow": 43574000.0,
-    "Gross Margin": 18.19,
-    "Net Margin Attributable to Stockholders": 4.36
+    "Free Cash Flow": 43574000.0
   },
   {
     "Steelmaker": "CMC",
@@ -2820,6 +2820,8 @@
     "Cost of Goods Sold": 2028109000.0,
     "Gross Income": 455136000.0,
     "Net Income Attributable to Stockholders": 173015000.0,
+    "Gross Margin": 18.33,
+    "Net Margin Attributable to Stockholders": 6.97,
     "Earnings Per Share": 1.56,
     "Long-Term Debt": 3311693000.0,
     "Current Maturities": 88792000.0,
@@ -2830,9 +2832,7 @@
     "Net Debt": 2837268000.0,
     "Operating Cash Flow": 232567000.0,
     "Capital Expenditures": 156141000.0,
-    "Free Cash Flow": 76426000.0,
-    "Gross Margin": 18.33,
-    "Net Margin Attributable to Stockholders": 6.97
+    "Free Cash Flow": 76426000.0
   },
   {
     "Steelmaker": "NUE",
@@ -2847,6 +2847,8 @@
     "Cost of Goods Sold": 14182215000.0,
     "Gross Income": 2025907000.0,
     "Net Income Attributable to Stockholders": 793639000.0,
+    "Gross Margin": 12.5,
+    "Net Margin Attributable to Stockholders": 4.9,
     "Earnings Per Share": 2.48,
     "Long-Term Debt": 4360600000.0,
     "Current Maturities": 600000000.0,
@@ -2857,9 +2859,7 @@
     "Net Debt": 2764639000.0,
     "Operating Cash Flow": 1750001000.0,
     "Capital Expenditures": 604840000.0,
-    "Free Cash Flow": 1145161000.0,
-    "Gross Margin": 12.5,
-    "Net Margin Attributable to Stockholders": 4.9
+    "Free Cash Flow": 1145161000.0
   },
   {
     "Steelmaker": "NUE",
@@ -2874,6 +2874,8 @@
     "Cost of Goods Sold": 3400591000.0,
     "Gross Income": 314985000.0,
     "Net Income Attributable to Stockholders": 87196000.0,
+    "Gross Margin": 8.48,
+    "Net Margin Attributable to Stockholders": 2.35,
     "Earnings Per Share": 0.27,
     "Long-Term Debt": 4337875000.0,
     "Current Maturities": 36655000.0,
@@ -2884,9 +2886,7 @@
     "Net Debt": 2046042000.0,
     "Operating Cash Flow": 550859000.0,
     "Capital Expenditures": 80697000.0,
-    "Free Cash Flow": 470162000.0,
-    "Gross Margin": 8.48,
-    "Net Margin Attributable to Stockholders": 2.35
+    "Free Cash Flow": 470162000.0
   },
   {
     "Steelmaker": "NUE",
@@ -2901,6 +2901,8 @@
     "Cost of Goods Sold": 3660512000.0,
     "Gross Income": 585260000.0,
     "Net Income Attributable to Stockholders": 242768000.0,
+    "Gross Margin": 13.78,
+    "Net Margin Attributable to Stockholders": 5.72,
     "Earnings Per Share": 0.76,
     "Long-Term Debt": 4360600000.0,
     "Current Maturities": 600000000.0,
@@ -2911,9 +2913,7 @@
     "Net Debt": 2629450000.0,
     "Operating Cash Flow": 315513000.0,
     "Capital Expenditures": 146645000.0,
-    "Free Cash Flow": 168868000.0,
-    "Gross Margin": 13.78,
-    "Net Margin Attributable to Stockholders": 5.72
+    "Free Cash Flow": 168868000.0
   },
   {
     "Steelmaker": "NUE",
@@ -2928,6 +2928,8 @@
     "Cost of Goods Sold": 3608000000.0,
     "Gross Income": 682236000.0,
     "Net Income Attributable to Stockholders": 304413000.0,
+    "Gross Margin": 15.9,
+    "Net Margin Attributable to Stockholders": 7.1,
     "Earnings Per Share": 0.95,
     "Long-Term Debt": 4360600000.0,
     "Current Maturities": 600000000.0,
@@ -2938,9 +2940,7 @@
     "Net Debt": 2605893000.0,
     "Operating Cash Flow": 315718000.0,
     "Capital Expenditures": 100094000.0,
-    "Free Cash Flow": 215624000.0,
-    "Gross Margin": 15.9,
-    "Net Margin Attributable to Stockholders": 7.1
+    "Free Cash Flow": 215624000.0
   },
   {
     "Steelmaker": "NUE",
@@ -2955,6 +2955,8 @@
     "Cost of Goods Sold": 3513112000.0,
     "Gross Income": 443426000.0,
     "Net Income Attributable to Stockholders": 159262000.0,
+    "Gross Margin": 11.21,
+    "Net Margin Attributable to Stockholders": 4.03,
     "Earnings Per Share": 0.5,
     "Long-Term Debt": 4360600000.0,
     "Current Maturities": 600000000.0,
@@ -2965,9 +2967,7 @@
     "Net Debt": 2764639000.0,
     "Operating Cash Flow": 567830000.0,
     "Capital Expenditures": 277404000.0,
-    "Free Cash Flow": 290426000.0,
-    "Gross Margin": 11.21,
-    "Net Margin Attributable to Stockholders": 4.03
+    "Free Cash Flow": 290426000.0
   },
   {
     "Steelmaker": "NUE",
@@ -2982,6 +2982,8 @@
     "Cost of Goods Sold": 17682986000.0,
     "Gross Income": 2569407000.0,
     "Net Income Attributable to Stockholders": 1314139000.0,
+    "Gross Margin": 12.69,
+    "Net Margin Attributable to Stockholders": 6.49,
     "Earnings Per Share": 4.11,
     "Long-Term Debt": 3242242000.0,
     "Current Maturities": 500000000.0,
@@ -2992,9 +2994,7 @@
     "Net Debt": 2743138000.0,
     "Operating Cash Flow": 1055338000.0,
     "Capital Expenditures": 448555000.0,
-    "Free Cash Flow": 606783000.0,
-    "Gross Margin": 12.69,
-    "Net Margin Attributable to Stockholders": 6.49
+    "Free Cash Flow": 606783000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3009,6 +3009,8 @@
     "Cost of Goods Sold": 4054929000.0,
     "Gross Income": 760250000.0,
     "Net Income Attributable to Stockholders": 355707000.0,
+    "Gross Margin": 15.79,
+    "Net Margin Attributable to Stockholders": 7.39,
     "Earnings Per Share": 1.11,
     "Long-Term Debt": 3739908000.0,
     "Current Maturities": 600000000.0,
@@ -3019,9 +3021,7 @@
     "Net Debt": 2632149000.0,
     "Operating Cash Flow": 244142000.0,
     "Capital Expenditures": 94535000.0,
-    "Free Cash Flow": 149607000.0,
-    "Gross Margin": 15.79,
-    "Net Margin Attributable to Stockholders": 7.39
+    "Free Cash Flow": 149607000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3036,6 +3036,8 @@
     "Cost of Goods Sold": 4465144000.0,
     "Gross Income": 709625000.0,
     "Net Income Attributable to Stockholders": 321910000.0,
+    "Gross Margin": 13.71,
+    "Net Margin Attributable to Stockholders": 6.22,
     "Earnings Per Share": 1.0,
     "Long-Term Debt": 3240694000.0,
     "Current Maturities": 1100000000.0,
@@ -3046,9 +3048,7 @@
     "Net Debt": 2779341000.0,
     "Operating Cash Flow": 102822000.0,
     "Capital Expenditures": 94700000.0,
-    "Free Cash Flow": 8122000.0,
-    "Gross Margin": 13.71,
-    "Net Margin Attributable to Stockholders": 6.22
+    "Free Cash Flow": 8122000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3063,6 +3063,8 @@
     "Cost of Goods Sold": 4591153000.0,
     "Gross Income": 578964000.0,
     "Net Income Attributable to Stockholders": 253950000.0,
+    "Gross Margin": 11.2,
+    "Net Margin Attributable to Stockholders": 4.91,
     "Earnings Per Share": 0.79,
     "Long-Term Debt": 3241488000.0,
     "Current Maturities": 1100000000.0,
@@ -3073,9 +3075,7 @@
     "Net Debt": 2715544000.0,
     "Operating Cash Flow": 415707000.0,
     "Capital Expenditures": 103077000.0,
-    "Free Cash Flow": 312630000.0,
-    "Gross Margin": 11.2,
-    "Net Margin Attributable to Stockholders": 4.91
+    "Free Cash Flow": 312630000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3090,6 +3090,8 @@
     "Cost of Goods Sold": 4571760000.0,
     "Gross Income": 520568000.0,
     "Net Income Attributable to Stockholders": 382572000.0,
+    "Gross Margin": 10.22,
+    "Net Margin Attributable to Stockholders": 7.51,
     "Earnings Per Share": 1.2,
     "Long-Term Debt": 3242242000.0,
     "Current Maturities": 500000000.0,
@@ -3100,9 +3102,7 @@
     "Net Debt": 2743138000.0,
     "Operating Cash Flow": 288770000.0,
     "Capital Expenditures": 156243000.0,
-    "Free Cash Flow": 132527000.0,
-    "Gross Margin": 10.22,
-    "Net Margin Attributable to Stockholders": 7.51
+    "Free Cash Flow": 132527000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3117,6 +3117,8 @@
     "Cost of Goods Sold": 20771871000.0,
     "Gross Income": 4295408000.0,
     "Net Income Attributable to Stockholders": 2351423000.0,
+    "Gross Margin": 17.14,
+    "Net Margin Attributable to Stockholders": 9.38,
     "Earnings Per Share": 7.44,
     "Long-Term Debt": 4233276000.0,
     "Current Maturities": 500000000.0,
@@ -3127,9 +3129,7 @@
     "Net Debt": 3334390000.0,
     "Operating Cash Flow": 2393952000.0,
     "Capital Expenditures": 982531000.0,
-    "Free Cash Flow": 1411421000.0,
-    "Gross Margin": 17.14,
-    "Net Margin Attributable to Stockholders": 9.38
+    "Free Cash Flow": 1411421000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3144,6 +3144,8 @@
     "Cost of Goods Sold": 4842013000.0,
     "Gross Income": 726406000.0,
     "Net Income Attributable to Stockholders": 352998000.0,
+    "Gross Margin": 13.05,
+    "Net Margin Attributable to Stockholders": 6.34,
     "Earnings Per Share": 1.11,
     "Long-Term Debt": 3242865000.0,
     "Current Maturities": 500000000.0,
@@ -3154,9 +3156,7 @@
     "Net Debt": 2932611000.0,
     "Operating Cash Flow": 127921000.0,
     "Capital Expenditures": 172203000.0,
-    "Free Cash Flow": -44282000.0,
-    "Gross Margin": 13.05,
-    "Net Margin Attributable to Stockholders": 6.34
+    "Free Cash Flow": -44282000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3171,6 +3171,8 @@
     "Cost of Goods Sold": 5294184000.0,
     "Gross Income": 1166590000.0,
     "Net Income Attributable to Stockholders": 680234000.0,
+    "Gross Margin": 18.06,
+    "Net Margin Attributable to Stockholders": 10.53,
     "Earnings Per Share": 2.14,
     "Long-Term Debt": 4232244000.0,
     "Current Maturities": 500000000.0,
@@ -3181,9 +3183,7 @@
     "Net Debt": 3245791000.0,
     "Operating Cash Flow": 742671000.0,
     "Capital Expenditures": 189283000.0,
-    "Free Cash Flow": 553388000.0,
-    "Gross Margin": 18.06,
-    "Net Margin Attributable to Stockholders": 10.53
+    "Free Cash Flow": 553388000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3198,6 +3198,8 @@
     "Cost of Goods Sold": 5452052000.0,
     "Gross Income": 1290150000.0,
     "Net Income Attributable to Stockholders": 673849000.0,
+    "Gross Margin": 19.14,
+    "Net Margin Attributable to Stockholders": 9.99,
     "Earnings Per Share": 2.13,
     "Long-Term Debt": 4232760000.0,
     "Current Maturities": 500000000.0,
@@ -3208,9 +3210,7 @@
     "Net Debt": 2800605000.0,
     "Operating Cash Flow": 1030867000.0,
     "Capital Expenditures": 263253000.0,
-    "Free Cash Flow": 767614000.0,
-    "Gross Margin": 19.14,
-    "Net Margin Attributable to Stockholders": 9.99
+    "Free Cash Flow": 767614000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3225,6 +3225,8 @@
     "Cost of Goods Sold": 5183622000.0,
     "Gross Income": 1112262000.0,
     "Net Income Attributable to Stockholders": 644342000.0,
+    "Gross Margin": 17.67,
+    "Net Margin Attributable to Stockholders": 10.23,
     "Earnings Per Share": 2.08,
     "Long-Term Debt": 4233276000.0,
     "Current Maturities": 500000000.0,
@@ -3235,9 +3237,7 @@
     "Net Debt": 3334390000.0,
     "Operating Cash Flow": 492493000.0,
     "Capital Expenditures": 357792000.0,
-    "Free Cash Flow": 134701000.0,
-    "Gross Margin": 17.67,
-    "Net Margin Attributable to Stockholders": 10.23
+    "Free Cash Flow": 134701000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3252,6 +3252,8 @@
     "Cost of Goods Sold": 19909773000.0,
     "Gross Income": 2679085000.0,
     "Net Income Attributable to Stockholders": 1264108000.0,
+    "Gross Margin": 11.86,
+    "Net Margin Attributable to Stockholders": 5.6,
     "Earnings Per Share": 4.14,
     "Long-Term Debt": 4291301000.0,
     "Current Maturities": 29264000.0,
@@ -3262,9 +3264,7 @@
     "Net Debt": 2485920000.0,
     "Operating Cash Flow": 2809413000.0,
     "Capital Expenditures": 1477293000.0,
-    "Free Cash Flow": 1332120000.0,
-    "Gross Margin": 11.86,
-    "Net Margin Attributable to Stockholders": 5.6
+    "Free Cash Flow": 1332120000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3279,6 +3279,8 @@
     "Cost of Goods Sold": 5200732000.0,
     "Gross Income": 895892000.0,
     "Net Income Attributable to Stockholders": 499838000.0,
+    "Gross Margin": 14.69,
+    "Net Margin Attributable to Stockholders": 8.2,
     "Earnings Per Share": 1.63,
     "Long-Term Debt": 4233792000.0,
     "Current Maturities": 71438000.0,
@@ -3289,9 +3291,7 @@
     "Net Debt": 2704423000.0,
     "Operating Cash Flow": 650708000.0,
     "Capital Expenditures": 288786000.0,
-    "Free Cash Flow": 361922000.0,
-    "Gross Margin": 14.69,
-    "Net Margin Attributable to Stockholders": 8.2
+    "Free Cash Flow": 361922000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3306,6 +3306,8 @@
     "Cost of Goods Sold": 5120492000.0,
     "Gross Income": 775494000.0,
     "Net Income Attributable to Stockholders": 384052000.0,
+    "Gross Margin": 13.15,
+    "Net Margin Attributable to Stockholders": 6.51,
     "Earnings Per Share": 1.26,
     "Long-Term Debt": 4291301000.0,
     "Current Maturities": 29264000.0,
@@ -3316,9 +3318,7 @@
     "Net Debt": 2838773000.0,
     "Operating Cash Flow": 537147000.0,
     "Capital Expenditures": 361161000.0,
-    "Free Cash Flow": 175986000.0,
-    "Gross Margin": 13.15,
-    "Net Margin Attributable to Stockholders": 6.51
+    "Free Cash Flow": 175986000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3333,6 +3333,8 @@
     "Cost of Goods Sold": 4891991000.0,
     "Gross Income": 572511000.0,
     "Net Income Attributable to Stockholders": 273376000.0,
+    "Gross Margin": 10.48,
+    "Net Margin Attributable to Stockholders": 5.0,
     "Earnings Per Share": 0.9,
     "Long-Term Debt": 4287597000.0,
     "Current Maturities": 28878000.0,
@@ -3343,9 +3345,7 @@
     "Net Debt": 2380494000.0,
     "Operating Cash Flow": 932359000.0,
     "Capital Expenditures": 334699000.0,
-    "Free Cash Flow": 597660000.0,
-    "Gross Margin": 10.48,
-    "Net Margin Attributable to Stockholders": 5.0
+    "Free Cash Flow": 597660000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3360,6 +3360,8 @@
     "Cost of Goods Sold": 4696558000.0,
     "Gross Income": 435188000.0,
     "Net Income Attributable to Stockholders": 106842000.0,
+    "Gross Margin": 8.48,
+    "Net Margin Attributable to Stockholders": 2.08,
     "Earnings Per Share": 0.35,
     "Long-Term Debt": 4291301000.0,
     "Current Maturities": 29264000.0,
@@ -3370,9 +3372,7 @@
     "Net Debt": 2485920000.0,
     "Operating Cash Flow": 689199000.0,
     "Capital Expenditures": 492647000.0,
-    "Free Cash Flow": 196552000.0,
-    "Gross Margin": 8.48,
-    "Net Margin Attributable to Stockholders": 2.08
+    "Free Cash Flow": 196552000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3387,6 +3387,8 @@
     "Cost of Goods Sold": 17911708000.0,
     "Gross Income": 2227950000.0,
     "Net Income Attributable to Stockholders": 717114000.0,
+    "Gross Margin": 11.06,
+    "Net Margin Attributable to Stockholders": 3.56,
     "Earnings Per Share": 2.37,
     "Long-Term Debt": 5271789000.0,
     "Current Maturities": 10885000.0,
@@ -3397,9 +3399,7 @@
     "Net Debt": 2234999000.0,
     "Operating Cash Flow": 2696877000.0,
     "Capital Expenditures": 1543219000.0,
-    "Free Cash Flow": 1153658000.0,
-    "Gross Margin": 11.06,
-    "Net Margin Attributable to Stockholders": 3.56
+    "Free Cash Flow": 1153658000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3414,6 +3414,8 @@
     "Cost of Goods Sold": 4995069000.0,
     "Gross Income": 629268000.0,
     "Net Income Attributable to Stockholders": 19701000.0,
+    "Gross Margin": 11.19,
+    "Net Margin Attributable to Stockholders": 0.35,
     "Earnings Per Share": 0.07,
     "Long-Term Debt": 4243181000.0,
     "Current Maturities": 29397000.0,
@@ -3424,9 +3426,7 @@
     "Net Debt": 2881421000.0,
     "Operating Cash Flow": 201206000.0,
     "Capital Expenditures": 416557000.0,
-    "Free Cash Flow": -215351000.0,
-    "Gross Margin": 11.19,
-    "Net Margin Attributable to Stockholders": 0.35
+    "Free Cash Flow": -215351000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3441,6 +3441,8 @@
     "Cost of Goods Sold": 3949347000.0,
     "Gross Income": 377959000.0,
     "Net Income Attributable to Stockholders": 108089000.0,
+    "Gross Margin": 8.73,
+    "Net Margin Attributable to Stockholders": 2.5,
     "Earnings Per Share": 0.36,
     "Long-Term Debt": 5279103000.0,
     "Current Maturities": 29521000.0,
@@ -3451,9 +3453,7 @@
     "Net Debt": 2271962000.0,
     "Operating Cash Flow": 1148762000.0,
     "Capital Expenditures": 360760000.0,
-    "Free Cash Flow": 788002000.0,
-    "Gross Margin": 8.73,
-    "Net Margin Attributable to Stockholders": 2.5
+    "Free Cash Flow": 788002000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3468,6 +3468,8 @@
     "Cost of Goods Sold": 4425765000.0,
     "Gross Income": 502195000.0,
     "Net Income Attributable to Stockholders": 192214000.0,
+    "Gross Margin": 10.19,
+    "Net Margin Attributable to Stockholders": 3.9,
     "Earnings Per Share": 0.63,
     "Long-Term Debt": 5452193000.0,
     "Current Maturities": 10475000.0,
@@ -3478,9 +3480,7 @@
     "Net Debt": 2183689000.0,
     "Operating Cash Flow": 855623000.0,
     "Capital Expenditures": 401764000.0,
-    "Free Cash Flow": 453859000.0,
-    "Gross Margin": 10.19,
-    "Net Margin Attributable to Stockholders": 3.9
+    "Free Cash Flow": 453859000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3495,6 +3495,8 @@
     "Cost of Goods Sold": 4541527000.0,
     "Gross Income": 718528000.0,
     "Net Income Attributable to Stockholders": 397110000.0,
+    "Gross Margin": 13.66,
+    "Net Margin Attributable to Stockholders": 7.55,
     "Earnings Per Share": 1.31,
     "Long-Term Debt": 5271789000.0,
     "Current Maturities": 10885000.0,
@@ -3505,9 +3507,7 @@
     "Net Debt": 2234999000.0,
     "Operating Cash Flow": 491286000.0,
     "Capital Expenditures": 364138000.0,
-    "Free Cash Flow": 127148000.0,
-    "Gross Margin": 13.66,
-    "Net Margin Attributable to Stockholders": 7.55
+    "Free Cash Flow": 127148000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3522,6 +3522,8 @@
     "Cost of Goods Sold": 25458525000.0,
     "Gross Income": 11025414000.0,
     "Net Income Attributable to Stockholders": 6795150000.0,
+    "Gross Margin": 30.22,
+    "Net Margin Attributable to Stockholders": 18.63,
     "Earnings Per Share": 23.23,
     "Long-Term Debt": 4961410000.0,
     "Current Maturities": 615678000.0,
@@ -3532,9 +3534,7 @@
     "Net Debt": 2959225000.0,
     "Operating Cash Flow": 6230776000.0,
     "Capital Expenditures": 1621989000.0,
-    "Free Cash Flow": 4608787000.0,
-    "Gross Margin": 30.22,
-    "Net Margin Attributable to Stockholders": 18.63
+    "Free Cash Flow": 4608787000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3549,6 +3549,8 @@
     "Cost of Goods Sold": 5394703000.0,
     "Gross Income": 1622437000.0,
     "Net Income Attributable to Stockholders": 937056000.0,
+    "Gross Margin": 23.12,
+    "Net Margin Attributable to Stockholders": 13.35,
     "Earnings Per Share": 3.1,
     "Long-Term Debt": 5273036000.0,
     "Current Maturities": 10644000.0,
@@ -3559,9 +3561,7 @@
     "Net Debt": 2420362000.0,
     "Operating Cash Flow": 530411000.0,
     "Capital Expenditures": 313510000.0,
-    "Free Cash Flow": 216901000.0,
-    "Gross Margin": 23.12,
-    "Net Margin Attributable to Stockholders": 13.35
+    "Free Cash Flow": 216901000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3576,6 +3576,8 @@
     "Cost of Goods Sold": 6315661000.0,
     "Gross Income": 2473503000.0,
     "Net Income Attributable to Stockholders": 1500192000.0,
+    "Gross Margin": 28.14,
+    "Net Margin Attributable to Stockholders": 17.07,
     "Earnings Per Share": 5.05,
     "Long-Term Debt": 5275496000.0,
     "Current Maturities": 12027000.0,
@@ -3586,9 +3588,7 @@
     "Net Debt": 2166458000.0,
     "Operating Cash Flow": 1352775000.0,
     "Capital Expenditures": 388868000.0,
-    "Free Cash Flow": 963907000.0,
-    "Gross Margin": 28.14,
-    "Net Margin Attributable to Stockholders": 17.07
+    "Free Cash Flow": 963907000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3603,6 +3603,8 @@
     "Cost of Goods Sold": 6906950000.0,
     "Gross Income": 3406273000.0,
     "Net Income Attributable to Stockholders": 2118301000.0,
+    "Gross Margin": 33.03,
+    "Net Margin Attributable to Stockholders": 20.54,
     "Earnings Per Share": 7.29,
     "Long-Term Debt": 4949945000.0,
     "Current Maturities": 615130000.0,
@@ -3613,9 +3615,7 @@
     "Net Debt": 3553535000.0,
     "Operating Cash Flow": 1737177000.0,
     "Capital Expenditures": 504710000.0,
-    "Free Cash Flow": 1232467000.0,
-    "Gross Margin": 33.03,
-    "Net Margin Attributable to Stockholders": 20.54
+    "Free Cash Flow": 1232467000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3630,6 +3630,8 @@
     "Cost of Goods Sold": 6841211000.0,
     "Gross Income": 3523201000.0,
     "Net Income Attributable to Stockholders": 2239601000.0,
+    "Gross Margin": 33.99,
+    "Net Margin Attributable to Stockholders": 21.61,
     "Earnings Per Share": 7.99,
     "Long-Term Debt": 4961410000.0,
     "Current Maturities": 615678000.0,
@@ -3640,9 +3642,7 @@
     "Net Debt": 2959225000.0,
     "Operating Cash Flow": 2610413000.0,
     "Capital Expenditures": 414901000.0,
-    "Free Cash Flow": 2195512000.0,
-    "Gross Margin": 33.99,
-    "Net Margin Attributable to Stockholders": 21.61
+    "Free Cash Flow": 2195512000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3657,6 +3657,8 @@
     "Cost of Goods Sold": 29009000000.0,
     "Gross Income": 12503000000.0,
     "Net Income Attributable to Stockholders": 7576000000.0,
+    "Gross Margin": 30.12,
+    "Net Margin Attributable to Stockholders": 18.25,
     "Earnings Per Share": 28.88,
     "Long-Term Debt": 6613687000.0,
     "Current Maturities": 28582000.0,
@@ -3667,9 +3669,7 @@
     "Net Debt": 1784471000.0,
     "Operating Cash Flow": 10072000000.0,
     "Capital Expenditures": 1948000000.0,
-    "Free Cash Flow": 8124000000.0,
-    "Gross Margin": 30.12,
-    "Net Margin Attributable to Stockholders": 18.25
+    "Free Cash Flow": 8124000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3684,6 +3684,8 @@
     "Cost of Goods Sold": 7035143000.0,
     "Gross Income": 3458139000.0,
     "Net Income Attributable to Stockholders": 2087203000.0,
+    "Gross Margin": 32.96,
+    "Net Margin Attributable to Stockholders": 19.89,
     "Earnings Per Share": 7.69,
     "Long-Term Debt": 6112331000.0,
     "Current Maturities": 629536000.0,
@@ -3694,9 +3696,7 @@
     "Net Debt": 2569733000.0,
     "Operating Cash Flow": 2472168000.0,
     "Capital Expenditures": 447682000.0,
-    "Free Cash Flow": 2024486000.0,
-    "Gross Margin": 32.96,
-    "Net Margin Attributable to Stockholders": 19.89
+    "Free Cash Flow": 2024486000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3711,6 +3711,8 @@
     "Cost of Goods Sold": 7690211000.0,
     "Gross Income": 4104263000.0,
     "Net Income Attributable to Stockholders": 2550192000.0,
+    "Gross Margin": 34.8,
+    "Net Margin Attributable to Stockholders": 21.62,
     "Earnings Per Share": 9.69,
     "Long-Term Debt": 6621685000.0,
     "Current Maturities": 629171000.0,
@@ -3721,9 +3723,7 @@
     "Net Debt": 4884861000.0,
     "Operating Cash Flow": 2261573000.0,
     "Capital Expenditures": 521113000.0,
-    "Free Cash Flow": 1740460000.0,
-    "Gross Margin": 34.8,
-    "Net Margin Attributable to Stockholders": 21.62
+    "Free Cash Flow": 1740460000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3738,6 +3738,8 @@
     "Cost of Goods Sold": 7657364000.0,
     "Gross Income": 2843391000.0,
     "Net Income Attributable to Stockholders": 1687855000.0,
+    "Gross Margin": 27.08,
+    "Net Margin Attributable to Stockholders": 16.07,
     "Earnings Per Share": 6.51,
     "Long-Term Debt": 6617030000.0,
     "Current Maturities": 28994000.0,
@@ -3748,9 +3750,7 @@
     "Net Debt": 3218734000.0,
     "Operating Cash Flow": 2804780000.0,
     "Capital Expenditures": 461330000.0,
-    "Free Cash Flow": 2343450000.0,
-    "Gross Margin": 27.08,
-    "Net Margin Attributable to Stockholders": 16.07
+    "Free Cash Flow": 2343450000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3765,6 +3765,8 @@
     "Cost of Goods Sold": 6626282000.0,
     "Gross Income": 2097207000.0,
     "Net Income Attributable to Stockholders": 1250750000.0,
+    "Gross Margin": 24.04,
+    "Net Margin Attributable to Stockholders": 14.34,
     "Earnings Per Share": 4.9,
     "Long-Term Debt": 6613687000.0,
     "Current Maturities": 28582000.0,
@@ -3775,9 +3777,7 @@
     "Net Debt": 1784471000.0,
     "Operating Cash Flow": 2533479000.0,
     "Capital Expenditures": 517875000.0,
-    "Free Cash Flow": 2015604000.0,
-    "Gross Margin": 24.04,
-    "Net Margin Attributable to Stockholders": 14.34
+    "Free Cash Flow": 2015604000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3792,6 +3792,8 @@
     "Cost of Goods Sold": 26899000000.0,
     "Gross Income": 7815000000.0,
     "Net Income Attributable to Stockholders": 4508000000.0,
+    "Gross Margin": 22.51,
+    "Net Margin Attributable to Stockholders": 12.99,
     "Earnings Per Share": 18.05,
     "Long-Term Debt": 6649000000.0,
     "Current Maturities": 74000000.0,
@@ -3802,9 +3804,7 @@
     "Net Debt": -407000000.0,
     "Operating Cash Flow": 7112000000.0,
     "Capital Expenditures": 2214000000.0,
-    "Free Cash Flow": 4898000000.0,
-    "Gross Margin": 22.51,
-    "Net Margin Attributable to Stockholders": 12.99
+    "Free Cash Flow": 4898000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3819,6 +3819,8 @@
     "Cost of Goods Sold": 6711778000.0,
     "Gross Income": 1998202000.0,
     "Net Income Attributable to Stockholders": 1133129000.0,
+    "Gross Margin": 22.94,
+    "Net Margin Attributable to Stockholders": 13.01,
     "Earnings Per Share": 4.47,
     "Long-Term Debt": 6616498000.0,
     "Current Maturities": 25133000.0,
@@ -3829,9 +3831,7 @@
     "Net Debt": 2023786000.0,
     "Operating Cash Flow": 1207173000.0,
     "Capital Expenditures": 531733000.0,
-    "Free Cash Flow": 675440000.0,
-    "Gross Margin": 22.94,
-    "Net Margin Attributable to Stockholders": 13.01
+    "Free Cash Flow": 675440000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3846,6 +3846,8 @@
     "Cost of Goods Sold": 7021582000.0,
     "Gross Income": 2501418000.0,
     "Net Income Attributable to Stockholders": 1455325000.0,
+    "Gross Margin": 26.27,
+    "Net Margin Attributable to Stockholders": 15.28,
     "Earnings Per Share": 5.82,
     "Long-Term Debt": 6620686000.0,
     "Current Maturities": 25087000.0,
@@ -3856,9 +3858,7 @@
     "Net Debt": 1264735000.0,
     "Operating Cash Flow": 1920424000.0,
     "Capital Expenditures": 525353000.0,
-    "Free Cash Flow": 1395071000.0,
-    "Gross Margin": 26.27,
-    "Net Margin Attributable to Stockholders": 15.28
+    "Free Cash Flow": 1395071000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3873,6 +3873,8 @@
     "Cost of Goods Sold": 6854934000.0,
     "Gross Income": 1921066000.0,
     "Net Income Attributable to Stockholders": 1137005000.0,
+    "Gross Margin": 21.89,
+    "Net Margin Attributable to Stockholders": 12.96,
     "Earnings Per Share": 4.58,
     "Long-Term Debt": 6620586000.0,
     "Current Maturities": 24934000.0,
@@ -3883,9 +3885,7 @@
     "Net Debt": -73570000.0,
     "Operating Cash Flow": 2464012000.0,
     "Capital Expenditures": 439162000.0,
-    "Free Cash Flow": 2024850000.0,
-    "Gross Margin": 21.89,
-    "Net Margin Attributable to Stockholders": 12.96
+    "Free Cash Flow": 2024850000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3900,6 +3900,8 @@
     "Cost of Goods Sold": 6310706000.0,
     "Gross Income": 1394314000.0,
     "Net Income Attributable to Stockholders": 782541000.0,
+    "Gross Margin": 18.1,
+    "Net Margin Attributable to Stockholders": 10.16,
     "Earnings Per Share": 3.17,
     "Long-Term Debt": 6649000000.0,
     "Current Maturities": 74000000.0,
@@ -3910,9 +3912,7 @@
     "Net Debt": -407000000.0,
     "Operating Cash Flow": 1520391000.0,
     "Capital Expenditures": 717752000.0,
-    "Free Cash Flow": 802639000.0,
-    "Gross Margin": 18.1,
-    "Net Margin Attributable to Stockholders": 10.16
+    "Free Cash Flow": 802639000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3927,6 +3927,8 @@
     "Cost of Goods Sold": 26632000000.0,
     "Gross Income": 4102000000.0,
     "Net Income Attributable to Stockholders": 2018000000.0,
+    "Gross Margin": 13.35,
+    "Net Margin Attributable to Stockholders": 6.57,
     "Earnings Per Share": 8.47,
     "Long-Term Debt": 5683000000.0,
     "Current Maturities": 1042000000.0,
@@ -3937,9 +3939,7 @@
     "Net Debt": 2586000000.0,
     "Operating Cash Flow": 3979000000.0,
     "Capital Expenditures": 3173000000.0,
-    "Free Cash Flow": 806000000.0,
-    "Gross Margin": 13.35,
-    "Net Margin Attributable to Stockholders": 6.57
+    "Free Cash Flow": 806000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3954,6 +3954,8 @@
     "Cost of Goods Sold": 6614000000.0,
     "Gross Income": 1523000000.0,
     "Net Income Attributable to Stockholders": 842000000.0,
+    "Gross Margin": 18.72,
+    "Net Margin Attributable to Stockholders": 10.35,
     "Earnings Per Share": 3.46,
     "Long-Term Debt": 6647560000.0,
     "Current Maturities": 73890000.0,
@@ -3964,9 +3966,7 @@
     "Net Debt": 1182512000.0,
     "Operating Cash Flow": 460000000.0,
     "Capital Expenditures": 670000000.0,
-    "Free Cash Flow": -210000000.0,
-    "Gross Margin": 18.72,
-    "Net Margin Attributable to Stockholders": 10.35
+    "Free Cash Flow": -210000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -3981,6 +3981,8 @@
     "Cost of Goods Sold": 6883000000.0,
     "Gross Income": 1194000000.0,
     "Net Income Attributable to Stockholders": 642000000.0,
+    "Gross Margin": 14.78,
+    "Net Margin Attributable to Stockholders": 7.95,
     "Earnings Per Share": 2.68,
     "Long-Term Debt": 5648555000.0,
     "Current Maturities": 1075203000.0,
@@ -3991,9 +3993,7 @@
     "Net Debt": 1289600000.0,
     "Operating Cash Flow": 1485000000.0,
     "Capital Expenditures": 801000000.0,
-    "Free Cash Flow": 684000000.0,
-    "Gross Margin": 14.78,
-    "Net Margin Attributable to Stockholders": 7.95
+    "Free Cash Flow": 684000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4008,6 +4008,8 @@
     "Cost of Goods Sold": 6686000000.0,
     "Gross Income": 758000000.0,
     "Net Income Attributable to Stockholders": 249000000.0,
+    "Gross Margin": 10.18,
+    "Net Margin Attributable to Stockholders": 3.34,
     "Earnings Per Share": 1.05,
     "Long-Term Debt": 5684936000.0,
     "Current Maturities": 1040380000.0,
@@ -4018,9 +4020,7 @@
     "Net Debt": 1866867000.0,
     "Operating Cash Flow": 1301000000.0,
     "Capital Expenditures": 823000000.0,
-    "Free Cash Flow": 478000000.0,
-    "Gross Margin": 10.18,
-    "Net Margin Attributable to Stockholders": 3.34
+    "Free Cash Flow": 478000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4035,6 +4035,8 @@
     "Cost of Goods Sold": 6449000000.0,
     "Gross Income": 627000000.0,
     "Net Income Attributable to Stockholders": 285000000.0,
+    "Gross Margin": 8.86,
+    "Net Margin Attributable to Stockholders": 4.03,
     "Earnings Per Share": 1.22,
     "Long-Term Debt": 5683000000.0,
     "Current Maturities": 1042000000.0,
@@ -4045,9 +4047,7 @@
     "Net Debt": 2586000000.0,
     "Operating Cash Flow": 733000000.0,
     "Capital Expenditures": 879000000.0,
-    "Free Cash Flow": -146000000.0,
-    "Gross Margin": 8.86,
-    "Net Margin Attributable to Stockholders": 4.03
+    "Free Cash Flow": -146000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4062,6 +4062,8 @@
     "Cost of Goods Sold": 28616000000.0,
     "Gross Income": 3878000000.0,
     "Net Income Attributable to Stockholders": 1737000000.0,
+    "Gross Margin": 11.93,
+    "Net Margin Attributable to Stockholders": 5.35,
     "Earnings Per Share": 7.53,
     "Long-Term Debt": 6909000000.0,
     "Current Maturities": 90000000.0,
@@ -4072,9 +4074,7 @@
     "Net Debt": 4300000000.0,
     "Operating Cash Flow": 3234000000.0,
     "Capital Expenditures": 3422000000.0,
-    "Free Cash Flow": -188000000.0,
-    "Gross Margin": 11.93,
-    "Net Margin Attributable to Stockholders": 5.35
+    "Free Cash Flow": -188000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4089,6 +4089,8 @@
     "Cost of Goods Sold": 7225000000.0,
     "Gross Income": 605000000.0,
     "Net Income Attributable to Stockholders": 156000000.0,
+    "Gross Margin": 7.73,
+    "Net Margin Attributable to Stockholders": 1.99,
     "Earnings Per Share": 0.67,
     "Long-Term Debt": 6689000000.0,
     "Current Maturities": 1031000000.0,
@@ -4099,9 +4101,7 @@
     "Net Debt": 3659000000.0,
     "Operating Cash Flow": 364000000.0,
     "Capital Expenditures": 859000000.0,
-    "Free Cash Flow": -495000000.0,
-    "Gross Margin": 7.73,
-    "Net Margin Attributable to Stockholders": 1.99
+    "Free Cash Flow": -495000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4116,6 +4116,8 @@
     "Cost of Goods Sold": 7233000000.0,
     "Gross Income": 1223000000.0,
     "Net Income Attributable to Stockholders": 600000000.0,
+    "Gross Margin": 14.46,
+    "Net Margin Attributable to Stockholders": 7.1,
     "Earnings Per Share": 2.6,
     "Long-Term Debt": 6692000000.0,
     "Current Maturities": 32000000.0,
@@ -4126,9 +4128,7 @@
     "Net Debt": 4241000000.0,
     "Operating Cash Flow": 732000000.0,
     "Capital Expenditures": 954000000.0,
-    "Free Cash Flow": -222000000.0,
-    "Gross Margin": 14.46,
-    "Net Margin Attributable to Stockholders": 7.1
+    "Free Cash Flow": -222000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4143,6 +4143,8 @@
     "Cost of Goods Sold": 7333000000.0,
     "Gross Income": 1188000000.0,
     "Net Income Attributable to Stockholders": 605000000.0,
+    "Gross Margin": 13.94,
+    "Net Margin Attributable to Stockholders": 7.1,
     "Earnings Per Share": 2.63,
     "Long-Term Debt": 6686000000.0,
     "Current Maturities": 31000000.0,
@@ -4153,9 +4155,7 @@
     "Net Debt": 3972000000.0,
     "Operating Cash Flow": 1339000000.0,
     "Capital Expenditures": 807000000.0,
-    "Free Cash Flow": 532000000.0,
-    "Gross Margin": 13.94,
-    "Net Margin Attributable to Stockholders": 7.1
+    "Free Cash Flow": 532000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4170,6 +4170,8 @@
     "Cost of Goods Sold": 6825000000.0,
     "Gross Income": 862000000.0,
     "Net Income Attributable to Stockholders": 376000000.0,
+    "Gross Margin": 11.21,
+    "Net Margin Attributable to Stockholders": 4.89,
     "Earnings Per Share": 1.64,
     "Long-Term Debt": 6909000000.0,
     "Current Maturities": 90000000.0,
@@ -4180,9 +4182,7 @@
     "Net Debt": 4300000000.0,
     "Operating Cash Flow": 799000000.0,
     "Capital Expenditures": 802000000.0,
-    "Free Cash Flow": -3000000.0,
-    "Gross Margin": 11.21,
-    "Net Margin Attributable to Stockholders": 4.89
+    "Free Cash Flow": -3000000.0
   },
   {
     "Steelmaker": "NUE",
@@ -4197,6 +4197,8 @@
     "Cost of Goods Sold": 7995000000.0,
     "Gross Income": 1501000000.0,
     "Net Income Attributable to Stockholders": 740000000.0,
+    "Gross Margin": 15.81,
+    "Net Margin Attributable to Stockholders": 7.79,
     "Earnings Per Share": 3.23,
     "Long-Term Debt": 6877000000.0,
     "Current Maturities": 113000000.0,
@@ -4207,9 +4209,7 @@
     "Net Debt": 4509000000.0,
     "Operating Cash Flow": 886000000.0,
     "Capital Expenditures": 661000000.0,
-    "Free Cash Flow": 225000000.0,
-    "Gross Margin": 15.81,
-    "Net Margin Attributable to Stockholders": 7.79
+    "Free Cash Flow": 225000000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4224,6 +4224,8 @@
     "Cost of Goods Sold": 6442245000.0,
     "Gross Income": 1164935000.0,
     "Net Income Attributable to Stockholders": 382115000.0,
+    "Gross Margin": 15.31,
+    "Net Margin Attributable to Stockholders": 5.02,
     "Earnings Per Share": 1.57,
     "Long-Term Debt": 2356826000.0,
     "Current Maturities": 3632000.0,
@@ -4234,9 +4236,7 @@
     "Net Debt": 1512353000.0,
     "Operating Cash Flow": 852760000.0,
     "Capital Expenditures": 198160000.0,
-    "Free Cash Flow": 654600000.0,
-    "Gross Margin": 15.31,
-    "Net Margin Attributable to Stockholders": 5.02
+    "Free Cash Flow": 654600000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4251,6 +4251,8 @@
     "Cost of Goods Sold": 1505265000.0,
     "Gross Income": 236036000.0,
     "Net Income Attributable to Stockholders": 62737000.0,
+    "Gross Margin": 13.56,
+    "Net Margin Attributable to Stockholders": 3.6,
     "Earnings Per Share": 0.26,
     "Long-Term Debt": 2600000000.0,
     "Current Maturities": 22770000.0,
@@ -4261,9 +4263,7 @@
     "Net Debt": 1626216000.0,
     "Operating Cash Flow": 291028000.0,
     "Capital Expenditures": 27708000.0,
-    "Free Cash Flow": 263320000.0,
-    "Gross Margin": 13.56,
-    "Net Margin Attributable to Stockholders": 3.6
+    "Free Cash Flow": 263320000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4278,6 +4278,8 @@
     "Cost of Goods Sold": 1643519000.0,
     "Gross Income": 380383000.0,
     "Net Income Attributable to Stockholders": 141969000.0,
+    "Gross Margin": 18.79,
+    "Net Margin Attributable to Stockholders": 7.01,
     "Earnings Per Share": 0.58,
     "Long-Term Debt": 2600000000.0,
     "Current Maturities": 18047000.0,
@@ -4288,9 +4290,7 @@
     "Net Debt": 1545826000.0,
     "Operating Cash Flow": 157972000.0,
     "Capital Expenditures": 35686000.0,
-    "Free Cash Flow": 122286000.0,
-    "Gross Margin": 18.79,
-    "Net Margin Attributable to Stockholders": 7.01
+    "Free Cash Flow": 122286000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4305,6 +4305,8 @@
     "Cost of Goods Sold": 1692807000.0,
     "Gross Income": 408503000.0,
     "Net Income Attributable to Stockholders": 157397000.0,
+    "Gross Margin": 19.44,
+    "Net Margin Attributable to Stockholders": 7.49,
     "Earnings Per Share": 0.65,
     "Long-Term Debt": 2600000000.0,
     "Current Maturities": 16155000.0,
@@ -4315,9 +4317,7 @@
     "Net Debt": 1545095000.0,
     "Operating Cash Flow": 196362000.0,
     "Capital Expenditures": 59774000.0,
-    "Free Cash Flow": 136588000.0,
-    "Gross Margin": 19.44,
-    "Net Margin Attributable to Stockholders": 7.49
+    "Free Cash Flow": 136588000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4332,6 +4332,8 @@
     "Cost of Goods Sold": 1600654000.0,
     "Gross Income": 140013000.0,
     "Net Income Attributable to Stockholders": 20012000.0,
+    "Gross Margin": 8.04,
+    "Net Margin Attributable to Stockholders": 1.15,
     "Earnings Per Share": 0.08,
     "Long-Term Debt": 2356826000.0,
     "Current Maturities": 3632000.0,
@@ -4342,9 +4344,7 @@
     "Net Debt": 1512353000.0,
     "Operating Cash Flow": 207407000.0,
     "Capital Expenditures": 74992000.0,
-    "Free Cash Flow": 132415000.0,
-    "Gross Margin": 8.04,
-    "Net Margin Attributable to Stockholders": 1.15
+    "Free Cash Flow": 132415000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4359,6 +4359,8 @@
     "Cost of Goods Sold": 7956783000.0,
     "Gross Income": 1407430000.0,
     "Net Income Attributable to Stockholders": 812741000.0,
+    "Gross Margin": 15.03,
+    "Net Margin Attributable to Stockholders": 8.68,
     "Earnings Per Share": 3.38,
     "Long-Term Debt": 2381940000.0,
     "Current Maturities": 28795000.0,
@@ -4369,9 +4371,7 @@
     "Net Debt": 1375650000.0,
     "Operating Cash Flow": 739420000.0,
     "Capital Expenditures": 164935000.0,
-    "Free Cash Flow": 574485000.0,
-    "Gross Margin": 15.03,
-    "Net Margin Attributable to Stockholders": 8.68
+    "Free Cash Flow": 574485000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4386,6 +4386,8 @@
     "Cost of Goods Sold": 1896062000.0,
     "Gross Income": 472154000.0,
     "Net Income Attributable to Stockholders": 200817000.0,
+    "Gross Margin": 19.94,
+    "Net Margin Attributable to Stockholders": 8.48,
     "Earnings Per Share": 0.83,
     "Long-Term Debt": 2400000000.0,
     "Current Maturities": 2965000.0,
@@ -4396,9 +4398,7 @@
     "Net Debt": 1429536000.0,
     "Operating Cash Flow": 240430000.0,
     "Capital Expenditures": 41677000.0,
-    "Free Cash Flow": 198753000.0,
-    "Gross Margin": 19.94,
-    "Net Margin Attributable to Stockholders": 8.48
+    "Free Cash Flow": 198753000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4413,6 +4413,8 @@
     "Cost of Goods Sold": 1998202000.0,
     "Gross Income": 392518000.0,
     "Net Income Attributable to Stockholders": 153933000.0,
+    "Gross Margin": 16.42,
+    "Net Margin Attributable to Stockholders": 6.44,
     "Earnings Per Share": 0.64,
     "Long-Term Debt": 2400000000.0,
     "Current Maturities": 19971000.0,
@@ -4423,9 +4425,7 @@
     "Net Debt": 1504523000.0,
     "Operating Cash Flow": 81010000.0,
     "Capital Expenditures": 43274000.0,
-    "Free Cash Flow": 37736000.0,
-    "Gross Margin": 16.42,
-    "Net Margin Attributable to Stockholders": 6.44
+    "Free Cash Flow": 37736000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4440,6 +4440,8 @@
     "Cost of Goods Sold": 2046864000.0,
     "Gross Income": 396518000.0,
     "Net Income Attributable to Stockholders": 153258000.0,
+    "Gross Margin": 16.23,
+    "Net Margin Attributable to Stockholders": 6.27,
     "Earnings Per Share": 0.64,
     "Long-Term Debt": 2500000000.0,
     "Current Maturities": 182661000.0,
@@ -4450,9 +4452,7 @@
     "Net Debt": 1574386000.0,
     "Operating Cash Flow": 225854000.0,
     "Capital Expenditures": 42795000.0,
-    "Free Cash Flow": 183059000.0,
-    "Gross Margin": 16.23,
-    "Net Margin Attributable to Stockholders": 6.27
+    "Free Cash Flow": 183059000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4467,6 +4467,8 @@
     "Cost of Goods Sold": 2015655000.0,
     "Gross Income": 146240000.0,
     "Net Income Attributable to Stockholders": 304733000.0,
+    "Gross Margin": 6.76,
+    "Net Margin Attributable to Stockholders": 14.1,
     "Earnings Per Share": 1.28,
     "Long-Term Debt": 2381940000.0,
     "Current Maturities": 28795000.0,
@@ -4477,9 +4479,7 @@
     "Net Debt": 1375650000.0,
     "Operating Cash Flow": 192126000.0,
     "Capital Expenditures": 37189000.0,
-    "Free Cash Flow": 154937000.0,
-    "Gross Margin": 6.76,
-    "Net Margin Attributable to Stockholders": 14.1
+    "Free Cash Flow": 154937000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4494,6 +4494,8 @@
     "Cost of Goods Sold": 9499025000.0,
     "Gross Income": 2302584000.0,
     "Net Income Attributable to Stockholders": 1258379000.0,
+    "Gross Margin": 19.51,
+    "Net Margin Attributable to Stockholders": 10.66,
     "Earnings Per Share": 5.38,
     "Long-Term Debt": 2376723000.0,
     "Current Maturities": 24234000.0,
@@ -4504,9 +4506,7 @@
     "Net Debt": 1337751000.0,
     "Operating Cash Flow": 1415469000.0,
     "Capital Expenditures": 239390000.0,
-    "Free Cash Flow": 1176079000.0,
-    "Gross Margin": 19.51,
-    "Net Margin Attributable to Stockholders": 10.66
+    "Free Cash Flow": 1176079000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4521,6 +4521,8 @@
     "Cost of Goods Sold": 2140459000.0,
     "Gross Income": 463416000.0,
     "Net Income Attributable to Stockholders": 227551000.0,
+    "Gross Margin": 17.8,
+    "Net Margin Attributable to Stockholders": 8.74,
     "Earnings Per Share": 0.96,
     "Long-Term Debt": 2400000000.0,
     "Current Maturities": 9646000.0,
@@ -4531,9 +4533,7 @@
     "Net Debt": 1378225000.0,
     "Operating Cash Flow": 177935000.0,
     "Capital Expenditures": 50606000.0,
-    "Free Cash Flow": 127329000.0,
-    "Gross Margin": 17.8,
-    "Net Margin Attributable to Stockholders": 8.74
+    "Free Cash Flow": 127329000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4548,6 +4548,8 @@
     "Cost of Goods Sold": 2438443000.0,
     "Gross Income": 645379000.0,
     "Net Income Attributable to Stockholders": 362449000.0,
+    "Gross Margin": 20.93,
+    "Net Margin Attributable to Stockholders": 11.75,
     "Earnings Per Share": 1.54,
     "Long-Term Debt": 2400000000.0,
     "Current Maturities": 18266000.0,
@@ -4558,9 +4560,7 @@
     "Net Debt": 1601842000.0,
     "Operating Cash Flow": 326033000.0,
     "Capital Expenditures": 55203000.0,
-    "Free Cash Flow": 270830000.0,
-    "Gross Margin": 20.93,
-    "Net Margin Attributable to Stockholders": 11.75
+    "Free Cash Flow": 270830000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4575,6 +4575,8 @@
     "Cost of Goods Sold": 2537466000.0,
     "Gross Income": 683425000.0,
     "Net Income Attributable to Stockholders": 398375000.0,
+    "Gross Margin": 21.22,
+    "Net Margin Attributable to Stockholders": 12.37,
     "Earnings Per Share": 1.7,
     "Long-Term Debt": 2400000000.0,
     "Current Maturities": 14776000.0,
@@ -4585,9 +4587,7 @@
     "Net Debt": 1409637000.0,
     "Operating Cash Flow": 420440000.0,
     "Capital Expenditures": 70668000.0,
-    "Free Cash Flow": 349772000.0,
-    "Gross Margin": 21.22,
-    "Net Margin Attributable to Stockholders": 12.37
+    "Free Cash Flow": 349772000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4602,6 +4602,8 @@
     "Cost of Goods Sold": 2382657000.0,
     "Gross Income": 510364000.0,
     "Net Income Attributable to Stockholders": 270004000.0,
+    "Gross Margin": 17.64,
+    "Net Margin Attributable to Stockholders": 9.33,
     "Earnings Per Share": 1.18,
     "Long-Term Debt": 2376723000.0,
     "Current Maturities": 24234000.0,
@@ -4612,9 +4614,7 @@
     "Net Debt": 1337751000.0,
     "Operating Cash Flow": 491061000.0,
     "Capital Expenditures": 62913000.0,
-    "Free Cash Flow": 428148000.0,
-    "Gross Margin": 17.64,
-    "Net Margin Attributable to Stockholders": 9.33
+    "Free Cash Flow": 428148000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4629,6 +4629,8 @@
     "Cost of Goods Sold": 8934007000.0,
     "Gross Income": 1517125000.0,
     "Net Income Attributable to Stockholders": 671103000.0,
+    "Gross Margin": 14.52,
+    "Net Margin Attributable to Stockholders": 6.42,
     "Earnings Per Share": 3.06,
     "Long-Term Debt": 2734344000.0,
     "Current Maturities": 89356000.0,
@@ -4639,9 +4641,7 @@
     "Net Debt": 1174129000.0,
     "Operating Cash Flow": 1396290000.0,
     "Capital Expenditures": 451945000.0,
-    "Free Cash Flow": 944345000.0,
-    "Gross Margin": 14.52,
-    "Net Margin Attributable to Stockholders": 6.42
+    "Free Cash Flow": 944345000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4656,6 +4656,8 @@
     "Cost of Goods Sold": 2383865000.0,
     "Gross Income": 430621000.0,
     "Net Income Attributable to Stockholders": 204328000.0,
+    "Gross Margin": 15.3,
+    "Net Margin Attributable to Stockholders": 7.26,
     "Earnings Per Share": 0.91,
     "Long-Term Debt": 2500000000.0,
     "Current Maturities": 80958000.0,
@@ -4666,9 +4668,7 @@
     "Net Debt": 1609987000.0,
     "Operating Cash Flow": 181553000.0,
     "Capital Expenditures": 54436000.0,
-    "Free Cash Flow": 127117000.0,
-    "Gross Margin": 15.3,
-    "Net Margin Attributable to Stockholders": 7.26
+    "Free Cash Flow": 127117000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4683,6 +4683,8 @@
     "Cost of Goods Sold": 2349349000.0,
     "Gross Income": 417015000.0,
     "Net Income Attributable to Stockholders": 194302000.0,
+    "Gross Margin": 15.07,
+    "Net Margin Attributable to Stockholders": 7.02,
     "Earnings Per Share": 0.88,
     "Long-Term Debt": 2500000000.0,
     "Current Maturities": 72131000.0,
@@ -4693,9 +4695,7 @@
     "Net Debt": 1479198000.0,
     "Operating Cash Flow": 361473000.0,
     "Capital Expenditures": 85120000.0,
-    "Free Cash Flow": 276353000.0,
-    "Gross Margin": 15.07,
-    "Net Margin Attributable to Stockholders": 7.02
+    "Free Cash Flow": 276353000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4710,6 +4710,8 @@
     "Cost of Goods Sold": 2167006000.0,
     "Gross Income": 356273000.0,
     "Net Income Attributable to Stockholders": 151048000.0,
+    "Gross Margin": 14.12,
+    "Net Margin Attributable to Stockholders": 5.99,
     "Earnings Per Share": 0.69,
     "Long-Term Debt": 2500000000.0,
     "Current Maturities": 82150000.0,
@@ -4720,9 +4722,7 @@
     "Net Debt": 1361081000.0,
     "Operating Cash Flow": 444202000.0,
     "Capital Expenditures": 154131000.0,
-    "Free Cash Flow": 290071000.0,
-    "Gross Margin": 14.12,
-    "Net Margin Attributable to Stockholders": 5.99
+    "Free Cash Flow": 290071000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4737,6 +4737,8 @@
     "Cost of Goods Sold": 2033787000.0,
     "Gross Income": 313216000.0,
     "Net Income Attributable to Stockholders": 121425000.0,
+    "Gross Margin": 13.35,
+    "Net Margin Attributable to Stockholders": 5.17,
     "Earnings Per Share": 0.56,
     "Long-Term Debt": 2734344000.0,
     "Current Maturities": 89356000.0,
@@ -4747,9 +4749,7 @@
     "Net Debt": 1174129000.0,
     "Operating Cash Flow": 409062000.0,
     "Capital Expenditures": 158258000.0,
-    "Free Cash Flow": 250804000.0,
-    "Gross Margin": 13.35,
-    "Net Margin Attributable to Stockholders": 5.17
+    "Free Cash Flow": 250804000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4764,6 +4764,8 @@
     "Cost of Goods Sold": 8166754000.0,
     "Gross Income": 1420937000.0,
     "Net Income Attributable to Stockholders": 550822000.0,
+    "Gross Margin": 14.82,
+    "Net Margin Attributable to Stockholders": 5.75,
     "Earnings Per Share": 2.61,
     "Long-Term Debt": 3102676000.0,
     "Current Maturities": 86894000.0,
@@ -4774,9 +4776,7 @@
     "Net Debt": 1815448000.0,
     "Operating Cash Flow": 987032000.0,
     "Capital Expenditures": 1198055000.0,
-    "Free Cash Flow": -211023000.0,
-    "Gross Margin": 14.82,
-    "Net Margin Attributable to Stockholders": 5.75
+    "Free Cash Flow": -211023000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4791,6 +4791,8 @@
     "Cost of Goods Sold": 2159871000.0,
     "Gross Income": 411673000.0,
     "Net Income Attributable to Stockholders": 187340000.0,
+    "Gross Margin": 16.01,
+    "Net Margin Attributable to Stockholders": 7.29,
     "Earnings Per Share": 0.88,
     "Long-Term Debt": 2700000000.0,
     "Current Maturities": 70106000.0,
@@ -4801,9 +4803,7 @@
     "Net Debt": 1309929000.0,
     "Operating Cash Flow": 211281000.0,
     "Capital Expenditures": 217535000.0,
-    "Free Cash Flow": -6254000.0,
-    "Gross Margin": 16.01,
-    "Net Margin Attributable to Stockholders": 7.29
+    "Free Cash Flow": -6254000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4818,6 +4818,8 @@
     "Cost of Goods Sold": 1809874000.0,
     "Gross Income": 283090000.0,
     "Net Income Attributable to Stockholders": 75496000.0,
+    "Gross Margin": 13.53,
+    "Net Margin Attributable to Stockholders": 3.61,
     "Earnings Per Share": 0.36,
     "Long-Term Debt": 2700000000.0,
     "Current Maturities": 73926000.0,
@@ -4828,9 +4830,7 @@
     "Net Debt": 1202038000.0,
     "Operating Cash Flow": 486010000.0,
     "Capital Expenditures": 309716000.0,
-    "Free Cash Flow": 176294000.0,
-    "Gross Margin": 13.53,
-    "Net Margin Attributable to Stockholders": 3.61
+    "Free Cash Flow": 176294000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4845,6 +4845,8 @@
     "Cost of Goods Sold": 2038017000.0,
     "Gross Income": 289207000.0,
     "Net Income Attributable to Stockholders": 100143000.0,
+    "Gross Margin": 12.43,
+    "Net Margin Attributable to Stockholders": 4.3,
     "Earnings Per Share": 0.48,
     "Long-Term Debt": 2700000000.0,
     "Current Maturities": 82229000.0,
@@ -4855,9 +4857,7 @@
     "Net Debt": 1509107000.0,
     "Operating Cash Flow": 151790000.0,
     "Capital Expenditures": 327647000.0,
-    "Free Cash Flow": -175857000.0,
-    "Gross Margin": 12.43,
-    "Net Margin Attributable to Stockholders": 4.3
+    "Free Cash Flow": -175857000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4872,6 +4872,8 @@
     "Cost of Goods Sold": 2158992000.0,
     "Gross Income": 436967000.0,
     "Net Income Attributable to Stockholders": 187843000.0,
+    "Gross Margin": 16.83,
+    "Net Margin Attributable to Stockholders": 7.24,
     "Earnings Per Share": 0.89,
     "Long-Term Debt": 3102676000.0,
     "Current Maturities": 86894000.0,
@@ -4882,9 +4884,7 @@
     "Net Debt": 1815448000.0,
     "Operating Cash Flow": 137951000.0,
     "Capital Expenditures": 343157000.0,
-    "Free Cash Flow": -205206000.0,
-    "Gross Margin": 16.83,
-    "Net Margin Attributable to Stockholders": 7.24
+    "Free Cash Flow": -205206000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4899,6 +4899,8 @@
     "Cost of Goods Sold": 13046426000.0,
     "Gross Income": 5362424000.0,
     "Net Income Attributable to Stockholders": 3214066000.0,
+    "Gross Margin": 29.13,
+    "Net Margin Attributable to Stockholders": 17.46,
     "Earnings Per Share": 15.67,
     "Long-Term Debt": 3105876000.0,
     "Current Maturities": 97174000.0,
@@ -4909,9 +4911,7 @@
     "Net Debt": 1953681000.0,
     "Operating Cash Flow": 2204136000.0,
     "Capital Expenditures": 1006239000.0,
-    "Free Cash Flow": 1197897000.0,
-    "Gross Margin": 29.13,
-    "Net Margin Attributable to Stockholders": 17.46
+    "Free Cash Flow": 1197897000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4926,6 +4926,8 @@
     "Cost of Goods Sold": 2744331000.0,
     "Gross Income": 793294000.0,
     "Net Income Attributable to Stockholders": 430507000.0,
+    "Gross Margin": 22.42,
+    "Net Margin Attributable to Stockholders": 12.17,
     "Earnings Per Share": 2.04,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 81226000.0,
@@ -4936,9 +4938,7 @@
     "Net Debt": 1930556000.0,
     "Operating Cash Flow": 262191000.0,
     "Capital Expenditures": 309863000.0,
-    "Free Cash Flow": -47672000.0,
-    "Gross Margin": 22.42,
-    "Net Margin Attributable to Stockholders": 12.17
+    "Free Cash Flow": -47672000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4953,6 +4953,8 @@
     "Cost of Goods Sold": 3265616000.0,
     "Gross Income": 1187940000.0,
     "Net Income Attributable to Stockholders": 702291000.0,
+    "Gross Margin": 26.67,
+    "Net Margin Attributable to Stockholders": 15.77,
     "Earnings Per Share": 3.35,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 93505000.0,
@@ -4963,9 +4965,7 @@
     "Net Debt": 2074261000.0,
     "Operating Cash Flow": 587230000.0,
     "Capital Expenditures": 277206000.0,
-    "Free Cash Flow": 310024000.0,
-    "Gross Margin": 26.67,
-    "Net Margin Attributable to Stockholders": 15.77
+    "Free Cash Flow": 310024000.0
   },
   {
     "Steelmaker": "STLD",
@@ -4980,6 +4980,8 @@
     "Cost of Goods Sold": 3487659000.0,
     "Gross Income": 1593817000.0,
     "Net Income Attributable to Stockholders": 990763000.0,
+    "Gross Margin": 31.37,
+    "Net Margin Attributable to Stockholders": 19.5,
     "Earnings Per Share": 4.89,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 55056000.0,
@@ -4990,9 +4992,7 @@
     "Net Debt": 2053855000.0,
     "Operating Cash Flow": 630816000.0,
     "Capital Expenditures": 214629000.0,
-    "Free Cash Flow": 416187000.0,
-    "Gross Margin": 31.37,
-    "Net Margin Attributable to Stockholders": 19.5
+    "Free Cash Flow": 416187000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5007,6 +5007,8 @@
     "Cost of Goods Sold": 3548820000.0,
     "Gross Income": 1787373000.0,
     "Net Income Attributable to Stockholders": 1090505000.0,
+    "Gross Margin": 33.5,
+    "Net Margin Attributable to Stockholders": 20.44,
     "Earnings Per Share": 5.53,
     "Long-Term Debt": 3105876000.0,
     "Current Maturities": 97174000.0,
@@ -5017,9 +5019,7 @@
     "Net Debt": 1953681000.0,
     "Operating Cash Flow": 723899000.0,
     "Capital Expenditures": 204541000.0,
-    "Free Cash Flow": 519358000.0,
-    "Gross Margin": 33.5,
-    "Net Margin Attributable to Stockholders": 20.44
+    "Free Cash Flow": 519358000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5034,6 +5034,8 @@
     "Cost of Goods Sold": 16142943000.0,
     "Gross Income": 6117831000.0,
     "Net Income Attributable to Stockholders": 3862674000.0,
+    "Gross Margin": 27.48,
+    "Net Margin Attributable to Stockholders": 17.35,
     "Earnings Per Share": 21.06,
     "Long-Term Debt": 3070575000.0,
     "Current Maturities": 57334000.0,
@@ -5044,9 +5046,7 @@
     "Net Debt": 865775000.0,
     "Operating Cash Flow": 4460403000.0,
     "Capital Expenditures": 908902000.0,
-    "Free Cash Flow": 3551501000.0,
-    "Gross Margin": 27.48,
-    "Net Margin Attributable to Stockholders": 17.35
+    "Free Cash Flow": 3551501000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5061,6 +5061,8 @@
     "Cost of Goods Sold": 3787389000.0,
     "Gross Income": 1623412000.0,
     "Net Income Attributable to Stockholders": 1103931000.0,
+    "Gross Margin": 30.0,
+    "Net Margin Attributable to Stockholders": 20.4,
     "Earnings Per Share": 5.74,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 68390000.0,
@@ -5071,9 +5073,7 @@
     "Net Debt": 1973362000.0,
     "Operating Cash Flow": 818968000.0,
     "Capital Expenditures": 159330000.0,
-    "Free Cash Flow": 659638000.0,
-    "Gross Margin": 30.0,
-    "Net Margin Attributable to Stockholders": 20.4
+    "Free Cash Flow": 659638000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5088,6 +5088,8 @@
     "Cost of Goods Sold": 4329536000.0,
     "Gross Income": 1634967000.0,
     "Net Income Attributable to Stockholders": 1209554000.0,
+    "Gross Margin": 27.41,
+    "Net Margin Attributable to Stockholders": 20.28,
     "Earnings Per Share": 6.49,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 37130000.0,
@@ -5098,9 +5100,7 @@
     "Net Debt": 1773540000.0,
     "Operating Cash Flow": 1001852000.0,
     "Capital Expenditures": 164142000.0,
-    "Free Cash Flow": 837710000.0,
-    "Gross Margin": 27.41,
-    "Net Margin Attributable to Stockholders": 20.28
+    "Free Cash Flow": 837710000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5115,6 +5115,8 @@
     "Cost of Goods Sold": 4187278000.0,
     "Gross Income": 1251469000.0,
     "Net Income Attributable to Stockholders": 914325000.0,
+    "Gross Margin": 23.01,
+    "Net Margin Attributable to Stockholders": 16.81,
     "Earnings Per Share": 5.07,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 22951000.0,
@@ -5125,9 +5127,7 @@
     "Net Debt": 1113743000.0,
     "Operating Cash Flow": 1496155000.0,
     "Capital Expenditures": 241229000.0,
-    "Free Cash Flow": 1254926000.0,
-    "Gross Margin": 23.01,
-    "Net Margin Attributable to Stockholders": 16.81
+    "Free Cash Flow": 1254926000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5142,6 +5142,8 @@
     "Cost of Goods Sold": 3838740000.0,
     "Gross Income": 1607983000.0,
     "Net Income Attributable to Stockholders": 634864000.0,
+    "Gross Margin": 29.52,
+    "Net Margin Attributable to Stockholders": 11.66,
     "Earnings Per Share": 3.64,
     "Long-Term Debt": 3070575000.0,
     "Current Maturities": 57334000.0,
@@ -5152,9 +5154,7 @@
     "Net Debt": 865775000.0,
     "Operating Cash Flow": 1143428000.0,
     "Capital Expenditures": 344201000.0,
-    "Free Cash Flow": 799227000.0,
-    "Gross Margin": 29.52,
-    "Net Margin Attributable to Stockholders": 11.66
+    "Free Cash Flow": 799227000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5169,6 +5169,8 @@
     "Cost of Goods Sold": 14749433000.0,
     "Gross Income": 4045883000.0,
     "Net Income Attributable to Stockholders": 2450882000.0,
+    "Gross Margin": 21.53,
+    "Net Margin Attributable to Stockholders": 13.04,
     "Earnings Per Share": 14.72,
     "Long-Term Debt": 3071056000.0,
     "Current Maturities": 459987000.0,
@@ -5179,9 +5181,7 @@
     "Net Debt": 1403369000.0,
     "Operating Cash Flow": 3519928000.0,
     "Capital Expenditures": 1657905000.0,
-    "Free Cash Flow": 1862023000.0,
-    "Gross Margin": 21.53,
-    "Net Margin Attributable to Stockholders": 13.04
+    "Free Cash Flow": 1862023000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5196,6 +5196,8 @@
     "Cost of Goods Sold": 3837084000.0,
     "Gross Income": 1056122000.0,
     "Net Income Attributable to Stockholders": 637310000.0,
+    "Gross Margin": 21.58,
+    "Net Margin Attributable to Stockholders": 13.02,
     "Earnings Per Share": 3.71,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 46452000.0,
@@ -5206,9 +5208,7 @@
     "Net Debt": 821240000.0,
     "Operating Cash Flow": 733783000.0,
     "Capital Expenditures": 226319000.0,
-    "Free Cash Flow": 507464000.0,
-    "Gross Margin": 21.58,
-    "Net Margin Attributable to Stockholders": 13.02
+    "Free Cash Flow": 507464000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5223,6 +5223,8 @@
     "Cost of Goods Sold": 3774772000.0,
     "Gross Income": 1306858000.0,
     "Net Income Attributable to Stockholders": 812107000.0,
+    "Gross Margin": 25.72,
+    "Net Margin Attributable to Stockholders": 15.98,
     "Earnings Per Share": 4.83,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 56869000.0,
@@ -5233,9 +5235,7 @@
     "Net Debt": 1064306000.0,
     "Operating Cash Flow": 807806000.0,
     "Capital Expenditures": 358280000.0,
-    "Free Cash Flow": 449526000.0,
-    "Gross Margin": 25.72,
-    "Net Margin Attributable to Stockholders": 15.98
+    "Free Cash Flow": 449526000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5250,6 +5250,8 @@
     "Cost of Goods Sold": 3635038000.0,
     "Gross Income": 952019000.0,
     "Net Income Attributable to Stockholders": 577195000.0,
+    "Gross Margin": 20.75,
+    "Net Margin Attributable to Stockholders": 12.58,
     "Earnings Per Share": 3.49,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 86061000.0,
@@ -5260,9 +5262,7 @@
     "Net Debt": 914229000.0,
     "Operating Cash Flow": 1113699000.0,
     "Capital Expenditures": 558361000.0,
-    "Free Cash Flow": 555338000.0,
-    "Gross Margin": 20.75,
-    "Net Margin Attributable to Stockholders": 12.58
+    "Free Cash Flow": 555338000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5277,6 +5277,8 @@
     "Cost of Goods Sold": 3502539000.0,
     "Gross Income": 730884000.0,
     "Net Income Attributable to Stockholders": 424270000.0,
+    "Gross Margin": 17.26,
+    "Net Margin Attributable to Stockholders": 10.02,
     "Earnings Per Share": 2.65,
     "Long-Term Debt": 3071056000.0,
     "Current Maturities": 459987000.0,
@@ -5287,9 +5289,7 @@
     "Net Debt": 1403369000.0,
     "Operating Cash Flow": 864640000.0,
     "Capital Expenditures": 514945000.0,
-    "Free Cash Flow": 349695000.0,
-    "Gross Margin": 17.26,
-    "Net Margin Attributable to Stockholders": 10.02
+    "Free Cash Flow": 349695000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5304,6 +5304,8 @@
     "Cost of Goods Sold": 14737804000.0,
     "Gross Income": 2802586000.0,
     "Net Income Attributable to Stockholders": 1537134000.0,
+    "Gross Margin": 15.98,
+    "Net Margin Attributable to Stockholders": 8.76,
     "Earnings Per Share": 9.89,
     "Long-Term Debt": 3231007000.0,
     "Current Maturities": 426990000.0,
@@ -5314,9 +5316,7 @@
     "Net Debt": 2915176000.0,
     "Operating Cash Flow": 1844503000.0,
     "Capital Expenditures": 1868006000.0,
-    "Free Cash Flow": -23503000.0,
-    "Gross Margin": 15.98,
-    "Net Margin Attributable to Stockholders": 8.76
+    "Free Cash Flow": -23503000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5331,6 +5331,8 @@
     "Cost of Goods Sold": 3713205000.0,
     "Gross Income": 980798000.0,
     "Net Income Attributable to Stockholders": 584041000.0,
+    "Gross Margin": 20.89,
+    "Net Margin Attributable to Stockholders": 12.44,
     "Earnings Per Share": 3.68,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 425696000.0,
@@ -5341,9 +5343,7 @@
     "Net Debt": 1827540000.0,
     "Operating Cash Flow": 355217000.0,
     "Capital Expenditures": 374310000.0,
-    "Free Cash Flow": -19093000.0,
-    "Gross Margin": 20.89,
-    "Net Margin Attributable to Stockholders": 12.44
+    "Free Cash Flow": -19093000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5358,6 +5358,8 @@
     "Cost of Goods Sold": 3857797000.0,
     "Gross Income": 774837000.0,
     "Net Income Attributable to Stockholders": 427998000.0,
+    "Gross Margin": 16.73,
+    "Net Margin Attributable to Stockholders": 9.24,
     "Earnings Per Share": 2.73,
     "Long-Term Debt": 3100000000.0,
     "Current Maturities": 815642000.0,
@@ -5368,9 +5370,7 @@
     "Net Debt": 2661749000.0,
     "Operating Cash Flow": 382561000.0,
     "Capital Expenditures": 419166000.0,
-    "Free Cash Flow": -36605000.0,
-    "Gross Margin": 16.73,
-    "Net Margin Attributable to Stockholders": 9.24
+    "Free Cash Flow": -36605000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5385,6 +5385,8 @@
     "Cost of Goods Sold": 3736398000.0,
     "Gross Income": 605217000.0,
     "Net Income Attributable to Stockholders": 317802000.0,
+    "Gross Margin": 13.94,
+    "Net Margin Attributable to Stockholders": 7.32,
     "Earnings Per Share": 2.06,
     "Long-Term Debt": 3700000000.0,
     "Current Maturities": 882013000.0,
@@ -5395,9 +5397,7 @@
     "Net Debt": 2915914000.0,
     "Operating Cash Flow": 759853000.0,
     "Capital Expenditures": 621355000.0,
-    "Free Cash Flow": 138498000.0,
-    "Gross Margin": 13.94,
-    "Net Margin Attributable to Stockholders": 7.32
+    "Free Cash Flow": 138498000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5412,6 +5412,8 @@
     "Cost of Goods Sold": 3430404000.0,
     "Gross Income": 441734000.0,
     "Net Income Attributable to Stockholders": 207293000.0,
+    "Gross Margin": 11.41,
+    "Net Margin Attributable to Stockholders": 5.35,
     "Earnings Per Share": 1.37,
     "Long-Term Debt": 3231007000.0,
     "Current Maturities": 426990000.0,
@@ -5422,9 +5424,7 @@
     "Net Debt": 2915176000.0,
     "Operating Cash Flow": 346872000.0,
     "Capital Expenditures": 453175000.0,
-    "Free Cash Flow": -106303000.0,
-    "Gross Margin": 11.41,
-    "Net Margin Attributable to Stockholders": 5.35
+    "Free Cash Flow": -106303000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5439,6 +5439,8 @@
     "Cost of Goods Sold": 15784398000.0,
     "Gross Income": 2392183000.0,
     "Net Income Attributable to Stockholders": 1185595000.0,
+    "Gross Margin": 13.16,
+    "Net Margin Attributable to Stockholders": 6.52,
     "Earnings Per Share": 8.02,
     "Long-Term Debt": 4211163000.0,
     "Current Maturities": 34655000.0,
@@ -5449,9 +5451,7 @@
     "Net Debt": 3470546000.0,
     "Operating Cash Flow": 1449534000.0,
     "Capital Expenditures": 948025000.0,
-    "Free Cash Flow": 501509000.0,
-    "Gross Margin": 13.16,
-    "Net Margin Attributable to Stockholders": 6.52
+    "Free Cash Flow": 501509000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5466,6 +5466,8 @@
     "Cost of Goods Sold": 3882651000.0,
     "Gross Income": 486544000.0,
     "Net Income Attributable to Stockholders": 217151000.0,
+    "Gross Margin": 11.14,
+    "Net Margin Attributable to Stockholders": 4.97,
     "Earnings Per Share": 1.45,
     "Long-Term Debt": 4200000000.0,
     "Current Maturities": 418947000.0,
@@ -5476,9 +5478,7 @@
     "Net Debt": 3407162000.0,
     "Operating Cash Flow": 152603000.0,
     "Capital Expenditures": 305506000.0,
-    "Free Cash Flow": -152903000.0,
-    "Gross Margin": 11.14,
-    "Net Margin Attributable to Stockholders": 4.97
+    "Free Cash Flow": -152903000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5493,6 +5493,8 @@
     "Cost of Goods Sold": 3946655000.0,
     "Gross Income": 618468000.0,
     "Net Income Attributable to Stockholders": 298726000.0,
+    "Gross Margin": 13.55,
+    "Net Margin Attributable to Stockholders": 6.54,
     "Earnings Per Share": 2.01,
     "Long-Term Debt": 3800000000.0,
     "Current Maturities": 1460000.0,
@@ -5503,9 +5505,7 @@
     "Net Debt": 3298602000.0,
     "Operating Cash Flow": 301611000.0,
     "Capital Expenditures": 288331000.0,
-    "Free Cash Flow": 13280000.0,
-    "Gross Margin": 13.55,
-    "Net Margin Attributable to Stockholders": 6.54
+    "Free Cash Flow": 13280000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5520,6 +5520,8 @@
     "Cost of Goods Sold": 4070335000.0,
     "Gross Income": 757880000.0,
     "Net Income Attributable to Stockholders": 403685000.0,
+    "Gross Margin": 15.7,
+    "Net Margin Attributable to Stockholders": 8.36,
     "Earnings Per Share": 2.75,
     "Long-Term Debt": 3800000000.0,
     "Current Maturities": 1429000.0,
@@ -5530,9 +5532,7 @@
     "Net Debt": 3025732000.0,
     "Operating Cash Flow": 722608000.0,
     "Capital Expenditures": 165692000.0,
-    "Free Cash Flow": 556916000.0,
-    "Gross Margin": 15.7,
-    "Net Margin Attributable to Stockholders": 8.36
+    "Free Cash Flow": 556916000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5547,6 +5547,8 @@
     "Cost of Goods Sold": 3884757000.0,
     "Gross Income": 529291000.0,
     "Net Income Attributable to Stockholders": 266033000.0,
+    "Gross Margin": 11.99,
+    "Net Margin Attributable to Stockholders": 6.03,
     "Earnings Per Share": 1.82,
     "Long-Term Debt": 4211163000.0,
     "Current Maturities": 34655000.0,
@@ -5557,9 +5559,7 @@
     "Net Debt": 3470546000.0,
     "Operating Cash Flow": 272712000.0,
     "Capital Expenditures": 188496000.0,
-    "Free Cash Flow": 84216000.0,
-    "Gross Margin": 11.99,
-    "Net Margin Attributable to Stockholders": 6.03
+    "Free Cash Flow": 84216000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5574,6 +5574,8 @@
     "Cost of Goods Sold": 4441635000.0,
     "Gross Income": 763223000.0,
     "Net Income Attributable to Stockholders": 403436000.0,
+    "Gross Margin": 14.66,
+    "Net Margin Attributable to Stockholders": 7.75,
     "Earnings Per Share": 2.79,
     "Long-Term Debt": 4200000000.0,
     "Current Maturities": 22124000.0,
@@ -5584,9 +5586,7 @@
     "Net Debt": 3660361000.0,
     "Operating Cash Flow": 148316000.0,
     "Capital Expenditures": 137979000.0,
-    "Free Cash Flow": 10337000.0,
-    "Gross Margin": 14.66,
-    "Net Margin Attributable to Stockholders": 7.75
+    "Free Cash Flow": 10337000.0
   },
   {
     "Steelmaker": "STLD",
@@ -5601,6 +5601,8 @@
     "Cost of Goods Sold": 5132583000.0,
     "Gross Income": 958974000.0,
     "Net Income Attributable to Stockholders": 534087000.0,
+    "Gross Margin": 15.74,
+    "Net Margin Attributable to Stockholders": 8.77,
     "Earnings Per Share": 3.71,
     "Long-Term Debt": 4200000000.0,
     "Current Maturities": 1332000.0,
@@ -5611,9 +5613,7 @@
     "Net Debt": 3628342000.0,
     "Operating Cash Flow": 427936000.0,
     "Capital Expenditures": 123842000.0,
-    "Free Cash Flow": 304094000.0,
-    "Gross Margin": 15.74,
-    "Net Margin Attributable to Stockholders": 8.77
+    "Free Cash Flow": 304094000.0
   },
   {
     "Steelmaker": "X",
@@ -5628,6 +5628,8 @@
     "Cost of Goods Sold": 9608000000.0,
     "Gross Income": 653000000.0,
     "Net Income Attributable to Stockholders": -440000000.0,
+    "Gross Margin": 6.36,
+    "Net Margin Attributable to Stockholders": -4.29,
     "Earnings Per Share": -2.81,
     "Long-Term Debt": 2981000000.0,
     "Current Maturities": 50000000.0,
@@ -5638,9 +5640,7 @@
     "Net Debt": 1476000000.0,
     "Operating Cash Flow": 754000000.0,
     "Capital Expenditures": 306000000.0,
-    "Free Cash Flow": 448000000.0,
-    "Gross Margin": 6.36,
-    "Net Margin Attributable to Stockholders": -4.29
+    "Free Cash Flow": 448000000.0
   },
   {
     "Steelmaker": "X",
@@ -5655,6 +5655,8 @@
     "Cost of Goods Sold": 2436000000.0,
     "Gross Income": -410000000.0,
     "Net Income Attributable to Stockholders": -340000000.0,
+    "Gross Margin": -20.24,
+    "Net Margin Attributable to Stockholders": -16.78,
     "Earnings Per Share": -2.32,
     "Long-Term Debt": 3076000000.0,
     "Current Maturities": 45000000.0,
@@ -5665,9 +5667,7 @@
     "Net Debt": 2416000000.0,
     "Operating Cash Flow": 113000000.0,
     "Capital Expenditures": 148000000.0,
-    "Free Cash Flow": -35000000.0,
-    "Gross Margin": -20.24,
-    "Net Margin Attributable to Stockholders": -16.78
+    "Free Cash Flow": -35000000.0
   },
   {
     "Steelmaker": "X",
@@ -5682,6 +5682,8 @@
     "Cost of Goods Sold": 2397000000.0,
     "Gross Income": -77000000.0,
     "Net Income Attributable to Stockholders": -46000000.0,
+    "Gross Margin": -3.32,
+    "Net Margin Attributable to Stockholders": -1.98,
     "Earnings Per Share": -0.32,
     "Long-Term Debt": 3058000000.0,
     "Current Maturities": 82000000.0,
@@ -5692,9 +5694,7 @@
     "Net Debt": 2320000000.0,
     "Operating Cash Flow": 200000000.0,
     "Capital Expenditures": 69000000.0,
-    "Free Cash Flow": 131000000.0,
-    "Gross Margin": -3.32,
-    "Net Margin Attributable to Stockholders": -1.98
+    "Free Cash Flow": 131000000.0
   },
   {
     "Steelmaker": "X",
@@ -5709,6 +5709,8 @@
     "Cost of Goods Sold": 2360000000.0,
     "Gross Income": 10000000.0,
     "Net Income Attributable to Stockholders": 51000000.0,
+    "Gross Margin": 0.42,
+    "Net Margin Attributable to Stockholders": 2.15,
     "Earnings Per Share": 0.32,
     "Long-Term Debt": 2988000000.0,
     "Current Maturities": 92000000.0,
@@ -5719,9 +5721,7 @@
     "Net Debt": 1635000000.0,
     "Operating Cash Flow": 267000000.0,
     "Capital Expenditures": 51000000.0,
-    "Free Cash Flow": 216000000.0,
-    "Gross Margin": 0.42,
-    "Net Margin Attributable to Stockholders": 2.15
+    "Free Cash Flow": 216000000.0
   },
   {
     "Steelmaker": "X",
@@ -5736,6 +5736,8 @@
     "Cost of Goods Sold": 2415000000.0,
     "Gross Income": 1130000000.0,
     "Net Income Attributable to Stockholders": -105000000.0,
+    "Gross Margin": 31.88,
+    "Net Margin Attributable to Stockholders": -2.96,
     "Earnings Per Share": -0.61,
     "Long-Term Debt": 2981000000.0,
     "Current Maturities": 50000000.0,
@@ -5746,9 +5748,7 @@
     "Net Debt": 1476000000.0,
     "Operating Cash Flow": 174000000.0,
     "Capital Expenditures": 38000000.0,
-    "Free Cash Flow": 136000000.0,
-    "Gross Margin": 31.88,
-    "Net Margin Attributable to Stockholders": -2.96
+    "Free Cash Flow": 136000000.0
   },
   {
     "Steelmaker": "X",
@@ -5763,6 +5763,8 @@
     "Cost of Goods Sold": 10858000000.0,
     "Gross Income": 1392000000.0,
     "Net Income Attributable to Stockholders": 387000000.0,
+    "Gross Margin": 11.36,
+    "Net Margin Attributable to Stockholders": 3.16,
     "Earnings Per Share": 2.21,
     "Long-Term Debt": 2700000000.0,
     "Current Maturities": 3000000.0,
@@ -5773,9 +5775,7 @@
     "Net Debt": 1106000000.0,
     "Operating Cash Flow": 826000000.0,
     "Capital Expenditures": 505000000.0,
-    "Free Cash Flow": 321000000.0,
-    "Gross Margin": 11.36,
-    "Net Margin Attributable to Stockholders": 3.16
+    "Free Cash Flow": 321000000.0
   },
   {
     "Steelmaker": "X",
@@ -5790,6 +5790,8 @@
     "Cost of Goods Sold": 2559000000.0,
     "Gross Income": 166000000.0,
     "Net Income Attributable to Stockholders": -180000000.0,
+    "Gross Margin": 6.09,
+    "Net Margin Attributable to Stockholders": -6.61,
     "Earnings Per Share": -1.03,
     "Long-Term Debt": 2752000000.0,
     "Current Maturities": 281000000.0,
@@ -5800,9 +5802,7 @@
     "Net Debt": 1664000000.0,
     "Operating Cash Flow": -135000000.0,
     "Capital Expenditures": 47000000.0,
-    "Free Cash Flow": -182000000.0,
-    "Gross Margin": 6.09,
-    "Net Margin Attributable to Stockholders": -6.61
+    "Free Cash Flow": -182000000.0
   },
   {
     "Steelmaker": "X",
@@ -5817,6 +5817,8 @@
     "Cost of Goods Sold": 2723000000.0,
     "Gross Income": 421000000.0,
     "Net Income Attributable to Stockholders": 261000000.0,
+    "Gross Margin": 13.39,
+    "Net Margin Attributable to Stockholders": 8.3,
     "Earnings Per Share": 1.49,
     "Long-Term Debt": 2752000000.0,
     "Current Maturities": 175000000.0,
@@ -5827,9 +5829,7 @@
     "Net Debt": 1362000000.0,
     "Operating Cash Flow": 378000000.0,
     "Capital Expenditures": 73000000.0,
-    "Free Cash Flow": 305000000.0,
-    "Gross Margin": 13.39,
-    "Net Margin Attributable to Stockholders": 8.3
+    "Free Cash Flow": 305000000.0
   },
   {
     "Steelmaker": "X",
@@ -5844,6 +5844,8 @@
     "Cost of Goods Sold": 2828000000.0,
     "Gross Income": 420000000.0,
     "Net Income Attributable to Stockholders": 147000000.0,
+    "Gross Margin": 12.93,
+    "Net Margin Attributable to Stockholders": 4.53,
     "Earnings Per Share": 0.84,
     "Long-Term Debt": 2896000000.0,
     "Current Maturities": 3000000.0,
@@ -5854,9 +5856,7 @@
     "Net Debt": 1163000000.0,
     "Operating Cash Flow": 303000000.0,
     "Capital Expenditures": 171000000.0,
-    "Free Cash Flow": 132000000.0,
-    "Gross Margin": 12.93,
-    "Net Margin Attributable to Stockholders": 4.53
+    "Free Cash Flow": 132000000.0
   },
   {
     "Steelmaker": "X",
@@ -5871,6 +5871,8 @@
     "Cost of Goods Sold": 2748000000.0,
     "Gross Income": 385000000.0,
     "Net Income Attributable to Stockholders": 159000000.0,
+    "Gross Margin": 12.29,
+    "Net Margin Attributable to Stockholders": 5.08,
     "Earnings Per Share": 0.89,
     "Long-Term Debt": 2700000000.0,
     "Current Maturities": 3000000.0,
@@ -5881,9 +5883,7 @@
     "Net Debt": 1106000000.0,
     "Operating Cash Flow": 280000000.0,
     "Capital Expenditures": 214000000.0,
-    "Free Cash Flow": 66000000.0,
-    "Gross Margin": 12.29,
-    "Net Margin Attributable to Stockholders": 5.08
+    "Free Cash Flow": 66000000.0
   },
   {
     "Steelmaker": "X",
@@ -5898,6 +5898,8 @@
     "Cost of Goods Sold": 12305000000.0,
     "Gross Income": 453000000.0,
     "Net Income Attributable to Stockholders": 1115000000.0,
+    "Gross Margin": 3.55,
+    "Net Margin Attributable to Stockholders": 8.74,
     "Earnings Per Share": 6.31,
     "Long-Term Debt": 2316000000.0,
     "Current Maturities": 65000000.0,
@@ -5908,9 +5910,7 @@
     "Net Debt": 1341000000.0,
     "Operating Cash Flow": 938000000.0,
     "Capital Expenditures": 1001000000.0,
-    "Free Cash Flow": -63000000.0,
-    "Gross Margin": 3.55,
-    "Net Margin Attributable to Stockholders": 8.74
+    "Free Cash Flow": -63000000.0
   },
   {
     "Steelmaker": "X",
@@ -5925,6 +5925,8 @@
     "Cost of Goods Sold": 2808000000.0,
     "Gross Income": 341000000.0,
     "Net Income Attributable to Stockholders": 18000000.0,
+    "Gross Margin": 10.83,
+    "Net Margin Attributable to Stockholders": 0.57,
     "Earnings Per Share": 0.1,
     "Long-Term Debt": 2571000000.0,
     "Current Maturities": 281000000.0,
@@ -5935,9 +5937,7 @@
     "Net Debt": 1435000000.0,
     "Operating Cash Flow": -99000000.0,
     "Capital Expenditures": 208000000.0,
-    "Free Cash Flow": -307000000.0,
-    "Gross Margin": 10.83,
-    "Net Margin Attributable to Stockholders": 0.57
+    "Free Cash Flow": -307000000.0
   },
   {
     "Steelmaker": "X",
@@ -5952,6 +5952,8 @@
     "Cost of Goods Sold": 3121000000.0,
     "Gross Income": 488000000.0,
     "Net Income Attributable to Stockholders": 214000000.0,
+    "Gross Margin": 13.52,
+    "Net Margin Attributable to Stockholders": 5.93,
     "Earnings Per Share": 1.21,
     "Long-Term Debt": 2541000000.0,
     "Current Maturities": 4000000.0,
@@ -5962,9 +5964,7 @@
     "Net Debt": 1273000000.0,
     "Operating Cash Flow": 392000000.0,
     "Capital Expenditures": 173000000.0,
-    "Free Cash Flow": 219000000.0,
-    "Gross Margin": 13.52,
-    "Net Margin Attributable to Stockholders": 5.93
+    "Free Cash Flow": 219000000.0
   },
   {
     "Steelmaker": "X",
@@ -5979,6 +5979,8 @@
     "Cost of Goods Sold": 3172000000.0,
     "Gross Income": 557000000.0,
     "Net Income Attributable to Stockholders": 291000000.0,
+    "Gross Margin": 14.94,
+    "Net Margin Attributable to Stockholders": 7.8,
     "Earnings Per Share": 1.64,
     "Long-Term Debt": 2498000000.0,
     "Current Maturities": 4000000.0,
@@ -5989,9 +5991,7 @@
     "Net Debt": 1117000000.0,
     "Operating Cash Flow": 429000000.0,
     "Capital Expenditures": 265000000.0,
-    "Free Cash Flow": 164000000.0,
-    "Gross Margin": 14.94,
-    "Net Margin Attributable to Stockholders": 7.8
+    "Free Cash Flow": 164000000.0
   },
   {
     "Steelmaker": "X",
@@ -6006,6 +6006,8 @@
     "Cost of Goods Sold": 3204000000.0,
     "Gross Income": -933000000.0,
     "Net Income Attributable to Stockholders": 592000000.0,
+    "Gross Margin": -41.08,
+    "Net Margin Attributable to Stockholders": 26.07,
     "Earnings Per Share": 3.37,
     "Long-Term Debt": 2316000000.0,
     "Current Maturities": 65000000.0,
@@ -6016,9 +6018,7 @@
     "Net Debt": 1341000000.0,
     "Operating Cash Flow": 216000000.0,
     "Capital Expenditures": 355000000.0,
-    "Free Cash Flow": -139000000.0,
-    "Gross Margin": -41.08,
-    "Net Margin Attributable to Stockholders": 26.07
+    "Free Cash Flow": -139000000.0
   },
   {
     "Steelmaker": "X",
@@ -6033,6 +6033,8 @@
     "Cost of Goods Sold": 12082000000.0,
     "Gross Income": -576000000.0,
     "Net Income Attributable to Stockholders": -630000000.0,
+    "Gross Margin": -5.01,
+    "Net Margin Attributable to Stockholders": -5.48,
     "Earnings Per Share": -3.67,
     "Long-Term Debt": 3627000000.0,
     "Current Maturities": 14000000.0,
@@ -6043,9 +6045,7 @@
     "Net Debt": 2702000000.0,
     "Operating Cash Flow": 682000000.0,
     "Capital Expenditures": 1252000000.0,
-    "Free Cash Flow": -570000000.0,
-    "Gross Margin": -5.01,
-    "Net Margin Attributable to Stockholders": -5.48
+    "Free Cash Flow": -570000000.0
   },
   {
     "Steelmaker": "X",
@@ -6060,6 +6060,8 @@
     "Cost of Goods Sold": 3172000000.0,
     "Gross Income": -48000000.0,
     "Net Income Attributable to Stockholders": 54000000.0,
+    "Gross Margin": -1.54,
+    "Net Margin Attributable to Stockholders": 1.73,
     "Earnings Per Share": 0.31,
     "Long-Term Debt": 2326000000.0,
     "Current Maturities": 66000000.0,
@@ -6070,9 +6072,7 @@
     "Net Debt": 1683000000.0,
     "Operating Cash Flow": 29000000.0,
     "Capital Expenditures": 302000000.0,
-    "Free Cash Flow": -273000000.0,
-    "Gross Margin": -1.54,
-    "Net Margin Attributable to Stockholders": 1.73
+    "Free Cash Flow": -273000000.0
   },
   {
     "Steelmaker": "X",
@@ -6087,6 +6087,8 @@
     "Cost of Goods Sold": 3227000000.0,
     "Gross Income": -52000000.0,
     "Net Income Attributable to Stockholders": 68000000.0,
+    "Gross Margin": -1.64,
+    "Net Margin Attributable to Stockholders": 2.14,
     "Earnings Per Share": 0.39,
     "Long-Term Debt": 2345000000.0,
     "Current Maturities": 70000000.0,
@@ -6097,9 +6099,7 @@
     "Net Debt": 1733000000.0,
     "Operating Cash Flow": 337000000.0,
     "Capital Expenditures": 326000000.0,
-    "Free Cash Flow": 11000000.0,
-    "Gross Margin": -1.64,
-    "Net Margin Attributable to Stockholders": 2.14
+    "Free Cash Flow": 11000000.0
   },
   {
     "Steelmaker": "X",
@@ -6114,6 +6114,8 @@
     "Cost of Goods Sold": 2902000000.0,
     "Gross Income": -200000000.0,
     "Net Income Attributable to Stockholders": -84000000.0,
+    "Gross Margin": -7.4,
+    "Net Margin Attributable to Stockholders": -3.11,
     "Earnings Per Share": -0.49,
     "Long-Term Debt": 2500000000.0,
     "Current Maturities": 67000000.0,
@@ -6124,9 +6126,7 @@
     "Net Debt": 2071000000.0,
     "Operating Cash Flow": 30000000.0,
     "Capital Expenditures": 350000000.0,
-    "Free Cash Flow": -320000000.0,
-    "Gross Margin": -7.4,
-    "Net Margin Attributable to Stockholders": -3.11
+    "Free Cash Flow": -320000000.0
   },
   {
     "Steelmaker": "X",
@@ -6141,6 +6141,8 @@
     "Cost of Goods Sold": 2781000000.0,
     "Gross Income": -276000000.0,
     "Net Income Attributable to Stockholders": -668000000.0,
+    "Gross Margin": -11.02,
+    "Net Margin Attributable to Stockholders": -26.67,
     "Earnings Per Share": -3.97,
     "Long-Term Debt": 3627000000.0,
     "Current Maturities": 14000000.0,
@@ -6151,9 +6153,7 @@
     "Net Debt": 2702000000.0,
     "Operating Cash Flow": 286000000.0,
     "Capital Expenditures": 274000000.0,
-    "Free Cash Flow": 12000000.0,
-    "Gross Margin": -11.02,
-    "Net Margin Attributable to Stockholders": -26.67
+    "Free Cash Flow": 12000000.0
   },
   {
     "Steelmaker": "X",
@@ -6168,6 +6168,8 @@
     "Cost of Goods Sold": 9555000000.0,
     "Gross Income": -790000000.0,
     "Net Income Attributable to Stockholders": -1165000000.0,
+    "Gross Margin": -9.01,
+    "Net Margin Attributable to Stockholders": -13.29,
     "Earnings Per Share": -5.92,
     "Long-Term Debt": 4695000000.0,
     "Current Maturities": 192000000.0,
@@ -6178,9 +6180,7 @@
     "Net Debt": 2769000000.0,
     "Operating Cash Flow": 138000000.0,
     "Capital Expenditures": 725000000.0,
-    "Free Cash Flow": -587000000.0,
-    "Gross Margin": -9.01,
-    "Net Margin Attributable to Stockholders": -13.29
+    "Free Cash Flow": -587000000.0
   },
   {
     "Steelmaker": "X",
@@ -6195,6 +6195,8 @@
     "Cost of Goods Sold": 2605000000.0,
     "Gross Income": -208000000.0,
     "Net Income Attributable to Stockholders": -391000000.0,
+    "Gross Margin": -8.68,
+    "Net Margin Attributable to Stockholders": -16.31,
     "Earnings Per Share": -2.3,
     "Long-Term Debt": 4616000000.0,
     "Current Maturities": 99000000.0,
@@ -6205,9 +6207,7 @@
     "Net Debt": 3218000000.0,
     "Operating Cash Flow": -142000000.0,
     "Capital Expenditures": 282000000.0,
-    "Free Cash Flow": -424000000.0,
-    "Gross Margin": -8.68,
-    "Net Margin Attributable to Stockholders": -16.31
+    "Free Cash Flow": -424000000.0
   },
   {
     "Steelmaker": "X",
@@ -6222,6 +6222,8 @@
     "Cost of Goods Sold": 2274000000.0,
     "Gross Income": -274000000.0,
     "Net Income Attributable to Stockholders": -589000000.0,
+    "Gross Margin": -13.7,
+    "Net Margin Attributable to Stockholders": -29.45,
     "Earnings Per Share": -3.36,
     "Long-Term Debt": 5505000000.0,
     "Current Maturities": 94000000.0,
@@ -6232,9 +6234,7 @@
     "Net Debt": 3170000000.0,
     "Operating Cash Flow": -220000000.0,
     "Capital Expenditures": 173000000.0,
-    "Free Cash Flow": -393000000.0,
-    "Gross Margin": -13.7,
-    "Net Margin Attributable to Stockholders": -29.45
+    "Free Cash Flow": -393000000.0
   },
   {
     "Steelmaker": "X",
@@ -6249,6 +6249,8 @@
     "Cost of Goods Sold": 2295000000.0,
     "Gross Income": -223000000.0,
     "Net Income Attributable to Stockholders": -234000000.0,
+    "Gross Margin": -10.76,
+    "Net Margin Attributable to Stockholders": -11.29,
     "Earnings Per Share": -1.06,
     "Long-Term Debt": 4628000000.0,
     "Current Maturities": 262000000.0,
@@ -6259,9 +6261,7 @@
     "Net Debt": 3103000000.0,
     "Operating Cash Flow": 213000000.0,
     "Capital Expenditures": 136000000.0,
-    "Free Cash Flow": 77000000.0,
-    "Gross Margin": -10.76,
-    "Net Margin Attributable to Stockholders": -11.29
+    "Free Cash Flow": 77000000.0
   },
   {
     "Steelmaker": "X",
@@ -6276,6 +6276,8 @@
     "Cost of Goods Sold": 2381000000.0,
     "Gross Income": -85000000.0,
     "Net Income Attributable to Stockholders": 49000000.0,
+    "Gross Margin": -3.7,
+    "Net Margin Attributable to Stockholders": 2.13,
     "Earnings Per Share": 0.22,
     "Long-Term Debt": 4695000000.0,
     "Current Maturities": 192000000.0,
@@ -6286,9 +6288,7 @@
     "Net Debt": 2769000000.0,
     "Operating Cash Flow": 287000000.0,
     "Capital Expenditures": 134000000.0,
-    "Free Cash Flow": 153000000.0,
-    "Gross Margin": -3.7,
-    "Net Margin Attributable to Stockholders": 2.13
+    "Free Cash Flow": 153000000.0
   },
   {
     "Steelmaker": "X",
@@ -6303,6 +6303,8 @@
     "Cost of Goods Sold": 14533000000.0,
     "Gross Income": 4431000000.0,
     "Net Income Attributable to Stockholders": 4174000000.0,
+    "Gross Margin": 23.37,
+    "Net Margin Attributable to Stockholders": 22.01,
     "Earnings Per Share": 15.77,
     "Long-Term Debt": 3937000000.0,
     "Current Maturities": 28000000.0,
@@ -6313,9 +6315,7 @@
     "Net Debt": 1365000000.0,
     "Operating Cash Flow": 4090000000.0,
     "Capital Expenditures": 863000000.0,
-    "Free Cash Flow": 3227000000.0,
-    "Gross Margin": 23.37,
-    "Net Margin Attributable to Stockholders": 22.01
+    "Free Cash Flow": 3227000000.0
   },
   {
     "Steelmaker": "X",
@@ -6330,6 +6330,8 @@
     "Cost of Goods Sold": 3074000000.0,
     "Gross Income": 295000000.0,
     "Net Income Attributable to Stockholders": 91000000.0,
+    "Gross Margin": 8.76,
+    "Net Margin Attributable to Stockholders": 2.7,
     "Earnings Per Share": 0.36,
     "Long-Term Debt": 5787000000.0,
     "Current Maturities": 45000000.0,
@@ -6340,9 +6342,7 @@
     "Net Debt": 4950000000.0,
     "Operating Cash Flow": 111000000.0,
     "Capital Expenditures": 136000000.0,
-    "Free Cash Flow": -25000000.0,
-    "Gross Margin": 8.76,
-    "Net Margin Attributable to Stockholders": 2.7
+    "Free Cash Flow": -25000000.0
   },
   {
     "Steelmaker": "X",
@@ -6357,6 +6357,8 @@
     "Cost of Goods Sold": 3678000000.0,
     "Gross Income": 1006000000.0,
     "Net Income Attributable to Stockholders": 1012000000.0,
+    "Gross Margin": 21.48,
+    "Net Margin Attributable to Stockholders": 21.61,
     "Earnings Per Share": 3.75,
     "Long-Term Debt": 4803000000.0,
     "Current Maturities": 763000000.0,
@@ -6367,9 +6369,7 @@
     "Net Debt": 4094000000.0,
     "Operating Cash Flow": 992000000.0,
     "Capital Expenditures": 148000000.0,
-    "Free Cash Flow": 844000000.0,
-    "Gross Margin": 21.48,
-    "Net Margin Attributable to Stockholders": 21.61
+    "Free Cash Flow": 844000000.0
   },
   {
     "Steelmaker": "X",
@@ -6384,6 +6384,8 @@
     "Cost of Goods Sold": 3881000000.0,
     "Gross Income": 1742000000.0,
     "Net Income Attributable to Stockholders": 2002000000.0,
+    "Gross Margin": 30.98,
+    "Net Margin Attributable to Stockholders": 35.6,
     "Earnings Per Share": 7.41,
     "Long-Term Debt": 4272000000.0,
     "Current Maturities": 61000000.0,
@@ -6394,9 +6396,7 @@
     "Net Debt": 2181000000.0,
     "Operating Cash Flow": 1502000000.0,
     "Capital Expenditures": 176000000.0,
-    "Free Cash Flow": 1326000000.0,
-    "Gross Margin": 30.98,
-    "Net Margin Attributable to Stockholders": 35.6
+    "Free Cash Flow": 1326000000.0
   },
   {
     "Steelmaker": "X",
@@ -6411,6 +6411,8 @@
     "Cost of Goods Sold": 3900000000.0,
     "Gross Income": 1388000000.0,
     "Net Income Attributable to Stockholders": 1069000000.0,
+    "Gross Margin": 26.25,
+    "Net Margin Attributable to Stockholders": 20.22,
     "Earnings Per Share": 3.93,
     "Long-Term Debt": 3937000000.0,
     "Current Maturities": 28000000.0,
@@ -6421,9 +6423,7 @@
     "Net Debt": 1365000000.0,
     "Operating Cash Flow": 1485000000.0,
     "Capital Expenditures": 403000000.0,
-    "Free Cash Flow": 1082000000.0,
-    "Gross Margin": 26.25,
-    "Net Margin Attributable to Stockholders": 20.22
+    "Free Cash Flow": 1082000000.0
   },
   {
     "Steelmaker": "X",
@@ -6438,6 +6438,8 @@
     "Cost of Goods Sold": 16777000000.0,
     "Gross Income": 4288000000.0,
     "Net Income Attributable to Stockholders": 2524000000.0,
+    "Gross Margin": 20.36,
+    "Net Margin Attributable to Stockholders": 11.98,
     "Earnings Per Share": 10.22,
     "Long-Term Debt": 3914000000.0,
     "Current Maturities": 63000000.0,
@@ -6448,9 +6450,7 @@
     "Net Debt": 438000000.0,
     "Operating Cash Flow": 3505000000.0,
     "Capital Expenditures": 1769000000.0,
-    "Free Cash Flow": 1736000000.0,
-    "Gross Margin": 20.36,
-    "Net Margin Attributable to Stockholders": 11.98
+    "Free Cash Flow": 1736000000.0
   },
   {
     "Steelmaker": "X",
@@ -6465,6 +6465,8 @@
     "Cost of Goods Sold": 3823000000.0,
     "Gross Income": 1020000000.0,
     "Net Income Attributable to Stockholders": 882000000.0,
+    "Gross Margin": 21.06,
+    "Net Margin Attributable to Stockholders": 18.21,
     "Earnings Per Share": 3.37,
     "Long-Term Debt": 3917000000.0,
     "Current Maturities": 60000000.0,
@@ -6475,9 +6477,7 @@
     "Net Debt": 1036000000.0,
     "Operating Cash Flow": 771000000.0,
     "Capital Expenditures": 349000000.0,
-    "Free Cash Flow": 422000000.0,
-    "Gross Margin": 21.06,
-    "Net Margin Attributable to Stockholders": 18.21
+    "Free Cash Flow": 422000000.0
   },
   {
     "Steelmaker": "X",
@@ -6492,6 +6492,8 @@
     "Cost of Goods Sold": 4661000000.0,
     "Gross Income": 1133000000.0,
     "Net Income Attributable to Stockholders": 978000000.0,
+    "Gross Margin": 19.55,
+    "Net Margin Attributable to Stockholders": 16.88,
     "Earnings Per Share": 3.8,
     "Long-Term Debt": 3869000000.0,
     "Current Maturities": 54000000.0,
@@ -6502,9 +6504,7 @@
     "Net Debt": 824000000.0,
     "Operating Cash Flow": 905000000.0,
     "Capital Expenditures": 311000000.0,
-    "Free Cash Flow": 594000000.0,
-    "Gross Margin": 19.55,
-    "Net Margin Attributable to Stockholders": 16.88
+    "Free Cash Flow": 594000000.0
   },
   {
     "Steelmaker": "X",
@@ -6519,6 +6519,8 @@
     "Cost of Goods Sold": 4359000000.0,
     "Gross Income": 308000000.0,
     "Net Income Attributable to Stockholders": 490000000.0,
+    "Gross Margin": 6.6,
+    "Net Margin Attributable to Stockholders": 10.5,
     "Earnings Per Share": 2.07,
     "Long-Term Debt": 3863000000.0,
     "Current Maturities": 59000000.0,
@@ -6529,9 +6531,7 @@
     "Net Debt": 435000000.0,
     "Operating Cash Flow": 1074000000.0,
     "Capital Expenditures": 478000000.0,
-    "Free Cash Flow": 596000000.0,
-    "Gross Margin": 6.6,
-    "Net Margin Attributable to Stockholders": 10.5
+    "Free Cash Flow": 596000000.0
   },
   {
     "Steelmaker": "X",
@@ -6546,6 +6546,8 @@
     "Cost of Goods Sold": 3934000000.0,
     "Gross Income": 1827000000.0,
     "Net Income Attributable to Stockholders": 174000000.0,
+    "Gross Margin": 31.71,
+    "Net Margin Attributable to Stockholders": 3.02,
     "Earnings Per Share": 0.77,
     "Long-Term Debt": 3914000000.0,
     "Current Maturities": 63000000.0,
@@ -6556,9 +6558,7 @@
     "Net Debt": 438000000.0,
     "Operating Cash Flow": 755000000.0,
     "Capital Expenditures": 631000000.0,
-    "Free Cash Flow": 124000000.0,
-    "Gross Margin": 31.71,
-    "Net Margin Attributable to Stockholders": 3.02
+    "Free Cash Flow": 124000000.0
   },
   {
     "Steelmaker": "X",
@@ -6573,6 +6573,8 @@
     "Cost of Goods Sold": 15803000000.0,
     "Gross Income": 2250000000.0,
     "Net Income Attributable to Stockholders": 895000000.0,
+    "Gross Margin": 12.46,
+    "Net Margin Attributable to Stockholders": 4.96,
     "Earnings Per Share": 3.98,
     "Long-Term Debt": 4080000000.0,
     "Current Maturities": 142000000.0,
@@ -6583,9 +6585,7 @@
     "Net Debt": 1234000000.0,
     "Operating Cash Flow": 2100000000.0,
     "Capital Expenditures": 2576000000.0,
-    "Free Cash Flow": -476000000.0,
-    "Gross Margin": 12.46,
-    "Net Margin Attributable to Stockholders": 4.96
+    "Free Cash Flow": -476000000.0
   },
   {
     "Steelmaker": "X",
@@ -6600,6 +6600,8 @@
     "Cost of Goods Sold": 3953000000.0,
     "Gross Income": 517000000.0,
     "Net Income Attributable to Stockholders": 199000000.0,
+    "Gross Margin": 11.57,
+    "Net Margin Attributable to Stockholders": 4.45,
     "Earnings Per Share": 0.87,
     "Long-Term Debt": 3901000000.0,
     "Current Maturities": 91000000.0,
@@ -6610,9 +6612,7 @@
     "Net Debt": 1119000000.0,
     "Operating Cash Flow": 181000000.0,
     "Capital Expenditures": 740000000.0,
-    "Free Cash Flow": -559000000.0,
-    "Gross Margin": 11.57,
-    "Net Margin Attributable to Stockholders": 4.45
+    "Free Cash Flow": -559000000.0
   },
   {
     "Steelmaker": "X",
@@ -6627,6 +6627,8 @@
     "Cost of Goods Sold": 4161000000.0,
     "Gross Income": 847000000.0,
     "Net Income Attributable to Stockholders": 477000000.0,
+    "Gross Margin": 16.91,
+    "Net Margin Attributable to Stockholders": 9.52,
     "Earnings Per Share": 2.12,
     "Long-Term Debt": 4153000000.0,
     "Current Maturities": 98000000.0,
@@ -6637,9 +6639,7 @@
     "Net Debt": 1134000000.0,
     "Operating Cash Flow": 713000000.0,
     "Capital Expenditures": 613000000.0,
-    "Free Cash Flow": 100000000.0,
-    "Gross Margin": 16.91,
-    "Net Margin Attributable to Stockholders": 9.52
+    "Free Cash Flow": 100000000.0
   },
   {
     "Steelmaker": "X",
@@ -6654,6 +6654,8 @@
     "Cost of Goods Sold": 3838000000.0,
     "Gross Income": 593000000.0,
     "Net Income Attributable to Stockholders": 299000000.0,
+    "Gross Margin": 13.38,
+    "Net Margin Attributable to Stockholders": 6.75,
     "Earnings Per Share": 1.34,
     "Long-Term Debt": 4129000000.0,
     "Current Maturities": 98000000.0,
@@ -6664,9 +6666,7 @@
     "Net Debt": 968000000.0,
     "Operating Cash Flow": 817000000.0,
     "Capital Expenditures": 586000000.0,
-    "Free Cash Flow": 231000000.0,
-    "Gross Margin": 13.38,
-    "Net Margin Attributable to Stockholders": 6.75
+    "Free Cash Flow": 231000000.0
   },
   {
     "Steelmaker": "X",
@@ -6681,6 +6681,8 @@
     "Cost of Goods Sold": 3851000000.0,
     "Gross Income": 293000000.0,
     "Net Income Attributable to Stockholders": -80000000.0,
+    "Gross Margin": 7.07,
+    "Net Margin Attributable to Stockholders": -1.93,
     "Earnings Per Share": -0.33,
     "Long-Term Debt": 4080000000.0,
     "Current Maturities": 142000000.0,
@@ -6691,9 +6693,7 @@
     "Net Debt": 1234000000.0,
     "Operating Cash Flow": 389000000.0,
     "Capital Expenditures": 637000000.0,
-    "Free Cash Flow": -248000000.0,
-    "Gross Margin": 7.07,
-    "Net Margin Attributable to Stockholders": -1.93
+    "Free Cash Flow": -248000000.0
   },
   {
     "Steelmaker": "X",
@@ -6708,6 +6708,8 @@
     "Cost of Goods Sold": 14060000000.0,
     "Gross Income": 1580000000.0,
     "Net Income Attributable to Stockholders": 384000000.0,
+    "Gross Margin": 10.1,
+    "Net Margin Attributable to Stockholders": 2.46,
     "Earnings Per Share": 1.71,
     "Long-Term Debt": 4078000000.0,
     "Current Maturities": 95000000.0,
@@ -6718,9 +6720,7 @@
     "Net Debt": 2760000000.0,
     "Operating Cash Flow": 919000000.0,
     "Capital Expenditures": 2287000000.0,
-    "Free Cash Flow": -1368000000.0,
-    "Gross Margin": 10.1,
-    "Net Margin Attributable to Stockholders": 2.46
+    "Free Cash Flow": -1368000000.0
   },
   {
     "Steelmaker": "X",
@@ -6735,6 +6735,8 @@
     "Cost of Goods Sold": 3665000000.0,
     "Gross Income": 495000000.0,
     "Net Income Attributable to Stockholders": 171000000.0,
+    "Gross Margin": 11.9,
+    "Net Margin Attributable to Stockholders": 4.11,
     "Earnings Per Share": 0.76,
     "Long-Term Debt": 4082000000.0,
     "Current Maturities": 159000000.0,
@@ -6745,9 +6747,7 @@
     "Net Debt": 1979000000.0,
     "Operating Cash Flow": -28000000.0,
     "Capital Expenditures": 640000000.0,
-    "Free Cash Flow": -668000000.0,
-    "Gross Margin": 11.9,
-    "Net Margin Attributable to Stockholders": 4.11
+    "Free Cash Flow": -668000000.0
   },
   {
     "Steelmaker": "X",
@@ -6762,6 +6762,8 @@
     "Cost of Goods Sold": 3629000000.0,
     "Gross Income": 489000000.0,
     "Net Income Attributable to Stockholders": 183000000.0,
+    "Gross Margin": 11.87,
+    "Net Margin Attributable to Stockholders": 4.44,
     "Earnings Per Share": 0.82,
     "Long-Term Debt": 4078000000.0,
     "Current Maturities": 162000000.0,
@@ -6772,9 +6774,7 @@
     "Net Debt": 2167000000.0,
     "Operating Cash Flow": 474000000.0,
     "Capital Expenditures": 631000000.0,
-    "Free Cash Flow": -157000000.0,
-    "Gross Margin": 11.87,
-    "Net Margin Attributable to Stockholders": 4.44
+    "Free Cash Flow": -157000000.0
   },
   {
     "Steelmaker": "X",
@@ -6789,6 +6789,8 @@
     "Cost of Goods Sold": 3448000000.0,
     "Gross Income": 405000000.0,
     "Net Income Attributable to Stockholders": 119000000.0,
+    "Gross Margin": 10.51,
+    "Net Margin Attributable to Stockholders": 3.09,
     "Earnings Per Share": 0.53,
     "Long-Term Debt": 4068000000.0,
     "Current Maturities": 163000000.0,
@@ -6799,9 +6801,7 @@
     "Net Debt": 2416000000.0,
     "Operating Cash Flow": 265000000.0,
     "Capital Expenditures": 511000000.0,
-    "Free Cash Flow": -246000000.0,
-    "Gross Margin": 10.51,
-    "Net Margin Attributable to Stockholders": 3.09
+    "Free Cash Flow": -246000000.0
   },
   {
     "Steelmaker": "X",
@@ -6816,6 +6816,8 @@
     "Cost of Goods Sold": 3318000000.0,
     "Gross Income": 191000000.0,
     "Net Income Attributable to Stockholders": -89000000.0,
+    "Gross Margin": 5.44,
+    "Net Margin Attributable to Stockholders": -2.54,
     "Earnings Per Share": -0.4,
     "Long-Term Debt": 4078000000.0,
     "Current Maturities": 95000000.0,
@@ -6826,9 +6828,7 @@
     "Net Debt": 2760000000.0,
     "Operating Cash Flow": 208000000.0,
     "Capital Expenditures": 505000000.0,
-    "Free Cash Flow": -297000000.0,
-    "Gross Margin": 5.44,
-    "Net Margin Attributable to Stockholders": -2.54
+    "Free Cash Flow": -297000000.0
   },
   {
     "Steelmaker": "X",
@@ -6843,6 +6843,8 @@
     "Cost of Goods Sold": 3493000000.0,
     "Gross Income": 234000000.0,
     "Net Income Attributable to Stockholders": -116000000.0,
+    "Gross Margin": 6.28,
+    "Net Margin Attributable to Stockholders": -3.11,
     "Earnings Per Share": -0.52,
     "Long-Term Debt": 4047000000.0,
     "Current Maturities": 109000000.0,
@@ -6853,8 +6855,6 @@
     "Net Debt": 3518000000.0,
     "Operating Cash Flow": -374000000.0,
     "Capital Expenditures": 359000000.0,
-    "Free Cash Flow": -733000000.0,
-    "Gross Margin": 6.28,
-    "Net Margin Attributable to Stockholders": -3.11
+    "Free Cash Flow": -733000000.0
   }
 ]

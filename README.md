@@ -1,8 +1,9 @@
 # Steel Financial Dashboard
-
-This repository contains the steel financial dashboard workspace. The active application and data pipeline live under [steel-dashboard](steel-dashboard).
+Compare financial and operating metrics for major US commodity steel producers.
+Live app: https://steel.industryfinancials.com/
 
 ## Overview
+This repository contains the steel financial dashboard workspace. The active application and data pipeline live under [steel-dashboard](steel-dashboard).
 
 The current workspace is organized around a precomputed data model:
 
@@ -13,13 +14,13 @@ The current workspace is organized around a precomputed data model:
 
 The configured issuer universe and automation examples center on:
 
-- NUE
-- STLD
-- CLF
-- CMC
-- X
-- ATI
-- CRS
+- EAF Process Steelmakers
+    - CMC
+    - NUE
+    - STLD
+- BOF Process Steelmakers
+    - CLF
+    - _X (defunct)_
 
 ## Current metric model
 
@@ -62,13 +63,11 @@ Start with:
 - [steel-dashboard/data/manual/README.md](steel-dashboard/data/manual/README.md)
 
 ## Sources
-
+- SEC EDGAR: https://www.sec.gov/search-filings/
 - NUE: https://investors.nucor.com/
 - STLD: https://ir.steeldynamics.com/
 - CLF: https://www.clevelandcliffs.com/investors/
 - CMC: https://ir.cmc.com/
-- X: https://www.ussteel.com/about-us/financial-information/
-- ATI: https://ir.atimetals.com/
-- CRS: https://ir.carpentertechnology.com/
 
-Created by Michael Tricanowicz.
+
+<br>**Created by Michael Tricanowicz**
