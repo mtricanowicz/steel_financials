@@ -7,8 +7,14 @@ import pytest
 
 from sec_pipeline.chunk import chunk_text
 from sec_pipeline.config import PeriodSpec, build_periods
-from sec_pipeline.edgar_client import _RateLimiter
+from sec_pipeline.edgar_client import Filing, _RateLimiter
 from sec_pipeline.parse import clean_text, html_to_text
+from sec_pipeline.pipeline import (
+    _expected_report_date,
+    _filings_by_filing_window,
+    _filings_by_report_date,
+    _infer_fiscal_year_end,
+)
 from scripts.build_data import add_derived
 from sec_pipeline.xbrl import extract_financials, extract_metric
 
@@ -77,6 +83,112 @@ class TestRateLimiter:
         for _ in range(5):
             limiter.wait()
         assert time.monotonic() - start >= 4 * (1 / 50.0)
+
+
+class TestInsightsFilingSelection:
+    def test_infers_calendar_fiscal_year_end_from_10k(self):
+        filings = [
+            Filing(
+                accession="0000000000-26-000001",
+                form="10-K",
+                filing_date=datetime(2026, 2, 20),
+                report_date=datetime(2025, 12, 31),
+                primary_document="a10k.htm",
+            )
+        ]
+
+        fiscal_end = _infer_fiscal_year_end(filings)
+        assert fiscal_end.month == 12
+        assert fiscal_end.day == 31
+
+    def test_infers_off_schedule_fiscal_year_end_from_10k(self):
+        filings = [
+            Filing(
+                accession="0000000000-26-000001",
+                form="10-K",
+                filing_date=datetime(2026, 10, 30),
+                report_date=datetime(2026, 8, 31),
+                primary_document="a10k.htm",
+            )
+        ]
+
+        fiscal_end = _infer_fiscal_year_end(filings)
+        assert fiscal_end.month == 8
+        assert fiscal_end.day == 31
+
+    def test_report_date_primary_selects_current_quarter_for_calendar_filer(self):
+        fiscal_end = datetime(2000, 12, 31)
+        spec = PeriodSpec(2026, "Q2")
+        filings = [
+            Filing(
+                accession="0000000000-26-000010",
+                form="10-Q",
+                filing_date=datetime(2026, 5, 6),
+                report_date=datetime(2026, 3, 31),
+                primary_document="q1.htm",
+            ),
+            Filing(
+                accession="0000000000-26-000020",
+                form="10-Q",
+                filing_date=datetime(2026, 8, 5),
+                report_date=datetime(2026, 6, 30),
+                primary_document="q2.htm",
+            ),
+        ]
+
+        selected = _filings_by_report_date(filings, spec, fiscal_end)
+        assert len(selected) == 1
+        assert selected[0].report_date == datetime(2026, 6, 30)
+
+    def test_report_date_primary_selects_off_schedule_q1(self):
+        # CMC-like fiscal year: FY ends Aug 31, so FY2026 Q1 ends Nov 30, 2025.
+        fiscal_end = datetime(2000, 8, 31)
+        spec = PeriodSpec(2026, "Q1")
+        filings = [
+            Filing(
+                accession="0000000000-26-000101",
+                form="10-Q",
+                filing_date=datetime(2026, 1, 10),
+                report_date=datetime(2025, 11, 30),
+                primary_document="q1.htm",
+            ),
+            Filing(
+                accession="0000000000-26-000102",
+                form="10-Q",
+                filing_date=datetime(2026, 4, 10),
+                report_date=datetime(2026, 2, 28),
+                primary_document="q2.htm",
+            ),
+        ]
+
+        selected = _filings_by_report_date(filings, spec, fiscal_end)
+        assert len(selected) == 1
+        assert selected[0].report_date == datetime(2025, 11, 30)
+        assert _expected_report_date(spec, fiscal_end) == datetime(2025, 11, 30)
+
+    def test_filing_window_fallback_still_targets_q2_filing(self):
+        fiscal_end = datetime(2000, 12, 31)
+        spec = PeriodSpec(2026, "Q2")
+        filings = [
+            Filing(
+                accession="0000000000-26-000010",
+                form="10-Q",
+                filing_date=datetime(2026, 5, 6),
+                report_date=None,
+                primary_document="q1.htm",
+            ),
+            Filing(
+                accession="0000000000-26-000020",
+                form="10-Q",
+                filing_date=datetime(2026, 8, 5),
+                report_date=None,
+                primary_document="q2.htm",
+            ),
+        ]
+
+        selected = _filings_by_filing_window(filings, spec, fiscal_end)
+        assert len(selected) == 1
+        assert selected[0].filing_date == datetime(2026, 8, 5)
 
 
 class TestXbrlFiscalFallback:

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime
 from functools import lru_cache
 from typing import Callable
 
@@ -42,11 +43,18 @@ def _token_counter() -> Callable[[str], int]:
         return lambda s: max(1, len(s) // 4)
 
 
-def _retrieval_queries(steelmaker: str, name: str, label: str) -> list[str]:
+def _retrieval_queries(
+    steelmaker: str,
+    name: str,
+    label: str,
+    report_period_end: datetime | None = None,
+) -> list[str]:
     """Build several targeted queries spanning the reported topic areas."""
-    spec = config.PeriodSpec.from_label(label)
-    _, end = spec.date_window()
-    period_end = f"{end:%B %d, %Y}"
+    if report_period_end is None:
+        spec = config.PeriodSpec.from_label(label)
+        _, end = spec.date_window()
+        report_period_end = end
+    period_end = f"{report_period_end:%B %d, %Y}"
     base = f"{steelmaker} ({name}) {label}"
     return [
         f"{base} financial results and operational highlights for the period ended {period_end}.",
@@ -103,12 +111,13 @@ def summarize_period(
     collection_name: str,
     embedder: EmbeddingFn,
     per_query_k: int | None = None,
+    report_period_end: datetime | None = None,
 ) -> str:
     """Retrieve the most relevant filing text and generate a markdown summary."""
     from openai import OpenAI
 
     name = config.STEELMAKER_NAMES.get(steelmaker, steelmaker)
-    queries = _retrieval_queries(steelmaker, name, label)
+    queries = _retrieval_queries(steelmaker, name, label, report_period_end)
     if per_query_k is None:
         # A moderate per-query depth; the token budget below is the real cap on
         # how much context reaches the model after de-duplication.

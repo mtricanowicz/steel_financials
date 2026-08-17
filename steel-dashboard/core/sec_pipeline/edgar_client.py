@@ -44,6 +44,7 @@ class Filing:
     form: str
     filing_date: datetime
     primary_document: str
+    report_date: datetime | None = None
 
     @property
     def accession_nodashes(self) -> str:
@@ -118,23 +119,37 @@ class EdgarClient:
         cik10 = self.normalize_cik(cik)
         data = self._get_json(self.SUBMISSIONS_URL.format(cik=cik10))
         recent = data.get("filings", {}).get("recent", {})
+        accessions = recent.get("accessionNumber", [])
+        forms = recent.get("form", [])
+        filing_dates = recent.get("filingDate", [])
+        primary_docs = recent.get("primaryDocument", [])
+        report_dates = recent.get("reportDate", [])
         filings: list[Filing] = []
-        for acc, form, date_str, doc in zip(
-            recent.get("accessionNumber", []),
-            recent.get("form", []),
-            recent.get("filingDate", []),
-            recent.get("primaryDocument", []),
-        ):
+        for idx, acc in enumerate(accessions):
+            try:
+                form = forms[idx]
+                date_str = filing_dates[idx]
+                doc = primary_docs[idx]
+            except IndexError:
+                continue
+            report_date_raw = report_dates[idx] if idx < len(report_dates) else None
             try:
                 filing_date = datetime.strptime(date_str, "%Y-%m-%d")
             except (ValueError, TypeError):
                 continue
+            report_date: datetime | None = None
+            try:
+                if report_date_raw:
+                    report_date = datetime.strptime(report_date_raw, "%Y-%m-%d")
+            except (ValueError, TypeError):
+                report_date = None
             filings.append(
                 Filing(
                     accession=acc,
                     form=form,
                     filing_date=filing_date,
                     primary_document=doc,
+                    report_date=report_date,
                 )
             )
         return filings

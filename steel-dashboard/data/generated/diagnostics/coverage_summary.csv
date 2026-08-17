@@ -1,51 +1,21 @@
 steelmaker,metric,source_type,expected_periods,populated_periods,missing_periods,coverage_pct
-CLF,Capital Expenditures,auto_xbrl,52,52,0,100.0
-CLF,Cash & Cash Equivalents,auto_xbrl,52,52,0,100.0
-CLF,Cost of Goods Sold,auto_xbrl,52,52,0,100.0
-CLF,Current Maturities,auto_xbrl,52,52,0,100.0
-CLF,Earnings Per Share,auto_xbrl,52,52,0,100.0
-CLF,Long-Term Debt,auto_xbrl,52,52,0,100.0
-CLF,Net Income Attributable to Stockholders,auto_xbrl,52,52,0,100.0
-CLF,Net Sales,auto_xbrl,52,52,0,100.0
-CLF,Operating Cash Flow,auto_xbrl,52,52,0,100.0
-CLF,Short-Term Investments,auto_xbrl,52,0,52,0.0
-CMC,Capital Expenditures,auto_xbrl,53,53,0,100.0
-CMC,Cash & Cash Equivalents,auto_xbrl,53,42,11,79.2
-CMC,Cost of Goods Sold,auto_xbrl,53,53,0,100.0
-CMC,Current Maturities,auto_xbrl,53,53,0,100.0
-CMC,Earnings Per Share,auto_xbrl,53,53,0,100.0
-CMC,Long-Term Debt,auto_xbrl,53,53,0,100.0
-CMC,Net Income Attributable to Stockholders,auto_xbrl,53,53,0,100.0
-CMC,Net Sales,auto_xbrl,53,53,0,100.0
-CMC,Operating Cash Flow,auto_xbrl,53,53,0,100.0
-CMC,Short-Term Investments,auto_xbrl,53,0,53,0.0
-NUE,Capital Expenditures,auto_xbrl,52,52,0,100.0
-NUE,Cash & Cash Equivalents,auto_xbrl,52,52,0,100.0
-NUE,Cost of Goods Sold,auto_xbrl,52,52,0,100.0
-NUE,Current Maturities,auto_xbrl,52,52,0,100.0
-NUE,Earnings Per Share,auto_xbrl,52,52,0,100.0
-NUE,Long-Term Debt,auto_xbrl,52,52,0,100.0
-NUE,Net Income Attributable to Stockholders,auto_xbrl,52,52,0,100.0
-NUE,Net Sales,auto_xbrl,52,52,0,100.0
-NUE,Operating Cash Flow,auto_xbrl,52,52,0,100.0
-NUE,Short-Term Investments,auto_xbrl,52,52,0,100.0
-STLD,Capital Expenditures,auto_xbrl,52,52,0,100.0
-STLD,Cash & Cash Equivalents,auto_xbrl,52,52,0,100.0
-STLD,Cost of Goods Sold,auto_xbrl,52,52,0,100.0
-STLD,Current Maturities,auto_xbrl,52,52,0,100.0
-STLD,Earnings Per Share,auto_xbrl,52,52,0,100.0
-STLD,Long-Term Debt,auto_xbrl,52,52,0,100.0
-STLD,Net Income Attributable to Stockholders,auto_xbrl,52,52,0,100.0
-STLD,Net Sales,auto_xbrl,52,52,0,100.0
-STLD,Operating Cash Flow,auto_xbrl,52,52,0,100.0
-STLD,Short-Term Investments,auto_xbrl,52,34,18,65.4
-X,Capital Expenditures,auto_xbrl,46,46,0,100.0
-X,Cash & Cash Equivalents,auto_xbrl,46,46,0,100.0
-X,Cost of Goods Sold,auto_xbrl,46,46,0,100.0
-X,Current Maturities,auto_xbrl,46,46,0,100.0
-X,Earnings Per Share,auto_xbrl,46,46,0,100.0
-X,Long-Term Debt,auto_xbrl,46,46,0,100.0
-X,Net Income Attributable to Stockholders,auto_xbrl,46,46,0,100.0
-X,Net Sales,auto_xbrl,46,46,0,100.0
-X,Operating Cash Flow,auto_xbrl,46,46,0,100.0
-X,Short-Term Investments,auto_xbrl,46,0,46,0.0
+CMC,Capital Expenditures,auto_xbrl,2,2,0,100.0
+CMC,Cash & Cash Equivalents,auto_xbrl,2,2,0,100.0
+CMC,Cost of Goods Sold,auto_xbrl,2,2,0,100.0
+CMC,Current Maturities,auto_xbrl,2,2,0,100.0
+CMC,Earnings Per Share,auto_xbrl,2,2,0,100.0
+CMC,Long-Term Debt,auto_xbrl,2,2,0,100.0
+CMC,Net Income Attributable to Stockholders,auto_xbrl,2,2,0,100.0
+CMC,Net Sales,auto_xbrl,2,2,0,100.0
+CMC,Operating Cash Flow,auto_xbrl,2,2,0,100.0
+CMC,Short-Term Investments,auto_xbrl,2,0,2,0.0
+NUE,Capital Expenditures,auto_xbrl,2,2,0,100.0
+NUE,Cash & Cash Equivalents,auto_xbrl,2,2,0,100.0
+NUE,Cost of Goods Sold,auto_xbrl,2,2,0,100.0
+NUE,Current Maturities,auto_xbrl,2,2,0,100.0
+NUE,Earnings Per Share,auto_xbrl,2,2,0,100.0
+NUE,Long-Term Debt,auto_xbrl,2,2,0,100.0
+NUE,Net Income Attributable to Stockholders,auto_xbrl,2,2,0,100.0
+NUE,Net Sales,auto_xbrl,2,2,0,100.0
+NUE,Operating Cash Flow,auto_xbrl,2,2,0,100.0
+NUE,Short-Term Investments,auto_xbrl,2,2,0,100.0
