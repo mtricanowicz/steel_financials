@@ -500,7 +500,7 @@ def stock_ticker_html(
         .stock-ticker-track {{
             display: flex;
             width: max-content;
-            animation: stock-ticker-scroll 40s linear infinite;
+            animation: stock-ticker-scroll {4 * len(items)}s linear infinite;
         }}
         .stock-ticker-shell:hover .stock-ticker-track {{
             animation-play-state: paused;
