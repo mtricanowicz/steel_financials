@@ -30,6 +30,7 @@ from lib.formatting import (
     pct_diff,
     scale_metric_for_display,
     steelmaker_label_html,
+    steelmaker_header_html,
 )
 
 st.header(":material/finance_mode: Filtered Comparisons")
@@ -111,7 +112,7 @@ with st.expander("Set filters", expanded=True):
         elif steelmaker_group in STEELMAKER_GROUPS:
             steelmaker_options = [
                 s
-                for s in STEELMAKER_GROUPS[steelmaker_group]
+                for s in sorted(STEELMAKER_GROUPS[steelmaker_group])
             ]
             default_steelmakers = [s for s in steelmaker_options if s not in STEELMAKER_GROUPS["Defunct Steelmakers"]]
         else:
@@ -289,9 +290,11 @@ steelmaker_order = sorted(selected_steelmakers)
 show_time = len(selected_years) > 1 or len(selected_quarters) > 1
 show_compare = len(selected_steelmakers) > 1 and compare
 
-tab_time, tab_period = st.tabs(["Metrics Over Time", "Single Period"])
+tab_time, tab_period, tab_steelmaker, tab_raw = st.tabs(
+    ["Metrics Over Time", "Single Period", "Single Steelmaker", "Raw Data"]
+)
 
-with tab_time:
+def _render_tab_time() -> None:
     for metric in visible_metrics:
         metric_label = display_metric_name(metric)
         st.subheader(metric_label, divider="gray")
@@ -424,7 +427,7 @@ with tab_time:
                 fig_bar.update_traces(hovertemplate="%{x}<br>%{y:.2f}%")
                 st.plotly_chart(fig_bar, width="stretch")
 
-with tab_period:
+def _render_tab_period() -> None:
     latest = max(periods)
     st.subheader(f"Summary of {latest}", divider="gray")
     st.caption("When multiple periods are selected, this shows the latest one in the range.")
@@ -471,3 +474,65 @@ with tab_period:
         st.dataframe(summary.style.map(color_positive_negative, subset=color_cols), width="stretch")
     else:
         st.dataframe(summary, width="stretch")
+
+def _render_tab_steelmaker() -> None:
+    # Single Steelmaker: a comprehensive summary of all selected metrics across all
+    # selected periods for one steelmaker, useful for viewing everything at once.
+    summary_steelmaker = selected_steelmakers[0]
+    name = STEELMAKER_NAMES.get(summary_steelmaker, summary_steelmaker)
+    st.markdown(
+        steelmaker_header_html(
+            summary_steelmaker,
+            text=f"Summary of {name} ({summary_steelmaker})",
+            heading_level=3,
+            logo_height_em=1.75,
+            logo_before_text=False,
+            gap_rem=0,
+        ),
+        unsafe_allow_html=True
+    )
+    st.markdown("<hr style='border:1px solid #808080; margin:0.5rem 0 1rem 0;'>", unsafe_allow_html=True)
+    st.caption("When multiple steelmakers are selected, this shows the first one in the selection.")
+    metric_order: list[str] = []
+    summary_rows = []
+    for metric in visible_metrics:
+        scaled, display_col = scaled_metrics[metric]
+        scaled = scaled[scaled["Steelmaker"] == summary_steelmaker]
+        metric_order.append(display_col)
+        for period in periods:
+            cell = scaled[scaled["Period"] == period][display_col]
+            value = cell.iloc[0] if not cell.empty else None
+            summary_rows.append(
+                {
+                    "Period": period,
+                    "Metric": display_col,
+                    summary_steelmaker: format_metric_value(value, metric),
+                }
+            )
+    summary = pd.DataFrame(summary_rows).set_index(["Metric", "Period"])
+    summary = summary.unstack("Metric")
+    summary = summary.reindex(metric_order, axis=1, level=1)
+    st.dataframe(summary, width="stretch")
+
+
+def _render_tab_raw() -> None:
+    st.subheader("Raw Data", divider="gray")
+    st.caption(
+        "This is the raw data after applying the selected filters and is provided for "
+        "export or further analysis. It is not scaled or formatted for display."
+    )
+    st.dataframe(filtered.sort_values(by=["Steelmaker", "Period"]).reset_index(drop=True), width="stretch")
+
+
+with tab_time:
+    _render_tab_time()
+
+with tab_period:
+    _render_tab_period()
+
+with tab_steelmaker:
+    _render_tab_steelmaker()
+
+with tab_raw:
+    _render_tab_raw()
+

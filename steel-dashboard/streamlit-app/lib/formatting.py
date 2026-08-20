@@ -7,6 +7,7 @@ from html import escape
 from pathlib import Path
 
 import pandas as pd
+import streamlit as st
 
 STEELMAKER_COLORS: dict[str, str] = {
     "NUE": "#006325",
@@ -253,6 +254,15 @@ def get_steelmaker_logo_path(steelmaker: str) -> Path | None:
     return logo_path if logo_path.exists() else None
 
 
+@st.cache_data(show_spinner=False)
+def _encoded_logo(steelmaker: str) -> str | None:
+    """Return the base64-encoded logo bytes for ``steelmaker``, cached across reruns."""
+    logo_path = get_steelmaker_logo_path(steelmaker)
+    if logo_path is None:
+        return None
+    return base64.b64encode(logo_path.read_bytes()).decode("ascii")
+
+
 def steelmaker_label_html(
     steelmaker: str,
     text: str | None = None,
@@ -265,10 +275,9 @@ def steelmaker_label_html(
 ) -> str:
     """Return normal inline text with the steelmaker logo beside it."""
     display_text = text or steelmaker
-    logo_path = get_steelmaker_logo_path(steelmaker)
+    encoded = _encoded_logo(steelmaker)
     image_html = ""
-    if logo_path is not None:
-        encoded = base64.b64encode(logo_path.read_bytes()).decode("ascii")
+    if encoded is not None:
         image_html = (
             f"<img src='data:image/png;base64,{encoded}' "
             f"alt='{escape(steelmaker)} logo' "
@@ -317,10 +326,9 @@ def steelmaker_header_html(
 ) -> str:
     """Return inline header HTML with a centered steelmaker logo and title text."""
     heading_level = min(max(heading_level, 1), 6)
-    logo_path = get_steelmaker_logo_path(steelmaker)
+    encoded = _encoded_logo(steelmaker)
     image_html = ""
-    if logo_path is not None:
-        encoded = base64.b64encode(logo_path.read_bytes()).decode("ascii")
+    if encoded is not None:
         image_html = (
             f"<img src='data:image/png;base64,{encoded}' "
             f"alt='{escape(steelmaker)} logo' "
