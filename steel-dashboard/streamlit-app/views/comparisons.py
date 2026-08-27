@@ -478,7 +478,7 @@ def _render_tab_period() -> None:
 def _render_tab_steelmaker() -> None:
     # Single Steelmaker: a comprehensive summary of all selected metrics across all
     # selected periods for one steelmaker, useful for viewing everything at once.
-    summary_steelmaker = selected_steelmakers[0]
+    summary_steelmaker = base_steelmaker
     name = STEELMAKER_NAMES.get(summary_steelmaker, summary_steelmaker)
     st.markdown(
         steelmaker_header_html(
@@ -492,7 +492,10 @@ def _render_tab_steelmaker() -> None:
         unsafe_allow_html=True
     )
     st.markdown("<hr style='border:1px solid #808080; margin:0.5rem 0 1rem 0;'>", unsafe_allow_html=True)
-    st.caption("When multiple steelmakers are selected, this shows the first one in the selection.")
+    st.caption(
+        "When multiple steelmakers are selected, the summary is provided for the comparison steelmaker if one was chosen. "
+        "Otherwise, it is shown for the first steelmaker in the selection."
+    )
     metric_order: list[str] = []
     summary_rows = []
     for metric in visible_metrics:
