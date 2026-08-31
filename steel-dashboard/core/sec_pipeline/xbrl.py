@@ -66,6 +66,19 @@ DURATION_METRICS: dict[str, list[str]] = {
         "PaymentsToAcquirePropertyPlantAndEquipment",
         "PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
     ],
+    "Interest Expense": [
+        "InterestExpenseNonoperating",
+        "InterestExpense",
+        "InterestCostsIncurred",
+        "InterestExpenseDebt",
+        "InterestIncomeExpenseNonoperatingNet",
+        "InterestIncomeExpenseNet",
+        "InterestAndOtherFinancingCosts",
+        "InterestAndOtherFinancingCostsNonOperating",
+        "InterestCosts",
+        "InterestExpenseNonOperatingNet",
+        "InterestExpenseDebtNonOperating",
+    ],
 }
 
 INSTANT_METRICS: dict[str, list[str]] = {

@@ -42,6 +42,10 @@ AUTO_METRICS = [
     "Net Income Attributable to Stockholders",
     "Earnings Per Share",
     "Long-Term Debt",
+    "Current Maturities",
+    "Cash & Cash Equivalents",
+    "Short-Term Investments",
+    "Interest Expense",
     "Operating Cash Flow",
     "Capital Expenditures",
 ]
@@ -294,6 +298,7 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
                 "Short-Term Investments",
                 "Total Liquidity",
                 "Net Debt",
+                "Interest Expense",
                 "Operating Cash Flow",
                 "Capital Expenditures",
                 "Free Cash Flow",

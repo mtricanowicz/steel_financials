@@ -1,19 +1,32 @@
 {
   "requested_steelmakers": [
     "NUE",
-    "CMC"
+    "STLD",
+    "CLF",
+    "CMC",
+    "X"
   ],
   "requested_years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
     2026
   ],
   "requested_periods": [
     "Q1",
-    "Q2"
+    "Q2",
+    "Q3",
+    "Q4",
+    "FY"
   ],
   "exclude_future_periods": true,
-  "summary_rows": 20,
-  "detail_rows": 2,
+  "summary_rows": 55,
+  "detail_rows": 116,
   "reason_counts": {
-    "NO_AUTO_VALUE": 2
+    "NO_AUTO_VALUE": 116
   }
 }

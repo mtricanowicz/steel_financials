@@ -83,6 +83,7 @@ CURRENCY_METRICS = [
     "Short-Term Investments",
     "Total Liquidity",
     "Net Debt",
+    "Interest Expense",
     "Operating Cash Flow",
     "Capital Expenditures",
     "Free Cash Flow",
@@ -139,6 +140,7 @@ METRIC_GROUPS = {
         "Short-Term Investments",
         "Total Liquidity",
         "Net Debt",
+        "Interest Expense",
     ],
     "Cash Flow": [
         "Operating Cash Flow",
@@ -162,6 +164,7 @@ METRIC_DEFINITIONS: list[tuple[str, str]] = [
     ("Short-Term Investments", "Total short-term investments."),
     ("Total Liquidity", "Cash & Cash Equivalents plus Short-Term Investments."),
     ("Net Debt", "Total Debt minus Total Liquidity."),
+    ("Interest Expense", "Total interest paid on debt obligations."),
     ("Operating Cash Flow", "Net cash provided by operating activities during the period."),
     ("Capital Expenditures", "Cash outflows for property, equipment, and other long-lived assets."),
     ("Free Cash Flow", "Operating Cash Flow minus Capital Expenditures."),
@@ -351,7 +354,7 @@ def get_about_sidebar_html() -> str:
     return """
     <div style="font-size: 0.875rem;">
         <p>
-            Explore U.S. commodity steel producer financial performance through clear and accessible
+            Explore publicly traded U.S. commodity steel producer financial performance through clear and accessible
             comparisons and the latest full-year and quarterly metrics.
         </p>
         <p>
