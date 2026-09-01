@@ -913,7 +913,10 @@ def extract_metric(
                 period,
                 enable_fp_fallback=enable_fp_fallback,
             )
-            if value is not None:
+            if metric == "Interest Expense":
+                if value is not None:
+                    return abs(value)
+            elif value is not None:
                 return value
 
         if metric not in NON_ADDITIVE_DURATION_METRICS:

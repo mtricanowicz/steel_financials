@@ -22,7 +22,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 353000000.0,
     "Net Debt": 1761000000.0,
-    "Interest Expense": -101000000.0,
+    "Interest Expense": 101000000.0,
     "Operating Cash Flow": 568000000.0,
     "Capital Expenditures": 656000000.0,
     "Free Cash Flow": -88000000.0
@@ -50,7 +50,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 430200000.0,
     "Net Debt": 1656800000.0,
-    "Interest Expense": -25100000.0,
+    "Interest Expense": 25100000.0,
     "Operating Cash Flow": -111200000.0,
     "Capital Expenditures": 134100000.0,
     "Free Cash Flow": -245300000.0
@@ -78,7 +78,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 377200000.0,
     "Net Debt": 1727300000.0,
-    "Interest Expense": -26100000.0,
+    "Interest Expense": 26100000.0,
     "Operating Cash Flow": 262300000.0,
     "Capital Expenditures": 166800000.0,
     "Free Cash Flow": 95500000.0
@@ -106,7 +106,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 399300000.0,
     "Net Debt": 1709800000.0,
-    "Interest Expense": -25300000.0,
+    "Interest Expense": 25300000.0,
     "Operating Cash Flow": 237000000.0,
     "Capital Expenditures": 159800000.0,
     "Free Cash Flow": 77200000.0
@@ -134,7 +134,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 353000000.0,
     "Net Debt": 1761000000.0,
-    "Interest Expense": -24500000.0,
+    "Interest Expense": 24500000.0,
     "Operating Cash Flow": 179900000.0,
     "Capital Expenditures": 195300000.0,
     "Free Cash Flow": -15400000.0
@@ -162,7 +162,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 112000000.0,
     "Net Debt": 5346000000.0,
-    "Interest Expense": -238000000.0,
+    "Interest Expense": 238000000.0,
     "Operating Cash Flow": -258000000.0,
     "Capital Expenditures": 525000000.0,
     "Free Cash Flow": -783000000.0
@@ -190,7 +190,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 187000000.0,
     "Net Debt": 4177400000.0,
-    "Interest Expense": -31000000.0,
+    "Interest Expense": 31000000.0,
     "Operating Cash Flow": -164000000.0,
     "Capital Expenditures": 138000000.0,
     "Free Cash Flow": -302000000.0
@@ -218,7 +218,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 74000000.0,
     "Net Debt": 5384000000.0,
-    "Interest Expense": -69000000.0,
+    "Interest Expense": 69000000.0,
     "Operating Cash Flow": -134000000.0,
     "Capital Expenditures": 145000000.0,
     "Free Cash Flow": -279000000.0
@@ -246,7 +246,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 56000000.0,
     "Net Debt": 5402000000.0,
-    "Interest Expense": -68000000.0,
+    "Interest Expense": 68000000.0,
     "Operating Cash Flow": 247000000.0,
     "Capital Expenditures": 96000000.0,
     "Free Cash Flow": 151000000.0
@@ -274,7 +274,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 112000000.0,
     "Net Debt": 5346000000.0,
-    "Interest Expense": -70000000.0,
+    "Interest Expense": 70000000.0,
     "Operating Cash Flow": -207000000.0,
     "Capital Expenditures": 146000000.0,
     "Free Cash Flow": -353000000.0
@@ -302,7 +302,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 48000000.0,
     "Net Debt": 5224000000.0,
-    "Interest Expense": -337000000.0,
+    "Interest Expense": 337000000.0,
     "Operating Cash Flow": 2785000000.0,
     "Capital Expenditures": 705000000.0,
     "Free Cash Flow": 2080000000.0
@@ -330,7 +330,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 110000000.0,
     "Net Debt": 5348000000.0,
-    "Interest Expense": -92000000.0,
+    "Interest Expense": 92000000.0,
     "Operating Cash Flow": -379000000.0,
     "Capital Expenditures": 136000000.0,
     "Free Cash Flow": -515000000.0
@@ -358,7 +358,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 73000000.0,
     "Net Debt": 5385000000.0,
-    "Interest Expense": -85000000.0,
+    "Interest Expense": 85000000.0,
     "Operating Cash Flow": 511000000.0,
     "Capital Expenditures": 162000000.0,
     "Free Cash Flow": 349000000.0
@@ -386,7 +386,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 42000000.0,
     "Net Debt": 5408000000.0,
-    "Interest Expense": -81000000.0,
+    "Interest Expense": 81000000.0,
     "Operating Cash Flow": 1516000000.0,
     "Capital Expenditures": 175000000.0,
     "Free Cash Flow": 1341000000.0
@@ -414,7 +414,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 48000000.0,
     "Net Debt": 5224000000.0,
-    "Interest Expense": -79000000.0,
+    "Interest Expense": 79000000.0,
     "Operating Cash Flow": 1137000000.0,
     "Capital Expenditures": 232000000.0,
     "Free Cash Flow": 905000000.0
@@ -442,7 +442,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 26000000.0,
     "Net Debt": 4223000000.0,
-    "Interest Expense": -276000000.0,
+    "Interest Expense": 276000000.0,
     "Operating Cash Flow": 2423000000.0,
     "Capital Expenditures": 943000000.0,
     "Free Cash Flow": 1480000000.0
@@ -470,7 +470,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 35000000.0,
     "Net Debt": 4993000000.0,
-    "Interest Expense": -77000000.0,
+    "Interest Expense": 77000000.0,
     "Operating Cash Flow": 533000000.0,
     "Capital Expenditures": 236000000.0,
     "Free Cash Flow": 297000000.0
@@ -498,7 +498,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 47000000.0,
     "Net Debt": 4621000000.0,
-    "Interest Expense": -64000000.0,
+    "Interest Expense": 64000000.0,
     "Operating Cash Flow": 865000000.0,
     "Capital Expenditures": 232000000.0,
     "Free Cash Flow": 633000000.0
@@ -526,7 +526,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 56000000.0,
     "Net Debt": 4419000000.0,
-    "Interest Expense": -64000000.0,
+    "Interest Expense": 64000000.0,
     "Operating Cash Flow": 536000000.0,
     "Capital Expenditures": 248000000.0,
     "Free Cash Flow": 288000000.0
@@ -554,7 +554,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 26000000.0,
     "Net Debt": 4223000000.0,
-    "Interest Expense": -71000000.0,
+    "Interest Expense": 71000000.0,
     "Operating Cash Flow": 489000000.0,
     "Capital Expenditures": 227000000.0,
     "Free Cash Flow": 262000000.0
@@ -582,7 +582,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 198000000.0,
     "Net Debt": 2939000000.0,
-    "Interest Expense": -289000000.0,
+    "Interest Expense": 289000000.0,
     "Operating Cash Flow": 2267000000.0,
     "Capital Expenditures": 646000000.0,
     "Free Cash Flow": 1621000000.0
@@ -610,7 +610,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 59000000.0,
     "Net Debt": 4500000000.0,
-    "Interest Expense": -77000000.0,
+    "Interest Expense": 77000000.0,
     "Operating Cash Flow": -39000000.0,
     "Capital Expenditures": 188000000.0,
     "Free Cash Flow": -227000000.0
@@ -638,7 +638,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 34000000.0,
     "Net Debt": 3929000000.0,
-    "Interest Expense": -79000000.0,
+    "Interest Expense": 79000000.0,
     "Operating Cash Flow": 887000000.0,
     "Capital Expenditures": 131000000.0,
     "Free Cash Flow": 756000000.0
@@ -666,7 +666,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 31000000.0,
     "Net Debt": 3427000000.0,
-    "Interest Expense": -70000000.0,
+    "Interest Expense": 70000000.0,
     "Operating Cash Flow": 767000000.0,
     "Capital Expenditures": 162000000.0,
     "Free Cash Flow": 605000000.0
@@ -694,7 +694,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 198000000.0,
     "Net Debt": 2939000000.0,
-    "Interest Expense": -63000000.0,
+    "Interest Expense": 63000000.0,
     "Operating Cash Flow": 652000000.0,
     "Capital Expenditures": 165000000.0,
     "Free Cash Flow": 487000000.0
@@ -722,7 +722,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 60000000.0,
     "Net Debt": 7005000000.0,
-    "Interest Expense": -370000000.0,
+    "Interest Expense": 370000000.0,
     "Operating Cash Flow": 105000000.0,
     "Capital Expenditures": 695000000.0,
     "Free Cash Flow": -590000000.0
@@ -750,7 +750,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 30000000.0,
     "Net Debt": 3634000000.0,
-    "Interest Expense": -64000000.0,
+    "Interest Expense": 64000000.0,
     "Operating Cash Flow": 142000000.0,
     "Capital Expenditures": 182000000.0,
     "Free Cash Flow": -40000000.0
@@ -778,7 +778,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 110000000.0,
     "Net Debt": 3397000000.0,
-    "Interest Expense": -69000000.0,
+    "Interest Expense": 69000000.0,
     "Operating Cash Flow": 519000000.0,
     "Capital Expenditures": 157000000.0,
     "Free Cash Flow": 362000000.0
@@ -806,7 +806,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 39000000.0,
     "Net Debt": 3735000000.0,
-    "Interest Expense": -102000000.0,
+    "Interest Expense": 102000000.0,
     "Operating Cash Flow": -84000000.0,
     "Capital Expenditures": 151000000.0,
     "Free Cash Flow": -235000000.0
@@ -834,7 +834,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 60000000.0,
     "Net Debt": 7005000000.0,
-    "Interest Expense": -135000000.0,
+    "Interest Expense": 135000000.0,
     "Operating Cash Flow": -472000000.0,
     "Capital Expenditures": 205000000.0,
     "Free Cash Flow": -677000000.0
@@ -862,7 +862,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 63000000.0,
     "Net Debt": 7190000000.0,
-    "Interest Expense": -594000000.0,
+    "Interest Expense": 594000000.0,
     "Operating Cash Flow": -462000000.0,
     "Capital Expenditures": 561000000.0,
     "Free Cash Flow": -1023000000.0
@@ -890,7 +890,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 63000000.0,
     "Net Debt": 7538000000.0,
-    "Interest Expense": -140000000.0,
+    "Interest Expense": 140000000.0,
     "Operating Cash Flow": -351000000.0,
     "Capital Expenditures": 152000000.0,
     "Free Cash Flow": -503000000.0
@@ -918,7 +918,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 68000000.0,
     "Net Debt": 7659000000.0,
-    "Interest Expense": -149000000.0,
+    "Interest Expense": 149000000.0,
     "Operating Cash Flow": 45000000.0,
     "Capital Expenditures": 112000000.0,
     "Free Cash Flow": -67000000.0
@@ -946,7 +946,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 73000000.0,
     "Net Debt": 7966000000.0,
-    "Interest Expense": -153000000.0,
+    "Interest Expense": 153000000.0,
     "Operating Cash Flow": -143000000.0,
     "Capital Expenditures": 157000000.0,
     "Free Cash Flow": -300000000.0
@@ -974,7 +974,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 63000000.0,
     "Net Debt": 7190000000.0,
-    "Interest Expense": -152000000.0,
+    "Interest Expense": 152000000.0,
     "Operating Cash Flow": -13000000.0,
     "Capital Expenditures": 140000000.0,
     "Free Cash Flow": -153000000.0
@@ -1002,7 +1002,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 52000000.0,
     "Net Debt": 7711000000.0,
-    "Interest Expense": -148000000.0,
+    "Interest Expense": 148000000.0,
     "Operating Cash Flow": -325000000.0,
     "Capital Expenditures": 152000000.0,
     "Free Cash Flow": -477000000.0
@@ -1030,7 +1030,7 @@
     "Short-Term Investments": null,
     "Total Liquidity": 76000000.0,
     "Net Debt": 7627000000.0,
-    "Interest Expense": -156000000.0,
+    "Interest Expense": 156000000.0,
     "Operating Cash Flow": 230000000.0,
     "Capital Expenditures": 157000000.0,
     "Free Cash Flow": 73000000.0
