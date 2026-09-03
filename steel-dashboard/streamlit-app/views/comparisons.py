@@ -146,7 +146,7 @@ with st.expander("Set filters", expanded=True):
                 else False
             )
             base_steelmaker = (
-                st.selectbox("Select Steelmaker to compare against:", selected_steelmakers)
+                st.selectbox("Select Steelmaker to compare against:", selected_steelmakers, index = "NUE" in selected_steelmakers and selected_steelmakers.index("NUE") or 0)
                 if compare
                 else selected_steelmakers[0]
             )

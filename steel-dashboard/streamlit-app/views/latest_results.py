@@ -9,7 +9,7 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
-from lib.data import load_financials, split_by_period
+from lib.data import load_financials, split_by_period, load_insights
 from lib.formatting import (
     DISPLAY_EXCLUDED_METRICS,
     METRIC_GROUPS,
@@ -22,6 +22,7 @@ from lib.formatting import (
     pct_diff,
     scale_metric_for_display,
     steelmaker_label_html,
+    steelmaker_header_html,
 )
 
 st.header(":material/calendar_today: Latest Results")
@@ -31,6 +32,9 @@ st.header(":material/calendar_today: Latest Results")
 def show_metric_definitions() -> None:
     for metric, definition in METRIC_DEFINITIONS:
         st.markdown(f"**{metric}** - {definition}")
+
+
+insights = load_insights()
 
 
 financials = load_financials()
@@ -75,7 +79,11 @@ with col_b:
         if len(selected_steelmakers) > 1
         else False
     )
-    base_steelmaker = st.selectbox("Select Steelmaker to compare against:", selected_steelmakers) if compare else selected_steelmakers[0]
+    base_steelmaker = st.selectbox(
+        "Select Steelmaker to compare against:",
+        selected_steelmakers,
+        index = "NUE" in selected_steelmakers and selected_steelmakers.index("NUE") or 0
+    ) if compare else selected_steelmakers[0]
     if st.button("Show definitions of the metrics", icon=":material/dictionary:", width="stretch"):
         show_metric_definitions()
 
@@ -165,6 +173,8 @@ def render(data: pd.DataFrame, title: str) -> None:
     use_aligned_quarters = title == "Most recent quarter"
     _, _, period_col = _period_columns(data, use_aligned_quarters=use_aligned_quarters)
     latest = max(_dedupe_aligned_rows(data.copy(), period_col)[period_col])
+    latest_year = latest[:4]
+    latest_quarter = latest[4:]
     st.subheader(f"{title}: {latest}", divider="gray")
     if use_aligned_quarters:
         st.caption("Quarterly results are grouped by aligned peer quarter. Each steelmaker header shows its true reported fiscal quarter when available.")
@@ -178,6 +188,34 @@ def render(data: pd.DataFrame, title: str) -> None:
         st.dataframe(summary.style.map(color_positive_negative, subset=color_cols), width="stretch")
     else:
         st.dataframe(summary, width="stretch")
+    with st.expander(f"Review {latest} insights", expanded=False, icon=":material/emoji_objects:"):
+        insight_steelmaker = st.pills(
+            label = None,
+            options = selected_steelmakers,
+            default = "NUE" if "NUE" in selected_steelmakers else selected_steelmakers[0],
+            selection_mode = "single",
+            required = True,
+            width="stretch",
+            key=f"latest_insights_{title}"
+        )
+        name = STEELMAKER_NAMES.get(insight_steelmaker, insight_steelmaker)
+        st.markdown(
+            steelmaker_header_html(
+                insight_steelmaker,
+                f"{name} ({insight_steelmaker}) | {latest_year}{latest_quarter}",
+                heading_level=3,
+                logo_height_em=2.00,
+                logo_before_text=True,
+                gap_rem=0.55,
+            ),
+            unsafe_allow_html=True,
+        )
+        st.markdown("<div style='border-bottom:1px solid rgba(49, 51, 63, 0.2); margin:0 0 1rem 0;'></div>", unsafe_allow_html=True)
+        summary = insights.get(insight_steelmaker, {}).get(latest_year, {}).get(latest_quarter)
+        if summary:
+            st.markdown(summary)
+        else:
+            st.error("No summary is available for the selected period.", icon=":material/report:")
 
 
 with col_a:
