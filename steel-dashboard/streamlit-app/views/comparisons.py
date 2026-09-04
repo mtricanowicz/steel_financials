@@ -24,6 +24,7 @@ from lib.formatting import (
     METRIC_GROUPS,
     MILLIONS_METRICS,
     PERCENT_METRICS,
+    STREAMLIT_WIDGET_WRAP,
     color_positive_negative,
     display_metric_name,
     format_metric_value,
@@ -33,7 +34,7 @@ from lib.formatting import (
     steelmaker_header_html,
 )
 
-st.header(":material/finance_mode: Filtered Comparisons")
+st.header(":material/finance_mode: Financial Metrics")
 
 
 @st.dialog("Metric Definitions", width="large")
@@ -76,19 +77,33 @@ with st.expander("Set filters", expanded=True):
     with st.container(border=True):
         col1, col2, col3 = st.columns([1, 3, 1])
         with col1:
-            data_type = st.radio("View Full Year or Quarterly data?", ["Full Year", "Quarterly"], horizontal=True)
+            data_type = st.radio(
+                "View Full Year or Quarterly data?",
+                ["Full Year", "Quarterly"],
+                horizontal=True,
+            )
         data = fy_data if data_type == "Full Year" else q_data
         period_year_col, period_quarter_col, period_col = _period_columns(data_type, data)
 
         years = sorted(data[period_year_col].dropna().unique())
         with col2:
-            selected_years = st.multiselect("Select Years for comparison:", years, default=years)
+            selected_years = st.multiselect(
+                "Select Years for comparison:",
+                years,
+                default=years,
+                wrap=STREAMLIT_WIDGET_WRAP,
+            )
         selected_years = selected_years or years
 
         with col3:
             if data_type == "Quarterly":
                 quarters = sorted(data[period_quarter_col].dropna().unique())
-                selected_quarters = st.multiselect("Select Quarters for comparison:", quarters, default=quarters)
+                selected_quarters = st.multiselect(
+                    "Select Quarters for comparison:",
+                    quarters,
+                    default=quarters,
+                    wrap=STREAMLIT_WIDGET_WRAP,
+                )
                 selected_quarters = selected_quarters or quarters
             else:
                 selected_quarters = ["FY"]
@@ -119,7 +134,12 @@ with st.expander("Set filters", expanded=True):
             steelmaker_options = steelmakers
             default_steelmakers = steelmaker_options
         with col5:
-            selected_steelmakers = st.multiselect("Add or remove Steelmakers to compare:", steelmaker_options, default=default_steelmakers)
+            selected_steelmakers = st.multiselect(
+                "Add or remove Steelmakers to compare:",
+                steelmaker_options,
+                default=default_steelmakers,
+                wrap=STREAMLIT_WIDGET_WRAP,
+            )
             selected_steelmakers = selected_steelmakers or ["NUE"]
             st.markdown(
                 " | ".join(
@@ -177,6 +197,7 @@ with st.expander("Set filters", expanded=True):
                 "Add or remove Metrics to compare:",
                 metric_options,
                 default=default_metrics,
+                wrap=STREAMLIT_WIDGET_WRAP,
                 format_func=display_metric_name,
             )
         with col9:

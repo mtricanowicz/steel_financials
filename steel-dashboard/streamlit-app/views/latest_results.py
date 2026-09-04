@@ -16,6 +16,7 @@ from lib.formatting import (
     STEELMAKER_GROUPS,
     STEELMAKER_NAMES,
     METRIC_DEFINITIONS,
+    STREAMLIT_WIDGET_WRAP,
     color_positive_negative,
     display_metric_name,
     format_metric_value,
@@ -71,7 +72,12 @@ with col_b:
     else:
         steelmakers_options = steelmakers
         default_steelmakers = steelmakers_options
-    selected_steelmakers = st.multiselect("Add or remove Steelmakers to compare:", steelmakers_options, default=default_steelmakers)
+    selected_steelmakers = st.multiselect(
+        "Add or remove Steelmakers to compare:",
+        steelmakers_options,
+        default=default_steelmakers,
+        wrap=STREAMLIT_WIDGET_WRAP,
+    )
     selected_steelmakers = selected_steelmakers or steelmakers_options[:1]
     st.markdown("<br>".join([steelmaker_label_html(steelmaker, text=f"{STEELMAKER_NAMES.get(steelmaker, steelmaker)} ({steelmaker})", logo_height_em=0.95, logo_before_text=True, gap_rem=0.25) for steelmaker in selected_steelmakers]), unsafe_allow_html=True)
     compare = (
@@ -196,7 +202,7 @@ def render(data: pd.DataFrame, title: str) -> None:
             selection_mode = "single",
             required = True,
             width="stretch",
-            key=f"latest_insights_{title}"
+            key=f"latest_insights_{title}",
         )
         name = STEELMAKER_NAMES.get(insight_steelmaker, insight_steelmaker)
         st.markdown(

@@ -148,10 +148,10 @@ _VIEWS = _APP_DIR / "views"
 
 # List of pages for the app.
 pages = [
-    st.Page(str(_VIEWS / "comparisons.py"), title="Filtered Comparisons", icon=":material/finance_mode:", default=True),
+    st.Page(str(_VIEWS / "comparisons.py"), title="Financial Metrics", icon=":material/finance_mode:", default=True),
+    st.Page(str(_VIEWS / "insights.py"), title="Insights", icon=":material/emoji_objects:"),
     st.Page(str(_VIEWS / "latest_results.py"), title="Latest Results", icon=":material/calendar_today:"),
 #   st.Page(str(_VIEWS / "share_repurchases.py"), title="Share Repurchases", icon=":material/paid:"),
-    st.Page(str(_VIEWS / "insights.py"), title="Insights", icon=":material/emoji_objects:"),
 ]
 
 # Register the pages without the sidebar nav, then render a compact link row
