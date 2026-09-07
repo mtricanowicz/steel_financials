@@ -24,7 +24,12 @@ No active `web/` front end is present in this workspace.
 ## Data flow
 
 1. `core/scripts/build_data.py` builds `data/generated/financials.json` and `data/generated/buybacks.json`.
-2. `core/sec_pipeline.pipeline` builds `data/generated/insights.json`.
+2. `core/sec_pipeline.pipeline` builds `data/generated/insights.json` from periodic
+   filings plus material 8-K exhibits, using exhibit-aware provenance and weighted
+   multi-query retrieval with a dedicated forward-guidance recall channel.
+   Summary generation retries once with a compact steel-specific prompt when the
+   model reaches its completion token cap, and rejects a second capped response
+   rather than saving truncated output.
 3. `streamlit-app` reads those generated files directly.
 4. `quotes-api` serves live quotes and historical close series used by the app.
 

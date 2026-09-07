@@ -50,7 +50,9 @@ SUMMARIES_PATH = GENERATED_DIR / "insights.json"
 SEC_USER_AGENT = os.getenv("SEC_USER_AGENT", "Steel Dashboard contact@example.com")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 EMBEDDING_BACKEND = os.getenv("EMBEDDING_BACKEND", "local").lower()
-OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini")
+OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4.1-mini")
+SUMMARY_TEMPERATURE = float(os.getenv("SUMMARY_TEMPERATURE", "0.55"))
+SUMMARY_SEED = int(os.getenv("SUMMARY_SEED", "7"))
 OPENAI_EMBEDDING_MODEL = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-3-small")
 LOCAL_EMBEDDING_MODEL = os.getenv(
     "LOCAL_EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2"
@@ -122,12 +124,15 @@ class PeriodSpec:
     def date_window(self) -> tuple[datetime, datetime]:
         """Start and end dates that bound the filings for this period.
 
-        The end date is padded to capture filings released after period close
-        (up to ~2 months for annual, ~1 month for quarterly).
+        This calendar-based window is a compatibility fallback. The pipeline
+        uses filing report dates and issuer fiscal-year ends when available.
+        Q4 and FY retain a three-month filing grace period for annual reports.
         """
-        if self.period == "FY":
+        if self.period in {"Q4", "FY"}:
             start_month, end_month = 1, 12
-            pad = relativedelta(months=2)
+            if self.period == "Q4":
+                start_month = 10
+            pad = relativedelta(months=3)
         else:
             end_month = int(self.period[-1]) * 3
             start_month = end_month - 2
@@ -135,6 +140,11 @@ class PeriodSpec:
         start = datetime(self.year, start_month, 1)
         end = datetime(self.year, end_month, calendar.monthrange(self.year, end_month)[1]) + pad
         return start, end
+
+    def period_end(self) -> datetime:
+        """Return the actual reporting-period end, excluding filing grace."""
+        end_month = 12 if self.period in {"Q4", "FY"} else int(self.period[-1]) * 3
+        return datetime(self.year, end_month, calendar.monthrange(self.year, end_month)[1])
 
 
 def build_periods(years: Iterable[int], periods: Iterable[str]) -> list[PeriodSpec]:

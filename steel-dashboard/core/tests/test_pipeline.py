@@ -7,13 +7,14 @@ import pytest
 
 from sec_pipeline.chunk import chunk_text
 from sec_pipeline.config import PeriodSpec, build_periods
-from sec_pipeline.edgar_client import Filing, _RateLimiter
+from sec_pipeline.edgar_client import Exhibit, Filing, _RateLimiter
 from sec_pipeline.parse import clean_text, html_to_text
 from sec_pipeline.pipeline import (
     _expected_report_date,
     _filings_by_filing_window,
     _filings_by_report_date,
     _infer_fiscal_year_end,
+    build_period_chunks,
 )
 from scripts.build_data import add_derived
 from sec_pipeline.xbrl import extract_financials, extract_metric
@@ -66,12 +67,66 @@ class TestPeriodSpec:
     def test_fy_window_spans_year(self):
         start, end = PeriodSpec(2024, "FY").date_window()
         assert start == datetime(2024, 1, 1)
-        assert end.year == 2025  # padded into the next year
+        assert end == datetime(2025, 3, 31)
+
+    def test_q4_window_includes_late_annual_filings(self):
+        start, end = PeriodSpec(2024, "Q4").date_window()
+        assert start == datetime(2024, 10, 1)
+        assert end == datetime(2025, 3, 31)
+
+    def test_period_end_excludes_filing_grace_period(self):
+        assert PeriodSpec(2024, "Q4").period_end() == datetime(2024, 12, 31)
+        assert PeriodSpec(2024, "FY").period_end() == datetime(2024, 12, 31)
+        assert PeriodSpec(2024, "Q2").period_end() == datetime(2024, 6, 30)
 
     def test_build_periods_cartesian(self):
         specs = build_periods([2023, 2024], ["Q1", "FY"])
         assert len(specs) == 4
         assert PeriodSpec(2023, "Q1") in specs
+
+
+def test_build_period_chunks_keeps_8k_exhibit_provenance():
+    filing = Filing("0000000000-24-000001", "8-K", datetime(2024, 7, 23), "cover.htm")
+
+    class Client:
+        def list_filings(self, *args):
+            return [filing]
+
+        def fetch_document(self, *args):
+            return b"The cover filing incorporates an earnings release."
+
+        def list_exhibits(self, *args):
+            return [Exhibit("earnings-release.htm", "EX-99.1")]
+
+        def fetch_exhibit(self, *args):
+            return b"Management expects next-quarter shipments to rise 5% to 7%."
+
+    chunks, _ = build_period_chunks(Client(), "0000000000", PeriodSpec(2024, "Q2"))
+    assert {chunk.metadata["source_id"] for chunk in chunks} == {
+        "8-K:0000000000-24-000001",
+        "8-K:0000000000-24-000001:EX-99.1",
+    }
+    exhibit_chunk = next(chunk for chunk in chunks if chunk.metadata["exhibit_type"] == "EX-99.1")
+    assert "next-quarter shipments" in exhibit_chunk.text
+
+
+def test_build_period_chunks_keeps_primary_when_exhibit_index_fails():
+    filing = Filing("0000000000-24-000002", "8-K", datetime(2024, 7, 23), "cover.htm")
+
+    class Client:
+        def list_filings(self, *args):
+            return [filing]
+
+        def fetch_document(self, *args):
+            return b"The primary 8-K filing remains available."
+
+        def list_exhibits(self, *args):
+            raise RuntimeError("SEC filing index unavailable")
+
+    chunks, _ = build_period_chunks(Client(), "0000000000", PeriodSpec(2024, "Q2"))
+
+    assert len(chunks) == 1
+    assert chunks[0].metadata["source_id"] == "8-K:0000000000-24-000002"
 
 
 class TestRateLimiter:
@@ -86,6 +141,31 @@ class TestRateLimiter:
 
 
 class TestInsightsFilingSelection:
+    def test_build_period_chunks_keeps_8k_exhibit_provenance(self):
+        filing = Filing("0000000000-24-000001", "8-K", datetime(2024, 7, 23), "cover.htm")
+
+        class Client:
+            def list_filings(self, *args):
+                return [filing]
+
+            def fetch_document(self, *args):
+                return b"The cover filing incorporates an earnings release."
+
+            def list_exhibits(self, *args):
+                return [Exhibit("earnings-release.htm", "EX-99.1")]
+
+            def fetch_exhibit(self, *args):
+                return b"Management expects shipments of 2.0 to 2.2 million tons next quarter."
+
+        chunks, _ = build_period_chunks(Client(), "0000000000", PeriodSpec(2024, "Q2"))
+
+        assert {chunk.metadata["source_id"] for chunk in chunks} == {
+            "8-K:0000000000-24-000001",
+            "8-K:0000000000-24-000001:EX-99.1",
+        }
+        exhibit_chunk = next(chunk for chunk in chunks if chunk.metadata["exhibit_type"] == "EX-99.1")
+        assert "shipments of 2.0 to 2.2 million tons" in exhibit_chunk.text
+
     def test_infers_calendar_fiscal_year_end_from_10k(self):
         filings = [
             Filing(
@@ -189,6 +269,24 @@ class TestInsightsFilingSelection:
         selected = _filings_by_filing_window(filings, spec, fiscal_end)
         assert len(selected) == 1
         assert selected[0].filing_date == datetime(2026, 8, 5)
+
+    def test_q4_window_uses_offset_fiscal_year_end_and_annual_grace_period(self):
+        fiscal_end = datetime(2000, 8, 31)
+        spec = PeriodSpec(2026, "Q4")
+        filings = [
+            Filing("0000000000-26-000201", "8-K", datetime(2026, 6, 15), "q4-release.htm"),
+            Filing("0000000000-26-000202", "10-K", datetime(2026, 10, 30), "annual.htm"),
+            Filing("0000000000-26-000203", "8-K", datetime(2026, 11, 20), "annual-release.htm"),
+            Filing("0000000000-26-000204", "8-K", datetime(2026, 12, 1), "next-quarter.htm"),
+        ]
+
+        selected = _filings_by_filing_window(filings, spec, fiscal_end)
+
+        assert [filing.accession for filing in selected] == [
+            "0000000000-26-000201",
+            "0000000000-26-000202",
+            "0000000000-26-000203",
+        ]
 
 
 class TestXbrlFiscalFallback:

@@ -9,7 +9,7 @@ The multipage app is registered in [app.py](app.py) and currently exposes:
 | Page | Source | Description |
 | --- | --- | --- |
 | Filtered Comparisons | `views/comparisons.py` | Compare selected metrics across steelmakers and periods with tables, line charts, and peer-difference bars. |
-| Insights | `views/insights.py` | Precomputed filing-based narrative insights. |
+| Insights | `views/insights.py` | Precomputed insights from weighted multi-query RAG over periodic filings and material 8-K exhibits, including separate material-event and forward-guidance recall channels. |
 | Latest Results | `views/latest_results.py` | Latest quarterly and full-year snapshots across selected steelmakers. |
 
 `share_repurchases.py` remains in the tree and in smoke tests, but it is not currently linked in the top-level page navigation.

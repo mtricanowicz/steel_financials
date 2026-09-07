@@ -80,24 +80,40 @@ def _filings_by_filing_window(
     for filing in filings:
         if filing.form not in config.RELEVANT_FORMS:
             continue
-        lag_days = _FORM_FILING_LAG_DAYS.get(filing.form, 70)
-        start = target - relativedelta(days=_WINDOW_LEAD_DAYS)
-        end = target + relativedelta(days=lag_days)
+        if spec.period == "Q4":
+            # Include the whole fiscal quarter and the annual-report filing
+            # grace period, regardless of where the issuer's fiscal year ends.
+            start = target - relativedelta(months=3) + relativedelta(days=1)
+            end = target + relativedelta(months=3)
+        elif spec.period == "FY":
+            # An FY view can use periodic filings from its fiscal year plus
+            # annual-report and earnings-release filings after year end.
+            start = target - relativedelta(years=1) + relativedelta(days=1)
+            end = target + relativedelta(months=3)
+        else:
+            lag_days = _FORM_FILING_LAG_DAYS.get(filing.form, 70)
+            start = target - relativedelta(days=_WINDOW_LEAD_DAYS)
+            end = target + relativedelta(days=lag_days)
         if start <= filing.filing_date <= end:
             matched.append(filing)
     return sorted(matched, key=lambda f: f.filing_date)
 
 
 def _select_period_filings(client: EdgarClient, cik: str, spec: config.PeriodSpec) -> list[Filing]:
-    """Period-first filing selection with date-window fallback."""
-    all_filings = [f for f in client.list_filings(cik) if f.form in config.RELEVANT_FORMS]
+    """Select report-date matches plus fiscal-year-aware filing-window results."""
+    if hasattr(client, "list_filings"):
+        all_filings = [f for f in client.list_filings(cik) if f.form in config.RELEVANT_FORMS]
+    elif hasattr(client, "filings_in_window"):
+        start, end = spec.date_window()
+        all_filings = list(client.filings_in_window(cik, start, end, config.RELEVANT_FORMS))
+    else:
+        raise AttributeError(f"Client for {cik!r} must implement list_filings() or filings_in_window()")
     fiscal_year_end = _infer_fiscal_year_end(all_filings)
     primary = _filings_by_report_date(all_filings, spec, fiscal_year_end)
-    if primary:
-        return primary
     fallback = _filings_by_filing_window(all_filings, spec, fiscal_year_end)
-    if fallback:
-        return fallback
+    selected = {filing.accession: filing for filing in [*primary, *fallback]}
+    if selected:
+        return sorted(selected.values(), key=lambda filing: filing.filing_date)
     # Last-resort compatibility fallback to previous behavior.
     start, end = spec.date_window()
     return client.filings_in_window(cik, start, end, config.RELEVANT_FORMS)
@@ -138,14 +154,17 @@ def build_period_chunks(
     """Download and chunk every relevant filing for one ticker-period."""
     filings = _select_period_filings(client, cik, spec)
     chunks: list[Chunk] = []
-    for filing in filings:
-        try:
-            content = client.fetch_document(cik, filing)
-            text = document_to_text(content, filing.primary_document)
-        except Exception as exc:  # noqa: BLE001 - log and continue on a bad doc
-            log.warning("Skipping %s %s: %s", filing.form, filing.accession, exc)
-            continue
-        for piece in chunk_text(text):
+
+    def add_document(
+        content: bytes,
+        filing: Filing,
+        document_name: str,
+        exhibit_type: str | None = None,
+    ) -> None:
+        text = document_to_text(content, document_name)
+        pieces = chunk_text(text)
+        source_suffix = f":{exhibit_type}" if exhibit_type else ""
+        for chunk_index, piece in enumerate(pieces):
             chunks.append(
                 Chunk(
                     text=piece,
@@ -153,12 +172,48 @@ def build_period_chunks(
                         "form": filing.form,
                         "accession": filing.accession,
                         "filing_date": filing.filing_date.strftime("%Y-%m-%d"),
-                        "report_date": filing.report_date.strftime("%Y-%m-%d")
-                        if filing.report_date
-                        else None,
+                        "source_id": f"{filing.form}:{filing.accession}{source_suffix}",
+                        "document_name": document_name,
+                        "exhibit_type": exhibit_type or "",
+                        "reporting_period": spec.label,
+                        "chunk_index": chunk_index,
+                        "chunk_count": len(pieces),
                     },
                 )
             )
+
+    for filing in filings:
+        try:
+            add_document(client.fetch_document(cik, filing), filing, filing.primary_document)
+        except Exception as exc:  # noqa: BLE001 - log and continue on a bad doc
+            log.warning("Skipping %s %s: %s", filing.form, filing.accession, exc)
+            continue
+        try:
+            exhibits = client.list_exhibits(cik, filing)
+        except Exception as exc:  # noqa: BLE001 - retain the primary document
+            log.warning(
+                "Skipping exhibits for %s %s: %s",
+                filing.form,
+                filing.accession,
+                exc,
+            )
+            continue
+        for exhibit in exhibits:
+            try:
+                add_document(
+                    client.fetch_exhibit(cik, filing, exhibit),
+                    filing,
+                    exhibit.filename,
+                    exhibit.exhibit_type,
+                )
+            except Exception as exc:  # noqa: BLE001 - retain the primary document
+                log.warning(
+                    "Skipping %s %s %s: %s",
+                    filing.form,
+                    filing.accession,
+                    exhibit.filename,
+                    exc,
+                )
     return chunks, _representative_report_date(filings)
 
 

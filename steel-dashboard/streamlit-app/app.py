@@ -158,10 +158,9 @@ pages = [
 # below the logo so the available pages stay visible without the sidebar.
 current_page = st.navigation(pages, position="hidden")
 
-# Size each link to its label (plus room for the icon) and push the leftover
-# width into a trailing spacer so the links stay grouped and compact.
-nav_weights = [len(page.title) + 5 for page in pages]
-nav_cols = st.columns([*nav_weights, sum(nav_weights)], gap="small")
+# Make each page link 1/9 of the total width of the page and place the remaining width after it.
+nav_weights = [1] * len(pages)
+nav_cols = st.columns([*nav_weights, 10-len(pages)], gap="small")
 for col, page in zip(nav_cols, pages):
     with col:
         st.page_link(page, width="stretch")
