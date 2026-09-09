@@ -9,8 +9,8 @@ Combines three sources:
 
 Outputs to ``data/generated/``:
 
-* ``financials.json`` - one record per steelmaker / year / period, including
-    reported and aligned quarterly period fields.
+* ``financials.json`` - one record per steelmaker / aligned year / period,
+    including the company's reporting period fields.
 * ``buybacks.json``   - share repurchase and share sale history.
 
 Where the manual sheet also carries an auto metric, a mismatch beyond a
@@ -353,6 +353,57 @@ def _records(df: pd.DataFrame) -> list[dict[str, Any]]:
     return df.astype(object).where(pd.notna(df), None).to_dict(orient="records")
 
 
+def _to_public_schema(df: pd.DataFrame) -> pd.DataFrame:
+    """Expose aligned periods as primary fields and retain reporting context."""
+    public = df.copy()
+    public = public.rename(
+        columns={
+            "Year": "Reporting Year",
+            "Quarter": "Reporting Quarter",
+            "Period": "Reporting Period",
+            "Reported End": "Reporting End",
+        }
+    )
+    public = public.rename(
+        columns={
+            "AlignedYear": "Year",
+            "AlignedQuarter": "Quarter",
+            "AlignedPeriod": "Period",
+        }
+    )
+    preferred = [
+        "Steelmaker",
+        "Year",
+        "Quarter",
+        "Period",
+        "Reporting Year",
+        "Reporting Quarter",
+        "Reporting Period",
+        "Reporting End",
+    ]
+    ordered = [column for column in preferred if column in public.columns]
+    ordered.extend(column for column in public.columns if column not in ordered)
+    return public[ordered]
+
+
+def _from_public_schema(df: pd.DataFrame) -> pd.DataFrame:
+    """Restore the internal reporting-key schema for incremental builds."""
+    if "Reporting Year" not in df.columns:
+        return df
+    internal = df.rename(
+        columns={
+            "Year": "AlignedYear",
+            "Quarter": "AlignedQuarter",
+            "Period": "AlignedPeriod",
+            "Reporting Year": "Year",
+            "Reporting Quarter": "Quarter",
+            "Reporting Period": "Period",
+            "Reporting End": "Reported End",
+        }
+    )
+    return internal
+
+
 def _write(path: Path, payload: Any) -> None:
     tmp = path.with_name(path.name + ".tmp")
     tmp.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -546,6 +597,7 @@ def _load_existing_financials() -> pd.DataFrame:
     df = pd.DataFrame(json.loads(FINANCIALS_PATH.read_text(encoding="utf-8")))
     if df.empty:
         return df
+    df = _from_public_schema(df)
     if "Period" not in df.columns:
         df["Period"] = df["Year"].astype(str) + df["Quarter"].astype(str)
     df = df.drop(columns=[c for c in REMOVED_OUTPUT_COLUMNS if c in df.columns], errors="ignore")
@@ -606,7 +658,7 @@ def build(
 
     merged = merged.drop(columns=[c for c in REMOVED_OUTPUT_COLUMNS if c in merged.columns], errors="ignore")
 
-    _write(FINANCIALS_PATH, _records(merged))
+    _write(FINANCIALS_PATH, _records(_to_public_schema(merged)))
 
     if share_data:
         buybacks = build_buybacks(repurchases_full, sales_full)

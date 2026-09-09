@@ -1,8 +1,8 @@
 """End-to-end orchestration: scrape -> chunk -> embed -> summarize -> persist.
 
 The pipeline is idempotent: existing summaries are preserved and skipped unless
-``overwrite`` is set. Results are written to ``data/generated/insights.json`` in
-the shape ``{ticker: {year: {period: markdown}}}`` consumed by both front ends.
+``overwrite`` is set. Results are written to ``data/generated/insights.json``
+keyed by aligned period, with reporting-period metadata retained in each record.
 """
 
 from __future__ import annotations
@@ -132,6 +132,35 @@ def _load_summaries() -> dict:
     return {}
 
 
+def _aligned_label(
+    steelmaker: str,
+    spec: config.PeriodSpec,
+    report_date: datetime | None,
+) -> tuple[str, str, str]:
+    """Return an aligned calendar label using the inspected report metadata."""
+    if spec.period == "FY" or report_date is None:
+        return str(spec.year), spec.period, spec.label
+    if steelmaker == "CMC":
+        previous_quarter = int(spec.period[1:]) - 1
+        if previous_quarter == 0:
+            return str(spec.year - 1), "Q4", f"{spec.year - 1}Q4"
+        return str(spec.year), f"Q{previous_quarter}", f"{spec.year}Q{previous_quarter}"
+    quarter = (report_date.month - 1) // 3 + 1
+    return str(report_date.year), f"Q{quarter}", f"{report_date.year}Q{quarter}"
+
+
+def _summary_record(
+    summary: str,
+    spec: config.PeriodSpec,
+    report_date: datetime | None,
+) -> dict[str, object]:
+    return {
+        "reporting_period": spec.label,
+        "reporting_end": report_date.strftime("%Y-%m-%d") if report_date else None,
+        "summary": summary,
+    }
+
+
 def _save_summaries(summaries: dict) -> None:
     config.SUMMARIES_PATH.write_text(
         json.dumps(summaries, indent=2, ensure_ascii=False), encoding="utf-8"
@@ -139,13 +168,24 @@ def _save_summaries(summaries: dict) -> None:
 
 
 def _has_summary(summaries: dict, steelmaker: str, spec: config.PeriodSpec) -> bool:
-    return bool(
-        summaries.get(steelmaker, {}).get(str(spec.year), {}).get(spec.period)
-    )
+    for year_values in summaries.get(steelmaker, {}).values():
+        for value in year_values.values():
+            if isinstance(value, dict) and value.get("reporting_period") == spec.label:
+                return True
+    return False
 
 
-def _store_summary(summaries: dict, steelmaker: str, spec: config.PeriodSpec, text: str) -> None:
-    summaries.setdefault(steelmaker, {}).setdefault(str(spec.year), {})[spec.period] = text
+def _store_summary(
+    summaries: dict,
+    steelmaker: str,
+    spec: config.PeriodSpec,
+    text: str,
+    report_date: datetime | None,
+) -> None:
+    aligned_year, aligned_quarter, _ = _aligned_label(steelmaker, spec, report_date)
+    period_values = summaries.setdefault(steelmaker, {}).setdefault(aligned_year, {})
+    record = _summary_record(text, spec, report_date)
+    period_values[aligned_quarter] = record
 
 
 def build_period_chunks(
@@ -254,7 +294,7 @@ def run(
             except Exception as exc:  # noqa: BLE001
                 log.error("Summarization failed for %s %s: %s", steelmaker, spec.label, exc)
                 continue
-            _store_summary(summaries, steelmaker, spec, text)
+            _store_summary(summaries, steelmaker, spec, text, report_date)
             _save_summaries(summaries)  # persist incrementally
     return summaries
 

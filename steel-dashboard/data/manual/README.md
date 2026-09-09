@@ -54,4 +54,4 @@ If an overlap field is provided and the XBRL value is missing, the manual value 
 - `../generated/financials.json`
 - `../generated/buybacks.json`
 
-The current canonical financial metric set remains centered on net sales, profitability, leverage/liquidity, and cash flow. Quarterly peer alignment is derived from SEC reported end dates in the generated dataset, not from manual files.
+The current canonical financial metric set remains centered on net sales, profitability, leverage/liquidity, and cash flow. Quarterly peer alignment is derived from SEC reported-end metadata and ticker-specific alignment rules in the generated dataset, not from manual files. CMC quarterly periods are mapped one calendar quarter before the fiscal reporting period.

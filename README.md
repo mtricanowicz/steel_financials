@@ -26,7 +26,7 @@ The configured issuer universe and automation examples center on:
 
 The canonical financials export currently includes:
 
-- Period fields: `Year`, `Quarter`, `Period`, `Reported End`, `AlignedYear`, `AlignedQuarter`, `AlignedPeriod`
+- Period fields: aligned `Year`, `Quarter`, `Period`, followed by company-specific `Reporting Year`, `Reporting Quarter`, `Reporting Period`, and `Reporting End`
 - Income metrics: `Net Sales`, `Cost of Goods Sold`, `Gross Income`, `Net Income Attributable to Stockholders`, `Earnings Per Share`
 - Balance sheet metrics: `Long-Term Debt`, `Current Maturities`, `Total Debt`, `Cash & Cash Equivalents`, `Short-Term Investments`, `Total Liquidity`, `Net Debt`
 - Cash flow metrics: `Operating Cash Flow`, `Capital Expenditures`, `Free Cash Flow`
@@ -36,8 +36,9 @@ The canonical financials export currently includes:
 
 Quarterly peer views use two period concepts:
 
-1. `Period` is the steelmaker's true reported fiscal period.
-2. `AlignedPeriod` is the nearest calendar-quarter comparison bucket derived from the reported end date.
+1. `Year`, `Quarter`, and `Period` are the calendar-quarter comparison bucket. For calendar reporters this comes from the inspected report-end date; CMC quarterly periods are intentionally placed one calendar quarter before the fiscal reporting period.
+2. `Reporting Year`, `Reporting Quarter`, and `Reporting Period` preserve the steelmaker's true fiscal period.
+3. `Reporting End` is the representative SEC end date for the reported period.
 
 This allows companies with offset fiscal calendars, such as CMC, to line up with peers by reporting timeframe without losing the original fiscal label.
 

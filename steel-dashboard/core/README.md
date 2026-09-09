@@ -87,7 +87,10 @@ from sec_pipeline.pipeline import run
 run(steelmakers=["NUE", "STLD"], years=[2024], periods=["Q2"])
 ```
 
-This writes `../data/generated/insights.json` as `{ticker: {year: {period: markdown}}}`.
+This writes `../data/generated/insights.json` under the aligned hierarchy
+`{ticker: {aligned_year: {aligned_quarter: record}}}`. Each record contains
+`reporting_period`, optional `reporting_end`, and `summary`. The hierarchy uses
+aligned calendar periods while the record preserves the company's fiscal period.
 
 ## Insights retrieval and quality
 
@@ -161,11 +164,11 @@ issuer spread. These are review signals, not proof of factual accuracy.
 
 The generated financials dataset currently includes:
 
-- `Reported End`: representative SEC end date for the row
-- `AlignedYear`, `AlignedQuarter`, `AlignedPeriod`: comparison buckets derived from the nearest calendar quarter end
+- `Year`, `Quarter`, `Period`: aligned calendar comparison fields
+- `Reporting Year`, `Reporting Quarter`, `Reporting Period`, `Reporting End`: the company's fiscal period and inspected SEC end date
 - income, balance sheet, cash flow, and derived margin fields used by the dashboard
 
-The aligned-quarter fields are used by quarterly peer views so fiscal-calendar offsets do not force issuers such as CMC into isolated latest-quarter buckets.
+The aligned fields are used by quarterly peer views so fiscal-calendar offsets do not force issuers such as CMC into isolated latest-quarter buckets. Calendar reporters use the inspected report-end date; CMC quarterly periods are mapped one calendar quarter before the fiscal reporting period, while FY remains under its reporting year.
 
 ## Metric sourcing
 

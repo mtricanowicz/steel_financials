@@ -28,12 +28,16 @@ The app does not scrape SEC data or rebuild financials at request time.
 
 Quarterly peer views use aligned reporting buckets:
 
-1. `AlignedPeriod` controls comparison placement and latest-quarter selection.
-2. `Period` remains the true reported fiscal period.
+1. `Period` controls comparison placement and latest-quarter selection.
+2. `Reporting Period` remains the true reported fiscal period.
+
+Calendar reporters are placed from the inspected report-end date. CMC quarterly
+periods are mapped one calendar quarter before the fiscal reporting period, while
+FY remains under its reporting year.
 
 Current UI behavior:
 
-- line charts plot quarterly points on `AlignedPeriod`
+- line charts plot quarterly points on `Period`
 - extra hover context appears only when a steelmaker's fiscal period differs from the aligned comparison period
 - latest quarterly summary headers show each steelmaker's true reported `YYYYQX` period when available
 

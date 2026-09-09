@@ -16,7 +16,7 @@ from sec_pipeline.pipeline import (
     _infer_fiscal_year_end,
     build_period_chunks,
 )
-from scripts.build_data import add_derived
+from scripts.build_data import _to_public_schema, add_derived
 from sec_pipeline.xbrl import extract_financials, extract_metric
 
 
@@ -402,6 +402,43 @@ class TestXbrlFiscalFallback:
 
 
 class TestBuildDataAlignedPeriods:
+    def test_public_schema_prioritizes_aligned_period_and_names_reporting_fields(self):
+        public = _to_public_schema(
+            pd.DataFrame(
+                [
+                    {
+                        "Steelmaker": "CMC",
+                        "Year": 2026,
+                        "Quarter": "Q1",
+                        "Period": "2026Q1",
+                        "Reported End": "2025-11-30",
+                        "AlignedYear": 2025,
+                        "AlignedQuarter": "Q4",
+                        "AlignedPeriod": "2025Q4",
+                    }
+                ]
+            )
+        )
+
+        assert list(public.columns[:8]) == [
+            "Steelmaker",
+            "Year",
+            "Quarter",
+            "Period",
+            "Reporting Year",
+            "Reporting Quarter",
+            "Reporting Period",
+            "Reporting End",
+        ]
+        row = public.iloc[0]
+        assert row["Year"] == 2025
+        assert row["Quarter"] == "Q4"
+        assert row["Period"] == "2025Q4"
+        assert row["Reporting Year"] == 2026
+        assert row["Reporting Quarter"] == "Q1"
+        assert row["Reporting Period"] == "2026Q1"
+        assert row["Reporting End"] == "2025-11-30"
+
     def test_add_derived_aligns_quarter_by_reported_end(self):
         df = add_derived(
             pd.DataFrame(

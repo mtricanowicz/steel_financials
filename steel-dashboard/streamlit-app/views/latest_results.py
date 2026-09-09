@@ -48,17 +48,16 @@ steelmakers = sorted(financials["Steelmaker"].unique())
 
 
 def _period_columns(data: pd.DataFrame, *, use_aligned_quarters: bool) -> tuple[str, str, str]:
-    if use_aligned_quarters and "AlignedPeriod" in data.columns:
-        return "AlignedYear", "AlignedQuarter", "AlignedPeriod"
     return "Year", "Quarter", "Period"
 
 
 def _dedupe_aligned_rows(df: pd.DataFrame, period_col: str) -> pd.DataFrame:
     """Keep one row per steelmaker/aligned period, preferring the latest reported context."""
-    if period_col == "Period" or df.empty:
+    if df.empty or "Reporting Period" not in df.columns:
         return df
-    sort_cols = [column for column in ["Steelmaker", period_col, "Reported End", "Period", "Quarter"] if column in df.columns]
+    sort_cols = [column for column in ["Steelmaker", period_col, "Reporting End", "Reporting Period", "Reporting Quarter"] if column in df.columns]
     return df.sort_values(sort_cols).drop_duplicates(subset=["Steelmaker", period_col], keep="last")
+
 
 col_a, col_b = st.columns([4, 1])
 with col_b:
@@ -103,7 +102,7 @@ def build_summary(data: pd.DataFrame, *, use_aligned_quarters: bool) -> pd.DataF
     available_metrics = [
         c
         for c in snapshot.columns
-        if c not in ("Year", "Quarter", "Period", "AlignedYear", "AlignedQuarter", "AlignedPeriod", "Reported End", "Steelmaker") and c not in DISPLAY_EXCLUDED_METRICS
+        if c not in ("Year", "Quarter", "Period", "Reporting Year", "Reporting Quarter", "Reporting Period", "Reporting End", "Steelmaker") and c not in DISPLAY_EXCLUDED_METRICS
     ]
 
     # Keep a stable order aligned with the app metric groups.
@@ -128,7 +127,7 @@ def build_summary(data: pd.DataFrame, *, use_aligned_quarters: bool) -> pd.DataF
     value_column = latest
     reported_labels = {
         steelmaker: (
-            snapshot.loc[snapshot["Steelmaker"] == steelmaker, "Period"].iloc[0]
+            snapshot.loc[snapshot["Steelmaker"] == steelmaker, "Reporting Period"].iloc[0]
             if use_aligned_quarters and not snapshot.loc[snapshot["Steelmaker"] == steelmaker, "Period"].empty
             else (latest if not use_aligned_quarters else "TBA")
         )
@@ -205,10 +204,19 @@ def render(data: pd.DataFrame, title: str) -> None:
             key=f"latest_insights_{title}",
         )
         name = STEELMAKER_NAMES.get(insight_steelmaker, insight_steelmaker)
+
+        insight_record = insights.get(insight_steelmaker, {}).get(latest_year, {}).get(latest_quarter)
+        reporting_period = insight_record.get("reporting_period") if insight_record else None
+        if reporting_period != f"{latest_year}{latest_quarter}" and reporting_period is not None:
+            fiscal_period_append = f" | Fiscal {reporting_period}"
+        else:
+            fiscal_period_append = ""
+        summary = insight_record.get("summary") if insight_record else None
+
         st.markdown(
             steelmaker_header_html(
                 insight_steelmaker,
-                f"{name} ({insight_steelmaker}) | {latest_year}{latest_quarter}",
+                f"{name} ({insight_steelmaker}) | {latest_year}{latest_quarter}" + fiscal_period_append,
                 heading_level=3,
                 logo_height_em=2.00,
                 logo_before_text=True,
@@ -217,7 +225,7 @@ def render(data: pd.DataFrame, title: str) -> None:
             unsafe_allow_html=True,
         )
         st.markdown("<div style='border-bottom:1px solid rgba(49, 51, 63, 0.2); margin:0 0 1rem 0;'></div>", unsafe_allow_html=True)
-        summary = insights.get(insight_steelmaker, {}).get(latest_year, {}).get(latest_quarter)
+        
         if summary:
             st.markdown(summary)
         else:

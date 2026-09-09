@@ -52,20 +52,18 @@ fy_data, q_data = split_by_period(financials)
 
 
 def _uses_aligned_quarters(data_type: str, data: pd.DataFrame) -> bool:
-    return data_type == "Quarterly" and "AlignedPeriod" in data.columns
+    return data_type == "Quarterly" and "Reporting Period" in data.columns
 
 
 def _period_columns(data_type: str, data: pd.DataFrame) -> tuple[str, str, str]:
-    if _uses_aligned_quarters(data_type, data):
-        return "AlignedYear", "AlignedQuarter", "AlignedPeriod"
     return "Year", "Quarter", "Period"
 
 
 def _dedupe_aligned_rows(df: pd.DataFrame, period_col: str) -> pd.DataFrame:
     """Keep one row per steelmaker/aligned period, preferring the latest reported context."""
-    if period_col == "Period" or df.empty:
+    if df.empty or "Reporting Period" not in df.columns:
         return df
-    sort_cols = [column for column in ["Steelmaker", period_col, "Reported End", "Period", "Quarter"] if column in df.columns]
+    sort_cols = [column for column in ["Steelmaker", period_col, "Reporting End", "Reporting Period", "Reporting Quarter"] if column in df.columns]
     deduped = df.sort_values(sort_cols).drop_duplicates(subset=["Steelmaker", period_col], keep="last")
     return deduped
 
@@ -90,7 +88,7 @@ with st.expander("Set filters", expanded=True):
             selected_years = st.multiselect(
                 "Select Years for comparison:",
                 years,
-                default=years,
+                default=[year for year in years if year >= 2019],
                 wrap=STREAMLIT_WIDGET_WRAP,
             )
         selected_years = selected_years or years
@@ -174,7 +172,7 @@ with st.expander("Set filters", expanded=True):
     available_metrics = [
         column
         for column in data.columns
-        if column not in ("Year", "Quarter", "Steelmaker", "Period", "Reported End", "AlignedYear", "AlignedQuarter", "AlignedPeriod") and column not in DISPLAY_EXCLUDED_METRICS
+        if column not in ("Year", "Quarter", "Steelmaker", "Period", "Reporting Year", "Reporting Quarter", "Reporting Period", "Reporting End") and column not in DISPLAY_EXCLUDED_METRICS
     ]
     default_metric_group_index = 0
     with st.container(border=True):
@@ -224,7 +222,7 @@ if filtered.empty:
 
 if _uses_aligned_quarters(data_type, filtered):
     st.caption(
-        "Quarterly peer comparisons are aligned by calendar timeframe. Table cells and chart hovers still show each company's true reported fiscal quarter."
+        "Quarterly peer comparisons are aligned by calendar timeframe. A company's reported fiscal quarter is shown where possible when it differs from the calendar quarter."
     )
 
 visible_metrics: list[str] = [
@@ -302,7 +300,7 @@ for metric in visible_metrics:
     if len(filtered) <= _SMALL_DATA_FASTPATH_ROWS:
         metric_df = filtered.copy()
     else:
-        base_cols = [period_col, "Period", "Quarter", "Steelmaker", metric]
+        base_cols = [period_col, "Period", "Reporting Period", "Reporting Quarter", "Steelmaker", metric]
         metric_df = filtered[[column for column in base_cols if column in filtered.columns]].copy()
     scaled_metrics[metric] = scale_metric_for_display(metric_df, metric)
 
@@ -384,7 +382,7 @@ def _render_tab_time() -> None:
                     category_orders={period_col: periods, "Steelmaker": steelmaker_order},
                     color_discrete_map=STEELMAKER_COLORS,
                     title=f"{metric_label} Over Time",
-                    custom_data=[column for column in ["Quarter", "Period"] if column in plot_df.columns],
+                    custom_data=[column for column in ["Reporting Quarter", "Reporting Period"] if column in plot_df.columns],
                 )
                 fig.update_layout(xaxis_title=None, xaxis_tickangle=-45)
                 fig.add_hline(y=0, line_dash="dot", line_color="gray", opacity=0.25)
@@ -401,7 +399,7 @@ def _render_tab_time() -> None:
                 if _uses_aligned_quarters(data_type, plot_df):
                     offset_traces = set(
                         plot_df.loc[
-                            plot_df["Period"].ne(plot_df[period_col]),
+                            plot_df["Reporting Period"].ne(plot_df[period_col]),
                             "Steelmaker",
                         ]
                     )
@@ -423,15 +421,18 @@ def _render_tab_time() -> None:
                 for steelmaker in selected_steelmakers:
                     if steelmaker == base_steelmaker:
                         continue
-                    series = (
-                        plot_df[plot_df["Steelmaker"] == steelmaker]
-                        .set_index(period_col)[display_col]
-                        .reindex(periods)
-                    )
+                    steelmaker_rows = plot_df[plot_df["Steelmaker"] == steelmaker].set_index(period_col)
+                    series = steelmaker_rows[display_col].reindex(periods)
                     diffs = [pct_diff(base, comp) for base, comp in zip(base_series, series)]
-                    diff_rows.append(
-                        pd.DataFrame({period_col: periods, "Steelmaker": steelmaker, "Percent Difference": diffs})
-                    )
+                    diff_data = {
+                        period_col: periods,
+                        "Steelmaker": steelmaker,
+                        "Percent Difference": diffs,
+                    }
+                    for column in ["Reporting Quarter", "Reporting Period"]:
+                        if column in steelmaker_rows.columns:
+                            diff_data[column] = steelmaker_rows[column].reindex(periods).to_list()
+                    diff_rows.append(pd.DataFrame(diff_data))
                 diff_df = pd.concat(diff_rows)
                 fig_bar = px.bar(
                     diff_df,
@@ -442,16 +443,44 @@ def _render_tab_time() -> None:
                     category_orders={period_col: periods, "Steelmaker": steelmaker_order},
                     color_discrete_map=STEELMAKER_COLORS,
                     title=f"Percent Difference in {metric_label} vs {base_steelmaker}",
+                    custom_data=[column for column in ["Reporting Quarter", "Reporting Period"] if column in diff_df.columns],
                 )
                 fig_bar.update_layout(xaxis_title=None, xaxis_tickangle=-45)
                 fig_bar.add_hline(y=0, line_dash="dot", line_color="gray", opacity=0.75)
-                fig_bar.update_traces(hovertemplate="%{x}<br>%{y:.2f}%")
+                bar_hover = "%{x}<br>%{y:.2f}%"
+                if _uses_aligned_quarters(data_type, plot_df):
+                    offset_traces = set(
+                        plot_df.loc[
+                            plot_df["Reporting Period"].ne(plot_df[period_col]),
+                            "Steelmaker",
+                        ]
+                    )
+                    fig_bar.update_traces(hovertemplate=bar_hover)
+                    fig_bar.for_each_trace(
+                        lambda trace: trace.update(
+                            hovertemplate=f"{bar_hover}<br>Fiscal Period: %{{customdata[1]}}"
+                        )
+                        if trace.name in offset_traces
+                        else None
+                    )
+                else:
+                    fig_bar.update_traces(hovertemplate=bar_hover)
                 st.plotly_chart(fig_bar, width="stretch")
 
 def _render_tab_period() -> None:
     latest = max(periods)
     st.subheader(f"Summary of {latest}", divider="gray")
     st.caption("When multiple periods are selected, this shows the latest one in the range.")
+    latest_rows = filtered[filtered[period_col] == latest]
+    reported_labels = {
+        steelmaker: (
+            latest_rows.loc[latest_rows["Steelmaker"] == steelmaker, "Reporting Period"].iloc[0]
+            if "Reporting Period" in latest_rows.columns
+            and not latest_rows.loc[latest_rows["Steelmaker"] == steelmaker, "Reporting Period"].empty
+            else latest
+        )
+        for steelmaker in selected_steelmakers
+    }
     grouped_order = [metric for group in METRIC_GROUPS.values() for metric in group]
     preferred_period_metrics = [metric for metric in grouped_order if metric in visible_metrics]
     remaining_period_metrics = [metric for metric in visible_metrics if metric not in preferred_period_metrics]
@@ -483,6 +512,14 @@ def _render_tab_period() -> None:
     summary = summary.unstack("Steelmaker")
     summary.columns = summary.columns.swaplevel(0, 1)
     summary = summary.sort_index(axis=1, level=0)
+    summary.columns = pd.MultiIndex.from_tuples(
+        [
+            (steelmaker, reported_labels.get(steelmaker, latest))
+            if label == latest
+            else (steelmaker, label)
+            for steelmaker, label in summary.columns
+        ]
+    )
     metric_order = list(dict.fromkeys(metric_order))
     summary = summary.reindex(metric_order)
     if show_compare:
@@ -524,7 +561,7 @@ def _render_tab_steelmaker() -> None:
         scaled = scaled[scaled["Steelmaker"] == summary_steelmaker]
         metric_order.append(display_col)
         for period in periods:
-            cell = scaled[scaled["Period"] == period][display_col]
+            cell = scaled[scaled[period_col] == period][display_col]
             value = cell.iloc[0] if not cell.empty else None
             summary_rows.append(
                 {
@@ -545,7 +582,7 @@ def _render_tab_raw() -> None:
         "This is the raw data after applying the selected filters and is provided for "
         "export or further analysis. It is not scaled or formatted for display."
     )
-    st.dataframe(filtered.sort_values(by=["Steelmaker", "Period"]).reset_index(drop=True), width="stretch")
+    st.dataframe(filtered[["Steelmaker", "Year", "Quarter", "Period"] + selected_metrics].sort_values(by=["Steelmaker", "Period"]).reset_index(drop=True), width="stretch")
 
 
 with tab_time:

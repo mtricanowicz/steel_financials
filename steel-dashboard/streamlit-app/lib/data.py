@@ -48,14 +48,28 @@ def _load_financials_cached(path_str: str, mtime_ns: int) -> pd.DataFrame:
     drop_cols = [column for column in _LEGACY_REMOVED_COLUMNS if column in df.columns]
     if drop_cols:
         df = df.drop(columns=drop_cols)
+    if "Reporting Year" not in df.columns and "AlignedYear" in df.columns:
+        df = df.rename(
+            columns={
+                "Year": "Reporting Year",
+                "Quarter": "Reporting Quarter",
+                "Period": "Reporting Period",
+                "Reported End": "Reporting End",
+                "AlignedYear": "Year",
+                "AlignedQuarter": "Quarter",
+                "AlignedPeriod": "Period",
+            }
+        )
     if "Period" not in df.columns:
         df["Period"] = df["Year"].astype(str) + df["Quarter"].astype(str)
-    if "AlignedYear" not in df.columns:
-        df["AlignedYear"] = df["Year"]
-    if "AlignedQuarter" not in df.columns:
-        df["AlignedQuarter"] = df["Quarter"]
-    if "AlignedPeriod" not in df.columns:
-        df["AlignedPeriod"] = df["AlignedYear"].astype(str) + df["AlignedQuarter"].astype(str)
+    if "Reporting Year" not in df.columns:
+        df["Reporting Year"] = df["Year"]
+    if "Reporting Quarter" not in df.columns:
+        df["Reporting Quarter"] = df["Quarter"]
+    if "Reporting Period" not in df.columns:
+        df["Reporting Period"] = df["Reporting Year"].astype(str) + df["Reporting Quarter"].astype(str)
+    if "Reporting End" not in df.columns:
+        df["Reporting End"] = None
     return df.sort_values("Period")
 
 
@@ -85,7 +99,7 @@ def load_buybacks() -> dict:
 
 @st.cache_data(show_spinner=False)
 def load_insights() -> dict:
-    """Load the nested {ticker: {year: {period: markdown}}} insights."""
+    """Load aligned-period insights with embedded reporting metadata."""
     if not INSIGHTS_PATH.exists():
         return {}
     return json.loads(INSIGHTS_PATH.read_text(encoding="utf-8"))

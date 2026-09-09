@@ -37,8 +37,8 @@ No active `web/` front end is present in this workspace.
 
 The generated financials dataset currently includes:
 
-- `Steelmaker`, `Year`, `Quarter`, `Period`
-- `Reported End`, `AlignedYear`, `AlignedQuarter`, `AlignedPeriod`
+- `Steelmaker`, aligned `Year`, `Quarter`, `Period`
+- `Reporting Year`, `Reporting Quarter`, `Reporting Period`, `Reporting End`
 - `Net Sales`, `Cost of Goods Sold`, `Gross Income`
 - `Net Income Attributable to Stockholders`, `Earnings Per Share`
 - `Long-Term Debt`, `Current Maturities`, `Total Debt`
@@ -48,7 +48,7 @@ The generated financials dataset currently includes:
 
 ## Quarterly alignment behavior
 
-Quarterly peer comparisons and latest-quarter summaries use `AlignedPeriod` for comparison placement and preserve the true reported fiscal period in `Period`.
+Quarterly peer comparisons and latest-quarter summaries use `Period` for comparison placement and preserve the true reported fiscal period in `Reporting Period`. Calendar reporters use the inspected report-end date; CMC quarterly periods are mapped one calendar quarter before the fiscal reporting period. FY remains under its reporting year.
 
 This is especially important for steelmakers with offset fiscal calendars. For example, CMC can be grouped into the same peer quarter as other issuers while still showing its true fiscal label.
 

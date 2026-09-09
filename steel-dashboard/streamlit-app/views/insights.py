@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from lib.data import load_financials, load_insights
+from lib.data import load_insights
 from lib.formatting import STEELMAKER_NAMES, steelmaker_header_html
 
 st.header(":material/emoji_objects: Insights")
@@ -20,7 +20,6 @@ st.info(
 )
 
 insights = load_insights()
-financials = load_financials()
 
 if not insights:
     st.warning("No insights found. Run the insights pipeline first (see core/README.md).")
@@ -42,11 +41,17 @@ if not (steelmaker and year and period):
     st.caption("Select a company, year, and period to view insights.")
     st.stop()
 
+selected_record = insights.get(steelmaker, {}).get(year, {}).get(period)
+reporting_period = selected_record.get("reporting_period")
+if reporting_period != f"{year}{period}" and reporting_period is not None:
+    fiscal_period_append = f" | Fiscal {reporting_period}"
+else:
+    fiscal_period_append = ""
 name = STEELMAKER_NAMES.get(steelmaker, steelmaker)
 st.markdown(
     steelmaker_header_html(
         steelmaker,
-        f"{name} ({steelmaker}) | {year}{period}",
+        f"{name} ({steelmaker}) | {year}{period}" + fiscal_period_append,
         heading_level=3,
         logo_height_em=2.00,
         logo_before_text=True,
@@ -56,8 +61,8 @@ st.markdown(
 )
 st.markdown("<div style='border-bottom:1px solid rgba(49, 51, 63, 0.2); margin:0 0 1rem 0;'></div>", unsafe_allow_html=True)
 
-summary = insights.get(steelmaker, {}).get(year, {}).get(period)
-if summary:
+summary = selected_record.get("summary")
+if isinstance(summary, str) and summary:
     st.markdown(summary)
 else:
     st.error("No summary is available for the selected period.", icon=":material/report:")
