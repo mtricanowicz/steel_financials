@@ -29,7 +29,7 @@ steelmakers = sorted([s for s in insights.keys() if s != "ATI" and s != "CRS"])
 
 col1, col2, col3 = st.columns([1, 2, 1])
 with col1:
-    steelmaker = st.selectbox("Company", steelmakers, index=None, placeholder="Select")
+    steelmaker = st.selectbox("Steelmaker", steelmakers, index=None, placeholder="Select")
 with col2:
     years = sorted(insights.get(steelmaker, {}).keys(), reverse=True) if steelmaker else []
     year = st.selectbox("Year", years, index=None, placeholder="Select")

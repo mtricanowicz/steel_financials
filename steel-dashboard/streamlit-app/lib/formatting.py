@@ -500,6 +500,9 @@ def stock_ticker_html(
                 <div class="stock-ticker-sequence" aria-hidden="true">
                     {content}
                 </div>
+                <div class="stock-ticker-sequence" aria-hidden="true">
+                    {content}
+                </div>
             </div>
         """
     else:
@@ -558,7 +561,7 @@ def stock_ticker_html(
             }}
 
             to {{
-                transform: translateX(-25%);
+                transform: translateX(-20%);
             }}
         }}
     </style>
