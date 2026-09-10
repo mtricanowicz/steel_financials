@@ -19,7 +19,8 @@ Quotes are cached by trading day. Historical responses are cached per request sh
 
 ## Local development
 
-```powershell
+```
+powershell
 cd quotes-api
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -28,6 +29,12 @@ uvicorn main:app --reload --port 8080
 ```
 
 Then open `http://localhost:8080/docs`.
+
+To activate the API, run the following command from the repo root in Powershell:
+```
+Set-Location ".\steel-dashboard\quotes-api"
+python -m uvicorn main:app --reload --port 8080
+```
 
 ## Configuration
 
@@ -38,7 +45,8 @@ Then open `http://localhost:8080/docs`.
 
 ## Container
 
-```powershell
+```
+powershell
 docker build -t quotes-api .
 docker run -p 8080:8080 -e ALLOWED_ORIGINS=https://your-dashboard.example quotes-api
 ```

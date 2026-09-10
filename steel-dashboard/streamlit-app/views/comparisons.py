@@ -566,11 +566,12 @@ def _render_tab_steelmaker() -> None:
             summary_rows.append(
                 {
                     "Period": period,
+                    "Fiscal": scaled[scaled[period_col] == period]["Reporting Period"].iloc[0] if not scaled[scaled[period_col] == period].empty else None,
                     "Metric": display_col,
                     summary_steelmaker: format_metric_value(value, metric),
                 }
             )
-    summary = pd.DataFrame(summary_rows).set_index(["Metric", "Period"])
+    summary = pd.DataFrame(summary_rows).set_index(["Metric", "Period", "Fiscal"])
     summary = summary.unstack("Metric")
     summary = summary.reindex(metric_order, axis=1, level=1)
     st.dataframe(summary, width="stretch")
@@ -582,7 +583,7 @@ def _render_tab_raw() -> None:
         "This is the raw data after applying the selected filters and is provided for "
         "export or further analysis. It is not scaled or formatted for display."
     )
-    st.dataframe(filtered[["Steelmaker", "Year", "Quarter", "Period"] + selected_metrics].sort_values(by=["Steelmaker", "Period"]).reset_index(drop=True), width="stretch")
+    st.dataframe(filtered[["Steelmaker", "Year", "Quarter", "Period", "Reporting Year", "Reporting Quarter", "Reporting Period", "Reporting End"] + selected_metrics].sort_values(by=["Steelmaker", "Period"]).reset_index(drop=True), width="stretch")
 
 
 with tab_time:
