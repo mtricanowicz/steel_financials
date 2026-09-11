@@ -26,6 +26,7 @@ from lib.formatting import (
     fixed_stock_ticker_html,
 )
 
+from lib.analytics import track_page_view
 from lib.data import (
     fetch_live_quotes,
 )
@@ -157,6 +158,7 @@ pages = [
 # Register the pages without the sidebar nav, then render a compact link row
 # below the logo so the available pages stay visible without the sidebar.
 current_page = st.navigation(pages, position="hidden")
+track_page_view(current_page.title)
 
 # Make each page link 1/7 of the total width of the page and place the remaining width after it.
 nav_weights = [1] * len(pages)

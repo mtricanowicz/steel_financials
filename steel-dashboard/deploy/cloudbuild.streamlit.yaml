@@ -2,6 +2,7 @@
 # generated data is included) and deploys it to Cloud Run.
 substitutions:
   _QUOTES_API_URL: ""
+  _GA_MEASUREMENT_ID: ""
 
 steps:
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
@@ -32,7 +33,7 @@ steps:
       - --region
       - us-central1
       - --set-env-vars
-      - QUOTES_API_URL=${_QUOTES_API_URL}
+      - QUOTES_API_URL=${_QUOTES_API_URL},GA_MEASUREMENT_ID=${_GA_MEASUREMENT_ID}
       - --allow-unauthenticated
 
 images:

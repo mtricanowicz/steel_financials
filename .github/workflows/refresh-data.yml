@@ -144,7 +144,7 @@ jobs:
         run: |
           gcloud builds submit steel-dashboard \
             --config steel-dashboard/deploy/cloudbuild.streamlit.yaml \
-            --substitutions=SHORT_SHA="${{ github.sha }}",_QUOTES_API_URL="${{ secrets.QUOTES_API_URL }}" \
+            --substitutions=SHORT_SHA="${{ github.sha }}",_QUOTES_API_URL="${{ secrets.QUOTES_API_URL }}",_GA_MEASUREMENT_ID="${{ vars.GA_MEASUREMENT_ID }}" \
             --project "${{ secrets.GCP_PROJECT_ID }}"
       - name: Detect web lockfile
         id: webfiles
