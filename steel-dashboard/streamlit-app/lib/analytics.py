@@ -34,16 +34,27 @@ def track_page_view(page_title: str) -> None:
     page_title_json = json.dumps(page_title)
     components.html(
         f"""
-        <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
         <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {{ window.dataLayer.push(arguments); }}
-          gtag("js", new Date());
-          gtag("config", {measurement_id_json}, {{ send_page_view: false }});
-          gtag("event", "page_view", {{
-            page_path: {page_path_json},
-            page_title: {page_title_json}
-          }});
+            const analyticsWindow = window.parent;
+            analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+            analyticsWindow.gtag = analyticsWindow.gtag || function() {{
+                analyticsWindow.dataLayer.push(arguments);
+            }};
+
+            if (!analyticsWindow.__ga4Configured) {{
+                const tag = analyticsWindow.document.createElement("script");
+                tag.async = true;
+                tag.src = "https://www.googletagmanager.com/gtag/js?id={measurement_id}";
+                analyticsWindow.document.head.appendChild(tag);
+                analyticsWindow.gtag("js", new Date());
+                analyticsWindow.gtag("config", {measurement_id_json}, {{ send_page_view: false }});
+                analyticsWindow.__ga4Configured = true;
+            }}
+
+            analyticsWindow.gtag("event", "page_view", {{
+                page_path: {page_path_json},
+                page_title: {page_title_json}
+            }});
         </script>
         """,
         height=0,
