@@ -159,6 +159,7 @@ with st.expander("Set filters", expanded=True):
                 st.toggle(
                     "Would you like to compare selected steelmakers' metrics against one of the steelmakers?",
                     value=len(selected_steelmakers) > 1,
+                    wrap=True
                 )
                 if len(selected_steelmakers) > 1
                 else False
