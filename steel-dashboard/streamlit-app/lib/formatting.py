@@ -357,8 +357,8 @@ def get_about_sidebar_html() -> str:
     return """
     <div style="font-size: 0.875rem;">
         <p>
-            Explore publicly traded U.S. commodity steel producer financial performance through clear and accessible 
-            comparisons and the latest full-year and quarterly metrics. Steelmakers are grouped by the process or 
+            Explore publicly traded U.S. commodity steel producer financial performance with interactive 
+            comparisons, insights, and the latest full-year and quarterly metrics. Steelmakers are grouped by the process or 
             technology they use, either exclusively or predominantly, to produce steel. The primary steelmaking methods 
             employed by US steelmakers are the Electric Arc Furnace (EAF) technology or the Blast Furnace-Basic Oxygen 
             Furnace (BF-BOF) process.
