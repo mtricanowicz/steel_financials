@@ -182,7 +182,7 @@ def render(data: pd.DataFrame, title: str) -> None:
     latest_quarter = latest[4:]
     st.subheader(f"{title}: {latest}", divider="gray")
     if use_aligned_quarters:
-        st.caption("Quarterly results are grouped by aligned peer quarter. Each steelmaker header shows its true reported fiscal quarter when available.")
+        st.caption("Quarterly results are grouped by aligned calendar quarter. Each steelmaker header shows its true reported fiscal quarter when available.")
     summary = build_summary(data, use_aligned_quarters=use_aligned_quarters)
     if compare:
         color_cols = [

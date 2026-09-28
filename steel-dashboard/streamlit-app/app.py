@@ -171,7 +171,7 @@ for col, page in zip(nav_cols, pages):
 # Define the list of stock tickers to display, excluding defunct steelmakers.
 STOCK_TICKERS = tuple(
     ticker
-    for ticker in STEELMAKER_NAMES
+    for ticker in sorted(STEELMAKER_NAMES)
     if ticker not in set(STEELMAKER_GROUPS.get("Defunct Steelmakers", [])) | {"ATI", "CRS"}
 )
 # Define the stock ticker rendering function and schedule it to run on a schedule based on market hours.
