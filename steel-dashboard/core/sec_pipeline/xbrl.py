@@ -69,6 +69,7 @@ DURATION_METRICS: dict[str, list[str]] = {
     "Interest Expense": [
         "InterestExpenseNonoperating",
         "InterestExpense",
+        "InterestExpenseOperating",
         "InterestCostsIncurred",
         "InterestExpenseDebt",
         "InterestIncomeExpenseNonoperatingNet",
@@ -241,6 +242,26 @@ def _end_matches_expected_period(
     return abs((end - expected).days) <= tolerance_days
 
 
+def _is_fiscal_match(fact: dict[str, Any], year: int, period: str) -> bool:
+    """Return True only for exact fiscal labels or the CMC August-31 Q4 offset case."""
+    end = _parse(fact.get("end"))
+    if not end:
+        return False
+    fp = str(fact.get("fp", ""))
+    fy = _fact_fiscal_year(fact)
+
+    if fy == year and fp == period:
+        return True
+
+    # CMC-like issuers are on an August 31 fiscal year-end. Their fiscal Q4 can
+    # therefore appear on the August 31 calendar Q3 label when a report is
+    # organized by calendar quarter rather than by fiscal period.
+    if period == "Q3" and fy == year and fp == "Q4" and end.month == 8:
+        return True
+
+    return False
+
+
 def _pick_duration_window(
     facts_list: list[dict[str, Any]],
     year: int,
@@ -252,7 +273,7 @@ def _pick_duration_window(
     enable_fp_fallback: bool,
 ) -> float | None:
     """Pick a duration fact matching year/month and day-count window."""
-    preferred: list[dict[str, Any]] = []
+    exact_match: list[dict[str, Any]] = []
     fallback: list[dict[str, Any]] = []
     fp_preferred = _fp_candidates(period) if period else set()
     for fact in facts_list:
@@ -260,21 +281,25 @@ def _pick_duration_window(
         days = _duration_days(fact)
         if not end or days is None:
             continue
-        if not _end_matches_expected_period(end, year, end_month):
-            continue
         if not (min_days <= days <= max_days):
             continue
-        if period and str(fact.get("fp", "")) in fp_preferred:
-            preferred.append(fact)
-        else:
+
+        date_match = _end_matches_expected_period(end, year, end_month)
+        is_fiscal = _is_fiscal_match(fact, year, period or "FY")
+        if is_fiscal and not enable_fp_fallback and not date_match:
+            continue
+        if is_fiscal:
+            exact_match.append(fact)
+        elif enable_fp_fallback and date_match:
             fallback.append(fact)
-    preferred_val = _latest_value(preferred)
-    if preferred_val is not None:
-        return preferred_val
+
+    value = _latest_value(exact_match)
+    if value is not None:
+        return value
     if enable_fp_fallback:
-        fallback_val = _latest_value(fallback)
-        if fallback_val is not None:
-            return fallback_val
+        value = _latest_value(fallback)
+        if value is not None:
+            return value
 
     if not enable_fp_fallback or not period:
         return None
@@ -334,24 +359,30 @@ def _pick_instant(
 ) -> float | None:
     """Pick the balance value for a year/period from instant facts."""
     end_month = _QUARTER_END_MONTH[period]
-    preferred: list[dict[str, Any]] = []
+    exact_match: list[dict[str, Any]] = []
     fallback: list[dict[str, Any]] = []
     fp_preferred = _fp_candidates(period)
     for fact in facts_list:
         end = _parse(fact.get("end"))
-        if not end or not _end_matches_expected_period(end, year, end_month):
+        if not end:
             continue
-        if str(fact.get("fp", "")) in fp_preferred:
-            preferred.append(fact)
-        else:
+
+        date_match = _end_matches_expected_period(end, year, end_month)
+        is_fiscal = _is_fiscal_match(fact, year, period)
+        if is_fiscal and not enable_fp_fallback and not date_match:
+            continue
+        if is_fiscal:
+            exact_match.append(fact)
+        elif enable_fp_fallback and date_match:
             fallback.append(fact)
-    preferred_val = _latest_value(preferred)
-    if preferred_val is not None:
-        return preferred_val
+
+    value = _latest_value(exact_match)
+    if value is not None:
+        return value
     if enable_fp_fallback:
-        fallback_val = _latest_value(fallback)
-        if fallback_val is not None:
-            return fallback_val
+        value = _latest_value(fallback)
+        if value is not None:
+            return value
 
     if not enable_fp_fallback:
         return None
@@ -398,6 +429,7 @@ def extract_period_end(
     exact_fp: list[dict[str, Any]] = []
     exact_date_window: list[dict[str, Any]] = []
     fy_duration_fallback: list[dict[str, Any]] = []
+    fiscal_year_ends: list[dict[str, Any]] = []
     end_month = _QUARTER_END_MONTH[period]
     min_days, max_days = _duration_range_for_period(period)
 
@@ -411,7 +443,11 @@ def extract_period_end(
                 fp = str(fact.get("fp", ""))
                 fy = _fact_fiscal_year(fact)
                 days = _duration_days(fact)
+                if fy == year and fp == "FY" and days is not None and 350 <= days <= 390:
+                    fiscal_year_ends.append(fact)
                 if fy == year and fp == period:
+                    if period == "FY" and (days is None or not 350 <= days <= 390):
+                        continue
                     exact_fp.append(fact)
                     continue
                 if _end_matches_expected_period(end, year, end_month):
@@ -435,14 +471,19 @@ def extract_period_end(
                     continue
                 fp = str(fact.get("fp", ""))
                 fy = _fact_fiscal_year(fact)
+                if period == "FY":
+                    continue
                 if fy == year and fp == period:
                     exact_fp.append(fact)
                     continue
                 if _end_matches_expected_period(end, year, end_month):
                     exact_date_window.append(fact)
 
+    if period == "Q4" and not exact_fp:
+        return _most_common_end(fiscal_year_ends) or _most_common_end(exact_date_window)
     return (
         _most_common_end(exact_fp)
+        or (_most_common_end(fiscal_year_ends) if period == "FY" else None)
         or _most_common_end(exact_date_window)
         or _most_common_end(fy_duration_fallback)
     )

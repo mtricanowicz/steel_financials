@@ -1,12 +1,12 @@
 steelmaker,metric,source_type,expected_periods,populated_periods,missing_periods,coverage_pct
-X,Capital Expenditures,auto_xbrl,36,36,0,100.0
-X,Cash & Cash Equivalents,auto_xbrl,36,36,0,100.0
-X,Cost of Goods Sold,auto_xbrl,36,36,0,100.0
-X,Current Maturities,auto_xbrl,36,36,0,100.0
-X,Earnings Per Share,auto_xbrl,36,36,0,100.0
-X,Interest Expense,auto_xbrl,36,36,0,100.0
-X,Long-Term Debt,auto_xbrl,36,36,0,100.0
-X,Net Income Attributable to Stockholders,auto_xbrl,36,36,0,100.0
-X,Net Sales,auto_xbrl,36,36,0,100.0
-X,Operating Cash Flow,auto_xbrl,36,36,0,100.0
-X,Short-Term Investments,auto_xbrl,36,0,36,0.0
+CMC,Capital Expenditures,auto_xbrl,35,35,0,100.0
+CMC,Cash & Cash Equivalents,auto_xbrl,35,35,0,100.0
+CMC,Cost of Goods Sold,auto_xbrl,35,35,0,100.0
+CMC,Current Maturities,auto_xbrl,35,35,0,100.0
+CMC,Earnings Per Share,auto_xbrl,35,35,0,100.0
+CMC,Interest Expense,auto_xbrl,35,35,0,100.0
+CMC,Long-Term Debt,auto_xbrl,35,35,0,100.0
+CMC,Net Income Attributable to Stockholders,auto_xbrl,35,35,0,100.0
+CMC,Net Sales,auto_xbrl,35,35,0,100.0
+CMC,Operating Cash Flow,auto_xbrl,35,35,0,100.0
+CMC,Short-Term Investments,auto_xbrl,35,0,35,0.0

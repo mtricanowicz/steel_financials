@@ -76,8 +76,8 @@ with st.expander("Set filters", expanded=True):
         col1, col2, col3 = st.columns([1, 3, 1])
         with col1:
             data_type = st.radio(
-                "View Full Year or Quarterly data?",
-                ["Full Year", "Quarterly"],
+                "View Quarterly or Full Year data?",
+                ["Quarterly", "Full Year"],
                 horizontal=True,
             )
         data = fy_data if data_type == "Full Year" else q_data

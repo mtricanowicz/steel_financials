@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from sec_pipeline.xbrl import extract_metric
+from sec_pipeline.xbrl import extract_metric, extract_period_end
 
 
 def _company_facts(tags: dict[str, dict[str, list[dict]]]) -> dict:
@@ -203,3 +203,69 @@ def test_eps_fallback_uses_net_income_and_share_count() -> None:
     )
 
     assert extract_metric(facts, "Earnings Per Share", 2024, "Q1") == 2.0
+
+
+def test_cmc_fiscal_q4_august_31_fact_is_accepted_for_calendar_q3_match() -> None:
+    facts = _company_facts(
+        {
+            "SalesRevenueGoodsNet": {
+                "USD": [
+                    {
+                        "start": "2021-06-01",
+                        "end": "2021-08-31",
+                        "form": "10-Q",
+                        "fy": 2021,
+                        "fp": "Q4",
+                        "val": 2030646000.0,
+                        "filed": "2021-09-30",
+                        "accn": "1",
+                    }
+                ]
+            }
+        }
+    )
+
+    assert extract_metric(facts, "Net Sales", 2021, "Q3") == 2030646000.0
+
+
+def test_annual_ytd_label_does_not_shift_fiscal_year_or_derived_q4_end() -> None:
+    facts = _company_facts(
+        {
+            "NetIncomeLoss": {
+                "USD": [
+                    {"start": "2020-09-01", "end": "2021-05-31", "fy": 2021, "fp": "FY", "val": 260},
+                    {"start": "2020-09-01", "end": "2021-08-31", "fy": 2021, "fp": "FY", "val": 412},
+                ]
+            },
+            "CashAndCashEquivalentsAtCarryingValue": {
+                "USD": [
+                    {"end": "2021-05-31", "fy": 2021, "fp": "FY", "val": 501},
+                ]
+            },
+        }
+    )
+
+    assert extract_period_end(facts, 2021, "FY") == "2021-08-31"
+    assert extract_period_end(facts, 2021, "Q4") == "2021-08-31"
+
+
+def test_interest_expense_uses_annual_operating_tag_when_quarters_use_standard_tag() -> None:
+    facts = _company_facts(
+        {
+            "InterestExpense": {
+                "USD": [
+                    {"start": "2024-09-01", "end": "2024-11-30", "fy": 2025, "fp": "Q1", "val": 11_322_000},
+                    {"start": "2024-12-01", "end": "2025-02-28", "fy": 2025, "fp": "Q2", "val": 11_167_000},
+                    {"start": "2025-03-01", "end": "2025-05-31", "fy": 2025, "fp": "Q3", "val": 10_864_000},
+                ]
+            },
+            "InterestExpenseOperating": {
+                "USD": [
+                    {"start": "2024-09-01", "end": "2025-08-31", "fy": 2025, "fp": "FY", "val": 45_498_000},
+                ]
+            },
+        }
+    )
+
+    assert extract_metric(facts, "Interest Expense", 2025, "FY") == 45_498_000
+    assert extract_metric(facts, "Interest Expense", 2025, "Q4") == 12_145_000
