@@ -87,7 +87,7 @@ def _steelmaker_sidebar_line(steelmaker: str, earnings: dict) -> str:
     # Define styling elements
     logo_height_em = 1.05
     gap_rem = 0.25
-    # Define the label and info lines for the sidebar entries.
+    # Define the label and info lines for the sidebar entries
     if steelmaker in STEELMAKER_DEFUNCT_REASONS:
         label_line = f"*{STEELMAKER_NAMES.get(steelmaker, steelmaker)} ({steelmaker})*"
         info_line = (
@@ -101,6 +101,7 @@ def _steelmaker_sidebar_line(steelmaker: str, earnings: dict) -> str:
         date_from = earnings.get("date_from")
         date_to = earnings.get("date_to")
         if date_from:
+            # Map fiscal periods to calendar dates
             if steelmaker == "CMC":
                 period_label = "Q1" if dt.date.fromisoformat(date_from).month <= 2 else (
                 "Q2" if dt.date.fromisoformat(date_from).month <= 5 else (
@@ -115,19 +116,40 @@ def _steelmaker_sidebar_line(steelmaker: str, earnings: dict) -> str:
                     "Q2" if dt.date.fromisoformat(date_from).month <= 9 else "Q3"
                     )
                 )
+            # Dynamic handling of earnings dates that are in the future or past
             release_tense = "will be released" if dt.date.fromisoformat(date_from) >= dt.datetime.now(_MARKET_TZ).date() else "were released"
-            date_label = (
-                f"{date_from}–{date_to} (estimate)"
-                if date_to and date_to != date_from
-                else date_from
-            )
+            # Formatting the date or date ranges for readability
+            date_from_value = dt.date.fromisoformat(date_from)
+            date_to_value = dt.date.fromisoformat(date_to) if date_to else None
+            if date_to_value and date_to_value != date_from_value:
+                if (date_from_value.year, date_from_value.month) == (
+                    date_to_value.year,
+                    date_to_value.month,
+                ):
+                    date_label = (
+                        f"{date_from_value:%B %d}–{date_to_value:%d, %Y} (estimated)"
+                    )
+                elif date_from_value.year == date_to_value.year:
+                    date_label = (
+                        f"{date_from_value:%B %d}–"
+                        f"{date_to_value:%B %d, %Y} (estimated)"
+                    )
+                else:
+                    date_label = (
+                        f"{date_from_value:%B %d, %Y}–"
+                        f"{date_to_value:%B %d, %Y} (estimated)"
+                    )
+            else:
+                date_label = date_from_value.strftime("%B %d, %Y")
+            # Define the final information line
             info_line = (
                 f"<span style='display:block; "
                 f"margin-left:calc({logo_height_em}em + {gap_rem}rem); "
                 f"margin-top:-0.2rem; line-height:1;'>"
-                f"<small>{period_label} earnings {release_tense} on {date_label}</small></span>"
+                f"<small>{period_label} results {release_tense} on {date_label}</small></span>"
             )
         else:
+            # Define the final information line
             info_line = (
                 f"<span style='display:block; "
                 f"margin-left:calc({logo_height_em}em + {gap_rem}rem); "
