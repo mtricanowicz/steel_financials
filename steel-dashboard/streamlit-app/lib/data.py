@@ -10,7 +10,9 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from pathlib import Path
+from threading import Lock
 
 import pandas as pd
 import requests
@@ -183,19 +185,65 @@ def fetch_live_quotes(
     except (requests.RequestException, ValueError, KeyError):
         return {}
 
-@st.cache_data(ttl=24 * 60 * 60, show_spinner=False)
-def fetch_earnings_dates(tickers: tuple[str, ...]) -> dict[str, dict]:
-    """Fetch upcoming earnings dates for the given tickers."""
+EARNINGS_CACHE_TTL_SECONDS = 24 * 60 * 60
+# Minimum wait between refetch attempts for tickers that have no cached date, so
+# reruns don't hammer the API while it is cold, throttled, or down.
+EARNINGS_RETRY_SECONDS = 5 * 60
+
+
+@st.cache_resource(show_spinner=False)
+def _earnings_store() -> dict:
+    """Process-wide per-ticker earnings cache shared across sessions and reruns."""
+    return {"entries": {}, "last_attempt": {}, "lock": Lock()}
+
+
+def _request_earnings(tickers: tuple[str, ...]) -> dict[str, dict]:
+    """Return {ticker: item} for tickers the API resolved to a date."""
     try:
         resp = requests.get(
             f"{QUOTES_API_URL}/earnings",
             params={"tickers": ",".join(tickers)},
-            timeout=10,
+            # A cold quotes-api fetches each ticker's calendar serially.
+            timeout=30,
         )
         resp.raise_for_status()
         return {
             item["ticker"]: item
             for item in resp.json().get("earnings", [])
+            if item.get("date_from")
         }
-    except (requests.RequestException, ValueError, KeyError):
+    except (requests.RequestException, ValueError, KeyError, TypeError):
         return {}
+
+
+def fetch_earnings_dates(tickers: tuple[str, ...]) -> dict[str, dict]:
+    """Fetch upcoming earnings dates for the given tickers.
+
+    Each ticker's date is cached for 24 hours from when it was fetched. Missing or
+    failed tickers are not cached; they are retried (at most every few minutes)
+    while previously fetched dates keep being served.
+    """
+    store = _earnings_store()
+    now = time.time()
+    with store["lock"]:
+        entries: dict[str, tuple[float, dict]] = store["entries"]
+        last_attempt: dict[str, float] = store["last_attempt"]
+        stale = [
+            t for t in tickers
+            if t not in entries or now - entries[t][0] >= EARNINGS_CACHE_TTL_SECONDS
+        ]
+        to_fetch = tuple(
+            t for t in stale if now - last_attempt.get(t, 0.0) >= EARNINGS_RETRY_SECONDS
+        )
+        for t in to_fetch:
+            last_attempt[t] = now
+
+    if to_fetch:
+        fetched = _request_earnings(to_fetch)
+        with store["lock"]:
+            for t, item in fetched.items():
+                entries[t] = (now, item)
+
+    with store["lock"]:
+        # Expired entries are still served until a refresh succeeds.
+        return {t: entries[t][1] for t in tickers if t in entries}

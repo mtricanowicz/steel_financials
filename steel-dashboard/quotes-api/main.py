@@ -12,6 +12,7 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import os
+import time
 from threading import Lock
 from zoneinfo import ZoneInfo
 
@@ -102,11 +103,13 @@ def get_quote_cached(ticker: str) -> Quote:
     today = dt.date.today()
     with _lock:
         day_cache = _cache.setdefault(today, {})
+        # Drop stale day buckets to bound memory.
         for key in [k for k in _cache if k != today]:
             _cache.pop(key, None)
         if ticker in day_cache:
             return day_cache[ticker]
     quote = _fetch_quote(ticker)
+    # Only cache successful lookups so transient failures can retry.
     if quote.price is not None:
         with _lock:
             _cache.setdefault(today, {})[ticker] = quote
@@ -161,55 +164,80 @@ def _parse_earnings_dates(calendar: object) -> tuple[str | None, str | None]:
     return dates[0].isoformat(), dates[-1].isoformat()
 
 
-_earnings_cache: dict[dt.date, dict[str, EarningsDate]] = {}
+# ticker -> (fetched_at UTC, result). Entries expire on a rolling TTL rather than
+# at a calendar-day boundary. Dates are cached for a full day; an empty calendar
+# (which yfinance also returns when throttled) is cached only briefly; fetch
+# failures are never cached.
+EARNINGS_CACHE_TTL = dt.timedelta(hours=24)
+EARNINGS_EMPTY_CACHE_TTL = dt.timedelta(hours=1)
+EARNINGS_FETCH_ATTEMPTS = 3
+_earnings_cache: dict[str, tuple[dt.datetime, EarningsDate]] = {}
+# ticker -> last result that carried a date, served if a refresh comes back empty.
+_earnings_last_good: dict[str, EarningsDate] = {}
 _earnings_fetch_lock = Lock()
 
 
 def _fetch_earnings_date(ticker: str) -> EarningsDate:
-    """Fetch an upcoming earnings date or date range from yfinance."""
-    try:
-        date_from, date_to = _parse_earnings_dates(yf.Ticker(ticker).calendar)
-        if date_from is None:
-            return EarningsDate(
-                ticker=ticker,
-                date_from=None,
-                date_to=None,
-                error="no upcoming date",
+    """Fetch an upcoming earnings date or date range from yfinance, with retries."""
+    result = EarningsDate(ticker=ticker, date_from=None, date_to=None, error="fetch failed")
+    for attempt in range(EARNINGS_FETCH_ATTEMPTS):
+        try:
+            date_from, date_to = _parse_earnings_dates(yf.Ticker(ticker).calendar)
+        except Exception as exc:  # noqa: BLE001
+            log.warning(
+                "Earnings calendar fetch failed for %s (try %d): %s", ticker, attempt + 1, exc
             )
-        return EarningsDate(
-            ticker=ticker,
-            date_from=date_from,
-            date_to=date_to,
-        )
-    except Exception as exc:  # noqa: BLE001
-        log.warning("Earnings calendar fetch failed for %s: %s", ticker, exc)
-        return EarningsDate(
-            ticker=ticker,
-            date_from=None,
-            date_to=None,
-            error="fetch failed",
-        )
+            result = EarningsDate(
+                ticker=ticker, date_from=None, date_to=None, error="fetch failed"
+            )
+        else:
+            if date_from is not None:
+                return EarningsDate(ticker=ticker, date_from=date_from, date_to=date_to)
+            result = EarningsDate(
+                ticker=ticker, date_from=None, date_to=None, error="no upcoming date"
+            )
+        if attempt + 1 < EARNINGS_FETCH_ATTEMPTS:
+            time.sleep(0.5 * (attempt + 1))
+    return result
+
+
+def _earnings_entry_fresh(entry: tuple[dt.datetime, EarningsDate], now: dt.datetime) -> bool:
+    fetched_at, result = entry
+    ttl = EARNINGS_CACHE_TTL if result.date_from else EARNINGS_EMPTY_CACHE_TTL
+    return now - fetched_at < ttl
 
 
 def get_earnings_date_cached(ticker: str) -> EarningsDate:
-    today = dt.datetime.now(MARKET_TZ).date()
+    now = dt.datetime.now(dt.timezone.utc)
     with _lock:
-        day_cache = _earnings_cache.setdefault(today, {})
-        for key in [k for k in _earnings_cache if k != today]:
-            _earnings_cache.pop(key, None)
-        if ticker in day_cache:
-            return day_cache[ticker]
+        entry = _earnings_cache.get(ticker)
+    if entry is not None and _earnings_entry_fresh(entry, now):
+        return entry[1]
 
     with _earnings_fetch_lock:
         with _lock:
-            cached = _earnings_cache.get(today, {}).get(ticker)
-        if cached is not None:
-            return cached
+            entry = _earnings_cache.get(ticker)
+        if entry is not None and _earnings_entry_fresh(entry, now):
+            return entry[1]
+
         result = _fetch_earnings_date(ticker)
-        # Cache successful lookups, including a valid calendar with no future date.
-        if result.error != "fetch failed":
+        if result.date_from is not None:
             with _lock:
-                _earnings_cache.setdefault(today, {})[ticker] = result
+                _earnings_cache[ticker] = (now, result)
+                _earnings_last_good[ticker] = result
+            return result
+
+        # Prefer the last known date over an empty/failed refresh while that date
+        # has not passed, so a throttled provider doesn't blank the sidebar.
+        with _lock:
+            last_good = _earnings_last_good.get(ticker)
+        today = dt.datetime.now(MARKET_TZ).date().isoformat()
+        if last_good is not None and (last_good.date_to or last_good.date_from) >= today:
+            return last_good
+
+        if result.error == "no upcoming date":
+            with _lock:
+                _earnings_cache[ticker] = (now, result)
         return result
 
 
