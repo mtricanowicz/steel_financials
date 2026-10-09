@@ -14,8 +14,30 @@ All financial statement data is precomputed and read directly from generated JSO
 | GET | `/health` | Liveness probe returning `{"status": "ok"}`. |
 | GET | `/quotes?tickers=NUE,STLD,CMC,CLF` | Last close, day change, and change percent per ticker. |
 | GET | `/history?tickers=NUE,STLD&start=2024-01-01` | Daily close history aligned on a shared date axis. |
+| GET | `/earnings?tickers=NUE,STLD,CMC,CLF` | Next earnings date (or estimated date range) per ticker. |
 
 Quotes are cached by trading day. Historical responses are cached per request shape.
+
+Earnings calendars are also cached in-memory for the current day. Dates come
+from Yahoo Finance via yfinance and may be estimates, missing, or returned as a
+range; they are not guaranteed confirmed release dates. For example:
+
+```json
+{
+  "earnings": [
+    {
+      "ticker": "AAL",
+      "date_from": "2026-10-22",
+      "date_to": "2026-10-23",
+      "error": null
+    }
+  ]
+}
+```
+
+If no upcoming date is available, `date_from` and `date_to` are `null` and
+`error` is `"no upcoming date"`. Provider failures return `"fetch failed"` and
+are not cached, allowing a later request to retry.
 
 ## Local development
 

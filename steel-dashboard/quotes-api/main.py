@@ -54,6 +54,17 @@ class QuotesResponse(BaseModel):
     quotes: list[Quote]
 
 
+class EarningsDate(BaseModel):
+    ticker: str
+    date_from: str | None
+    date_to: str | None
+    error: str | None = None
+
+
+class EarningsResponse(BaseModel):
+    earnings: list[EarningsDate]
+
+
 class History(BaseModel):
     dates: list[str]
     closes: dict[str, list[float | None]]
@@ -113,6 +124,103 @@ def quotes(
 ) -> QuotesResponse:
     symbols = [ticker.strip().upper() for ticker in tickers.split(",") if ticker.strip()]
     return QuotesResponse(quotes=[get_quote_cached(symbol) for symbol in symbols])
+
+
+def _parse_earnings_dates(calendar: object) -> tuple[str | None, str | None]:
+    """Return the upcoming earnings date or date range from yfinance calendar data."""
+    earnings_dates: object
+    if isinstance(calendar, pd.DataFrame):
+        if "Earnings Date" in calendar.index:
+            earnings_dates = calendar.loc["Earnings Date"].tolist()
+        elif "Earnings Date" in calendar.columns:
+            earnings_dates = calendar["Earnings Date"].tolist()
+        else:
+            return None, None
+    elif isinstance(calendar, dict):
+        earnings_dates = calendar.get("Earnings Date")
+    else:
+        return None, None
+
+    if earnings_dates is None:
+        return None, None
+    if not isinstance(earnings_dates, (list, tuple, pd.Series)):
+        earnings_dates = [earnings_dates]
+
+    today = dt.datetime.now(MARKET_TZ).date()
+    dates: list[dt.date] = []
+    for value in earnings_dates:
+        parsed = pd.to_datetime(value, errors="coerce")
+        if pd.isna(parsed):
+            continue
+        date = parsed.date()
+        if date >= today:
+            dates.append(date)
+    if not dates:
+        return None, None
+    dates.sort()
+    return dates[0].isoformat(), dates[-1].isoformat()
+
+
+_earnings_cache: dict[dt.date, dict[str, EarningsDate]] = {}
+_earnings_fetch_lock = Lock()
+
+
+def _fetch_earnings_date(ticker: str) -> EarningsDate:
+    """Fetch an upcoming earnings date or date range from yfinance."""
+    try:
+        date_from, date_to = _parse_earnings_dates(yf.Ticker(ticker).calendar)
+        if date_from is None:
+            return EarningsDate(
+                ticker=ticker,
+                date_from=None,
+                date_to=None,
+                error="no upcoming date",
+            )
+        return EarningsDate(
+            ticker=ticker,
+            date_from=date_from,
+            date_to=date_to,
+        )
+    except Exception as exc:  # noqa: BLE001
+        log.warning("Earnings calendar fetch failed for %s: %s", ticker, exc)
+        return EarningsDate(
+            ticker=ticker,
+            date_from=None,
+            date_to=None,
+            error="fetch failed",
+        )
+
+
+def get_earnings_date_cached(ticker: str) -> EarningsDate:
+    today = dt.datetime.now(MARKET_TZ).date()
+    with _lock:
+        day_cache = _earnings_cache.setdefault(today, {})
+        for key in [k for k in _earnings_cache if k != today]:
+            _earnings_cache.pop(key, None)
+        if ticker in day_cache:
+            return day_cache[ticker]
+
+    with _earnings_fetch_lock:
+        with _lock:
+            cached = _earnings_cache.get(today, {}).get(ticker)
+        if cached is not None:
+            return cached
+        result = _fetch_earnings_date(ticker)
+        # Cache successful lookups, including a valid calendar with no future date.
+        if result.error != "fetch failed":
+            with _lock:
+                _earnings_cache.setdefault(today, {})[ticker] = result
+        return result
+
+
+@app.get("/earnings", response_model=EarningsResponse)
+def earnings(
+    tickers: str = Query(default=",".join(DEFAULT_TICKERS), description="Comma-separated tickers"),
+) -> EarningsResponse:
+    symbols = [t.strip().upper() for t in tickers.split(",") if t.strip()]
+    return EarningsResponse(
+        earnings=[get_earnings_date_cached(ticker) for ticker in symbols]
+    )
 
 
 # (today, start, symbols) -> History payload, so the provider is queried at most

@@ -182,3 +182,20 @@ def fetch_live_quotes(
 
     except (requests.RequestException, ValueError, KeyError):
         return {}
+
+@st.cache_data(ttl=24 * 60 * 60, show_spinner=False)
+def fetch_earnings_dates(tickers: tuple[str, ...]) -> dict[str, dict]:
+    """Fetch upcoming earnings dates for the given tickers."""
+    try:
+        resp = requests.get(
+            f"{QUOTES_API_URL}/earnings",
+            params={"tickers": ",".join(tickers)},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        return {
+            item["ticker"]: item
+            for item in resp.json().get("earnings", [])
+        }
+    except (requests.RequestException, ValueError, KeyError):
+        return {}

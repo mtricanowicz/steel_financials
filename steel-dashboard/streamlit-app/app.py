@@ -29,12 +29,19 @@ from lib.formatting import (
 from lib.analytics import track_page_view
 from lib.data import (
     fetch_live_quotes,
+    fetch_earnings_dates,
 )
 
 _APP_DIR = Path(__file__).parent
 _ASSETS_DIR = _APP_DIR.parent / "assets"
 _BRANDING_DIR = _ASSETS_DIR / "branding"
 _MARKET_TZ = ZoneInfo("America/New_York")
+# Define the list of stock tickers, excluding defunct steelmakers, to use in the crawler and earnings dates.
+STOCK_TICKERS = tuple(
+    ticker
+    for ticker in sorted(STEELMAKER_NAMES)
+    if ticker not in set(STEELMAKER_GROUPS.get("Defunct Steelmakers", [])) | {"ATI", "CRS"}
+)
 
 
 def _is_market_open(now: dt.datetime | None = None) -> bool:
@@ -74,6 +81,73 @@ def _ticker_run_every() -> str:
     # Keep a small floor to avoid zero/negative values on boundary transitions.
     return f"{max(seconds, 60)}s"
 
+
+def _steelmaker_sidebar_line(steelmaker: str, earnings: dict) -> str:
+    """Return one formatted steelmaker line plus additional info for the sidebar list."""
+    # Define styling elements
+    logo_height_em = 1.05
+    gap_rem = 0.25
+    # Define the label and info lines for the sidebar entries.
+    if steelmaker in STEELMAKER_DEFUNCT_REASONS:
+        label_line = f"*{STEELMAKER_NAMES.get(steelmaker, steelmaker)} ({steelmaker})*"
+        info_line = (
+                f"<span style='display:block; "
+                f"margin-left:calc({logo_height_em}em + {gap_rem}rem); "
+                f"margin-top:-0.2rem; line-height:1;'>"
+                f"<small>*{STEELMAKER_DEFUNCT_REASONS[steelmaker]}*</small></span>"
+            )
+    else:
+        label_line = f"{STEELMAKER_NAMES.get(steelmaker, steelmaker)} ([{steelmaker}]({STEELMAKER_IR.get(steelmaker, '#')}))"
+        date_from = earnings.get("date_from")
+        date_to = earnings.get("date_to")
+        if date_from:
+            if steelmaker == "CMC":
+                period_label = "Q1" if dt.date.fromisoformat(date_from).month <= 2 else (
+                "Q2" if dt.date.fromisoformat(date_from).month <= 5 else (
+                    "Q3" if dt.date.fromisoformat(date_from).month <= 8 else (
+                        "Q4 and FY" if dt.date.fromisoformat(date_from).month <= 11 else "Q1"
+                        )
+                    )
+                )
+            else:
+                period_label = "Q4 and FY" if dt.date.fromisoformat(date_from).month <= 3 else (
+                "Q1" if dt.date.fromisoformat(date_from).month <= 6 else (
+                    "Q2" if dt.date.fromisoformat(date_from).month <= 9 else "Q3"
+                    )
+                )
+            release_tense = "will be released" if dt.date.fromisoformat(date_from) >= dt.datetime.now(_MARKET_TZ).date() else "were released"
+            date_label = (
+                f"{date_from}–{date_to} (estimate)"
+                if date_to and date_to != date_from
+                else date_from
+            )
+            info_line = (
+                f"<span style='display:block; "
+                f"margin-left:calc({logo_height_em}em + {gap_rem}rem); "
+                f"margin-top:-0.2rem; line-height:1;'>"
+                f"<small>{period_label} earnings {release_tense} on {date_label}</small></span>"
+            )
+        else:
+            info_line = (
+                f"<span style='display:block; "
+                f"margin-left:calc({logo_height_em}em + {gap_rem}rem); "
+                f"margin-top:-0.2rem; line-height:1;'>"
+                f"<small>Earnings release date TBA</small></span>"
+            )
+    # Construct the HTML label for the airline with its logo, name, and ticker.
+    label = steelmaker_label_html(
+        steelmaker,
+        text=label_line,
+        logo_height_em=logo_height_em,
+        logo_before_text=True,
+        gap_rem=gap_rem,
+        font_size="0.875rem",
+        logo_alignment="flex-start",
+    )
+    # Output the combined label and info line for the sidebar.
+    return label + info_line
+
+
 st.set_page_config(
     page_title="Steel Financial Dashboard",
     page_icon=str(_BRANDING_DIR / "site_favicon.png"),
@@ -111,26 +185,16 @@ with st.sidebar:
             unsafe_allow_html=True
         )
     with st.expander("Steelmakers Covered", expanded=True):
+        earnings_dates = fetch_earnings_dates(STOCK_TICKERS)
         for group in (g for g in STEELMAKER_GROUPS if g != "Defunct Steelmakers"):
             st.markdown(f"### {group}", unsafe_allow_html=True)
             for steelmaker in STEELMAKER_GROUPS[group]:
                 if steelmaker in ["ATI", "CRS"]:
                     continue
-                if steelmaker in STEELMAKER_DEFUNCT_REASONS:
-                    st.markdown(
-                        steelmaker_label_html(
-                            steelmaker,
-                            text=f"*{STEELMAKER_NAMES.get(steelmaker, steelmaker)} ({steelmaker}) - {STEELMAKER_DEFUNCT_REASONS[steelmaker]}*",
-                            logo_height_em=1.25,
-                            logo_before_text=True,
-                            gap_rem=0.25
-                        ),
-                        unsafe_allow_html=True
-                    )
                 else:
                     st.markdown(
-                        steelmaker_label_html(steelmaker, text=f"{STEELMAKER_NAMES.get(steelmaker, steelmaker)} ([{steelmaker}]({STEELMAKER_IR.get(steelmaker, '#')}))", logo_height_em=1.25, logo_before_text=True, gap_rem=0.25),
-                        unsafe_allow_html=True
+                        _steelmaker_sidebar_line(steelmaker, earnings_dates.get(steelmaker, {})),
+                        unsafe_allow_html=True,
                     )
         st.markdown("<small><br>Active steelmakers<br>*Defunct steelmakers*</small>", unsafe_allow_html=True)
     with st.expander("Other Industry Dashboards", expanded=True):
@@ -168,12 +232,6 @@ for col, page in zip(nav_cols, pages):
         st.page_link(page, width="stretch")
 
 # Stock ticker setup and rendering
-# Define the list of stock tickers to display, excluding defunct steelmakers.
-STOCK_TICKERS = tuple(
-    ticker
-    for ticker in sorted(STEELMAKER_NAMES)
-    if ticker not in set(STEELMAKER_GROUPS.get("Defunct Steelmakers", [])) | {"ATI", "CRS"}
-)
 # Define the stock ticker rendering function and schedule it to run on a schedule based on market hours.
 @st.fragment(run_every=_ticker_run_every())
 def render_stock_ticker() -> None:
@@ -187,5 +245,6 @@ def render_stock_ticker() -> None:
     )
 # Render the stock ticker with activation controlled by the sidebar toggle.
 render_stock_ticker()
+
 
 current_page.run()
