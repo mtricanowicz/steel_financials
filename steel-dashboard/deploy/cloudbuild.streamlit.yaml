@@ -35,6 +35,23 @@ steps:
       - --set-env-vars
       - QUOTES_API_URL=${_QUOTES_API_URL},GA_MEASUREMENT_ID=${_GA_MEASUREMENT_ID}
       - --allow-unauthenticated
+      - --execution-environment
+      - gen1
+      - --cpu
+      - "1"
+      - --memory
+      - 512Mi
+      - --cpu-boost
+      - --cpu-throttling
+      - --timeout
+      - "3600"
+      - --concurrency
+      - "80"
+      - --min-instances
+      - "0"
+      - --max-instances
+      - "5"
+      - --session-affinity
 
 images:
   - us-central1-docker.pkg.dev/$PROJECT_ID/steel-dashboard/streamlit:$SHORT_SHA

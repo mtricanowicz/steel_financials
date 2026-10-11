@@ -36,7 +36,17 @@ jobs:
             --source steel-dashboard/quotes-api \
             --project "${{ secrets.GCP_PROJECT_ID }}" \
             --region us-central1 \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --execution-environment gen1 \
+            --cpu 1 \
+            --memory 512Mi \
+            --cpu-boost \
+            --cpu-throttling \
+            --timeout 300 \
+            --concurrency 80 \
+            --min-instances 0 \
+            --max-instances 2 \
+            --no-session-affinity
 
   streamlit:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
