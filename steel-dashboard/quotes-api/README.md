@@ -18,12 +18,13 @@ All financial statement data is precomputed and read directly from generated JSO
 
 Quotes are cached by trading day. Historical responses are cached per request shape.
 
-Earnings calendars are cached in-memory per ticker for 24 hours from the fetch
-(not reset at midnight). Each fetch retries a few times; failures are never
-cached, an empty calendar is cached for only an hour, and the last known date is
-served if a refresh comes back empty before that date passes. Dates come
-from Yahoo Finance via yfinance and may be estimates, missing, or returned as a
-range; they are not guaranteed confirmed release dates. For example:
+Earnings calendars are fetched in parallel (up to 5 tickers at a time) and
+cached in-memory per ticker for 24 hours from the fetch (not reset at midnight).
+The date is served as reported, even if it has already passed. A fetch is
+retried once only if it raises; failures are never cached. An empty calendar is
+cached for an hour, during which the last known date is still served if it has
+not passed yet. Dates come from Yahoo Finance via yfinance and may be estimates,
+missing, or returned as a range; they are not guaranteed confirmed release dates. For example:
 
 ```json
 {

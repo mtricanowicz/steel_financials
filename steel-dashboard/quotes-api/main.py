@@ -13,6 +13,7 @@ import datetime as dt
 import logging
 import os
 import time
+from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 from zoneinfo import ZoneInfo
 
@@ -130,7 +131,10 @@ def quotes(
 
 
 def _parse_earnings_dates(calendar: object) -> tuple[str | None, str | None]:
-    """Return the upcoming earnings date or date range from yfinance calendar data."""
+    """Return the earnings date or date range reported in yfinance calendar data.
+
+    Dates are returned as supplied, including dates that have already passed.
+    """
     earnings_dates: object
     if isinstance(calendar, pd.DataFrame):
         if "Earnings Date" in calendar.index:
@@ -149,37 +153,46 @@ def _parse_earnings_dates(calendar: object) -> tuple[str | None, str | None]:
     if not isinstance(earnings_dates, (list, tuple, pd.Series)):
         earnings_dates = [earnings_dates]
 
-    today = dt.datetime.now(MARKET_TZ).date()
     dates: list[dt.date] = []
     for value in earnings_dates:
         parsed = pd.to_datetime(value, errors="coerce")
         if pd.isna(parsed):
             continue
-        date = parsed.date()
-        if date >= today:
-            dates.append(date)
+        dates.append(parsed.date())
     if not dates:
         return None, None
     dates.sort()
     return dates[0].isoformat(), dates[-1].isoformat()
 
 
-# ticker -> (fetched_at UTC, result). Entries expire on a rolling TTL rather than
-# at a calendar-day boundary. Dates are cached for a full day; an empty calendar
-# (which yfinance also returns when throttled) is cached only briefly; fetch
-# failures are never cached.
+# ticker -> (expires_at UTC, result). Entries expire on a rolling TTL rather than
+# at a calendar-day boundary. Dates (past or future, as yfinance reports them) are
+# cached for a full day. An empty calendar, which yfinance also returns when
+# throttled, is cached only briefly, as is a last-known upcoming date served in
+# its place. Fetch failures are never cached.
 EARNINGS_CACHE_TTL = dt.timedelta(hours=24)
 EARNINGS_EMPTY_CACHE_TTL = dt.timedelta(hours=1)
-EARNINGS_FETCH_ATTEMPTS = 3
+EARNINGS_FETCH_ATTEMPTS = 2
+EARNINGS_RETRY_BACKOFF_SECONDS = 0.5
+EARNINGS_MAX_WORKERS = 5
 _earnings_cache: dict[str, tuple[dt.datetime, EarningsDate]] = {}
 # ticker -> last result that carried a date, served if a refresh comes back empty.
 _earnings_last_good: dict[str, EarningsDate] = {}
-_earnings_fetch_lock = Lock()
+# ticker -> lock, so a ticker is fetched once at a time while different tickers
+# can be fetched in parallel.
+_earnings_ticker_locks: dict[str, Lock] = {}
+
+
+def _earnings_ticker_lock(ticker: str) -> Lock:
+    with _lock:
+        return _earnings_ticker_locks.setdefault(ticker, Lock())
 
 
 def _fetch_earnings_date(ticker: str) -> EarningsDate:
-    """Fetch an upcoming earnings date or date range from yfinance, with retries."""
-    result = EarningsDate(ticker=ticker, date_from=None, date_to=None, error="fetch failed")
+    """Fetch an earnings date or date range from yfinance.
+
+    Only exceptions are retried; an empty calendar is returned immediately.
+    """
     for attempt in range(EARNINGS_FETCH_ATTEMPTS):
         try:
             date_from, date_to = _parse_earnings_dates(yf.Ticker(ticker).calendar)
@@ -187,43 +200,38 @@ def _fetch_earnings_date(ticker: str) -> EarningsDate:
             log.warning(
                 "Earnings calendar fetch failed for %s (try %d): %s", ticker, attempt + 1, exc
             )
-            result = EarningsDate(
-                ticker=ticker, date_from=None, date_to=None, error="fetch failed"
-            )
-        else:
-            if date_from is not None:
-                return EarningsDate(ticker=ticker, date_from=date_from, date_to=date_to)
-            result = EarningsDate(
-                ticker=ticker, date_from=None, date_to=None, error="no upcoming date"
-            )
-        if attempt + 1 < EARNINGS_FETCH_ATTEMPTS:
-            time.sleep(0.5 * (attempt + 1))
-    return result
+            if attempt + 1 < EARNINGS_FETCH_ATTEMPTS:
+                time.sleep(EARNINGS_RETRY_BACKOFF_SECONDS)
+            continue
+        if date_from is not None:
+            return EarningsDate(ticker=ticker, date_from=date_from, date_to=date_to)
+        return EarningsDate(ticker=ticker, date_from=None, date_to=None, error="no upcoming date")
+    return EarningsDate(ticker=ticker, date_from=None, date_to=None, error="fetch failed")
 
 
-def _earnings_entry_fresh(entry: tuple[dt.datetime, EarningsDate], now: dt.datetime) -> bool:
-    fetched_at, result = entry
-    ttl = EARNINGS_CACHE_TTL if result.date_from else EARNINGS_EMPTY_CACHE_TTL
-    return now - fetched_at < ttl
+def _cached_earnings(ticker: str, now: dt.datetime) -> EarningsDate | None:
+    with _lock:
+        entry = _earnings_cache.get(ticker)
+    if entry is not None and now < entry[0]:
+        return entry[1]
+    return None
 
 
 def get_earnings_date_cached(ticker: str) -> EarningsDate:
     now = dt.datetime.now(dt.timezone.utc)
-    with _lock:
-        entry = _earnings_cache.get(ticker)
-    if entry is not None and _earnings_entry_fresh(entry, now):
-        return entry[1]
+    cached = _cached_earnings(ticker, now)
+    if cached is not None:
+        return cached
 
-    with _earnings_fetch_lock:
-        with _lock:
-            entry = _earnings_cache.get(ticker)
-        if entry is not None and _earnings_entry_fresh(entry, now):
-            return entry[1]
+    with _earnings_ticker_lock(ticker):
+        cached = _cached_earnings(ticker, now)
+        if cached is not None:
+            return cached
 
         result = _fetch_earnings_date(ticker)
         if result.date_from is not None:
             with _lock:
-                _earnings_cache[ticker] = (now, result)
+                _earnings_cache[ticker] = (now + EARNINGS_CACHE_TTL, result)
                 _earnings_last_good[ticker] = result
             return result
 
@@ -233,11 +241,13 @@ def get_earnings_date_cached(ticker: str) -> EarningsDate:
             last_good = _earnings_last_good.get(ticker)
         today = dt.datetime.now(MARKET_TZ).date().isoformat()
         if last_good is not None and (last_good.date_to or last_good.date_from) >= today:
+            with _lock:
+                _earnings_cache[ticker] = (now + EARNINGS_EMPTY_CACHE_TTL, last_good)
             return last_good
 
         if result.error == "no upcoming date":
             with _lock:
-                _earnings_cache[ticker] = (now, result)
+                _earnings_cache[ticker] = (now + EARNINGS_EMPTY_CACHE_TTL, result)
         return result
 
 
@@ -245,10 +255,16 @@ def get_earnings_date_cached(ticker: str) -> EarningsDate:
 def earnings(
     tickers: str = Query(default=",".join(DEFAULT_TICKERS), description="Comma-separated tickers"),
 ) -> EarningsResponse:
-    symbols = [t.strip().upper() for t in tickers.split(",") if t.strip()]
-    return EarningsResponse(
-        earnings=[get_earnings_date_cached(ticker) for ticker in symbols]
+    symbols = list(dict.fromkeys(t.strip().upper() for t in tickers.split(",") if t.strip()))
+    if not symbols:
+        return EarningsResponse(earnings=[])
+    started = time.monotonic()
+    with ThreadPoolExecutor(max_workers=min(EARNINGS_MAX_WORKERS, len(symbols))) as pool:
+        results = list(pool.map(get_earnings_date_cached, symbols))
+    log.info(
+        "Earnings for %d tickers served in %.2fs", len(symbols), time.monotonic() - started
     )
+    return EarningsResponse(earnings=results)
 
 
 # (today, start, symbols) -> History payload, so the provider is queried at most

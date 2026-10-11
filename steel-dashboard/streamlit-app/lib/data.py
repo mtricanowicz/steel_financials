@@ -8,11 +8,13 @@ separate quotes-api service.
 
 from __future__ import annotations
 
+import datetime as dt
 import json
 import os
 import time
 from pathlib import Path
 from threading import Lock
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
@@ -186,9 +188,13 @@ def fetch_live_quotes(
         return {}
 
 EARNINGS_CACHE_TTL_SECONDS = 24 * 60 * 60
+# How long to keep serving a last-known upcoming date after the API returns no
+# date for it, before asking again.
+EARNINGS_FALLBACK_TTL_SECONDS = 60 * 60
 # Minimum wait between refetch attempts for tickers that have no cached date, so
 # reruns don't hammer the API while it is cold, throttled, or down.
 EARNINGS_RETRY_SECONDS = 5 * 60
+_MARKET_TZ = ZoneInfo("America/New_York")
 
 
 @st.cache_resource(show_spinner=False)
@@ -197,41 +203,39 @@ def _earnings_store() -> dict:
     return {"entries": {}, "last_attempt": {}, "lock": Lock()}
 
 
-def _request_earnings(tickers: tuple[str, ...]) -> dict[str, dict]:
-    """Return {ticker: item} for tickers the API resolved to a date."""
+def _request_earnings(tickers: tuple[str, ...]) -> dict[str, dict] | None:
+    """Return {ticker: item} for every ticker the API answered, or None on failure."""
     try:
         resp = requests.get(
             f"{QUOTES_API_URL}/earnings",
             params={"tickers": ",".join(tickers)},
-            # A cold quotes-api fetches each ticker's calendar serially.
-            timeout=30,
+            timeout=15,
         )
         resp.raise_for_status()
-        return {
-            item["ticker"]: item
-            for item in resp.json().get("earnings", [])
-            if item.get("date_from")
-        }
+        return {item["ticker"]: item for item in resp.json().get("earnings", [])}
     except (requests.RequestException, ValueError, KeyError, TypeError):
-        return {}
+        return None
+
+
+def _earnings_upcoming(item: dict) -> bool:
+    last = item.get("date_to") or item.get("date_from")
+    return bool(last) and last >= dt.datetime.now(_MARKET_TZ).date().isoformat()
 
 
 def fetch_earnings_dates(tickers: tuple[str, ...]) -> dict[str, dict]:
-    """Fetch upcoming earnings dates for the given tickers.
+    """Fetch earnings dates for the given tickers.
 
-    Each ticker's date is cached for 24 hours from when it was fetched. Missing or
-    failed tickers are not cached; they are retried (at most every few minutes)
-    while previously fetched dates keep being served.
+    Each ticker's date (past or future, as reported) is cached for 24 hours. When
+    the API returns no date, a previously cached date is kept briefly only while
+    it is still upcoming; otherwise the ticker is dropped. Failed requests leave
+    the cache untouched and are retried at most every few minutes.
     """
     store = _earnings_store()
     now = time.time()
     with store["lock"]:
         entries: dict[str, tuple[float, dict]] = store["entries"]
         last_attempt: dict[str, float] = store["last_attempt"]
-        stale = [
-            t for t in tickers
-            if t not in entries or now - entries[t][0] >= EARNINGS_CACHE_TTL_SECONDS
-        ]
+        stale = [t for t in tickers if t not in entries or now >= entries[t][0]]
         to_fetch = tuple(
             t for t in stale if now - last_attempt.get(t, 0.0) >= EARNINGS_RETRY_SECONDS
         )
@@ -240,9 +244,18 @@ def fetch_earnings_dates(tickers: tuple[str, ...]) -> dict[str, dict]:
 
     if to_fetch:
         fetched = _request_earnings(to_fetch)
-        with store["lock"]:
-            for t, item in fetched.items():
-                entries[t] = (now, item)
+        if fetched is not None:
+            with store["lock"]:
+                for t in to_fetch:
+                    item = fetched.get(t)
+                    if item is None:
+                        continue
+                    if item.get("date_from"):
+                        entries[t] = (now + EARNINGS_CACHE_TTL_SECONDS, item)
+                    elif t in entries and _earnings_upcoming(entries[t][1]):
+                        entries[t] = (now + EARNINGS_FALLBACK_TTL_SECONDS, entries[t][1])
+                    else:
+                        entries.pop(t, None)
 
     with store["lock"]:
         # Expired entries are still served until a refresh succeeds.

@@ -116,8 +116,9 @@ def _steelmaker_sidebar_line(steelmaker: str, earnings: dict) -> str:
                     "Q2" if dt.date.fromisoformat(date_from).month <= 9 else "Q3"
                     )
                 )
-            # Dynamic handling of earnings dates that are in the future or past
-            release_tense = "will be released" if dt.date.fromisoformat(date_from) >= dt.datetime.now(_MARKET_TZ).date() else "were released"
+            # Dynamic handling of earnings dates that are in the future or past; an
+            # estimated range is still upcoming until its last day has passed.
+            release_tense = "will be released" if dt.date.fromisoformat(date_to or date_from) >= dt.datetime.now(_MARKET_TZ).date() else "were released"
             # Formatting the date or date ranges for readability
             date_from_value = dt.date.fromisoformat(date_from)
             date_to_value = dt.date.fromisoformat(date_to) if date_to else None
