@@ -170,6 +170,14 @@ The generated financials dataset currently includes:
 
 The aligned fields are used by quarterly peer views so fiscal-calendar offsets do not force issuers such as CMC into isolated latest-quarter buckets. Calendar reporters use the inspected report-end date; CMC quarterly periods are mapped one calendar quarter before the fiscal reporting period, while FY remains under its reporting year.
 
+Fact selection requires the actual context dates to match the target fiscal
+period, allowing seven days for 52/53-week reporters. CMC fiscal quarters end
+in November, February, May, and August; alignment for comparisons is separate.
+Fiscal labels rank only date-compatible facts, and cannot select a comparative
+or wrong-quarter context. Standalone and YTD start dates are also validated;
+YTD subtraction requires identical fiscal-year starts. Restatements are selected
+within the eligible period. Period-end voting excludes dates outside that period.
+
 ## Metric sourcing
 
 | Source | Current role |
@@ -177,6 +185,38 @@ The aligned fields are used by quarterly peer views so fiscal-calendar offsets d
 | SEC XBRL company facts | Primary financial metric extraction |
 | Manual files in `../data/manual/` | Optional overlap fields, share repurchases, share sales |
 | Derived in `build_data.py` | Gross profit, margins, debt/liquidity rollups, free cash flow |
+
+Operating cash flow and capital expenditures use YTD-aware extraction, as do
+losses and impairment of assets and depreciation for Nucor, and combined D&A for
+CMC (identified by companyfacts CIK).
+Standalone Q2/Q3 facts
+are preferred when available; otherwise Q2 is six-month YTD minus Q1, and Q3 is
+nine-month YTD minus six-month YTD. Q4 is full year minus nine-month YTD when
+available, with a full-year-minus-standalone-Q1/Q2/Q3 fallback. Missing required
+inputs remain missing rather than being treated as zero during extraction.
+Nucor amortization and X/STLD/CLF D&A use standalone period facts. Other issuers'
+losses and impairment also use standalone period facts. For these metrics,
+Q4 uses a standalone fact when available, otherwise FY minus Q1/Q2/Q3.
+
+The data builder prefers reported combined D&A, including zero, over the sum of
+depreciation and amortization. Like the cash rollup, one available component is
+retained when the other is missing; if both are missing, the combined value stays
+missing. Tax, losses/impairment, combined D&A, and individual depreciation and
+amortization are internal inputs excluded from the final dataset; EBITDA and
+interest remain visible. The current EBITDA formula treats missing add-backs as
+zero, with warnings for missing inputs and partial D&A rollups. Coverage
+diagnostics retain raw internal-input coverage even though those columns are
+hidden from the final dataset. Accumulated depreciation is a balance-sheet balance and is not
+used as period D&A expense.
+
+Interest selection is issuer-specific: NUE uses `InterestRevenueExpenseNet`;
+CLF uses `InterestIncomeExpenseNonoperatingNet`; CMC uses `InterestExpense`
+with `InterestExpenseOperating` as an annual fallback; STLD uses
+`InterestExpenseNonoperating` with legacy `InterestExpense` as a fallback.
+Income-positive net-interest tags are negated so expense is positive and net
+interest income is negative, including YTD and derived Q4 values. CMC and STLD
+inputs are gross of interest income, not directly equivalent to NUE/CLF net
+interest. Other issuers retain the existing candidate list.
 
 ## Tests
 

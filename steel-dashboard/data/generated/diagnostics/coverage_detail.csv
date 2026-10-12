@@ -1,4 +1,183 @@
 steelmaker,year,quarter,metric,source_type,reason_code
+CLF,2019,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2026,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2019,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2020,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2021,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2022,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2023,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2024,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2025,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2026,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CLF,2026,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q1,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q1,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q1,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q1,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2019,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2020,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2021,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2022,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2023,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2024,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2025,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
 CMC,2019,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
 CMC,2019,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
 CMC,2019,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
@@ -34,3 +213,264 @@ CMC,2025,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
 CMC,2025,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
 CMC,2025,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
 CMC,2025,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+CMC,2026,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,FY,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q3,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q4,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2026,Q1,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2026,Q2,Depreciation & Amortization,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2019,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2020,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2021,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2022,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2023,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2024,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,FY,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q3,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2025,Q4,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2026,Q1,Operating Income,auto_xbrl,NO_AUTO_VALUE
+NUE,2026,Q2,Operating Income,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2026,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2026,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2019,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2023,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2024,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,FY,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q3,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q4,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2026,Q1,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2026,Q2,Losses & Impairment of Assets,auto_xbrl,NO_AUTO_VALUE
+STLD,2020,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2021,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2022,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2025,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2026,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+STLD,2026,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q1,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q2,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q3,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q4,Amortization,auto_xbrl,NO_AUTO_VALUE
+X,2019,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2020,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2021,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2022,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2023,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2024,FY,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q2,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q3,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q4,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2025,Q1,Depreciation,auto_xbrl,NO_AUTO_VALUE
+X,2019,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2019,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2020,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2020,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2021,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2021,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2022,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2022,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2023,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2023,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2024,FY,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q2,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q3,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2024,Q4,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE
+X,2025,Q1,Short-Term Investments,auto_xbrl,NO_AUTO_VALUE

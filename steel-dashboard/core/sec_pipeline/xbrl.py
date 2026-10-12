@@ -9,7 +9,7 @@ Flow metrics use duration contexts, with YTD-aware handling for metrics commonly
 reported cumulatively in Q2/Q3. Most Q4 flows are derived as ``FY - (Q1 + Q2 +
 Q3)``. Instant metrics use period-end contexts. Fact selection prefers matching
 SEC ``fp`` values when available and can fall back to looser matches when strict
-date windows miss.
+fiscal labels miss, but never to contexts outside the target fiscal dates.
 """
 
 from __future__ import annotations
@@ -43,11 +43,12 @@ DURATION_METRICS: dict[str, list[str]] = {
         "OperatingIncomeLoss",
     ],
     "Net Income": [
-        "NetIncomeLoss",
         "ProfitLoss",
+        "NetIncomeLoss",
         "IncomeLossFromContinuingOperations",
     ],
     "Net Income Attributable to Stockholders": [
+        "NetIncomeLoss",
         "NetIncomeLossAvailableToCommonStockholdersBasic",
         "NetIncomeLossAttributableToParent",
     ],
@@ -67,6 +68,7 @@ DURATION_METRICS: dict[str, list[str]] = {
         "PaymentsToAcquirePropertyPlantAndEquipmentAndIntangibleAssets",
     ],
     "Interest Expense": [
+        "InterestRevenueExpenseNet",
         "InterestExpenseNonoperating",
         "InterestExpense",
         "InterestExpenseOperating",
@@ -79,6 +81,23 @@ DURATION_METRICS: dict[str, list[str]] = {
         "InterestCosts",
         "InterestExpenseNonOperatingNet",
         "InterestExpenseDebtNonOperating",
+    ],
+    "Tax Expense": [
+        "IncomeTaxExpenseBenefit",
+    ],
+    "Losses & Impairment of Assets": [
+        "AssetImpairmentCharges",
+        "LossOnImpairmentOfAssets",
+    ],
+    "Depreciation & Amortization": [
+        "DepreciationDepletionAndAmortization",
+        "DepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+    ],
+    "Depreciation": [
+        "Depreciation",
+    ],
+    "Amortization": [
+        "AmortizationOfIntangibleAssets",
     ],
 }
 
@@ -120,7 +139,16 @@ INSTANT_METRICS: dict[str, list[str]] = {
 ALL_METRICS = tuple(DURATION_METRICS) + tuple(INSTANT_METRICS)
 
 _QUARTER_END_MONTH = {"Q1": 3, "Q2": 6, "Q3": 9, "Q4": 12, "FY": 12}
-YTD_DERIVED_METRICS = {"Operating Cash Flow", "Capital Expenditures"}
+YTD_DERIVED_METRICS = {
+    "Operating Cash Flow",
+    "Capital Expenditures",
+}
+PERIOD_ONLY_DURATION_METRICS = {
+    "Losses & Impairment of Assets",
+    "Depreciation & Amortization",
+    "Depreciation",
+    "Amortization",
+}
 NON_ADDITIVE_DURATION_METRICS = {"Earnings Per Share"}
 METRIC_UNIT_CANDIDATES: dict[str, list[str]] = {
     "Earnings Per Share": ["USD/shares", "USD/share", "pure"],
@@ -144,6 +172,32 @@ CAPEX_COMPONENT_TAGS = [
 CAPEX_RECONCILE_TOLERANCE = 0.05
 ATTRIBUTABLE_NET_INCOME_METRIC = "Net Income Attributable to Stockholders"
 PERIOD_END_TOLERANCE_DAYS = 7
+INTEREST_TAGS_BY_CIK = {
+    config.STEELMAKER_CIK_FALLBACK["NUE"].lstrip("0"): ["InterestRevenueExpenseNet"],
+    config.STEELMAKER_CIK_FALLBACK["CLF"].lstrip("0"): ["InterestIncomeExpenseNonoperatingNet"],
+    config.STEELMAKER_CIK_FALLBACK["CMC"].lstrip("0"): [
+        "InterestExpense",
+        "InterestExpenseOperating",
+    ],
+    config.STEELMAKER_CIK_FALLBACK["STLD"].lstrip("0"): [
+        "InterestExpenseNonoperating",
+        "InterestExpense",
+    ],
+}
+INTEREST_INCOME_POSITIVE_TAGS = {
+    "InterestRevenueExpenseNet",
+    "InterestIncomeExpenseNonoperatingNet",
+    "InterestIncomeExpenseNet",
+}
+YTD_METRICS_BY_CIK = {
+    config.STEELMAKER_CIK_FALLBACK["NUE"].lstrip("0"): {
+        "Losses & Impairment of Assets",
+        "Depreciation",
+    },
+    config.STEELMAKER_CIK_FALLBACK["CMC"].lstrip("0"): {
+        "Depreciation & Amortization",
+    },
+}
 
 
 def _facts_for_tag(
@@ -161,16 +215,6 @@ def _facts_for_tag(
     for unit in unit_candidates:
         out.extend(units.get(unit, []))
     return out
-
-
-def _fp_candidates(period: str) -> set[str]:
-    """Preferred SEC fiscal period labels for a logical period."""
-    if period in {"Q2", "Q3"}:
-        # Some filers label YTD quarter contexts as FY in companyfacts.
-        return {period, "FY"}
-    if period == "Q4":
-        return {"Q4", "FY"}
-    return {period}
 
 
 def _fact_sort_key(fact: dict[str, Any]) -> tuple[datetime, datetime, str, str]:
@@ -243,23 +287,100 @@ def _end_matches_expected_period(
 
 
 def _is_fiscal_match(fact: dict[str, Any], year: int, period: str) -> bool:
-    """Return True only for exact fiscal labels or the CMC August-31 Q4 offset case."""
-    end = _parse(fact.get("end"))
-    if not end:
+    """Fiscal labels rank facts only after actual dates have been validated."""
+    return _fact_fiscal_year(fact) == year and str(fact.get("fp", "")) == period
+
+
+def _fiscal_year_end_month(facts: dict[str, Any], year: int) -> int:
+    cik = str(facts.get("cik", "")).lstrip("0")
+    if cik == config.STEELMAKER_CIK_FALLBACK["CMC"].lstrip("0"):
+        return 8
+    if cik:
+        return 12
+    # Small fixtures and non-CIK payloads can establish their calendar from FY.
+    annual = [
+        fact
+        for tags in DURATION_METRICS.values()
+        for tag in tags
+        for fact in _facts_for_tag(facts, tag)
+        if _fact_fiscal_year(fact) == year
+        and str(fact.get("fp", "")) == "FY"
+        and 350 <= (_duration_days(fact) or 0) <= 390
+    ]
+    latest = _latest_fact(annual)
+    end = _parse(latest.get("end")) if latest else None
+    if end is None:
+        return 12
+    if end.month == 1 and end.day <= PERIOD_END_TOLERANCE_DAYS:
+        return 12
+    return end.month
+
+
+def _fiscal_period_end(year: int, period: str, fiscal_year_end_month: int) -> datetime:
+    offset = {"Q1": -9, "Q2": -6, "Q3": -3, "Q4": 0, "FY": 0}[period]
+    month_index = year * 12 + fiscal_year_end_month - 1 + offset
+    target_year, month_zero = divmod(month_index, 12)
+    return _expected_period_end(target_year, month_zero + 1)
+
+
+def _duration_context_matches(
+    fact: dict[str, Any],
+    target_end: datetime,
+    months: int,
+) -> bool:
+    start, end = _parse(fact.get("start")), _parse(fact.get("end"))
+    if start is None or end is None:
         return False
-    fp = str(fact.get("fp", ""))
-    fy = _fact_fiscal_year(fact)
+    month_index = target_end.year * 12 + target_end.month - months
+    start_year, start_month_zero = divmod(month_index, 12)
+    target_start = datetime(start_year, start_month_zero + 1, 1)
+    return (
+        _end_matches_expected_period(end, target_end.year, target_end.month)
+        and abs((start - target_start).days) <= PERIOD_END_TOLERANCE_DAYS
+    )
 
-    if fy == year and fp == period:
-        return True
 
-    # CMC-like issuers are on an August 31 fiscal year-end. Their fiscal Q4 can
-    # therefore appear on the August 31 calendar Q3 label when a report is
-    # organized by calendar quarter rather than by fiscal period.
-    if period == "Q3" and fy == year and fp == "Q4" and end.month == 8:
-        return True
+def _pick_duration_fact_window(
+    facts_list: list[dict[str, Any]],
+    year: int,
+    end_month: int,
+    min_days: int,
+    max_days: int,
+    period: str | None = None,
+    *,
+    enable_fp_fallback: bool,
+    fiscal_year_end_month: int = 12,
+) -> dict[str, Any] | None:
+    """Pick a duration fact matching year/month and day-count window."""
+    exact_match: list[dict[str, Any]] = []
+    fallback: list[dict[str, Any]] = []
+    target_end = (
+        _fiscal_period_end(year, period, fiscal_year_end_month)
+        if period else _expected_period_end(year, end_month)
+    )
+    months = 12 if max_days >= 350 else 9 if max_days >= 240 else 6 if max_days >= 150 else 3
+    for fact in facts_list:
+        end = _parse(fact.get("end"))
+        days = _duration_days(fact)
+        if not end or days is None:
+            continue
+        if not (min_days <= days <= max_days):
+            continue
+        if not _duration_context_matches(fact, target_end, months):
+            continue
+        is_fiscal = _is_fiscal_match(fact, year, period or "FY")
+        if is_fiscal:
+            exact_match.append(fact)
+        elif enable_fp_fallback:
+            fallback.append(fact)
 
-    return False
+    selected = _latest_fact(exact_match)
+    if selected is not None:
+        return selected
+    if enable_fp_fallback:
+        return _latest_fact(fallback)
+
+    return None
 
 
 def _pick_duration_window(
@@ -271,52 +392,14 @@ def _pick_duration_window(
     period: str | None = None,
     *,
     enable_fp_fallback: bool,
+    fiscal_year_end_month: int = 12,
 ) -> float | None:
-    """Pick a duration fact matching year/month and day-count window."""
-    exact_match: list[dict[str, Any]] = []
-    fallback: list[dict[str, Any]] = []
-    fp_preferred = _fp_candidates(period) if period else set()
-    for fact in facts_list:
-        end = _parse(fact.get("end"))
-        days = _duration_days(fact)
-        if not end or days is None:
-            continue
-        if not (min_days <= days <= max_days):
-            continue
-
-        date_match = _end_matches_expected_period(end, year, end_month)
-        is_fiscal = _is_fiscal_match(fact, year, period or "FY")
-        if is_fiscal and not enable_fp_fallback and not date_match:
-            continue
-        if is_fiscal:
-            exact_match.append(fact)
-        elif enable_fp_fallback and date_match:
-            fallback.append(fact)
-
-    value = _latest_value(exact_match)
-    if value is not None:
-        return value
-    if enable_fp_fallback:
-        value = _latest_value(fallback)
-        if value is not None:
-            return value
-
-    if not enable_fp_fallback or not period:
-        return None
-
-    fp_only: list[dict[str, Any]] = []
-    for fact in facts_list:
-        end = _parse(fact.get("end"))
-        days = _duration_days(fact)
-        if not end or days is None:
-            continue
-        if _fact_fiscal_year(fact) != year:
-            continue
-        if not (min_days <= days <= max_days):
-            continue
-        if str(fact.get("fp", "")) in fp_preferred:
-            fp_only.append(fact)
-    return _latest_value(fp_only)
+    fact = _pick_duration_fact_window(
+        facts_list, year, end_month, min_days, max_days, period,
+        enable_fp_fallback=enable_fp_fallback,
+        fiscal_year_end_month=fiscal_year_end_month,
+    )
+    return float(fact["val"]) if fact is not None else None
 
 
 def _pick_duration(
@@ -325,6 +408,7 @@ def _pick_duration(
     period: str,
     *,
     enable_fp_fallback: bool,
+    fiscal_year_end_month: int = 12,
 ) -> float | None:
     """Pick the flow value for a year/period from duration facts."""
     end_month = _QUARTER_END_MONTH[period]
@@ -337,6 +421,7 @@ def _pick_duration(
         target_len[1],
         period=period,
         enable_fp_fallback=enable_fp_fallback,
+        fiscal_year_end_month=fiscal_year_end_month,
     )
 
 
@@ -356,24 +441,23 @@ def _pick_instant(
     period: str,
     *,
     enable_fp_fallback: bool,
+    fiscal_year_end_month: int = 12,
 ) -> float | None:
     """Pick the balance value for a year/period from instant facts."""
-    end_month = _QUARTER_END_MONTH[period]
+    target_end = _fiscal_period_end(year, period, fiscal_year_end_month)
     exact_match: list[dict[str, Any]] = []
     fallback: list[dict[str, Any]] = []
-    fp_preferred = _fp_candidates(period)
     for fact in facts_list:
         end = _parse(fact.get("end"))
         if not end:
             continue
 
-        date_match = _end_matches_expected_period(end, year, end_month)
-        is_fiscal = _is_fiscal_match(fact, year, period)
-        if is_fiscal and not enable_fp_fallback and not date_match:
+        if not _end_matches_expected_period(end, target_end.year, target_end.month):
             continue
+        is_fiscal = _is_fiscal_match(fact, year, period)
         if is_fiscal:
             exact_match.append(fact)
-        elif enable_fp_fallback and date_match:
+        elif enable_fp_fallback:
             fallback.append(fact)
 
     value = _latest_value(exact_match)
@@ -384,19 +468,7 @@ def _pick_instant(
         if value is not None:
             return value
 
-    if not enable_fp_fallback:
-        return None
-
-    fp_only: list[dict[str, Any]] = []
-    for fact in facts_list:
-        end = _parse(fact.get("end"))
-        if not end:
-            continue
-        if _fact_fiscal_year(fact) != year:
-            continue
-        if str(fact.get("fp", "")) in fp_preferred:
-            fp_only.append(fact)
-    return _latest_value(fp_only)
+    return None
 
 
 def _most_common_end(candidates: list[dict[str, Any]]) -> str | None:
@@ -430,12 +502,16 @@ def extract_period_end(
     exact_date_window: list[dict[str, Any]] = []
     fy_duration_fallback: list[dict[str, Any]] = []
     fiscal_year_ends: list[dict[str, Any]] = []
-    end_month = _QUARTER_END_MONTH[period]
+    fiscal_month = _fiscal_year_end_month(facts, year)
+    target_end = _fiscal_period_end(year, period, fiscal_month)
+    annual_end = _fiscal_period_end(year, "FY", fiscal_month)
     min_days, max_days = _duration_range_for_period(period)
 
     for metric, tags in DURATION_METRICS.items():
         unit_candidates = METRIC_UNIT_CANDIDATES.get(metric)
         for tag in tags:
+            tag_exact_fp: list[dict[str, Any]] = []
+            tag_fiscal_year_ends: list[dict[str, Any]] = []
             for fact in _facts_for_tag(facts, tag, unit_candidates):
                 end = _parse(fact.get("end"))
                 if not end:
@@ -443,14 +519,20 @@ def extract_period_end(
                 fp = str(fact.get("fp", ""))
                 fy = _fact_fiscal_year(fact)
                 days = _duration_days(fact)
-                if fy == year and fp == "FY" and days is not None and 350 <= days <= 390:
-                    fiscal_year_ends.append(fact)
+                if (
+                    fy == year and fp == "FY"
+                    and days is not None and 350 <= days <= 390
+                    and abs((end - annual_end).days) <= PERIOD_END_TOLERANCE_DAYS
+                ):
+                    tag_fiscal_year_ends.append(fact)
+                if abs((end - target_end).days) > PERIOD_END_TOLERANCE_DAYS:
+                    continue
                 if fy == year and fp == period:
                     if period == "FY" and (days is None or not 350 <= days <= 390):
                         continue
-                    exact_fp.append(fact)
+                    tag_exact_fp.append(fact)
                     continue
-                if _end_matches_expected_period(end, year, end_month):
+                if abs((end - target_end).days) <= PERIOD_END_TOLERANCE_DAYS:
                     exact_date_window.append(fact)
                     continue
                 if (
@@ -462,9 +544,18 @@ def extract_period_end(
                     and min_days <= days <= max_days
                 ):
                     fy_duration_fallback.append(fact)
+            # SEC fy/fp also label comparative contexts in the same filing.
+            # Give each tag one current-period vote, not one per historical fact.
+            latest = _latest_fact(tag_exact_fp)
+            if latest is not None:
+                exact_fp.append(latest)
+            latest = _latest_fact(tag_fiscal_year_ends)
+            if latest is not None:
+                fiscal_year_ends.append(latest)
 
     for metric in INSTANT_METRICS:
         for tag in INSTANT_METRICS[metric]:
+            tag_exact_fp = []
             for fact in _facts_for_tag(facts, tag):
                 end = _parse(fact.get("end"))
                 if not end:
@@ -473,11 +564,16 @@ def extract_period_end(
                 fy = _fact_fiscal_year(fact)
                 if period == "FY":
                     continue
-                if fy == year and fp == period:
-                    exact_fp.append(fact)
+                if abs((end - target_end).days) > PERIOD_END_TOLERANCE_DAYS:
                     continue
-                if _end_matches_expected_period(end, year, end_month):
+                if fy == year and fp == period:
+                    tag_exact_fp.append(fact)
+                    continue
+                if abs((end - target_end).days) <= PERIOD_END_TOLERANCE_DAYS:
                     exact_date_window.append(fact)
+            latest = _latest_fact(tag_exact_fp)
+            if latest is not None:
+                exact_fp.append(latest)
 
     if period == "Q4" and not exact_fp:
         return _most_common_end(fiscal_year_ends) or _most_common_end(exact_date_window)
@@ -499,13 +595,15 @@ def _extract_ytd_from_tags(
     enable_fp_fallback: bool,
 ) -> float | None:
     """Extract duration metric values when Q2/Q3 may be filed as YTD."""
-    if period in {"Q1", "Q2", "Q3"}:
+    fiscal_month = _fiscal_year_end_month(facts, year)
+    if period in {"Q1", "Q2", "Q3", "Q4"}:
         for tag in tags:
             direct = _pick_duration(
                 _facts_for_tag(facts, tag, unit_candidates),
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if direct is not None:
                 return direct
@@ -520,6 +618,7 @@ def _extract_ytd_from_tags(
                 120,
                 period="Q1",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if q1_ytd is not None:
                 return q1_ytd
@@ -528,7 +627,7 @@ def _extract_ytd_from_tags(
     if period == "Q2":
         for tag in tags:
             facts_list = _facts_for_tag(facts, tag, unit_candidates)
-            q2_ytd = _pick_duration_window(
+            q2_ytd = _pick_duration_fact_window(
                 facts_list,
                 year,
                 6,
@@ -536,8 +635,9 @@ def _extract_ytd_from_tags(
                 220,
                 period="Q2",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
-            q1_ytd = _pick_duration_window(
+            q1_ytd = _pick_duration_fact_window(
                 facts_list,
                 year,
                 3,
@@ -545,15 +645,19 @@ def _extract_ytd_from_tags(
                 120,
                 period="Q1",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if q2_ytd is not None and q1_ytd is not None:
-                return q2_ytd - q1_ytd
+                if q2_ytd["start"] != q1_ytd["start"]:
+                    log.warning("Incompatible YTD starts for %s %s Q2", tag, year)
+                    continue
+                return float(q2_ytd["val"]) - float(q1_ytd["val"])
         return None
 
     if period == "Q3":
         for tag in tags:
             facts_list = _facts_for_tag(facts, tag, unit_candidates)
-            q3_ytd = _pick_duration_window(
+            q3_ytd = _pick_duration_fact_window(
                 facts_list,
                 year,
                 9,
@@ -561,8 +665,9 @@ def _extract_ytd_from_tags(
                 320,
                 period="Q3",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
-            q2_ytd = _pick_duration_window(
+            q2_ytd = _pick_duration_fact_window(
                 facts_list,
                 year,
                 6,
@@ -570,15 +675,19 @@ def _extract_ytd_from_tags(
                 220,
                 period="Q2",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if q3_ytd is not None and q2_ytd is not None:
-                return q3_ytd - q2_ytd
+                if q3_ytd["start"] != q2_ytd["start"]:
+                    log.warning("Incompatible YTD starts for %s %s Q3", tag, year)
+                    continue
+                return float(q3_ytd["val"]) - float(q2_ytd["val"])
         return None
 
     if period == "Q4":
         for tag in tags:
             facts_list = _facts_for_tag(facts, tag, unit_candidates)
-            fy = _pick_duration_window(
+            fy = _pick_duration_fact_window(
                 facts_list,
                 year,
                 12,
@@ -586,8 +695,9 @@ def _extract_ytd_from_tags(
                 390,
                 period="FY",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
-            q3_ytd = _pick_duration_window(
+            q3_ytd = _pick_duration_fact_window(
                 facts_list,
                 year,
                 9,
@@ -595,9 +705,13 @@ def _extract_ytd_from_tags(
                 320,
                 period="Q3",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if fy is not None and q3_ytd is not None:
-                return fy - q3_ytd
+                if fy["start"] != q3_ytd["start"]:
+                    log.warning("Incompatible YTD starts for %s %s Q4", tag, year)
+                    continue
+                return float(fy["val"]) - float(q3_ytd["val"])
 
         fy = _extract_ytd_from_tags(
             facts,
@@ -629,6 +743,7 @@ def _extract_ytd_from_tags(
                 year,
                 "FY",
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if fy is not None:
                 return fy
@@ -645,7 +760,7 @@ def _extract_ytd_metric(
     *,
     enable_fp_fallback: bool,
 ) -> float | None:
-    """Extract named cash-flow metrics that may be reported YTD in Q2/Q3."""
+    """Extract named duration metrics that may be reported YTD in Q2/Q3."""
     return _extract_ytd_from_tags(
         facts,
         DURATION_METRICS[metric],
@@ -731,6 +846,7 @@ def _extract_restricted_cash_metric(
             year,
             period,
             enable_fp_fallback=enable_fp_fallback,
+            fiscal_year_end_month=_fiscal_year_end_month(facts, year),
         )
         if current_val is not None:
             break
@@ -742,6 +858,7 @@ def _extract_restricted_cash_metric(
             year,
             period,
             enable_fp_fallback=enable_fp_fallback,
+            fiscal_year_end_month=_fiscal_year_end_month(facts, year),
         )
         if noncurrent_val is not None:
             break
@@ -754,6 +871,7 @@ def _extract_restricted_cash_metric(
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=_fiscal_year_end_month(facts, year),
             )
             if value is not None:
                 return value
@@ -786,6 +904,7 @@ def _extract_eps_period_fallback(
             year,
             period,
             enable_fp_fallback=enable_fp_fallback,
+            fiscal_year_end_month=_fiscal_year_end_month(facts, year),
         )
         if shares is not None:
             break
@@ -814,6 +933,7 @@ def _extract_eps_q4_fallback(
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=_fiscal_year_end_month(facts, year),
             )
             if value is not None:
                 break
@@ -830,6 +950,7 @@ def _extract_eps_q4_fallback(
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=_fiscal_year_end_month(facts, year),
             )
             if value is not None:
                 break
@@ -880,6 +1001,7 @@ def extract_metric(
     enable_fp_fallback: bool = config.XBRL_ENABLE_FP_FALLBACK,
 ) -> float | None:
     """Extract one metric for one year/period, deriving Q4 when needed."""
+    fiscal_month = _fiscal_year_end_month(facts, year)
     if metric in INSTANT_METRICS:
         if metric == "Restricted Cash":
             return _extract_restricted_cash_metric(
@@ -895,6 +1017,7 @@ def extract_metric(
                     year,
                     period,
                     enable_fp_fallback=enable_fp_fallback,
+                    fiscal_year_end_month=fiscal_month,
                 )
                 if value is not None:
                     return value
@@ -923,12 +1046,14 @@ def extract_metric(
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if value is not None:
                 return value
         return None
 
-    if metric in YTD_DERIVED_METRICS:
+    issuer_ytd = YTD_METRICS_BY_CIK.get(str(facts.get("cik", "")).lstrip("0"), set())
+    if metric in YTD_DERIVED_METRICS or metric in issuer_ytd:
         if metric == "Capital Expenditures":
             return _extract_capex_metric(
                 facts,
@@ -945,7 +1070,20 @@ def extract_metric(
         )
 
     tags = DURATION_METRICS[metric]
+    if metric == "Interest Expense":
+        tags = INTEREST_TAGS_BY_CIK.get(str(facts.get("cik", "")).lstrip("0"), tags)
     unit_candidates = METRIC_UNIT_CANDIDATES.get(metric)
+    if period == "Q4" and metric in PERIOD_ONLY_DURATION_METRICS:
+        for tag in tags:
+            value = _pick_duration(
+                _facts_for_tag(facts, tag, unit_candidates),
+                year,
+                period,
+                enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
+            )
+            if value is not None:
+                return value
     if period != "Q4":
         for tag in tags:
             value = _pick_duration(
@@ -953,25 +1091,29 @@ def extract_metric(
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if metric == "Interest Expense":
                 if value is not None:
-                    return abs(value)
+                    return -value if tag in INTEREST_INCOME_POSITIVE_TAGS else value
             elif value is not None:
                 return value
 
-        if metric not in NON_ADDITIVE_DURATION_METRICS:
+        if metric not in NON_ADDITIVE_DURATION_METRICS | PERIOD_ONLY_DURATION_METRICS:
             # Fallback for additive metrics when only YTD contexts are published.
-            ytd_value = _extract_ytd_from_tags(
-                facts,
-                tags,
-                year,
-                period,
-                unit_candidates,
-                enable_fp_fallback=enable_fp_fallback,
-            )
-            if ytd_value is not None:
-                return ytd_value
+            for tag in tags:
+                ytd_value = _extract_ytd_from_tags(
+                    facts,
+                    [tag],
+                    year,
+                    period,
+                    unit_candidates,
+                    enable_fp_fallback=enable_fp_fallback,
+                )
+                if ytd_value is not None:
+                    if metric == "Interest Expense" and tag in INTEREST_INCOME_POSITIVE_TAGS:
+                        return -ytd_value
+                    return ytd_value
 
         if metric == "Earnings Per Share":
             eps_fallback = _extract_eps_period_fallback(
@@ -998,6 +1140,7 @@ def extract_metric(
                 year,
                 period,
                 enable_fp_fallback=enable_fp_fallback,
+                fiscal_year_end_month=fiscal_month,
             )
             if value is not None:
                 return value

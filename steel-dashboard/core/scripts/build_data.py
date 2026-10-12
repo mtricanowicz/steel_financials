@@ -46,6 +46,11 @@ AUTO_METRICS = [
     "Cash & Cash Equivalents",
     "Short-Term Investments",
     "Interest Expense",
+    "Tax Expense",
+    "Losses & Impairment of Assets",
+    "Depreciation & Amortization",
+    "Depreciation",
+    "Amortization",
     "Operating Cash Flow",
     "Capital Expenditures",
 ]
@@ -56,6 +61,13 @@ REMOVED_OUTPUT_COLUMNS = {
     "Operating Margin",
     "Net Income",
     "Net Margin",
+    "Unrestricted Cash",
+    "Restricted Cash",
+    "Tax Expense",
+    "Losses & Impairment of Assets",
+    "Depreciation & Amortization",
+    "Depreciation",
+    "Amortization",
 }
 
 # One-off corrections for known SEC companyfacts mislabels.
@@ -230,6 +242,13 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
 
     sales, costs = col("Net Sales"), col("Cost of Goods Sold")
     net_inc_attr = col("Net Income Attributable to Stockholders")
+    net_inc = col("Net Income")
+    interest, tax, lioa = (
+        col("Interest Expense"),
+        col("Tax Expense"),
+        col("Losses & Impairment of Assets"),
+    )
+    dep_amort, depreciation, amortization = col("Depreciation & Amortization"), col("Depreciation"), col("Amortization")
     ltd, curr_mat, cash_eq, unr_cash, r_cash, st_inv = (
         col("Long-Term Debt"),
         col("Current Maturities"),
@@ -243,6 +262,29 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
     df["Gross Income"] = sales - costs
     df["Gross Margin"] = ((df["Gross Income"] / sales) * 100).round(2)
     df["Net Margin Attributable to Stockholders"] = ((net_inc_attr / sales) * 100).round(2)
+    df["Depreciation & Amortization"] = dep_amort.combine_first(
+        (depreciation.fillna(0) + amortization.fillna(0)).where(
+            depreciation.notna() | amortization.notna()
+        )
+    )
+    partial_da = dep_amort.isna() & (depreciation.notna() ^ amortization.notna())
+    if partial_da.any():
+        log.warning(
+            "D&A uses only one available component in %s rows; completeness is unverified",
+            int(partial_da.sum()),
+        )
+    for name, values in [
+        ("Interest Expense", interest),
+        ("Tax Expense", tax),
+        ("Losses & Impairment of Assets", lioa),
+        ("Depreciation & Amortization", col("Depreciation & Amortization")),
+    ]:
+        if values.isna().any():
+            log.warning(
+                "EBITDA treats missing %s as zero in %s rows; these are not confirmed zeros",
+                name, int(values.isna().sum()),
+            )
+    df["EBITDA"] = net_inc + interest.fillna(0) + tax.fillna(0) + lioa.fillna(0) + df["Depreciation & Amortization"].fillna(0)
     df["Total Debt"] = ltd.fillna(0) + curr_mat.fillna(0)
     df["Cash & Cash Equivalents"] = cash_eq.combine_first(
         (unr_cash.fillna(0) + r_cash.fillna(0)).where(unr_cash.notna() | r_cash.notna())
@@ -291,6 +333,7 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
                 "Gross Margin",
                 "Net Margin Attributable to Stockholders",
                 "Earnings Per Share",
+                "EBITDA",
                 "Long-Term Debt",
                 "Current Maturities",
                 "Total Debt",
@@ -309,8 +352,6 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
         dict.fromkeys(
             column
             for column in [
-                "Unrestricted Cash",
-                "Restricted Cash",
                 *REMOVED_OUTPUT_COLUMNS,
             ]
         )
@@ -432,7 +473,16 @@ def _build_coverage_diagnostics(
     ):
         metric_sources.setdefault(metric, "auto_xbrl")
 
-    metrics = [m for m in metric_sources if m in merged.columns]
+    diagnostic_frame = merged.copy()
+    hidden_inputs = [
+        metric for metric in metric_sources
+        if metric not in diagnostic_frame.columns and metric in auto.columns
+    ]
+    if hidden_inputs:
+        diagnostic_frame = diagnostic_frame.merge(
+            auto[key_cols + hidden_inputs], on=key_cols, how="left", validate="one_to_one"
+        )
+    metrics = [m for m in metric_sources if m in diagnostic_frame.columns]
     expected_keys = [
         (steelmaker, year, period)
         for steelmaker in steelmakers
@@ -440,7 +490,10 @@ def _build_coverage_diagnostics(
         for period in periods
     ]
 
-    merged_idx = merged.set_index(key_cols) if not merged.empty else pd.DataFrame(columns=metrics)
+    merged_idx = (
+        diagnostic_frame.set_index(key_cols)
+        if not diagnostic_frame.empty else pd.DataFrame(columns=metrics)
+    )
     auto_keys = set(auto[key_cols].itertuples(index=False, name=None)) if not auto.empty else set()
     manual_keys = set(manual[key_cols].itertuples(index=False, name=None)) if not manual.empty else set()
 

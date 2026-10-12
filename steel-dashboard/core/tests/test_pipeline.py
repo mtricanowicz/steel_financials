@@ -20,6 +20,53 @@ from scripts.build_data import _to_public_schema, add_derived
 from sec_pipeline.xbrl import extract_financials, extract_metric
 
 
+@pytest.mark.parametrize(
+    ("combined", "depreciation", "amortization", "expected"),
+    [
+        (100.0, 60.0, 30.0, 100.0),
+        (0.0, 60.0, 30.0, 0.0),
+        (None, 60.0, 30.0, 90.0),
+        (None, 60.0, None, 60.0),
+        (None, None, 30.0, 30.0),
+        (None, 0.0, 0.0, 0.0),
+        (None, None, None, None),
+    ],
+)
+def test_depreciation_amortization_rollup(combined, depreciation, amortization, expected, caplog):
+    result = add_derived(
+        pd.DataFrame(
+            [{
+                "Steelmaker": "NUE",
+                "Year": 2024,
+                "Quarter": "Q2",
+                "Net Sales": 1000.0,
+                "Cost of Goods Sold": 700.0,
+                "Net Income Attributable to Stockholders": 90.0,
+                "Net Income": 100.0,
+                "Interest Expense": -5.0,
+                "Tax Expense": 20.0,
+                "Losses & Impairment of Assets": 10.0,
+                "Depreciation & Amortization": combined,
+                "Depreciation": depreciation,
+                "Amortization": amortization,
+            }]
+        )
+    )
+    assert "Depreciation" not in result.columns
+    assert "Amortization" not in _to_public_schema(result).columns
+    for metric in ["Depreciation & Amortization", "Tax Expense", "Losses & Impairment of Assets"]:
+        assert metric not in result.columns
+    row = result.iloc[0]
+    if expected is None:
+        assert row["EBITDA"] == 125.0
+    else:
+        assert row["EBITDA"] == 125.0 + expected
+    if combined is None and (depreciation is None) != (amortization is None):
+        assert "only one available component" in caplog.text
+    if expected is None:
+        assert "missing Depreciation & Amortization as zero" in caplog.text
+
+
 class TestChunk:
     def test_short_text_single_chunk(self):
         chunks = chunk_text("A short paragraph.", chunk_size=1200)
@@ -293,6 +340,7 @@ class TestXbrlFiscalFallback:
     def test_fp_fallback_handles_non_calendar_q1(self):
         # Simulate a CMC-like fiscal quarter: FY2026 Q1 ends in prior calendar year.
         facts = {
+            "cik": 22444,
             "facts": {
                 "us-gaap": {
                     "SalesRevenueGoodsNet": {
@@ -359,6 +407,7 @@ class TestXbrlFiscalFallback:
 
     def test_extract_financials_includes_reported_end_for_fiscal_offset_quarter(self):
         facts = {
+            "cik": 22444,
             "facts": {
                 "us-gaap": {
                     "SalesRevenueGoodsNet": {
@@ -655,7 +704,7 @@ class TestXbrlSafeCoverageFallbacks:
         )
         assert value == 510.0
 
-    def test_attributable_net_income_prefers_direct_tag(self):
+    def test_attributable_net_income_prefers_net_income_over_common_stockholder_income(self):
         facts = {
             "facts": {
                 "us-gaap": {
@@ -702,7 +751,7 @@ class TestXbrlSafeCoverageFallbacks:
             "Q1",
             enable_fp_fallback=True,
         )
-        assert value == 480.0
+        assert value == 510.0
 
 
 class TestXbrlWeekBasedPeriodEnds:

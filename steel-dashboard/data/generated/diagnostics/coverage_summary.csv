@@ -1,12 +1,91 @@
 steelmaker,metric,source_type,expected_periods,populated_periods,missing_periods,coverage_pct
-CMC,Capital Expenditures,auto_xbrl,35,35,0,100.0
-CMC,Cash & Cash Equivalents,auto_xbrl,35,35,0,100.0
-CMC,Cost of Goods Sold,auto_xbrl,35,35,0,100.0
-CMC,Current Maturities,auto_xbrl,35,35,0,100.0
-CMC,Earnings Per Share,auto_xbrl,35,35,0,100.0
-CMC,Interest Expense,auto_xbrl,35,35,0,100.0
-CMC,Long-Term Debt,auto_xbrl,35,35,0,100.0
-CMC,Net Income Attributable to Stockholders,auto_xbrl,35,35,0,100.0
-CMC,Net Sales,auto_xbrl,35,35,0,100.0
-CMC,Operating Cash Flow,auto_xbrl,35,35,0,100.0
-CMC,Short-Term Investments,auto_xbrl,35,0,35,0.0
+CLF,Amortization,auto_xbrl,37,37,0,100.0
+CLF,Capital Expenditures,auto_xbrl,37,37,0,100.0
+CLF,Cash & Cash Equivalents,auto_xbrl,37,37,0,100.0
+CLF,Cost of Goods Sold,auto_xbrl,37,37,0,100.0
+CLF,Current Maturities,auto_xbrl,37,37,0,100.0
+CLF,Depreciation,auto_xbrl,37,37,0,100.0
+CLF,Depreciation & Amortization,auto_xbrl,37,29,8,78.4
+CLF,Earnings Per Share,auto_xbrl,37,37,0,100.0
+CLF,Interest Expense,auto_xbrl,37,37,0,100.0
+CLF,Long-Term Debt,auto_xbrl,37,37,0,100.0
+CLF,Losses & Impairment of Assets,auto_xbrl,37,16,21,43.2
+CLF,Net Income,auto_xbrl,37,37,0,100.0
+CLF,Net Income Attributable to Stockholders,auto_xbrl,37,37,0,100.0
+CLF,Net Sales,auto_xbrl,37,37,0,100.0
+CLF,Operating Cash Flow,auto_xbrl,37,37,0,100.0
+CLF,Operating Income,auto_xbrl,37,37,0,100.0
+CLF,Short-Term Investments,auto_xbrl,37,0,37,0.0
+CLF,Tax Expense,auto_xbrl,37,37,0,100.0
+CMC,Amortization,auto_xbrl,38,21,17,55.3
+CMC,Capital Expenditures,auto_xbrl,38,38,0,100.0
+CMC,Cash & Cash Equivalents,auto_xbrl,38,38,0,100.0
+CMC,Cost of Goods Sold,auto_xbrl,38,38,0,100.0
+CMC,Current Maturities,auto_xbrl,38,38,0,100.0
+CMC,Depreciation,auto_xbrl,38,0,38,0.0
+CMC,Depreciation & Amortization,auto_xbrl,38,38,0,100.0
+CMC,Earnings Per Share,auto_xbrl,38,38,0,100.0
+CMC,Interest Expense,auto_xbrl,38,38,0,100.0
+CMC,Long-Term Debt,auto_xbrl,38,38,0,100.0
+CMC,Losses & Impairment of Assets,auto_xbrl,38,18,20,47.4
+CMC,Net Income,auto_xbrl,38,38,0,100.0
+CMC,Net Income Attributable to Stockholders,auto_xbrl,38,38,0,100.0
+CMC,Net Sales,auto_xbrl,38,38,0,100.0
+CMC,Operating Cash Flow,auto_xbrl,38,38,0,100.0
+CMC,Operating Income,auto_xbrl,38,0,38,0.0
+CMC,Short-Term Investments,auto_xbrl,38,0,38,0.0
+CMC,Tax Expense,auto_xbrl,38,38,0,100.0
+NUE,Amortization,auto_xbrl,37,37,0,100.0
+NUE,Capital Expenditures,auto_xbrl,37,37,0,100.0
+NUE,Cash & Cash Equivalents,auto_xbrl,37,37,0,100.0
+NUE,Cost of Goods Sold,auto_xbrl,37,37,0,100.0
+NUE,Current Maturities,auto_xbrl,37,37,0,100.0
+NUE,Depreciation,auto_xbrl,37,37,0,100.0
+NUE,Depreciation & Amortization,auto_xbrl,37,0,37,0.0
+NUE,Earnings Per Share,auto_xbrl,37,37,0,100.0
+NUE,Interest Expense,auto_xbrl,37,37,0,100.0
+NUE,Long-Term Debt,auto_xbrl,37,37,0,100.0
+NUE,Losses & Impairment of Assets,auto_xbrl,37,7,30,18.9
+NUE,Net Income,auto_xbrl,37,37,0,100.0
+NUE,Net Income Attributable to Stockholders,auto_xbrl,37,37,0,100.0
+NUE,Net Sales,auto_xbrl,37,37,0,100.0
+NUE,Operating Cash Flow,auto_xbrl,37,37,0,100.0
+NUE,Operating Income,auto_xbrl,37,0,37,0.0
+NUE,Short-Term Investments,auto_xbrl,37,37,0,100.0
+NUE,Tax Expense,auto_xbrl,37,37,0,100.0
+STLD,Amortization,auto_xbrl,37,37,0,100.0
+STLD,Capital Expenditures,auto_xbrl,37,37,0,100.0
+STLD,Cash & Cash Equivalents,auto_xbrl,37,37,0,100.0
+STLD,Cost of Goods Sold,auto_xbrl,37,37,0,100.0
+STLD,Current Maturities,auto_xbrl,37,37,0,100.0
+STLD,Depreciation,auto_xbrl,37,7,30,18.9
+STLD,Depreciation & Amortization,auto_xbrl,37,37,0,100.0
+STLD,Earnings Per Share,auto_xbrl,37,37,0,100.0
+STLD,Interest Expense,auto_xbrl,37,37,0,100.0
+STLD,Long-Term Debt,auto_xbrl,37,37,0,100.0
+STLD,Losses & Impairment of Assets,auto_xbrl,37,1,36,2.7
+STLD,Net Income,auto_xbrl,37,37,0,100.0
+STLD,Net Income Attributable to Stockholders,auto_xbrl,37,37,0,100.0
+STLD,Net Sales,auto_xbrl,37,37,0,100.0
+STLD,Operating Cash Flow,auto_xbrl,37,37,0,100.0
+STLD,Operating Income,auto_xbrl,37,37,0,100.0
+STLD,Short-Term Investments,auto_xbrl,37,27,10,73.0
+STLD,Tax Expense,auto_xbrl,37,37,0,100.0
+X,Amortization,auto_xbrl,31,15,16,48.4
+X,Capital Expenditures,auto_xbrl,31,31,0,100.0
+X,Cash & Cash Equivalents,auto_xbrl,31,31,0,100.0
+X,Cost of Goods Sold,auto_xbrl,31,31,0,100.0
+X,Current Maturities,auto_xbrl,31,31,0,100.0
+X,Depreciation,auto_xbrl,31,0,31,0.0
+X,Depreciation & Amortization,auto_xbrl,31,31,0,100.0
+X,Earnings Per Share,auto_xbrl,31,31,0,100.0
+X,Interest Expense,auto_xbrl,31,31,0,100.0
+X,Long-Term Debt,auto_xbrl,31,31,0,100.0
+X,Losses & Impairment of Assets,auto_xbrl,31,31,0,100.0
+X,Net Income,auto_xbrl,31,31,0,100.0
+X,Net Income Attributable to Stockholders,auto_xbrl,31,31,0,100.0
+X,Net Sales,auto_xbrl,31,31,0,100.0
+X,Operating Cash Flow,auto_xbrl,31,31,0,100.0
+X,Operating Income,auto_xbrl,31,31,0,100.0
+X,Short-Term Investments,auto_xbrl,31,0,31,0.0
+X,Tax Expense,auto_xbrl,31,31,0,100.0
