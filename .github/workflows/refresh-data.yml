@@ -10,14 +10,41 @@ on:
   workflow_dispatch:
     inputs:
       steelmakers:
-        description: "Space-separated steelmakers, e.g. NUE STLD CLF CMC X ATI CRS"
+        description: "Space-separated steelmakers"
         required: false
+        default: "NUE STLD CLF CMC"
       years:
         description: "Space-separated years, e.g. 2026 (defaults to latest completed period year)"
         required: false
+        default: ""
       periods:
         description: "Space-separated periods, e.g. Q2 (defaults to latest completed period)"
         required: false
+        default: ""
+      sources:
+        description: "Financial data sources"
+        type: choice
+        options:
+          - auto
+          - manual
+          - both
+        required: false
+        default: auto
+      overwrite:
+        description: "Replace populated metrics for the selected reporting periods"
+        type: boolean
+        required: false
+        default: false
+      share_data:
+        description: "Rebuild the full share repurchase and sale history"
+        type: boolean
+        required: false
+        default: false
+      generate_insights:
+        description: "Generate filing insights"
+        type: boolean
+        required: false
+        default: true
   schedule:
     # 06:00 UTC on the 15th day of Feb, May, Aug, Nov
     - cron: "0 6 15 2,8,11 *"
@@ -47,6 +74,14 @@ jobs:
         run: pip install -e .
       - name: Determine run parameters
         id: params
+        env:
+          INPUT_STEELMAKERS: ${{ inputs.steelmakers }}
+          INPUT_YEARS: ${{ inputs.years }}
+          INPUT_PERIODS: ${{ inputs.periods }}
+          INPUT_SOURCES: ${{ inputs.sources }}
+          INPUT_OVERWRITE: ${{ inputs.overwrite }}
+          INPUT_SHARE_DATA: ${{ inputs.share_data }}
+          INPUT_GENERATE_INSIGHTS: ${{ inputs.generate_insights }}
         run: |
           month="$(date -u +%m)"
           year="$(date -u +%Y)"
@@ -70,37 +105,108 @@ jobs:
               ;;
           esac
 
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            steelmakers="NUE STLD CLF CMC X ATI CRS"
-            years="$default_year"
-            periods="$default_period"
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+            steelmakers_input="NUE STLD CLF CMC X ATI CRS"
+            years_input="$default_year"
+            periods_input="$default_period"
+            source_mode="auto"
+            overwrite="false"
+            share_data="false"
+            generate_insights="true"
           else
-            steelmakers="${{ github.event.inputs.steelmakers }}"
-            years="${{ github.event.inputs.years }}"
-            periods="${{ github.event.inputs.periods }}"
-
-            if [ -z "$steelmakers" ]; then
-              steelmakers="NUE STLD CLF CMC X ATI CRS"
-            fi
-            if [ -z "$years" ]; then
-              years="$default_year"
-            fi
-            if [ -z "$periods" ]; then
-              periods="$default_period"
-            fi
+            steelmakers_input="${INPUT_STEELMAKERS:-NUE STLD CLF CMC X ATI CRS}"
+            years_input="${INPUT_YEARS:-$default_year}"
+            periods_input="${INPUT_PERIODS:-$default_period}"
+            source_mode="${INPUT_SOURCES:-auto}"
+            overwrite="${INPUT_OVERWRITE:-false}"
+            share_data="${INPUT_SHARE_DATA:-false}"
+            generate_insights="${INPUT_GENERATE_INSIGHTS:-true}"
           fi
 
-          echo "steelmakers=$steelmakers" >> "$GITHUB_OUTPUT"
-          echo "years=$years" >> "$GITHUB_OUTPUT"
-          echo "periods=$periods" >> "$GITHUB_OUTPUT"
+          read -r -a steelmakers <<< "$steelmakers_input"
+          read -r -a years <<< "$years_input"
+          read -r -a periods <<< "$periods_input"
 
-          echo "Using steelmakers: $steelmakers"
-          echo "Using years: $years"
-          echo "Using periods: $periods"
+          if [ "${#steelmakers[@]}" -eq 0 ] || [ "${#years[@]}" -eq 0 ] || [ "${#periods[@]}" -eq 0 ]; then
+            echo "Steelmakers, years, and periods must each contain at least one value" >&2
+            exit 1
+          fi
+          for steelmaker in "${steelmakers[@]}"; do
+            case "$steelmaker" in
+              NUE|STLD|CLF|CMC|X|ATI|CRS) ;;
+              *) echo "Unsupported steelmaker: $steelmaker" >&2; exit 1 ;;
+            esac
+          done
+          for requested_year in "${years[@]}"; do
+            if [[ ! "$requested_year" =~ ^[0-9]{4}$ ]]; then
+              echo "Invalid reporting year: $requested_year" >&2
+              exit 1
+            fi
+          done
+          for period in "${periods[@]}"; do
+            case "$period" in
+              Q1|Q2|Q3|Q4|FY) ;;
+              *) echo "Invalid reporting period: $period" >&2; exit 1 ;;
+            esac
+          done
+
+          case "$source_mode" in
+            auto) sources=(auto) ;;
+            manual) sources=(manual) ;;
+            both) sources=(auto manual) ;;
+            *) echo "Invalid source selection: $source_mode" >&2; exit 1 ;;
+          esac
+          for boolean in "$overwrite" "$share_data" "$generate_insights"; do
+            if [[ "$boolean" != true && "$boolean" != false ]]; then
+              echo "Boolean workflow inputs must be true or false" >&2
+              exit 1
+            fi
+          done
+
+          echo "steelmakers=${steelmakers[*]}" >> "$GITHUB_OUTPUT"
+          echo "years=${years[*]}" >> "$GITHUB_OUTPUT"
+          echo "periods=${periods[*]}" >> "$GITHUB_OUTPUT"
+          echo "sources=${sources[*]}" >> "$GITHUB_OUTPUT"
+          echo "overwrite=$overwrite" >> "$GITHUB_OUTPUT"
+          echo "share_data=$share_data" >> "$GITHUB_OUTPUT"
+          echo "generate_insights=$generate_insights" >> "$GITHUB_OUTPUT"
+
+          echo "Using steelmakers: ${steelmakers[*]}"
+          echo "Using years: ${years[*]}"
+          echo "Using periods: ${periods[*]}"
+          echo "Using sources: ${sources[*]}"
       - name: Build financials and buybacks
-        run: python -m scripts.build_data --steelmakers ${{ steps.params.outputs.steelmakers }} --years ${{ steps.params.outputs.years }} --periods ${{ steps.params.outputs.periods }}
+        env:
+          PARAM_STEELMAKERS: ${{ steps.params.outputs.steelmakers }}
+          PARAM_YEARS: ${{ steps.params.outputs.years }}
+          PARAM_PERIODS: ${{ steps.params.outputs.periods }}
+          PARAM_SOURCES: ${{ steps.params.outputs.sources }}
+          PARAM_OVERWRITE: ${{ steps.params.outputs.overwrite }}
+          PARAM_SHARE_DATA: ${{ steps.params.outputs.share_data }}
+        run: |
+          read -r -a steelmakers <<< "$PARAM_STEELMAKERS"
+          read -r -a years <<< "$PARAM_YEARS"
+          read -r -a periods <<< "$PARAM_PERIODS"
+          read -r -a sources <<< "$PARAM_SOURCES"
+          args=(--steelmakers "${steelmakers[@]}" --years "${years[@]}" --periods "${periods[@]}" --sources "${sources[@]}")
+          if [ "$PARAM_OVERWRITE" = "true" ]; then
+            args+=(--overwrite)
+          fi
+          if [ "$PARAM_SHARE_DATA" = "true" ]; then
+            args+=(--share-data)
+          fi
+          python -m scripts.build_data "${args[@]}"
       - name: Generate insights
-        run: python -m sec_pipeline.pipeline --steelmakers ${{ steps.params.outputs.steelmakers }} --years ${{ steps.params.outputs.years }} --periods ${{ steps.params.outputs.periods }}
+        if: steps.params.outputs.generate_insights == 'true'
+        env:
+          PARAM_STEELMAKERS: ${{ steps.params.outputs.steelmakers }}
+          PARAM_YEARS: ${{ steps.params.outputs.years }}
+          PARAM_PERIODS: ${{ steps.params.outputs.periods }}
+        run: |
+          read -r -a steelmakers <<< "$PARAM_STEELMAKERS"
+          read -r -a years <<< "$PARAM_YEARS"
+          read -r -a periods <<< "$PARAM_PERIODS"
+          python -m sec_pipeline.pipeline --steelmakers "${steelmakers[@]}" --years "${years[@]}" --periods "${periods[@]}"
       - name: Commit refreshed generated data
         if: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}
         env:

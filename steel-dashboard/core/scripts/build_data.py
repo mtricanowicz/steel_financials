@@ -121,7 +121,12 @@ def load_manual() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     return metrics, repurchases, sales
 
 
-def load_auto(steelmakers: list[str], years: list[int], periods: list[str]) -> pd.DataFrame:
+def load_auto(
+    steelmakers: list[str],
+    years: list[int],
+    periods: list[str],
+    failures: list[dict[str, str]] | None = None,
+) -> pd.DataFrame:
     """Fetch XBRL company facts and extract auto metrics per steelmaker."""
     client = EdgarClient()
     ciks = client.resolve_ciks(steelmakers)
@@ -129,12 +134,14 @@ def load_auto(steelmakers: list[str], years: list[int], periods: list[str]) -> p
     for steelmaker in steelmakers:
         try:
             facts = client.company_facts(ciks[steelmaker])
+            rows.extend(
+                {"Steelmaker": steelmaker, **rec}
+                for rec in extract_financials(facts, years, periods)
+            )
         except Exception as exc:  # noqa: BLE001
             log.error("Could not fetch company facts for %s: %s", steelmaker, exc)
-            continue
-        for rec in extract_financials(facts, years, periods):
-            rec["Steelmaker"] = steelmaker
-            rows.append(rec)
+            if failures is not None:
+                failures.append({"steelmaker": steelmaker, "error": str(exc)})
     return pd.DataFrame(rows)
 
 
@@ -163,7 +170,7 @@ def _scope_frame(
 def _report_mismatches(merged: pd.DataFrame) -> None:
     for metric in AUTO_METRICS:
         manual_col = f"{metric}_manual"
-        if manual_col not in merged.columns:
+        if metric not in merged.columns or manual_col not in merged.columns:
             continue
         auto_vals = pd.to_numeric(merged[metric], errors="coerce")
         manual_vals = pd.to_numeric(merged[manual_col], errors="coerce")
@@ -192,11 +199,10 @@ def _report_mismatches(merged: pd.DataFrame) -> None:
 def merge_sources(auto: pd.DataFrame, manual: pd.DataFrame) -> pd.DataFrame:
     """Merge auto and manual metrics on steelmaker/year/quarter."""
     keys = ["Steelmaker", "Year", "Quarter"]
+    if auto.empty:
+        return manual.copy()
     if manual.empty:
-        merged = auto.copy()
-        for m in MANUAL_METRICS:
-            merged[m] = pd.NA
-        return merged
+        return auto.copy()
 
     overlap = [m for m in AUTO_METRICS if m in manual.columns]
     manual = manual.rename(columns={m: f"{m}_manual" for m in overlap})
@@ -204,6 +210,8 @@ def merge_sources(auto: pd.DataFrame, manual: pd.DataFrame) -> pd.DataFrame:
     _report_mismatches(merged)
 
     for metric in overlap:
+        if metric not in merged.columns:
+            merged[metric] = pd.NA
         merged[metric] = merged[metric].fillna(merged[f"{metric}_manual"])
 
     return merged
@@ -238,7 +246,12 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
         return aligned_year, aligned_quarter, f"{aligned_year}{aligned_quarter}"
 
     def col(name: str) -> pd.Series:
-        return pd.to_numeric(df[name], errors="coerce") if name in df.columns else pd.Series(pd.NA, index=df.index)
+        if name in df.columns:
+            return pd.to_numeric(df[name], errors="coerce")
+        return pd.Series(float("nan"), index=df.index, dtype="float64")
+
+    def preserve_existing(name: str, values: pd.Series) -> pd.Series:
+        return values.combine_first(col(name))
 
     sales, costs = col("Net Sales"), col("Cost of Goods Sold")
     net_inc_attr = col("Net Income Attributable to Stockholders")
@@ -259,9 +272,13 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
     )
     ocf, capex = col("Operating Cash Flow"), col("Capital Expenditures").abs()
 
-    df["Gross Income"] = sales - costs
-    df["Gross Margin"] = ((df["Gross Income"] / sales) * 100).round(2)
-    df["Net Margin Attributable to Stockholders"] = ((net_inc_attr / sales) * 100).round(2)
+    df["Gross Income"] = preserve_existing("Gross Income", sales - costs)
+    df["Gross Margin"] = preserve_existing(
+        "Gross Margin", ((df["Gross Income"] / sales) * 100).round(2)
+    )
+    df["Net Margin Attributable to Stockholders"] = preserve_existing(
+        "Net Margin Attributable to Stockholders", ((net_inc_attr / sales) * 100).round(2)
+    )
     df["Depreciation & Amortization"] = dep_amort.combine_first(
         (depreciation.fillna(0) + amortization.fillna(0)).where(
             depreciation.notna() | amortization.notna()
@@ -284,14 +301,29 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
                 "EBITDA treats missing %s as zero in %s rows; these are not confirmed zeros",
                 name, int(values.isna().sum()),
             )
-    df["EBITDA"] = net_inc + interest.fillna(0) + tax.fillna(0) + lioa.fillna(0) + df["Depreciation & Amortization"].fillna(0)
-    df["Total Debt"] = ltd.fillna(0) + curr_mat.fillna(0)
+    df["EBITDA"] = preserve_existing(
+        "EBITDA",
+        net_inc + interest.fillna(0) + tax.fillna(0) + lioa.fillna(0)
+        + df["Depreciation & Amortization"].fillna(0),
+    )
+    total_debt = ltd.fillna(0) + curr_mat.fillna(0)
+    total_debt = total_debt.where(
+        ltd.notna() | curr_mat.notna(),
+        col("Total Debt").fillna(0),
+    )
+    df["Total Debt"] = total_debt
     df["Cash & Cash Equivalents"] = cash_eq.combine_first(
         (unr_cash.fillna(0) + r_cash.fillna(0)).where(unr_cash.notna() | r_cash.notna())
     )
-    df["Total Liquidity"] = col("Cash & Cash Equivalents") + st_inv.fillna(0)
-    df["Net Debt"] = col("Total Debt") - col("Total Liquidity")
-    df["Free Cash Flow"] = ocf - capex
+    cash_and_equivalents = col("Cash & Cash Equivalents")
+    total_liquidity = cash_and_equivalents.fillna(0) + st_inv.fillna(0)
+    total_liquidity = total_liquidity.where(
+        cash_and_equivalents.notna() | st_inv.notna(),
+        col("Total Liquidity").fillna(0),
+    )
+    df["Total Liquidity"] = total_liquidity
+    df["Net Debt"] = preserve_existing("Net Debt", col("Total Debt") - col("Total Liquidity"))
+    df["Free Cash Flow"] = preserve_existing("Free Cash Flow", ocf - capex)
     df["Period"] = df["Year"].astype(str) + df["Quarter"].astype(str)
     aligned = df.apply(
         lambda row: align_period(row.get("Reported End"), row.get("Year"), row.get("Quarter")),
@@ -299,6 +331,39 @@ def add_derived(df: pd.DataFrame) -> pd.DataFrame:
         result_type="expand",
     )
     aligned.columns = ["AlignedYear", "AlignedQuarter", "AlignedPeriod"]
+    reported_end = (
+        pd.to_datetime(df["Reported End"], errors="coerce")
+        if "Reported End" in df.columns
+        else pd.Series(pd.NaT, index=df.index)
+    )
+    no_reported_end = reported_end.isna()
+    if {"Steelmaker", "Year", "Quarter"}.issubset(df.columns):
+        cmc_quarters = {
+            "Q1": (-1, "Q4"),
+            "Q2": (0, "Q1"),
+            "Q3": (0, "Q2"),
+            "Q4": (0, "Q3"),
+        }
+        for reporting_quarter, (year_offset, aligned_quarter) in cmc_quarters.items():
+            mask = (
+                (df["Steelmaker"] == "CMC")
+                & (df["Quarter"] == reporting_quarter)
+                & no_reported_end
+            )
+            if mask.any():
+                aligned.loc[mask, "AlignedYear"] = (
+                    pd.to_numeric(df.loc[mask, "Year"], errors="coerce") + year_offset
+                )
+                aligned.loc[mask, "AlignedQuarter"] = aligned_quarter
+                aligned.loc[mask, "AlignedPeriod"] = (
+                    aligned.loc[mask, "AlignedYear"].astype(str) + aligned_quarter
+                )
+    for column in aligned.columns:
+        if column in df.columns:
+            aligned[column] = aligned[column].where(
+                ~no_reported_end | df[column].isna(),
+                df[column],
+            )
     df[["AlignedYear", "AlignedQuarter", "AlignedPeriod"]] = aligned
 
     if {"Steelmaker", "Year", "Quarter"}.issubset(df.columns):
@@ -459,29 +524,16 @@ def _build_coverage_diagnostics(
     steelmakers: list[str],
     years: list[int],
     periods: list[str],
+    sources: list[str],
+    auto_failures: list[dict[str, str]],
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, Any]]:
     """Build coverage diagnostics for the requested steelmaker/year/period slice."""
     key_cols = ["Steelmaker", "Year", "Quarter"]
-    metric_sources: dict[str, str] = {
-        **{metric: "auto_xbrl" for metric in AUTO_METRICS},
-        **{metric: "manual_only" for metric in MANUAL_METRICS},
-    }
-    for metric in (
-        "Current Maturities",
-        "Cash & Cash Equivalents",
-        "Short-Term Investments",
-    ):
-        metric_sources.setdefault(metric, "auto_xbrl")
+    source_type = "auto_xbrl" if "auto" in sources else "manual"
+    metric_sources = {metric: source_type for metric in AUTO_METRICS}
+    metric_sources.update({metric: "manual" for metric in MANUAL_METRICS})
 
     diagnostic_frame = merged.copy()
-    hidden_inputs = [
-        metric for metric in metric_sources
-        if metric not in diagnostic_frame.columns and metric in auto.columns
-    ]
-    if hidden_inputs:
-        diagnostic_frame = diagnostic_frame.merge(
-            auto[key_cols + hidden_inputs], on=key_cols, how="left", validate="one_to_one"
-        )
     metrics = [m for m in metric_sources if m in diagnostic_frame.columns]
     expected_keys = [
         (steelmaker, year, period)
@@ -494,8 +546,17 @@ def _build_coverage_diagnostics(
         diagnostic_frame.set_index(key_cols)
         if not diagnostic_frame.empty else pd.DataFrame(columns=metrics)
     )
-    auto_keys = set(auto[key_cols].itertuples(index=False, name=None)) if not auto.empty else set()
-    manual_keys = set(manual[key_cols].itertuples(index=False, name=None)) if not manual.empty else set()
+    auto_keys = (
+        set(auto[key_cols].itertuples(index=False, name=None))
+        if not auto.empty and set(key_cols).issubset(auto.columns)
+        else set()
+    )
+    manual_keys = (
+        set(manual[key_cols].itertuples(index=False, name=None))
+        if not manual.empty and set(key_cols).issubset(manual.columns)
+        else set()
+    )
+    auto_failed_steelmakers = {failure["steelmaker"] for failure in auto_failures}
 
     if config.DIAGNOSTICS_EXCLUDE_FUTURE_PERIODS:
         quarter_rank = {q: i for i, q in enumerate(config.QUARTERS)}
@@ -543,10 +604,13 @@ def _build_coverage_diagnostics(
                     continue
 
                 missing += 1
-                if source_type == "manual_only":
+                if source_type in {"manual_only", "manual"}:
                     reason = "NO_MANUAL_ROW" if key not in manual_keys else "NO_MANUAL_VALUE"
                 elif source_type == "auto_xbrl":
-                    reason = "NO_AUTO_ROW" if key not in auto_keys else "NO_AUTO_VALUE"
+                    if key[0] in auto_failed_steelmakers:
+                        reason = "AUTO_EXTRACTION_FAILED"
+                    else:
+                        reason = "NO_AUTO_ROW" if key not in auto_keys else "NO_AUTO_VALUE"
                 else:
                     reason = "MISSING_VALUE"
 
@@ -603,13 +667,35 @@ def _build_coverage_diagnostics(
         detail_df = detail_df.sort_values(["steelmaker", "metric", "year", "quarter"])
 
     reason_counts = detail_df["reason_code"].value_counts().to_dict() if not detail_df.empty else {}
+    source_status: dict[str, dict[str, Any]] = {
+        "auto": {
+            "status": "skipped" if "auto" not in sources else ("loaded" if not auto.empty else "empty"),
+            "failed_steelmakers": [],
+        },
+        "manual": {
+            "status": "skipped" if "manual" not in sources else "empty",
+            "failed_steelmakers": [],
+        },
+    }
+    if "auto" in sources and auto_failures:
+        source_status["auto"]["status"] = (
+            "partial_failure" if not auto.empty else "failed"
+        )
+        source_status["auto"]["failed_steelmakers"] = sorted(auto_failed_steelmakers)
+    if "manual" in sources and not manual.empty:
+        source_status["manual"]["status"] = "loaded"
+
     report = {
         "requested_steelmakers": steelmakers,
         "requested_years": years,
         "requested_periods": periods,
+        "requested_sources": sources,
+        "skipped_sources": [source for source in ("auto", "manual") if source not in sources],
+        "source_status": source_status,
+        "extraction_failures": auto_failures,
         "exclude_future_periods": config.DIAGNOSTICS_EXCLUDE_FUTURE_PERIODS,
-        "summary_rows": int(len(summary_df)),
-        "detail_rows": int(len(detail_df)),
+        "summary_rows": len(summary_df),
+        "detail_rows": len(detail_df),
         "reason_counts": reason_counts,
     }
     return summary_df, detail_df, report
@@ -622,6 +708,8 @@ def _write_coverage_diagnostics(
     steelmakers: list[str],
     years: list[int],
     periods: list[str],
+    sources: list[str],
+    auto_failures: list[dict[str, str]],
 ) -> None:
     """Write diagnostics tables and report under data/generated/diagnostics."""
     DIAGNOSTICS_DIR.mkdir(parents=True, exist_ok=True)
@@ -632,6 +720,8 @@ def _write_coverage_diagnostics(
         steelmakers=steelmakers,
         years=years,
         periods=periods,
+        sources=sources,
+        auto_failures=auto_failures,
     )
     summary_df.to_csv(DIAGNOSTICS_SUMMARY_CSV, index=False)
     detail_df.to_csv(DIAGNOSTICS_DETAIL_CSV, index=False)
@@ -657,21 +747,123 @@ def _load_existing_financials() -> pd.DataFrame:
     return df
 
 
-def _merge_financials(existing: pd.DataFrame, new: pd.DataFrame) -> pd.DataFrame:
-    if existing.empty:
-        return new
-    if new.empty:
-        return existing
+def _manual_ebitda_inputs_complete(frame: pd.DataFrame) -> pd.Series:
+    """Identify manual rows with every input needed for a safe EBITDA refresh."""
+    numeric = {
+        name: pd.to_numeric(frame[name], errors="coerce")
+        if name in frame.columns
+        else pd.Series(float("nan"), index=frame.index, dtype="float64")
+        for name in (
+            "Net Income",
+            "Interest Expense",
+            "Tax Expense",
+            "Losses & Impairment of Assets",
+            "Depreciation & Amortization",
+            "Depreciation",
+            "Amortization",
+        )
+    }
+    da_complete = numeric["Depreciation & Amortization"].notna() | (
+        numeric["Depreciation"].notna() & numeric["Amortization"].notna()
+    )
+    return (
+        numeric["Net Income"].notna()
+        & numeric["Interest Expense"].notna()
+        & numeric["Tax Expense"].notna()
+        & numeric["Losses & Impairment of Assets"].notna()
+        & da_complete
+    )
 
+
+def _merge_financials(
+    existing: pd.DataFrame,
+    new: pd.DataFrame,
+    overwrite: bool = False,
+    sources: list[str] | None = None,
+) -> pd.DataFrame:
+    """Merge source values by reporting key, then safely recalculate derived values."""
     key = ["Steelmaker", "Year", "Quarter"]
-    new = new.drop_duplicates(subset=key, keep="last")
-    existing = existing.copy()
-    existing = existing[~existing.set_index(key).index.isin(new.set_index(key).index)]
-    merged = pd.concat([existing, new], ignore_index=True, sort=False)
+    if existing.empty and new.empty:
+        return existing.copy()
+
+    existing = existing.drop_duplicates(subset=key, keep="last").copy()
+    new = new.drop_duplicates(subset=key, keep="last").copy()
+    if existing.empty:
+        merged = new
+    elif new.empty:
+        merged = existing
+    else:
+        joined = existing.merge(
+            new,
+            on=key,
+            how="outer",
+            suffixes=("_existing", "_incoming"),
+            indicator=True,
+            validate="one_to_one",
+            sort=False,
+        )
+        merged = joined[key].copy()
+        for column in (set(existing.columns) | set(new.columns)) - set(key):
+            in_existing = column in existing.columns
+            in_new = column in new.columns
+            if in_existing and in_new:
+                old_values = joined[f"{column}_existing"]
+                new_values = joined[f"{column}_incoming"]
+            elif in_existing:
+                old_values = joined[column]
+                new_values = pd.Series(pd.NA, index=joined.index)
+            else:
+                old_values = pd.Series(pd.NA, index=joined.index)
+                new_values = joined[column]
+            merged[column] = (
+                new_values.combine_first(old_values)
+                if overwrite
+                else old_values.combine_first(new_values)
+            )
+
+    if not set(key).issubset(merged.columns):
+        return merged
     if "Period" not in merged.columns:
         merged["Period"] = merged["Year"].astype(str) + merged["Quarter"].astype(str)
-    merged = merged.drop(columns=[c for c in REMOVED_OUTPUT_COLUMNS if c in merged.columns], errors="ignore")
-    return merged.sort_values(["Steelmaker", "Year", "Quarter"])
+
+    previous_ebitda: dict[tuple[Any, Any, Any], Any] = {}
+    existing_keys: set[tuple[Any, Any, Any]] = set()
+    if not existing.empty:
+        existing_keys = set(existing[key].itertuples(index=False, name=None))
+        if "EBITDA" in existing.columns:
+            previous_ebitda = dict(
+                zip(existing[key].itertuples(index=False, name=None), existing["EBITDA"])
+            )
+
+    merged = add_derived(merged)
+    selected_sources = sources or ["auto"]
+    if "manual" in selected_sources and "auto" not in selected_sources and previous_ebitda:
+        complete_keys = set()
+        if not new.empty:
+            complete_keys = set(
+                new.loc[_manual_ebitda_inputs_complete(new), key]
+                .itertuples(index=False, name=None)
+            )
+        updated_keys = set(new[key].itertuples(index=False, name=None)) if not new.empty else set()
+        preserved = 0
+        for index, row in merged.iterrows():
+            row_key = tuple(row[column] for column in key)
+            previous = previous_ebitda.get(row_key)
+            if (
+                row_key in existing_keys
+                and row_key in updated_keys
+                and row_key not in complete_keys
+                and pd.notna(previous)
+            ):
+                merged.at[index, "EBITDA"] = previous
+                preserved += 1
+        if preserved:
+            log.warning(
+                "Preserved stored EBITDA for %s rows because manual inputs were incomplete",
+                preserved,
+            )
+
+    return merged.sort_values(key).reset_index(drop=True)
 
 
 def build(
@@ -680,36 +872,67 @@ def build(
     periods: list[str],
     overwrite: bool = False,
     share_data: bool = False,
+    sources: list[str] | None = None,
 ) -> None:
-    auto = load_auto(steelmakers, years, periods)
-    manual_metrics, repurchases, sales = load_manual()
+    selected_sources = (
+        ["auto"] if sources is None else list(dict.fromkeys(sources))
+    )
+    unsupported_sources = set(selected_sources) - {"auto", "manual"}
+    if unsupported_sources or not selected_sources:
+        raise ValueError(f"Unsupported sources: {sorted(unsupported_sources) or selected_sources}")
+
+    auto_failures: list[dict[str, str]] = []
+    auto = (
+        load_auto(steelmakers, years, periods, failures=auto_failures)
+        if "auto" in selected_sources
+        else pd.DataFrame()
+    )
+
+    manual_metrics = pd.DataFrame()
+    repurchases = pd.DataFrame()
+    sales = pd.DataFrame()
+    if "manual" in selected_sources or share_data:
+        manual_metrics, repurchases, sales = load_manual()
     repurchases_full = repurchases.copy()
     sales_full = sales.copy()
+    if "manual" in selected_sources:
+        unsupported_metrics = [
+            column
+            for column in manual_metrics.columns
+            if column not in {"Steelmaker", "Year", "Quarter"} and column not in AUTO_METRICS
+        ]
+        if unsupported_metrics:
+            log.warning("Ignoring unsupported manual financial columns: %s", unsupported_metrics)
+            manual_metrics = manual_metrics.drop(columns=unsupported_metrics)
+        manual_metrics = _scope_frame(manual_metrics, steelmakers, years, periods)
 
-    manual_metrics = _scope_frame(manual_metrics, steelmakers, years, periods)
+    new_financials = merge_sources(auto, manual_metrics)
+    new_financials = new_financials.drop(
+        columns=[column for column in new_financials.columns if column.endswith("_manual")],
+        errors="ignore",
+    )
+    if not new_financials.empty:
+        new_financials = _scope_frame(new_financials, steelmakers, years, periods)
 
-    merged = merge_sources(auto, manual_metrics)
-    merged = add_derived(merged)
-
-    drop = [c for c in merged.columns if c.endswith("_manual")]
-    merged = merged.drop(columns=drop).sort_values(["Steelmaker", "Year", "Quarter"])
-
-    merged = _scope_frame(merged, steelmakers, years, periods)
+    existing_financials = _load_existing_financials()
+    merged = _merge_financials(
+        existing_financials,
+        new_financials,
+        overwrite=overwrite,
+        sources=selected_sources,
+    )
+    selected_slice = _scope_frame(merged, steelmakers, years, periods)
 
     _write_coverage_diagnostics(
-        merged=merged,
+        merged=selected_slice,
         auto=auto,
         manual=manual_metrics,
         steelmakers=steelmakers,
         years=years,
         periods=periods,
+        sources=selected_sources,
+        auto_failures=auto_failures,
     )
-
-    if not overwrite:
-        existing_financials = _load_existing_financials()
-        merged = _merge_financials(existing_financials, merged)
-
-    merged = merged.drop(columns=[c for c in REMOVED_OUTPUT_COLUMNS if c in merged.columns], errors="ignore")
 
     _write(FINANCIALS_PATH, _records(_to_public_schema(merged)))
 
@@ -723,6 +946,13 @@ def main() -> None:
     parser.add_argument("--steelmakers", nargs="+", default=["NUE", "STLD", "CLF", "CMC"])
     parser.add_argument("--years", nargs="+", type=int, required=True)
     parser.add_argument("--periods", nargs="+", default=["Q1", "Q2", "Q3", "Q4", "FY"])
+    parser.add_argument(
+        "--sources",
+        nargs="+",
+        choices=("auto", "manual"),
+        default=["auto"],
+        help="Financial data sources to use (default: auto).",
+    )
     parser.add_argument("--overwrite", action="store_true", help="Overwrite existing generated outputs instead of merging with existing data.")
     parser.add_argument(
         "--share-data",
@@ -736,6 +966,7 @@ def main() -> None:
         args.periods,
         overwrite=args.overwrite,
         share_data=args.share_data,
+        sources=args.sources,
     )
 
 

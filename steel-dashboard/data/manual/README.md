@@ -17,17 +17,22 @@ The current dashboard relies primarily on SEC XBRL extraction for financial stat
 
 ## `manual_metrics.csv`
 
-The current checked-in CSV header is:
+The checked-in CSV is an empty template. Its accepted columns are:
 
-`Steelmaker,Year,Quarter,Passenger Revenue,RPM,ASM,Profit Sharing,Long-Term Debt,Operating Revenue,Operating Expenses,Net Income`
+`Steelmaker,Year,Quarter,Net Sales,Cost of Goods Sold,Operating Income,Net Income,Net Income Attributable to Stockholders,Earnings Per Share,Long-Term Debt,Current Maturities,Cash & Cash Equivalents,Short-Term Investments,Interest Expense,Tax Expense,Losses & Impairment of Assets,Depreciation & Amortization,Depreciation,Amortization,Operating Cash Flow,Capital Expenditures`
 
-In the current steel dashboard:
+`Steelmaker`, reporting `Year`, and reporting `Quarter` are the join keys. The
+remaining columns are existing SEC/XBRL financial input fields also accepted
+from manual files; this schema does not add new metrics. Leave unavailable
+values blank. A numeric zero is an explicit value.
 
-- `Steelmaker`, `Year`, and `Quarter` are the join keys
-- overlap columns such as `Long-Term Debt` and `Net Income` can be compared against XBRL values during the build
-- legacy columns such as `Passenger Revenue`, `RPM`, `ASM`, and `Profit Sharing` may still appear in historical workbook exports, but they are not part of the current primary steel dashboard metric set
-
-If an overlap field is provided and the XBRL value is missing, the manual value can fill the gap. If both are present and materially different, the build logs a mismatch.
+Select `manual` as the financial source to update without requesting SEC data.
+When both `auto` and `manual` are selected, non-null XBRL values take precedence
+and manual values fill missing XBRL values; discrepancies are logged. Without
+overwrite, only missing stored values are filled. With overwrite, non-null
+source values replace stored values for the selected reporting periods; blank
+cells never erase stored data. Workbook sheet names remain
+`steelmaker_financials`, `share_repurchases`, and `share_sales`.
 
 ## `share_repurchases.csv`
 

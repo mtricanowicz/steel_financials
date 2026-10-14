@@ -71,6 +71,15 @@ This writes:
 - `../data/generated/buybacks.json` when `--share-data` is used
 - coverage diagnostics under `../data/generated/diagnostics/`
 
+The command defaults to `--sources auto`. Use `--sources manual` for an
+offline financial update, or `--sources auto manual` to combine both sources.
+Updates merge by steelmaker and **reporting** year/quarter, preserve unrelated
+records, and never use blank input cells to erase stored values. `--overwrite`
+replaces only non-null supplied metrics within the selected reporting periods.
+Share history is rebuilt independently only when `--share-data` is explicitly
+requested. See [the manual input schema](../data/manual/README.md) for accepted
+fields.
+
 ## Build insights
 
 Command line:

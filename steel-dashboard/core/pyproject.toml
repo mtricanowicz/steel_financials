@@ -20,7 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 local-embeddings = ["sentence-transformers>=3.0"]
-dev = ["pytest>=8.0", "ruff>=0.5"]
+dev = ["pytest>=8.0", "ruff>=0.5", "PyYAML>=6.0"]
 
 [project.scripts]
 sec-pipeline = "sec_pipeline.pipeline:main"

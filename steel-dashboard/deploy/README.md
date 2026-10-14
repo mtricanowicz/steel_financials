@@ -20,7 +20,7 @@ The repository-level workflows under `.github/workflows/` assume the repo root c
 | --- | --- | --- |
 | `ci.yml` | push / PR | Run core tests. Optionally run guarded web build steps if a web app is present. |
 | `deploy.yml` | manual / after successful CI on `main` | Deploy `quotes-api` and `streamlit-app`. Optionally deploy a guarded web app if present. |
-| `refresh-data.yml` | quarterly cron / manual | Rebuild generated datasets and insights, upload artifacts, then redeploy Streamlit. Optionally rebuild a guarded web app if present. |
+| `refresh-data.yml` | quarterly cron / manual | Rebuild generated datasets and insights, upload artifacts, then redeploy Streamlit. Manual runs can select auto/manual/both sources and toggle overwrites, share history, and insights. Optionally rebuild a guarded web app if present. |
 
 ## Required secrets
 
@@ -108,5 +108,10 @@ pip install -e .
 python -m scripts.build_data --steelmakers NUE STLD CLF CMC X ATI CRS --years 2026 --periods Q2
 python -m sec_pipeline.pipeline --steelmakers NUE STLD CLF CMC X ATI CRS --years 2026 --periods Q2
 ```
+
+For a manual-only financial update that does not contact SEC, run the build
+with `--sources manual`. In the GitHub refresh workflow, select `manual` and
+disable insight generation for that use case. Share-history rebuilding is
+independent and runs only when `share_data` is enabled.
 
 Set `SEC_USER_AGENT` and `OPENAI_API_KEY` in `core/.env` first.

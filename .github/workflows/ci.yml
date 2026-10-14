@@ -3,9 +3,9 @@ name: CI
 on:
   push:
     branches: [main]
-    paths: ["steel-dashboard/**"]
+    paths: ["steel-dashboard/**", ".github/workflows/refresh-data.yml"]
   pull_request:
-    paths: ["steel-dashboard/**"]
+    paths: ["steel-dashboard/**", ".github/workflows/refresh-data.yml"]
 
 jobs:
   core:
