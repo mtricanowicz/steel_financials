@@ -1,0 +1,79 @@
+name: Refresh earnings dates
+
+# Daily refresh of steel-dashboard/data/generated/earnings_dates.json from the
+# yfinance earnings calendar. Commits and redeploys Streamlit only when the dates
+# actually changed. Requires the same GCP secrets as Deploy and Refresh data.
+on:
+  workflow_dispatch:
+  schedule:
+    # 11:30 UTC (7:30 ET) on weekdays
+    - cron: "30 11 * * 1-5"
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: refresh-earnings-dates
+  cancel-in-progress: false
+
+jobs:
+  build-earnings-dates:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    defaults:
+      run:
+        working-directory: steel-dashboard/core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e ".[earnings]"
+      - name: Fetch earnings dates
+        run: python -m scripts.build_earnings_dates
+      - name: Commit changed earnings dates
+        id: commit
+        if: ${{ github.ref == 'refs/heads/main' }}
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add ../data/generated/earnings_dates.json
+
+          if git diff --cached --quiet; then
+            echo "No earnings date changes to commit"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore(data): refresh earnings dates [skip ci]"
+            git pull --rebase origin "$BRANCH_NAME"
+            git push origin "$BRANCH_NAME"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  redeploy:
+    needs: build-earnings-dates
+    if: ${{ needs.build-earnings-dates.outputs.changed == 'true' }}
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      # Check out the branch tip so the image includes the commit pushed above.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDP }}
+          service_account: ${{ secrets.GCP_DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Rebuild and deploy Streamlit
+        run: |
+          gcloud builds submit steel-dashboard \
+            --config steel-dashboard/deploy/cloudbuild.streamlit.yaml \
+            --substitutions=SHORT_SHA="$(git rev-parse --short HEAD)",_QUOTES_API_URL="${{ secrets.QUOTES_API_URL }}",_GA_MEASUREMENT_ID="${{ vars.GA_MEASUREMENT_ID }}" \
+            --project "${{ secrets.GCP_PROJECT_ID }}"

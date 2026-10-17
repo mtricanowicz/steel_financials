@@ -26,6 +26,7 @@ core/
     pipeline.py      orchestrator for filing retrieval -> insights
   scripts/
     build_data.py    XBRL + manual inputs -> generated JSON
+    build_earnings_dates.py  yfinance earnings calendar -> earnings_dates.json
     make_sample_data.py
   notebooks/
     run_pipeline.ipynb
@@ -79,6 +80,32 @@ replaces only non-null supplied metrics within the selected reporting periods.
 Share history is rebuilt independently only when `--share-data` is explicitly
 requested. See [the manual input schema](../data/manual/README.md) for accepted
 fields.
+
+## Build earnings dates
+
+From the repository root:
+
+```powershell
+pip install -e "steel-dashboard\core[earnings]"   # one-time: adds yfinance
+python steel-dashboard\core\scripts\build_earnings_dates.py `
+  --tickers NUE STLD CLF CMC
+```
+
+Fetches the next earnings date (or estimated date range) for each ticker from the
+yfinance earnings calendar and writes `../data/generated/earnings_dates.json`, shaped as
+`{ticker: {"date_from": "YYYY-MM-DD", "date_to": "YYYY-MM-DD"}}`. `date_to` equals
+`date_from` for a single date and ends the range for an estimate. The Streamlit
+sidebar reads this file instead of calling the quotes-api at page load.
+`--tickers` is optional and defaults to the active steelmakers shown in the dashboard
+sidebar. `--output` is optional and overrides the output path.
+
+Existing entries are kept when a ticker's fetch fails or returns no date, and a stored
+upcoming date is never replaced by a date already in the past. The file contains no
+timestamps, so unchanged dates produce an identical file. The script exits non-zero,
+leaving the file untouched, only if no ticker could be fetched at all.
+
+The `Refresh earnings dates` GitHub workflow runs this daily on weekdays, commits the
+file only when it changed, and redeploys Streamlit only in that case.
 
 ## Build insights
 

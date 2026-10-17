@@ -29,7 +29,7 @@ from lib.formatting import (
 from lib.analytics import track_page_view
 from lib.data import (
     fetch_live_quotes,
-    fetch_earnings_dates,
+    load_earnings_dates,
 )
 
 _APP_DIR = Path(__file__).parent
@@ -122,26 +122,14 @@ def _steelmaker_sidebar_line(steelmaker: str, earnings: dict) -> str:
             # Formatting the date or date ranges for readability
             date_from_value = dt.date.fromisoformat(date_from)
             date_to_value = dt.date.fromisoformat(date_to) if date_to else None
+
+            def _fmt(d: dt.date) -> str:
+                return f"{d:%B} {d.day}, {d.year}"
+
             if date_to_value and date_to_value != date_from_value:
-                if (date_from_value.year, date_from_value.month) == (
-                    date_to_value.year,
-                    date_to_value.month,
-                ):
-                    date_label = (
-                        f"{date_from_value:%B %d}–{date_to_value:%d, %Y} (estimated)"
-                    )
-                elif date_from_value.year == date_to_value.year:
-                    date_label = (
-                        f"{date_from_value:%B %d}–"
-                        f"{date_to_value:%B %d, %Y} (estimated)"
-                    )
-                else:
-                    date_label = (
-                        f"{date_from_value:%B %d, %Y}–"
-                        f"{date_to_value:%B %d, %Y} (estimated)"
-                    )
+                date_label = f"{_fmt(date_from_value)}–{_fmt(date_to_value)} (estimated)"
             else:
-                date_label = date_from_value.strftime("%B %d, %Y")
+                date_label = _fmt(date_from_value)
             # Define the final information line
             info_line = (
                 f"<span style='display:block; "
@@ -208,7 +196,7 @@ with st.sidebar:
             unsafe_allow_html=True
         )
     with st.expander("Steelmakers Covered", expanded=True):
-        earnings_dates = fetch_earnings_dates(STOCK_TICKERS)
+        earnings_dates = load_earnings_dates()
         for group in (g for g in STEELMAKER_GROUPS if g != "Defunct Steelmakers"):
             st.markdown(f"### {group}", unsafe_allow_html=True)
             for steelmaker in STEELMAKER_GROUPS[group]:
