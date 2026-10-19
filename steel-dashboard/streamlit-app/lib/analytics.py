@@ -22,6 +22,11 @@ def track_page_view(page_title: str) -> None:
     if not measurement_id:
         return
 
+    # Always reserve one slot so the page's element positions are identical on
+    # every run; otherwise the one-time iframe shifts the page on the next rerun
+    # and Streamlit remounts it, collapsing open expanders.
+    slot = st.container()
+
     page_path = _PAGE_PATHS.get(page_title, "/")
     page_key = f"{page_path}:{page_title}"
     if st.session_state.get("_ga_last_page") == page_key:
@@ -32,31 +37,32 @@ def track_page_view(page_title: str) -> None:
     measurement_id_json = json.dumps(measurement_id)
     page_path_json = json.dumps(page_path)
     page_title_json = json.dumps(page_title)
-    components.html(
-        f"""
-        <script>
-            const analyticsWindow = window.parent;
-            analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
-            analyticsWindow.gtag = analyticsWindow.gtag || function() {{
-                analyticsWindow.dataLayer.push(arguments);
-            }};
+    with slot:
+        components.html(
+            f"""
+            <script>
+                const analyticsWindow = window.parent;
+                analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+                analyticsWindow.gtag = analyticsWindow.gtag || function() {{
+                    analyticsWindow.dataLayer.push(arguments);
+                }};
 
-            if (!analyticsWindow.__ga4Configured) {{
-                const tag = analyticsWindow.document.createElement("script");
-                tag.async = true;
-                tag.src = "https://www.googletagmanager.com/gtag/js?id={measurement_id}";
-                analyticsWindow.document.head.appendChild(tag);
-                analyticsWindow.gtag("js", new Date());
-                analyticsWindow.gtag("config", {measurement_id_json}, {{ send_page_view: false }});
-                analyticsWindow.__ga4Configured = true;
-            }}
+                if (!analyticsWindow.__ga4Configured) {{
+                    const tag = analyticsWindow.document.createElement("script");
+                    tag.async = true;
+                    tag.src = "https://www.googletagmanager.com/gtag/js?id={measurement_id}";
+                    analyticsWindow.document.head.appendChild(tag);
+                    analyticsWindow.gtag("js", new Date());
+                    analyticsWindow.gtag("config", {measurement_id_json}, {{ send_page_view: false }});
+                    analyticsWindow.__ga4Configured = true;
+                }}
 
-            analyticsWindow.gtag("event", "page_view", {{
-                page_path: {page_path_json},
-                page_title: {page_title_json}
-            }});
-        </script>
-        """,
-        height=0,
-        scrolling=False,
-    )
+                analyticsWindow.gtag("event", "page_view", {{
+                    page_path: {page_path_json},
+                    page_title: {page_title_json}
+                }});
+            </script>
+            """,
+            height=0,
+            scrolling=False,
+        )
