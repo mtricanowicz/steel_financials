@@ -10,6 +10,7 @@ from sec_pipeline.config import PeriodSpec, build_periods
 from sec_pipeline.edgar_client import Exhibit, Filing, _RateLimiter
 from sec_pipeline.parse import clean_text, html_to_text
 from sec_pipeline.pipeline import (
+    _controlling_report_date,
     _expected_report_date,
     _filings_by_filing_window,
     _filings_by_report_date,
@@ -188,6 +189,77 @@ class TestRateLimiter:
 
 
 class TestInsightsFilingSelection:
+    def test_q3_end_comes_from_10q_not_later_dated_8k(self):
+        filings = [
+            Filing(
+                accession="0000000000-26-000301",
+                form="10-Q",
+                filing_date=datetime(2026, 7, 23),
+                report_date=datetime(2026, 9, 30),
+                primary_document="quarterly.htm",
+            ),
+            Filing(
+                accession="0000000000-26-000302",
+                form="8-K",
+                filing_date=datetime(2026, 10, 19),
+                report_date=datetime(2026, 10, 19),
+                primary_document="earnings-release.htm",
+            ),
+        ]
+
+        report_date = _controlling_report_date(
+            filings,
+            PeriodSpec(2026, "Q3"),
+            datetime(2000, 12, 31),
+        )
+
+        assert report_date == datetime(2026, 9, 30)
+
+    @pytest.mark.parametrize("period", ["Q4", "FY"])
+    def test_q4_and_fy_end_come_from_10k(self, period):
+        filings = [
+            Filing(
+                accession="0000000000-26-000401",
+                form="10-K",
+                filing_date=datetime(2027, 2, 20),
+                report_date=datetime(2026, 12, 31),
+                primary_document="annual.htm",
+            ),
+            Filing(
+                accession="0000000000-27-000402",
+                form="8-K",
+                filing_date=datetime(2027, 2, 20),
+                report_date=datetime(2027, 2, 20),
+                primary_document="annual-release.htm",
+            ),
+        ]
+
+        report_date = _controlling_report_date(
+            filings,
+            PeriodSpec(2026, period),
+            datetime(2000, 12, 31),
+        )
+
+        assert report_date == datetime(2026, 12, 31)
+
+    def test_missing_controlling_filing_uses_and_logs_expected_period_end(self, caplog):
+        report_date = _controlling_report_date(
+            [
+                Filing(
+                    accession="0000000000-26-000501",
+                    form="8-K",
+                    filing_date=datetime(2026, 10, 19),
+                    report_date=datetime(2026, 10, 19),
+                    primary_document="earnings-release.htm",
+                )
+            ],
+            PeriodSpec(2026, "Q3"),
+            datetime(2000, 12, 31),
+        )
+
+        assert report_date == datetime(2026, 9, 30)
+        assert "No matching 10-Q report date found for 2026Q3" in caplog.text
+
     def test_build_period_chunks_keeps_8k_exhibit_provenance(self):
         filing = Filing("0000000000-24-000001", "8-K", datetime(2024, 7, 23), "cover.htm")
 

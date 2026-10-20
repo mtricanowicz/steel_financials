@@ -99,8 +99,41 @@ def _filings_by_filing_window(
     return sorted(matched, key=lambda f: f.filing_date)
 
 
-def _select_period_filings(client: EdgarClient, cik: str, spec: config.PeriodSpec) -> list[Filing]:
-    """Select report-date matches plus fiscal-year-aware filing-window results."""
+def _controlling_report_date(
+    filings: list[Filing],
+    spec: config.PeriodSpec,
+    fiscal_year_end: datetime,
+) -> datetime:
+    """Return the period end from its controlling filing, or the fiscal-calendar estimate."""
+    controlling_form = "10-K" if spec.period in {"Q4", "FY"} else "10-Q"
+    target = _expected_report_date(spec, fiscal_year_end)
+    candidates = [
+        filing
+        for filing in filings
+        if filing.form == controlling_form
+        and filing.report_date is not None
+        and _days_between(filing.report_date, target) <= _REPORT_DATE_TOLERANCE_DAYS
+    ]
+    if candidates:
+        latest = max(candidates, key=lambda filing: filing.filing_date)
+        assert latest.report_date is not None
+        return latest.report_date
+
+    log.warning(
+        "No matching %s report date found for %s; using expected period end %s",
+        controlling_form,
+        spec.label,
+        target.date(),
+    )
+    return target
+
+
+def _select_period_filings_with_context(
+    client: EdgarClient,
+    cik: str,
+    spec: config.PeriodSpec,
+) -> tuple[list[Filing], datetime]:
+    """Select summary filings and resolve the issuer fiscal year end."""
     if hasattr(client, "list_filings"):
         all_filings = [f for f in client.list_filings(cik) if f.form in config.RELEVANT_FORMS]
     elif hasattr(client, "filings_in_window"):
@@ -113,17 +146,16 @@ def _select_period_filings(client: EdgarClient, cik: str, spec: config.PeriodSpe
     fallback = _filings_by_filing_window(all_filings, spec, fiscal_year_end)
     selected = {filing.accession: filing for filing in [*primary, *fallback]}
     if selected:
-        return sorted(selected.values(), key=lambda filing: filing.filing_date)
+        return sorted(selected.values(), key=lambda filing: filing.filing_date), fiscal_year_end
     # Last-resort compatibility fallback to previous behavior.
     start, end = spec.date_window()
-    return client.filings_in_window(cik, start, end, config.RELEVANT_FORMS)
+    return client.filings_in_window(cik, start, end, config.RELEVANT_FORMS), fiscal_year_end
 
 
-def _representative_report_date(filings: list[Filing]) -> datetime | None:
-    report_dates = [f.report_date for f in filings if f.report_date is not None]
-    if not report_dates:
-        return None
-    return max(report_dates)
+def _select_period_filings(client: EdgarClient, cik: str, spec: config.PeriodSpec) -> list[Filing]:
+    """Select report-date matches plus fiscal-year-aware filing-window results."""
+    filings, _ = _select_period_filings_with_context(client, cik, spec)
+    return filings
 
 
 def _load_summaries() -> dict:
@@ -192,7 +224,7 @@ def build_period_chunks(
     client: EdgarClient, cik: str, spec: config.PeriodSpec
 ) -> tuple[list[Chunk], datetime | None]:
     """Download and chunk every relevant filing for one ticker-period."""
-    filings = _select_period_filings(client, cik, spec)
+    filings, fiscal_year_end = _select_period_filings_with_context(client, cik, spec)
     chunks: list[Chunk] = []
 
     def add_document(
@@ -254,7 +286,9 @@ def build_period_chunks(
                     exhibit.filename,
                     exc,
                 )
-    return chunks, _representative_report_date(filings)
+    if not filings:
+        return chunks, None
+    return chunks, _controlling_report_date(filings, spec, fiscal_year_end)
 
 
 def run(
