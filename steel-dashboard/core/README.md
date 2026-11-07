@@ -36,15 +36,16 @@ core/
 
 ## Setup
 
+Run these commands from `steel-dashboard/`:
+
 ```powershell
 cd core
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e .
-copy .env.example .env
 ```
 
-Set these values in `core/.env` before running networked jobs:
+Create `core/.env` and set these values before running networked jobs:
 
 - `SEC_USER_AGENT`
 - `OPENAI_API_KEY`
@@ -255,6 +256,8 @@ inputs are gross of interest income, not directly equivalent to NUE/CLF net
 interest. Other issuers retain the existing candidate list.
 
 ## Tests
+
+From `steel-dashboard/`:
 
 ```powershell
 cd core

@@ -8,7 +8,7 @@ The multipage app is registered in [app.py](app.py) and currently exposes:
 
 | Page | Source | Description |
 | --- | --- | --- |
-| Filtered Comparisons | `views/comparisons.py` | Compare selected metrics across steelmakers and periods with tables, line charts, and peer-difference bars. |
+| Financial Metrics | `views/comparisons.py` | Compare selected metrics across steelmakers and periods with tables, line charts, and peer-difference bars. |
 | Insights | `views/insights.py` | Precomputed insights from weighted multi-query RAG over periodic filings and material 8-K exhibits, including separate material-event and forward-guidance recall channels. |
 | Latest Results | `views/latest_results.py` | Latest quarterly and full-year snapshots across selected steelmakers. |
 
@@ -21,6 +21,7 @@ The app reads precomputed files from `../data/generated/` behind cached loaders:
 - `financials.json`
 - `buybacks.json`
 - `insights.json`
+- `earnings_dates.json` (refreshed by the weekday workflow and used for sidebar earnings dates)
 
 The app does not scrape SEC data or rebuild financials at request time.
 

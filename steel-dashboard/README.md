@@ -30,8 +30,11 @@ No active `web/` front end is present in this workspace.
    Summary generation retries once with a compact steel-specific prompt when the
    model reaches its completion token cap, and rejects a second capped response
    rather than saving truncated output.
-3. `streamlit-app` reads those generated files directly.
-4. `quotes-api` serves live quotes and historical close series used by the app.
+3. `core/scripts/build_earnings_dates.py` updates `data/generated/earnings_dates.json`;
+   a weekday GitHub Actions workflow runs it and redeploys Streamlit when the file changes.
+4. `streamlit-app` reads the generated datasets directly.
+5. `quotes-api` serves daily closes, live quotes, and historical close series;
+   it also exposes an earnings-calendar endpoint.
 
 ## Canonical financials schema
 
@@ -41,6 +44,7 @@ The generated financials dataset currently includes:
 - `Reporting Year`, `Reporting Quarter`, `Reporting Period`, `Reporting End`
 - `Net Sales`, `Cost of Goods Sold`, `Gross Income`
 - `Net Income Attributable to Stockholders`, `Earnings Per Share`
+- `EBITDA`, `Interest Expense`
 - `Long-Term Debt`, `Current Maturities`, `Total Debt`
 - `Cash & Cash Equivalents`, `Short-Term Investments`, `Total Liquidity`, `Net Debt`
 - `Operating Cash Flow`, `Capital Expenditures`, `Free Cash Flow`

@@ -12,15 +12,17 @@ The current workspace is organized around a precomputed data model:
 3. [steel-dashboard/streamlit-app](steel-dashboard/streamlit-app) renders the dashboard.
 4. [steel-dashboard/quotes-api](steel-dashboard/quotes-api) provides live stock quotes and historical close series.
 
-The configured issuer universe and automation examples center on:
+The peer-comparison groups are:
 
 - EAF Process Steelmakers
     - CMC
     - NUE
     - STLD
-- BOF Process Steelmakers
+- BF-BOF Process Steelmakers
     - CLF
     - _X (defunct)_
+
+The core data pipeline also supports ATI and CRS.
 
 ## Current metric model
 
@@ -30,6 +32,7 @@ The canonical financials export currently includes:
 - Income metrics: `Net Sales`, `Cost of Goods Sold`, `Gross Income`, `Net Income Attributable to Stockholders`, `Earnings Per Share`
 - Balance sheet metrics: `Long-Term Debt`, `Current Maturities`, `Total Debt`, `Cash & Cash Equivalents`, `Short-Term Investments`, `Total Liquidity`, `Net Debt`
 - Cash flow metrics: `Operating Cash Flow`, `Capital Expenditures`, `Free Cash Flow`
+- Other displayed metrics: `EBITDA`, `Interest Expense`
 - Derived margins: `Gross Margin`, `Net Margin Attributable to Stockholders`
 
 ## Quarterly alignment
@@ -48,7 +51,7 @@ The active deployable components in this workspace are:
 
 - Cloud Run for [steel-dashboard/streamlit-app](steel-dashboard/streamlit-app)
 - Cloud Run for [steel-dashboard/quotes-api](steel-dashboard/quotes-api)
-- GitHub Actions workflows in [.github/workflows](.github/workflows) for CI, deploy, and data refresh
+- GitHub Actions workflows in [.github/workflows](.github/workflows) for CI, deploy, data refresh, and weekday earnings-date refresh
 
 Some workflows still contain optional guarded `web/` steps for a static front end, but no active `steel-dashboard/web` directory exists in this workspace.
 

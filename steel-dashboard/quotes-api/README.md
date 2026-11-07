@@ -1,9 +1,11 @@
 # quotes-api
 
-This FastAPI service provides the only live-request data used by the dashboard:
+This FastAPI service provides the dashboard's request-time market data:
 
-- current quote snapshots
+- latest daily-close quote snapshots
+- live quote updates during market hours
 - aligned daily close history
+- earnings calendar dates or estimated date ranges
 
 All financial statement data is precomputed and read directly from generated JSON by the Streamlit app.
 
@@ -13,8 +15,9 @@ All financial statement data is precomputed and read directly from generated JSO
 | --- | --- | --- |
 | GET | `/health` | Liveness probe returning `{"status": "ok"}`. |
 | GET | `/quotes?tickers=NUE,STLD,CMC,CLF` | Last close, day change, and change percent per ticker. |
+| GET | `/live-quotes?tickers=NUE,STLD,CMC,CLF` | Live quote data with market state for the requested tickers. |
 | GET | `/history?tickers=NUE,STLD&start=2024-01-01` | Daily close history aligned on a shared date axis. |
-| GET | `/earnings?tickers=NUE,STLD,CMC,CLF` | Next earnings date (or estimated date range) per ticker. |
+| GET | `/earnings?tickers=NUE,STLD,CMC,CLF` | Provider-reported earnings date (or estimated date range) per ticker. |
 
 Quotes are cached by trading day. Historical responses are cached per request shape.
 

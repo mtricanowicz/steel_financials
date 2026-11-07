@@ -21,6 +21,7 @@ The repository-level workflows under `.github/workflows/` assume the repo root c
 | `ci.yml` | push / PR | Run core tests. Optionally run guarded web build steps if a web app is present. |
 | `deploy.yml` | manual / after successful CI on `main` | Deploy `quotes-api` and `streamlit-app`. Optionally deploy a guarded web app if present. |
 | `refresh-data.yml` | quarterly cron / manual | Rebuild generated datasets and insights, upload artifacts, then redeploy Streamlit. Manual runs can select auto/manual/both sources and toggle overwrites, share history, and insights. Optionally rebuild a guarded web app if present. |
+| `refresh-earnings-dates.yml` | weekdays / manual | Refresh `earnings_dates.json`; commit the file and redeploy Streamlit only when its contents change. |
 
 ## Required secrets
 
