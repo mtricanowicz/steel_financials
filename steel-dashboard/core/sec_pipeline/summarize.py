@@ -250,7 +250,8 @@ def summarize_period(
     def generate(compact: bool = False):
         return client.chat.completions.create(
             model=config.OPENAI_CHAT_MODEL,
-            temperature=config.SUMMARY_TEMPERATURE,
+            reasoning_effort=config.SUMMARY_REASONING_EFFORT,
+            **({"temperature": config.SUMMARY_TEMPERATURE} if config.SUMMARY_REASONING_EFFORT == "none" else {}),
             seed=config.SUMMARY_SEED,
             max_completion_tokens=MAX_OUTPUT_TOKENS,
             messages=[
